@@ -43,7 +43,7 @@
             </div>
 
             <div class="w-screen mx-auto flex justify-center">
-{{--                <x-main.footer />--}}
+                <x-main.footer />
             </div>
         </div>
 

@@ -2,7 +2,7 @@
 
 @php
     $classes = ($active ?? false)
-                ? 'font-medium text-center text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 transition ease-in-out duration-150'
+                ? 'font-medium text-center text-white bg-orange-700 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 transition ease-in-out duration-150'
                 : 'font-medium text-center text-white bg-orange-500 rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-600 transition ease-in-out duration-150';
 @endphp
 
