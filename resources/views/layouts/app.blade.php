@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,33 +13,43 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://kit.fontawesome.com/26b11da1dc.js" crossorigin="anonymous"></script>
 
         <!-- Styles -->
-        @livewireStyles
+        @stack('styles')
+        <livewire:styles />
     </head>
-    <body class="font-sans antialiased">
-        <x-banner />
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+    <body class="antialiased font-sans relative bg-gray-100 dark:bg-neutral-900">
+        <div class="min-h-screen flex flex-col">
+            <x-banner />
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
+            <div class="w-screen mx-auto pt-0 flex justify-center">
+                <nav id="navbar" class="sticky top-0 z-40 w-full bg-white dark:bg-gray-800">
+                    <x-main.header />
+                    <x-main.menu />
+                </nav>
+            </div>
+
+            <div class="lg:flex-grow">
+                <div class="md:grid md:grid-cols-12">
+                    <div class="md:col-span-12">
+                        {{ $slot }}
                     </div>
-                </header>
-            @endif
+                </div>
 
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+                <!-- Sidebar start-->
+                <x-main.mobilemenu />
+            </div>
+
+            <div class="w-screen mx-auto flex justify-center">
+{{--                <x-main.footer />--}}
+            </div>
         </div>
 
         @stack('modals')
 
-        @livewireScripts
+        <livewire:scripts />
+        @stack('scripts')
     </body>
 </html>
