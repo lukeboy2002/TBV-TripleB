@@ -8,6 +8,8 @@ module.exports = {
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
         './resources/**/*.js',
+        './src/**/*.{html,js}',
+        './node_modules/tw-elements/dist/js/**/*.js',
     ],
     darkMode: 'class',
     theme: {
@@ -23,5 +25,6 @@ module.exports = {
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
         require('@tailwindcss/line-clamp'),
+        require('tw-elements/dist/plugin'),
     ],
 };
