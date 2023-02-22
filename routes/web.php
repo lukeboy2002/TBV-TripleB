@@ -26,3 +26,15 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:admin|member'])->group(function () {
+    Route::get('settings', function () {
+        return view('admin.dashboard');
+    })->name('settings');
+});
+
+Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified', 'role:admin'])->group(function () {
+    //SPONSORS
+    Route::resource('sponsors', \App\Http\Controllers\Admin\SponsorController::class);
+});
+

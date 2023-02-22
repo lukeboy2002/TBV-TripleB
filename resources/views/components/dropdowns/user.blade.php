@@ -9,7 +9,7 @@
     </div>
     @unlessrole('user')
 {{--        <x-links.btn-default class="block" href="/admin">Settings</x-links.btn-default>--}}
-{{--        <x-dropdowns.dropdown-link class="block" href="{{ route('admin.settings') }}">Settings</x-dropdowns.dropdown-link>--}}
+        <x-links.dropdown class="block" href="{{ route('admin.settings') }}">Settings</x-links.dropdown>
     @endunlessrole
     <x-links.dropdown class="block" href="{{ route('profile.show', current_user()->username) }}">Your Profile</x-links.dropdown>
     <x-links.dropdown class="block" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</x-links.dropdown>
