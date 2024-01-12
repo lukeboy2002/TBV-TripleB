@@ -1,8 +1,11 @@
 <?php
 
-namespace Database\Seeders;
+namespace config\database\seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\Hash;
+use Database\Seeders\Role;
+use Database\Seeders\Str;
+use Database\Seeders\User;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder

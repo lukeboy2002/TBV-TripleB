@@ -39,6 +39,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
+            //            'root' => '/mnt/rid/73/82/51507382/htdocs/public_la/storage/',
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
             'throw' => false,
