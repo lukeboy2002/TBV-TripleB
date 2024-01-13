@@ -19,26 +19,26 @@
     <livewire:styles />
 </head>
 <body class="antialiased relative text-gray-900 dark:text-white bg-white dark:bg-gray-800 max-w-full overflow-x-hidden">
-<div class="z-50">
-    {{--            <x-messages />--}}
-</div>
-<x-theme.admin.main-navigation />
-<x-theme.admin.side-bar />
-
-<main class="md:ml-64 min-h-screen px-8 pt-24">
-    @if (isset($header))
-        <header>
-            {{ $header }}
-        </header>
-    @endif
-    <div class="h-96 mb-4">
-        {{ $slot }}
+    <div class="z-50">
+        <x-messages />
     </div>
-</main>
+    <x-theme.admin.main-navigation />
+    <x-theme.admin.side-bar />
+
+    <main class="md:ml-64 min-h-screen px-8 pt-24">
+        @if (isset($header))
+            <header>
+                {{ $header }}
+            </header>
+        @endif
+        <div class="h-96 mb-4">
+            {{ $slot }}
+        </div>
+    </main>
 
 @stack('modals')
 
-<livewire:scripts />
-@stack('scripts')
+    <livewire:scripts />
+    @stack('scripts')
 </body>
 </html>
