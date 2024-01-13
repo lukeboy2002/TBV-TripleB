@@ -5,3 +5,16 @@
 [x-cloak] {
     display: none;
 }
+
+.display-none {
+    @apply hidden;
+}
+
+#sidebar {
+    -webkit-transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
+    transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
+}
+
+#sidebar.show {
+    transform: translateX(0);
+}
