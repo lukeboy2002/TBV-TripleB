@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-app-layout>
     <article class="flex flex-col shadow my-4 px-3">
         <div class="rounded-lg border border-gray-300 dark:border-gray-700 flex flex-col justify-start p-6">
             <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Technology</a>
@@ -26,4 +26,4 @@
 {{--            </a>--}}
 {{--        </div>--}}
 {{--    </x-slot>--}}
-</x-admin-layout>
+</x-app-layout>
