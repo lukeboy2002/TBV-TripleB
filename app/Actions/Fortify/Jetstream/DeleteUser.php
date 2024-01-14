@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Jetstream;
+namespace App\Actions\Fortify\Jetstream;
 
 use App\Models\User;
 use Laravel\Jetstream\Contracts\DeletesUsers;
