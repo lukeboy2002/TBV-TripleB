@@ -1,4 +1,5 @@
 <x-guest-layout>
+    <x-messages />
     <div class="bg-cover bg-center" style="background-image: url('{{asset('storage/backgrounds/register.jpg')}}')">
         <div class="flex justify-center items-center h-screen">
             <div class="bg-white/75 dark:bg-gray-800/75 mx-4 p-8 rounded shadow-md w-full md:w-1/2 lg:w-1/3">

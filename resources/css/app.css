@@ -10,6 +10,23 @@
     @apply hidden;
 }
 
+.toast-error, .toast-info, .toast-success, .toast-warning
+{
+    @apply opacity-100 !important;
+}
+/*.toast-error {*/
+/*    @apply bg-red-800 !important;*/
+/*}*/
+/*.toast-info {*/
+/*    @apply bg-blue-800 !important;*/
+/*}*/
+/*.toast-success {*/
+/*    @apply bg-green-800 !important;*/
+/*}*/
+/*.toast-warning {*/
+/*    @apply bg-yellow-800 !important;*/
+/*}*/
+
 #sidebar {
     -webkit-transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
     transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
