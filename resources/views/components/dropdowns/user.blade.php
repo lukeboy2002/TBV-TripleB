@@ -20,7 +20,7 @@
                 <ul class="py-1 text-gray-700 dark:text-white" aria-labelledby="dropdown">
                     @unlessrole('user')
                     <li>
-                        <x-links.primary href="#" class="block py-2 px-4">Settings</x-links.primary>
+                        <x-links.primary href="{{ route('admin.settings') }}" class="block py-2 px-4">Settings</x-links.primary>
                     </li>
                     @endunlessrole
                     <li>

@@ -19,16 +19,16 @@
     <livewire:styles />
 </head>
 <body class="antialiased relative text-gray-900 dark:text-white bg-white dark:bg-gray-800 max-w-full overflow-x-hidden">
-    <div class="z-50">
-        <x-messages />
-    </div>
+
     <x-theme.admin.main-navigation />
     <x-theme.admin.side-bar />
 
     <main class="md:ml-64 min-h-screen px-8 pt-24">
         @if (isset($header))
             <header>
-                {{ $header }}
+                <x-cards.default class="mx-auto py-6 px-4 mb-4">
+                    <x-theme.heading>{{ $header }}</x-theme.heading>
+                </x-cards.default>
             </header>
         @endif
         <div class="h-96 mb-4">
