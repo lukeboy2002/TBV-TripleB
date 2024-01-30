@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\permission;
+use App\Models\Role;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PermissionController extends Controller
 {
@@ -24,7 +26,9 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create:permission');
+
+        return view('admin.permissions.create');
     }
 
     /**
@@ -32,7 +36,23 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create:permission');
+
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255', 'unique:permissions'],
+        ]);
+
+        $permission = Permission::create([
+            'name' => $request['name'],
+        ]);
+
+        $role = Role::select('id')->where('name', 'admin')->first();
+
+        $permission->roles()->attach($role);
+
+        toastr()->success('Permission created successfully.', 'New Permission');
+        return redirect()->route('admin.permissions.index');
+
     }
 
     /**
@@ -48,7 +68,14 @@ class PermissionController extends Controller
      */
     public function edit(permission $permission)
     {
-        //
+        $this->authorize('update:permission');
+
+        $roles = Role::all();
+
+        return view('admin.permissions.edit', [
+            'permission'=>$permission,
+            'roles'=>$roles,
+        ]);
     }
 
     /**
@@ -56,7 +83,19 @@ class PermissionController extends Controller
      */
     public function update(Request $request, permission $permission)
     {
-        //
+        $this->authorize('update:permission');
+
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255', Rule::unique('permissions')->ignore($permission)],
+        ]);
+
+        $permission->update([
+            'name' => $request['name'],
+        ]);
+
+        toastr()->success('Permission successfully updated.', 'Edit Permission');
+
+        return redirect()->route('admin.permissions.index');
     }
 
     /**
@@ -65,5 +104,31 @@ class PermissionController extends Controller
     public function destroy(permission $permission)
     {
         //
+    }
+
+    public function assignRole(Request $request, Permission $permission)
+    {
+        if ($permission->hasRole($request->role)) {
+            $request->session()->flash('error', 'Role already exists on permission.');
+            return back();
+        }
+
+        $permission->assignRole($request->role);
+        toastr()->success('Role successfully added to permission.', 'Edit Permission');
+
+        return back();
+    }
+
+    public function removeRole(Permission $permission, Role $role)
+    {
+        if ($permission->hasRole($role)) {
+            $permission->removeRole($role);
+
+            toastr()->success('Role successfully removed from permission.', 'Edit Permission');
+            return back();
+        }
+
+        toastr()->error('Role not exists.', 'Edit Permission');
+        return back();
     }
 }

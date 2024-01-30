@@ -4,8 +4,8 @@
             <x-search/>
         </div>
         <div class="flex items-center space-x-4">
-            @can('create:role')
-                <x-links.btn-primary href="{{ route('admin.permissions.create') }}" class="px-3 py-2 text-xs font-medium">Create Permissions</x-links.btn-primary>
+            @can('create:permission')
+                <x-links.btn-primary href="{{ route('admin.permissions.create') }}" class="px-3 py-2 text-xs font-medium">Create Permission</x-links.btn-primary>
             @endcan
         </div>
     </div>

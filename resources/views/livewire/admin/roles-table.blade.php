@@ -5,7 +5,7 @@
         </div>
         <div class="flex items-center space-x-4">
             @can('create:role')
-            <x-links.btn-primary href="{{ route('admin.roles.create') }}" class="px-3 py-2 text-xs font-medium">Create Roles</x-links.btn-primary>
+            <x-links.btn-primary href="{{ route('admin.roles.create') }}" class="px-3 py-2 text-xs font-medium">Create Role</x-links.btn-primary>
             @endcan
         </div>
     </div>
