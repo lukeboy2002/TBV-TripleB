@@ -17,7 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('accept-invitation/create', [\App\Http\Controllers\AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('HasInvitation');
+Route::post('accept-invitation/store', [\App\Http\Controllers\AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
 
+//REGISTERED USERS
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
 
 });
@@ -28,7 +31,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', config('jetstrea
         return view('admin.dashboard');
     })->name('settings');
 
+    Route::get('invite/create', [\App\Http\Controllers\Admin\InvitationController::class, 'create'])->name('invitations.create');
+
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+    Route::post('invite', [\App\Http\Controllers\Admin\InvitationController::class, 'store'])->name('invitations.store');
 
     Route::post('filepondupload', [\App\Http\Controllers\Admin\FilepondController::class, 'upload'])->name('filepond.upload');
     Route::delete('filepondrevert', [\App\Http\Controllers\Admin\FilepondController::class, 'revert'])->name('filepond.revert');

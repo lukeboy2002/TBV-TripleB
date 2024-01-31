@@ -8,7 +8,7 @@
             <x-search/>
         </div>
         <div class="flex items-center">
-            <x-links.btn-primary href="#" class="px-3 py-2 text-xs font-medium">Invite User</x-links.btn-primary>
+            <x-links.btn-primary href="{{ route('admin.invitations.create') }}" class="px-3 py-2 text-xs font-medium">Invite User</x-links.btn-primary>
 
             @can('create:role')
                 <x-links.btn-primary href="{{ route('admin.users.create') }}" class="px-3 py-2 text-xs font-medium">Create Member</x-links.btn-primary>
