@@ -63,13 +63,22 @@
                             {{ $user->role_name }}
                         </td>
                         <td class="px-6 py-4">
-                            ??
+                            @if( $user->logged_in =='1' )
+                                <i class="fa-regular fa-circle-check text-green-600 fa-xl"></i>
+                            @else
+                                <i class="fa-regular fa-circle-xmark text-red-700 fa-xl"></i>
+                            @endif
                         </td>
                         <td class="px-6 py-4">
-                            ??
+                            @if($user->last_login_time)
+                                {{ $user->getLastLoginTime() }}
+                            @else
+                                <p>not available</p>
+                            @endif
                         </td>
                         <td class="py-4 text-right">
                             @if ($user->trashed())
+                                <div class="flex space-x-2">
                                 @can('force-delete:user')
                                     <x-links.btn-primary href="{{ route('admin.users.trashed.restore' , $user->id) }}" class="px-2.5 py-2.5 text-xs font-medium"><i class="fa-solid fa-trash-arrow-up"></i></x-links.btn-primary>
                                     <x-buttons.danger class="px-2.5 py-2.5 text-xs font-medium" wire:click="forceDelete( {{ $user->id }})" wire:loading.attr="disabled">
@@ -79,6 +88,7 @@
                                 @hasrole('member')
                                 <span class="px-2.5 py-2.5 text-xs font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition ease-in-out duration-150">Deleted</span>
                                 @endhasrole
+                                </div>
                             @else
                                 <div class="flex space-x-2">
                                 @if($user->role_name === 'user')

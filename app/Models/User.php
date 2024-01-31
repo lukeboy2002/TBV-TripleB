@@ -71,6 +71,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    public function getLastLoginTime()
+    {
+        return $this->last_login_time->format('d F Y');
+    }
+
     public function scopeSearch($query, $value) {
         $query->where('username', 'like', "%{$value}%")
             ->orWhere('email', 'like', "%{$value}%");

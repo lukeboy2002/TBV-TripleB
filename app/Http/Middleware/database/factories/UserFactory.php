@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace App\Http\Middleware\database\factories;
 
 use App\Models\Team;
 use App\Models\User;

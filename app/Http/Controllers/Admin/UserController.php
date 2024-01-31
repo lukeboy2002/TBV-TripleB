@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\user;
 use Illuminate\Contracts\View\View;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -87,7 +89,20 @@ class UserController extends Controller
      */
     public function edit(user $user)
     {
-        //
+        $this->authorize('update:user');
+
+        if( $user->hasRole(['admin'])){
+            abort(403);
+        }
+
+        $roles = Role::all();
+        $permissions = Permission::all();
+
+        return view('admin.users.edit', [
+            'user'=>$user,
+            'roles'=>$roles,
+            'permissions'=>$permissions,
+        ]);
     }
 
     /**
@@ -95,7 +110,21 @@ class UserController extends Controller
      */
     public function update(Request $request, user $user)
     {
-        //
+        $this->authorize('update:user');
+
+        if (str()->afterLast($request->input('image'), '/') !== str()->afterLast($user->image, '/')) {
+            Storage::disk('public')->delete($user->image);
+            $newFilename = Str::after($request->input('image'), 'tmp/');
+            Storage::disk('public')->move($request->input('image'), "members/$newFilename");
+        }
+
+        $user->update([
+            'image' => isset($newFilename) ? "members/$newFilename" : $user->image
+
+        ]);
+
+        toastr()->success('Members has been edited.', 'Edit Member');
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -104,5 +133,54 @@ class UserController extends Controller
     public function destroy(user $user)
     {
         //
+    }
+
+    public function trashedRestore(Request $request, $id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+
+        toastr()->success('User has been restored.', 'Restore user');
+
+        return back();
+    }
+
+    public function removeRole(Request $request, User $user, Role $role)
+    {
+        if ($user->hasRole($role)) {
+            $user->removeRole($role);
+
+            toastr()->success('Role successfully removed from user.', 'Role');
+
+            return back();
+        }
+
+        toastr()->error('Role not exists.', 'Role');
+        return back();
+    }
+
+    public function givePermission(Request $request, User $user)
+    {
+        if ($user->hasPermissionTo($request->permission)) {
+            toastr()->error('Permission already exists on user.', 'Permission');
+
+            return back();
+        }
+        $user->givePermissionTo($request->permission);
+
+        toastr()->success('Permission successfully added to user.', 'Permission');
+        return back();
+    }
+
+    public function revokePermission(User $user, Permission $permission)
+    {
+        if ($user->hasPermissionTo($permission)) {
+            $user->revokePermissionTo($permission);
+
+            toastr()->success('Permission successfully removed from user.', 'Permission');
+            return back();
+        }
+        toastr()->error('Permission not exists.', 'Permission');
+        return back();
     }
 }
