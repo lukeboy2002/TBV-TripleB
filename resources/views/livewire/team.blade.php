@@ -47,7 +47,7 @@
                     @if( $user->biography )
                         <div class="hidden sm:block w-full pt-4 text-gray-700 dark:text-white">
                             <p class="text-xl font-black text-orange-500">Biograpy</p>
-                            <div class="pt-2 text-gray-700 dark:text-white">
+                            <div class="pt-2 text-gray-700 dark:text-white prose prose-orange dark:prose-invert">
                                 {!! $user->biography !!}
                             </div>
                         </div>
