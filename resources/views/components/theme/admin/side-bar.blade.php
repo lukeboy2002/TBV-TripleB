@@ -12,6 +12,7 @@
                 </x-links.admin-sitebar>
             </li>
             @can('show:role')
+                <x-theme.divider_title title="Roles and Permissions" />
                 <li>
                     <x-links.admin-sitebar href="{{ route('admin.roles.index') }}" :active="request()->routeIs('admin.roles.*')">
                         <i class="fa-solid fa-user-shield fa-xl text-gray-500 dark:text-gray-400"></i>
@@ -27,6 +28,8 @@
                     </x-links.admin-sitebar>
                 </li>
             @endcan
+            <x-theme.divider_title title="Users" />
+
             <li>
                 <x-links.admin-sitebar href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
                     <i class="fa-solid fa-users fa-xl text-gray-500 dark:text-gray-400"></i>
@@ -37,6 +40,13 @@
                 <x-links.admin-sitebar href="{{ route('admin.invitations.create') }}" :active="request()->routeIs('admin.invitations.*')">
                     <i class="fa-solid fa-people-arrows fa-xl text-gray-500 dark:text-gray-400"></i>
                     <span class="ml-3">Invite User / Invitee</span>
+                </x-links.admin-sitebar>
+            </li>
+            <x-theme.divider_title title="Posts" />
+            <li>
+                <x-links.admin-sitebar href="{{ route('admin.categories.create') }}" :active="request()->routeIs('admin.categories.*')">
+                    <i class="fa-solid fa-tags fa-xl text-gray-500 dark:text-gray-400"></i>
+                    <span class="ml-3">Categories</span>
                 </x-links.admin-sitebar>
             </li>
         </ul>
