@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('team', \App\Livewire\Team::class)->name('team');
+
 Route::get('accept-invitation/create', [\App\Http\Controllers\AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('HasInvitation');
 Route::post('accept-invitation/store', [\App\Http\Controllers\AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
 

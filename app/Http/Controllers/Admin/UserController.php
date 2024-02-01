@@ -120,7 +120,6 @@ class UserController extends Controller
 
         $user->update([
             'image' => isset($newFilename) ? "members/$newFilename" : $user->image
-
         ]);
 
         toastr()->success('Members has been edited.', 'Edit Member');

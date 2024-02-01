@@ -17,6 +17,7 @@ class Invitation extends Model
 
     protected $casts = [
         'invited_date' => 'datetime',
+        'registered_at' => 'datetime',
     ];
 
     public function scopeSearch($query, $value) {
@@ -45,5 +46,10 @@ class Invitation extends Model
     public function getInvitationDate()
     {
         return $this->invited_date->format('d F Y');
+    }
+
+    public function getRegisterTime()
+    {
+        return $this->registered_at->format('d F Y');
     }
 }

@@ -93,15 +93,19 @@
                                 <div class="flex space-x-2">
                                 @if($user->role_name === 'user')
                                     @can('update:user')
+                                        @if( ($user->invited_by) == current_user()->username || current_user()->hasRole('admin') )
                                         <x-links.btn-primary
                                             href="{{ route('admin.users.edit' , $user) }}"
                                             class="px-2.5 py-2.5 text-xs font-medium"><i class="fa-solid fa-pen-to-square"></i>
                                         </x-links.btn-primary>
+                                        @endif
                                     @endcan
                                     @can('delete:user')
+                                        @if( ($user->invited_by) == current_user()->username || current_user()->hasRole('admin') )
                                         <x-buttons.danger class="px-3 py-2.5 text-xs font-medium" wire:click="delete( {{ $user->id }})" wire:loading.attr="disabled">
                                             <i class="fa-solid fa-trash-can"></i>
                                         </x-buttons.danger>
+                                        @endif
                                     @endcan
                                 @endif
                                 @if($user->role_name === 'member')
