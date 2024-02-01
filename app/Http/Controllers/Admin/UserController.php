@@ -182,4 +182,28 @@ class UserController extends Controller
         toastr()->error('Permission not exists.', 'Permission');
         return back();
     }
+
+    public function upload(Request $request)
+    {
+        try {
+            $user = new User();
+            $user->id = 0;
+            $user->exists = true;
+            $image = $user->addMediaFromRequest('upload')->toMediaCollection('player');
+
+            return response()->json([
+                'uploaded' => true,
+                'url' => $image->getUrl('thumbnail')
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(
+                [
+                    'uploaded' => false,
+                    'error'    => [
+                        'message' => $e->getMessage()
+                    ]
+                ]
+            );
+        }
+    }
 }

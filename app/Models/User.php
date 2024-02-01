@@ -10,9 +10,12 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
     use HasApiTokens;
     use HasFactory;
@@ -20,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasRoles;
     use Notifiable;
     use SoftDeletes;
+    use InteractsWithMedia;
     use TwoFactorAuthenticatable;
 
     /**
@@ -79,5 +83,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopeSearch($query, $value) {
         $query->where('username', 'like', "%{$value}%")
             ->orWhere('email', 'like', "%{$value}%");
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumbnail')
+            ->width(368)
+            ->height(232);
     }
 }
