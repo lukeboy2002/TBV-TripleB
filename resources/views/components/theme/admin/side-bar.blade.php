@@ -44,7 +44,7 @@
             </li>
             <x-theme.divider_title title="Posts" />
             <li>
-                <x-links.admin-sitebar href="{{ route('admin.categories.create') }}" :active="request()->routeIs('admin.categories.*')">
+                <x-links.admin-sitebar href="{{ route('admin.categories.index') }}" :active="request()->routeIs('admin.categories.*')">
                     <i class="fa-solid fa-tags fa-xl text-gray-500 dark:text-gray-400"></i>
                     <span class="ml-3">Categories</span>
                 </x-links.admin-sitebar>

@@ -31,12 +31,16 @@
                         </th>
                         <td class="px-6 py-4 text-right">
                             <div class="flex justify-end items-center space-x-2">
+                                @can('update:role')
                                 <x-links.btn-secondary href="{{ route('admin.roles.edit' , $role) }}" class="px-2.5 py-2 text-xs font-medium">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </x-links.btn-secondary>
+                                @endcan
+                                @can('delete:role')
                                 <x-buttons.danger class="px-3 py-2.5 text-xs font-medium" wire:click="delete( {{ $role->id }})" wire:loading.attr="disabled">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </x-buttons.danger>
+                                @endcan
                             </div>
                         </td>
                     </tr>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\category;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,9 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        return view('admin.categories.index');
     }
 
     /**
@@ -32,7 +33,28 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                'unique:categories',
+            ],
+            'color' => [
+                'string'
+            ],
+        ]);
+
+        $slug = SlugService::createSlug(Category::class, 'slug', request()->title);
+
+        Category::create([
+            'title' => $request['title'],
+            'slug' => $slug,
+            'color' => $request['color'],
+        ]);
+
+        toastr()->success('Category successfully created.', 'New Category');
+        return redirect()->route('admin.categories.index');
     }
 
     /**

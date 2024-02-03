@@ -14,8 +14,8 @@
                 </div>
                 <div class="w-1/2">
                     <x-forms.label for="color" value="Category color" />
-                    <x-forms.select>
-                        <option selected="selected">Default</option>
+                    <x-forms.select name="color" id="color">
+                        <option value="orange">Orange</option>
                         <option value="blue">Blue</option>
                         <option value="gray">Gray</option>
                         <option value="red">Red</option>
@@ -28,8 +28,9 @@
                     <x-forms.input-error for="color" class="mt-2" />
                 </div>
             </div>
+
             <div class="flex justify-end items-center pt-6">
-                <div class="bg-orange-100 text-orange-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">Default</div>
+                <div class="bg-orange-100 text-orange-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-orange-900 dark:text-orange-300">Orange</div>
                 <div class="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">Blue</div>
                 <div class="bg-gray-100 text-gray-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">Dark</div>
                 <div class="bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300">Red</div>
@@ -39,6 +40,7 @@
                 <div class="bg-purple-100 text-purple-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300">Purple</div>
                 <div class="bg-pink-100 text-pink-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-pink-900 dark:text-pink-300">Pink</div>
             </div>
+
             <div class="flex justify-end pt-6">
                 <x-buttons.primary class="px-3 py-2 text-xs font-medium">Save</x-buttons.primary>
             </div>
