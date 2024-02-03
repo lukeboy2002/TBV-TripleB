@@ -12,12 +12,12 @@
                 </x-links.admin-sitebar>
             </li>
             @can('show:role')
-            <li>
-                <x-links.admin-sitebar href="{{ route('admin.roles.index') }}" :active="request()->routeIs('admin.roles.*')">
-                    <i class="fa-solid fa-user-shield fa-xl text-gray-500 dark:text-gray-400"></i>
-                    <span class="ml-3">Roles</span>
-                </x-links.admin-sitebar>
-            </li>
+                <li>
+                    <x-links.admin-sitebar href="{{ route('admin.roles.index') }}" :active="request()->routeIs('admin.roles.*')">
+                        <i class="fa-solid fa-user-shield fa-xl text-gray-500 dark:text-gray-400"></i>
+                        <span class="ml-3">Roles</span>
+                    </x-links.admin-sitebar>
+                </li>
             @endcan
             @can('show:permission')
                 <li>
@@ -27,6 +27,18 @@
                     </x-links.admin-sitebar>
                 </li>
             @endcan
+            <li>
+                <x-links.admin-sitebar href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
+                    <i class="fa-solid fa-users fa-xl text-gray-500 dark:text-gray-400"></i>
+                    <span class="ml-3">Users</span>
+                </x-links.admin-sitebar>
+            </li>
+            <li>
+                <x-links.admin-sitebar href="{{ route('admin.invitations.create') }}" :active="request()->routeIs('admin.invitations.*')">
+                    <i class="fa-solid fa-people-arrows fa-xl text-gray-500 dark:text-gray-400"></i>
+                    <span class="ml-3">Invite User / Invitee</span>
+                </x-links.admin-sitebar>
+            </li>
         </ul>
         <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>

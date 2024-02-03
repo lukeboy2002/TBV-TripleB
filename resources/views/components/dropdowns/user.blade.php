@@ -30,8 +30,8 @@
                 <ul class="py-1 text-gray-700 dark:text-white" aria-labelledby="dropdown">
                     <li>
                         @unlessrole('user')
-                        <x-links.primary href="#" class="flex items-center py-2 px-4">
-                            <i class="fa-solid fa-user-plus mr-2"></i>Invite User
+                        <x-links.primary href="{{ route('admin.invitations.create') }}" class="flex items-center py-2 px-4">
+                            <i class="fa-solid fa-people-arrows mr-2"></i>Invite User
                         </x-links.primary>
                         @endunlessrole
                         <x-links.primary href="#" class="flex items-center py-2 px-4">

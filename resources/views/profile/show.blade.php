@@ -13,6 +13,12 @@
                 <x-sections.border />
             @endif
 
+            @hasrole('member')
+            <livewire:user-biography-form :user="$user" />
+
+            <x-sections.border />
+            @endhasrole
+
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.update-password-form')
