@@ -46,6 +46,7 @@ class CreateNewUser implements CreatesNewUsers
 
         $user->roles()->attach($role);
 
+        toastr()->info('A mail is send to verify your email address', 'verify your email address');
         return $user;
     }
 }

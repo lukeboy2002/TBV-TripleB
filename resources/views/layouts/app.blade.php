@@ -13,33 +13,56 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+        <script src="https://kit.fontawesome.com/26b11da1dc.js" crossorigin="anonymous"></script>
         <!-- Styles -->
-        @livewireStyles
+        @stack('styles')
+        <livewire:styles />
     </head>
-    <body class="font-sans antialiased">
-        <x-banner />
+    <body class="antialiased relative text-gray-900 dark:text-white bg-white dark:bg-gray-800 max-w-full overflow-x-hidden">
+        <div class="z-50">
+            <x-messages />
+        </div>
+        <x-theme.header />
+        <x-theme.main-navigation />
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
+        @if (isset($header))
+            <header>
+                {{ $header }}
+            </header>
+        @endif
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
+{{--        @auth--}}
+{{--            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! current_user()->hasVerifiedEmail())--}}
+{{--                <div class="max-w-6xl mx-auto px-3">--}}
+{{--                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">--}}
+{{--                        <x-icons name="error" class="mr-1"/>Your email address is unverified.--}}
+{{--                        <x-links.primary href="{{ route('profile.show', current_user()->username) }}" class="ml-6 text-left" >--}}
+{{--                            Click here to go to your Profile settings to resent a new email--}}
+{{--                        </x-links.primary>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            @endif--}}
+{{--        @endauth--}}
 
-            <!-- Page Content -->
-            <main>
+        @if (isset($side))
+            <div class="max-w-6xl mx-auto flex flex-wrap">
+                <main class="w-full md:w-2/3 flex flex-col px-3">
+                    {{ $slot }}
+                </main>
+                <aside class="w-full md:w-1/3 flex flex-col px-3">
+                    {{ $side }}
+                </aside>
+            </div>
+        @else
+            <main class="max-w-6xl mx-auto">
                 {{ $slot }}
             </main>
-        </div>
+        @endif
 
+        <x-theme.footer />
         @stack('modals')
 
-        @livewireScripts
+        <livewire:scripts />
+        @stack('scripts')
     </body>
 </html>
