@@ -46,8 +46,4 @@
             </div>
         </form>
     </x-cards.default>
-
-    <x-cards.default class="mt-4">
-{{--        <livewire:admin.invitations-table />--}}
-    </x-cards.default>
 </x-admin-layout>

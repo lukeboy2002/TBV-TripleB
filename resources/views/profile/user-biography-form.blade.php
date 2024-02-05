@@ -76,7 +76,7 @@
                     removePlugins: ['Heading', 'Table', 'CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed'],
 
                     ckfinder: {
-                        uploadUrl: '{{ route('admin.user.upload', ['_token' => csrf_token()]) }}'
+                        uploadUrl: '{{ route('admin.users.upload', ['_token' => csrf_token()]) }}'
                     }
                 })
                 .then(editor => {

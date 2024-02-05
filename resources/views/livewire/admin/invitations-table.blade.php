@@ -7,6 +7,7 @@
         <div class="flex items-center">
             <x-search/>
         </div>
+
     </div>
     @if (!$invitees->isEmpty())
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">

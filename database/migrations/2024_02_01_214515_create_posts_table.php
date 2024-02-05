@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('body');
             $table->boolean('featured')->nullable()->default(false);
             $table->datetime('published_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -35,9 +35,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', config('jetstrea
 
     Route::post('invite', [\App\Http\Controllers\Admin\InvitationController::class, 'store'])->name('invitations.store');
     Route::get('invite/create', [\App\Http\Controllers\Admin\InvitationController::class, 'create'])->name('invitations.create');
-    Route::post('user', [\App\Http\Controllers\Admin\UserController::class, 'upload'])->name('user.upload');
+    Route::post('user', [\App\Http\Controllers\Admin\UserController::class, 'upload'])->name('users.upload');
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except('show', 'destroy');
+    Route::post('post', [\App\Http\Controllers\Admin\PostController::class, 'upload'])->name('posts.upload');
+    Route::resource('posts', \App\Http\Controllers\Admin\PostController::class)->except('show', 'destroy');
     Route::post('filepondupload', [\App\Http\Controllers\Admin\FilepondController::class, 'upload'])->name('filepond.upload');
     Route::delete('filepondrevert', [\App\Http\Controllers\Admin\FilepondController::class, 'revert'])->name('filepond.revert');
 });

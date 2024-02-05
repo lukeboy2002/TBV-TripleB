@@ -49,6 +49,12 @@
                     <span class="ml-3">Categories</span>
                 </x-links.admin-sitebar>
             </li>
+            <li>
+                <x-links.admin-sitebar href="{{ route('admin.posts.index') }}" :active="request()->routeIs('admin.posts.*')">
+                    <i class="fa-solid fa-newspaper fa-xl text-gray-500 dark:text-gray-400"></i>
+                    <span class="ml-3">Blogposts</span>
+                </x-links.admin-sitebar>
+            </li>
         </ul>
         <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>
