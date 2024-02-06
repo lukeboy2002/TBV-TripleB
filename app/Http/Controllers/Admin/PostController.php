@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -43,7 +44,6 @@ class PostController extends Controller
     {
         $this->authorize('create:post');
 
-//        dd($request);
         $this->validate($request, [
             'title' => ['required', 'string', 'max:255', 'unique:posts'],
             'image' => ['required'],
@@ -74,17 +74,22 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(post $post)
+    public function show(post $post): View
     {
-        //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(post $post)
+    public function edit(post $post): View
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.posts.edit', [
+            'post' => $post,
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -92,7 +97,35 @@ class PostController extends Controller
      */
     public function update(Request $request, post $post)
     {
-        //
+        $this->authorize('update', $post);
+
+        $this->validate($request, [
+            'title' => ['required', 'string', 'max:255', Rule::unique('posts')->ignore($post)],
+            'image' => ['required'],
+            'body' => ['required', 'min:10'],
+        ]);
+
+        if (str()->afterLast($request->input('image'), '/') !== str()->afterLast($post->image, '/')) {
+            Storage::disk('public')->delete($post->image);
+            $newFilename = Str::after($request->input('image'), 'tmp/');
+            Storage::disk('public')->move($request->input('image'), "posts/$newFilename");
+        }
+
+        $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
+
+        $post->update([
+            'title' => $request['title'],
+            'slug' => $slug,
+            'image' => isset($newFilename) ? "posts/$newFilename" : $post->image,
+            'body' => $request['body'],
+            'featured' => $request['featured'],
+            'published_at' => $request['published_at'],
+        ]);
+
+        $post->categories()->sync($request->categories);
+
+        toastr()->success('Post successfully updated', 'Updated Post');
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -100,7 +133,17 @@ class PostController extends Controller
      */
     public function destroy(post $post)
     {
-        //
+        $this->authorize('delete', $post);
+    }
+
+    public function trashedRestore(Request $request, $id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+        $post->restore();
+
+        toastr()->success('Post has been restored.', 'Restore post');
+
+        return back();
     }
 
     public function upload(Request $request)

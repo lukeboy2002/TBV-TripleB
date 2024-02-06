@@ -19,9 +19,6 @@
         <livewire:styles />
     </head>
     <body class="antialiased relative text-gray-900 dark:text-white bg-white dark:bg-gray-800 max-w-full overflow-x-hidden">
-        <div class="z-50">
-            <x-messages />
-        </div>
         <x-theme.header />
         <x-theme.main-navigation />
 
@@ -45,7 +42,7 @@
 {{--        @endauth--}}
 
         @if (isset($side))
-            <div class="max-w-6xl mx-auto flex flex-wrap">
+            <div class="max-w-6xl mx-auto flex flex-wrap py-8">
                 <main class="w-full md:w-2/3 flex flex-col px-3">
                     {{ $slot }}
                 </main>
@@ -54,7 +51,7 @@
                 </aside>
             </div>
         @else
-            <main class="max-w-6xl mx-auto">
+            <main class="max-w-6xl mx-auto pb-8">
                 {{ $slot }}
             </main>
         @endif

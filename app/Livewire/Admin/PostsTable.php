@@ -16,6 +16,7 @@ class PostsTable extends Component
 
     public $delete_id;
 
+
     #[Url(history:true)]
     public $search ='';
 
@@ -53,7 +54,7 @@ class PostsTable extends Component
         toastr()->success('Post has been deleted.', 'Delete Post');
     }
 
-    public function ForceDeleteUser(Request $request, $id)
+    public function ForceDeletePost(Request $request, $id)
     {
         $post = Post::onlyTrashed()->findOrFail($id);
         $image = $post->image;

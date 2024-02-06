@@ -77,10 +77,10 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'profile_photo_url',
     ];
 
-//    public function posts(): HasMany
-//    {
-//        return $this->hasMany(Post::class);
-//    }
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
 
     public function getLastLoginTime()
     {

@@ -224,7 +224,7 @@
 
 .select2-container--default .select2-search--inline .select2-search__field {
     /* Search textbox */
-    @apply border-none bg-transparent outline-none shadow-none select-text;
+    @apply border-none bg-transparent outline-none shadow-none select-text hidden;
 }
 
 .select2-container--default .select2-results > .select2-results__options {
