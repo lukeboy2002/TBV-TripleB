@@ -16,9 +16,9 @@
 
     <x-cards.default>
         <div class="flex justify-end mb-4">
-                @foreach($post->categories as $category)
-                <x-badges.default wire:navigate href="#" :Color="$category->color">{{ $category->title }}</x-badges.default>
-                @endforeach
+            @foreach($post->categories as $category)
+            <x-badges.default wire:navigate href="#" :Color="$category->color">{{ $category->title }}</x-badges.default>
+            @endforeach
         </div>
         <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
             {{ $post->title }}

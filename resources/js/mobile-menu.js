@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+// document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("livewire:navigated", () => {
     const navbar = document.getElementById("navbar");
     const sidebar = document.getElementById("sidebar");
     const btnSidebarToggler = document.getElementById("btnSidebarToggler");
