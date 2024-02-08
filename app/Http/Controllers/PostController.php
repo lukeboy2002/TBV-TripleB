@@ -11,7 +11,11 @@ class PostController extends Controller
 {
     public function index(): View
     {
+        $posts = Post::with('author', 'categories')->paginate(6);
 
+        return view('posts.index', [
+            'posts' => $posts
+        ]);
     }
 
     public function show(Post $post, Request $request): View
