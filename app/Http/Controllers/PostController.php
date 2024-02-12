@@ -2,19 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
-use App\Models\PostView;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+
 
 class PostController extends Controller
 {
-    public function index(): View
+    public function index()
     {
-        $posts = Post::with('author', 'categories')->paginate(6);
+        $categories = Cache::remember('categories', now()->addDays(3), function () {
+            return Category::whereHas('posts', function ($query) {
+                $query->published();
+            })->take(10)->get();
+        });
 
         return view('posts.index', [
-            'posts' => $posts
+            'categories' => $categories
         ]);
     }
 

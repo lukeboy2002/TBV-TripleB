@@ -24,7 +24,7 @@
         <div class="w-full sm:w-1/4 px-6 pt-10 sm:px-0 sm:pt-0">
             <div class="text-orange-500 font-black pb-3 uppercase">Laatste Nieuws</div>
             <div class="w-1/4 border-b-2 border-orange-500 mb-4"></div>
-{{--            <x-post-footer />--}}
+            <x-latest-posts />
         </div>
         <!-- CONTACT -->
         <div class="w-full sm:w-1/4 px-6 pt-10 sm:px-0 sm:pt-0">

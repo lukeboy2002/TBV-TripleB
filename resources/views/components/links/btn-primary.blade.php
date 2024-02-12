@@ -6,7 +6,7 @@
                 : 'block text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-gray-700 rounded-lg focus:outline-none focus:focus:ring-offset-2 focus:ring-2 ring-orange-500   transition ease-in-out duration-150';
 @endphp
 
-<a {{ $attributes->merge(['class' => $classes]) }}>
+<a wire:navigate {{ $attributes->merge(['class' => $classes]) }}>
     {{ $slot }}
 </a>
 

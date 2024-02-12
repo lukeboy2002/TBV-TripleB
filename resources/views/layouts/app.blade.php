@@ -28,25 +28,12 @@
             </header>
         @endif
 
-{{--        @auth--}}
-{{--            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::emailVerification()) && ! current_user()->hasVerifiedEmail())--}}
-{{--                <div class="max-w-6xl mx-auto px-3">--}}
-{{--                    <div class="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">--}}
-{{--                        <x-icons name="error" class="mr-1"/>Your email address is unverified.--}}
-{{--                        <x-links.primary href="{{ route('profile.show', current_user()->username) }}" class="ml-6 text-left" >--}}
-{{--                            Click here to go to your Profile settings to resent a new email--}}
-{{--                        </x-links.primary>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            @endif--}}
-{{--        @endauth--}}
-
         @if (isset($side))
-            <div class="max-w-6xl mx-auto flex flex-wrap py-8">
-                <main class="w-full md:w-2/3 flex flex-col px-3">
+            <div class="max-w-6xl mx-auto flex flex-wrap pb-8">
+                <main class="w-full md:w-3/4 flex flex-col px-3">
                     {{ $slot }}
                 </main>
-                <aside class="w-full md:w-1/3 flex flex-col px-3">
+                <aside class="w-full md:w-1/4 flex flex-col px-3">
                     {{ $side }}
                 </aside>
             </div>

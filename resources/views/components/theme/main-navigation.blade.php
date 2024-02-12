@@ -1,4 +1,4 @@
-<nav class="max-w-6xl flex flex-wrap items-center justify-between mx-auto">
+<nav class="max-w-6xl flex flex-wrap items-center justify-between mx-auto pt-4 pr-4 md:pt-0">
     <div class="block md:hidden"></div>
     <div class="flex items-center md:order-2 space-x-4 rtl:space-x-reverse">
         <x-dropdowns.user />
