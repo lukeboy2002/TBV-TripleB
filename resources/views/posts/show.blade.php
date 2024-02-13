@@ -24,29 +24,36 @@
             {{ $post->title }}
         </h2>
 
-        <div class="sm:flex items-center sm:space-x-6 sm:mb-4">
+        <div class="sm:flex justify-between items-center sm:space-x-6 sm:mb-4">
             <div class="font-normal text-gray-700 dark:text-gray-400">
-                <div class="flex items-center">
+                <div class="flex">
+                    <div class="flex items-center">
                     <img src="{{ asset('storage/' . $post->author->profile_photo_path) }}" class="h-15 w-15 mr-2 rounded-full border dark:border-gray-700" alt="avatar">
 {{--                    <x-links.default href="{{ route('explore.show', $post->user->username) }}"--}}
                     <x-links.primary href="#" class="text-gray-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-500 focus:text-orange-500 focus:dark:text-orange-500 focus:underline">{{ $post->author->username }}</x-links.primary>
+                    </div>
+                        <div class="flex items-center">
+                        <x-icons name="clock" />{{ $post->getFormattedDate() }}
+                    </div>
                 </div>
             </div>
-            <div class="sm:h-4 flex items-center space-x-4 sm:border-l sm:border-orange-500">
-                <div class="ml-0 sm:ml-3 text-xs text-gray-500">
-                    <i class="fa-regular fa-clock mr-2"></i>{{ $post->getFormattedDate() }}
+            <div class="sm:h-4 text-sm flex items-center space-x-2 text-gray-500">
+                <div class="flex items-center">
+                    {{--            {{ $post->comments->count() }}--}}
+                    <x-icons name="view" />10
                 </div>
-                <div class="text-xs text-gray-500 py-4">
-{{--                    <i class="fa-regular fa-eye mr-2"></i>{{ $post->views->count() }}--}}
-                    <i class="fa-regular fa-eye mr-2"></i>2
+                <div class="flex items-center">
+                    {{--            {{ $post->comments->count() }}--}}
+                    <x-icons name="comment" />10
                 </div>
-                <div class="text-xs text-gray-500 py-4">
-{{--                    <i class="fa-solid fa-comments mr-2"></i>{{ $post->comments->count() }}--}}
-                    <i class="fa-solid fa-comments mr-2"></i>12
+                <div class="flex items-center">
+                    <x-icons name="reading" />{{ $post->getReadingTime() }} min
+                </div>
+                <div class="flex items-center">
+                    <livewire:like-button :key="$post->id" :post="$post" />
                 </div>
             </div>
         </div>
-
         <div class="pt-4 text-gray-900 dark:text-white prose prose-orange dark:prose-invert">
             {!! $post->body !!}
         </div>
@@ -57,6 +64,8 @@
                     href="{{ route('admin.posts.edit' , $post) }}"
                     class="px-2.5 py-2.5 text-xs"><i class="fa-solid fa-pen-to-square mr-2"></i>edit
                 </x-links.btn-secondary>
+
+
             @endcan
         </div>
     </x-cards.default>

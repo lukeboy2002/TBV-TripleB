@@ -45,6 +45,11 @@ class Post extends Model implements HasMedia
         return $this->belongsToMany(Category::class);
     }
 
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'like_post')->withTimestamps();
+    }
+
     public function getFormattedDate()
     {
         return $this->published_at->format('F jS Y');

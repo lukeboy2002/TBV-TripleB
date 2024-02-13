@@ -24,23 +24,26 @@
                 {!! $post->shortBody() !!}
             </div>
         </div>
-        <footer class="hidden sm:flex flex-wrap justify-end items-center space-x-4 mt-auto p-3 text-xs text-gray-500">
-            <div>
-                <i class="fa-regular fa-clock mr-1"></i>{{ $post->published_at->diffforhumans() }}
+        <footer class="hidden sm:flex flex-wrap justify-end items-center mt-auto pb-3 pr-3 text-xs text-gray-500">
+            <div class="flex">
+                <x-icons name="clock" />{{ $post->published_at->diffforhumans() }}
+            </div>
+            <div class="flex">
+                <x-icons name="user" />{{ $post->author->username }}
+            </div>
+            <div class="flex">
+{{--            {{ $post->comments->count() }}--}}
+                <x-icons name="view" />10
+            </div>
+            <div class="flex">
+{{--            {{ $post->comments->count() }}--}}
+                <x-icons name="comment" />10
+            </div>
+            <div class="flex">
+                <x-icons name="reading" />{{ $post->getReadingTime() }} min
             </div>
             <div>
-                <i class="fa-regular fa-user mr-1"></i>{{ $post->author->username }}
-            </div>
-            <div>
-{{--                <i class="fa-solid fa-comments ml-4 mr-2"></i>{{ $post->comments->count() }}--}}
-                <i class="fa-solid fa-eye mr-1"></i>10
-            </div>
-            <div>
-{{--                <i class="fa-solid fa-comments ml-4 mr-2"></i>{{ $post->comments->count() }}--}}
-                <i class="fa-solid fa-comments mr-1"></i>10
-            </div>
-            <div>
-                <i class="fa-solid fa-glasses mr-1"></i>{{ $post->getReadingTime() }} min
+                <livewire:like-button :key="$post->id" :post="$post" />
             </div>
         </footer>
     </article>
