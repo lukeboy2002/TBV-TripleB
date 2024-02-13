@@ -34,7 +34,6 @@
 {{--        </div>--}}
     </div>
     <x-slot name="side">
-{{--        @include('posts.partials.categories-box')--}}
-
+        <x-categories-box />
     </x-slot>
 </x-app-layout>

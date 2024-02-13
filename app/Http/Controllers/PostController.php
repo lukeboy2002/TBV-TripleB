@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Intervention\Image\Exception\NotFoundException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class PostController extends Controller
@@ -34,8 +37,28 @@ class PostController extends Controller
 //            'user_id' => $user?->id
 //        ]);
 
+        if(!Post::where('slug', $post->slug)->exists() || $post->published_at > Carbon::now() ) {
+            throw new NotFoundHttpException();
+        }
+
+        $next = Post::query()
+            ->whereDate('published_at', '<=', Carbon::now())
+            ->whereDate('published_at', '<', $post->published_at)
+            ->orderBy('published_at', 'desc')
+            ->limit(1)
+            ->first();
+
+        $prev = Post::query()
+            ->whereDate('published_at', '<=', Carbon::now())
+            ->whereDate('published_at', '>', $post->published_at)
+            ->orderBy('published_at', 'asc')
+            ->limit(1)
+            ->first();
+
         return view('posts.show', [
-            'post' => $post
+            'post' => $post,
+            'prev' => $prev,
+            'next' => $next,
         ]);
     }
 }

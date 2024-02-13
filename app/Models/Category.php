@@ -22,6 +22,13 @@ class Category extends Model
         return $this->belongsToMany(Post::class);
     }
 
+//    public function publishedPosts(): BelongsToMany
+//    {
+//        return $this->belongsToMany(Post::class)
+//            ->where('active', '=', 1)
+//            ->whereDate('published_at', '<', Carbon::now());
+//    }
+
     public function scopeSearch($query, $value) {
         $query->where('title', 'like', "%{$value}%")
             ->orWhere('slug', 'like', "%{$value}%");

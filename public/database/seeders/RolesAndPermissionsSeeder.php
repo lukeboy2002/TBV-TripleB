@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace public\database\seeders;
 
 use App\Models\Permission;
 use App\Models\Role;

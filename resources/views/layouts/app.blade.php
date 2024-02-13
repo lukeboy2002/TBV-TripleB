@@ -18,7 +18,7 @@
         @stack('styles')
         <livewire:styles />
     </head>
-    <body class="antialiased relative text-gray-900 dark:text-white bg-white dark:bg-gray-800 max-w-full overflow-x-hidden">
+    <body class="antialiased relative text-gray-900 dark:text-white bg-white dark:bg-gray-800 max-w-full overflow-x-hidden h-full">
         <x-theme.header />
         <x-theme.main-navigation />
 

@@ -42,8 +42,5 @@
             <div class="flex">
                 <x-icons name="reading" />{{ $post->getReadingTime() }} min
             </div>
-            <div>
-                <livewire:like-button :key="$post->id" :post="$post" />
-            </div>
         </footer>
     </article>
