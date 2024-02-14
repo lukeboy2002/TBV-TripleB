@@ -1,9 +1,9 @@
 <?php
 
-namespace config\database\seeders;
+namespace Database\Seeders;
 
-use Database\Seeders\Permission;
-use Database\Seeders\Role;
+use App\Models\Permission;
+use App\Models\Role;
 use Illuminate\Database\Seeder;
 
 class RolesAndPermissionsSeeder extends Seeder

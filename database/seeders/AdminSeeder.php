@@ -1,12 +1,12 @@
 <?php
 
-namespace config\database\seeders;
+namespace Database\Seeders;
 
-use Database\Seeders\Hash;
-use Database\Seeders\Role;
-use Database\Seeders\Str;
-use Database\Seeders\User;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminSeeder extends Seeder
 {
