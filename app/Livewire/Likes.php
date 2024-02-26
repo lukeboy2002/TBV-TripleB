@@ -40,7 +40,7 @@ class Likes extends Component
             }
         }
 
-        return view('livewire.likes', compact('upvotes', 'downvotes', 'hasUpvote') );
+        return view('livewire.likes', compact('upvotes', 'downvotes', 'hasUpvote'));
     }
 
     public function upvoteDownvote($upvote = true)
@@ -48,7 +48,7 @@ class Likes extends Component
         /** @var \App\Models\User $user */
         $user = request()->user();
         if (!$user) {
-            return $this->redirect('login');
+            return $this->redirect(route('login'));
         }
         if (!$user->hasVerifiedEmail()) {
             return $this->redirect(route('verification.notice'));

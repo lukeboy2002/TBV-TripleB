@@ -16,10 +16,15 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->longText('comment');
-            $table->foreignIdFor(Post::class)->index()->constrained();
-            $table->foreignIdFor(User::class)->index()->constrained();
-            $table->foreignIdFor(Comment::class)->nullable()->constrained();
+            $table->string('comment');
+//            $table->foreignIdFor(Post::class);
+//            $table->foreignIdFor(User::class);
+//            $table->foreignIdFor(Comment::class)->nullable();
+            $table->foreignId('post_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('parent_id')->nullable()->constrained('comments')->cascadeOnDelete();
+//            $table->string('ip_address', 55);
+//            $table->string('user_agent', 255);
             $table->timestamps();
         });
     }

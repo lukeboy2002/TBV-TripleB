@@ -14,15 +14,18 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $featuredPosts = Post::published()->featured()->with('categories', 'author')->latest('published_at')->take(1)->get();
+        $featuredPosts = Post::published()
+            ->featured()
+            ->with('categories', 'author')
+            ->latest('published_at')
+            ->take(1)
+            ->get();
 
 //        $latestPosts = Post::published()->with('categories', 'author')->latest('published_at')->take(2)->get();
 
-//        $categories = Cache::remember('categories', now()->addDays(3), function () {
-//            return Category::whereHas('posts', function ($query) {
+//        $categories = Category::whereHas('posts', function ($query) {
 //                $query->published();
 //            })->take(10)->get();
-//        });
 
         return view('home', [
             'featuredPosts' => $featuredPosts,

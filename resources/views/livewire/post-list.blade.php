@@ -14,7 +14,6 @@
             @if ($this->activeCategory || $search)
                 <x-badges.clear_filter wire:click="clearFilters()" />
             @endif
-
             <button class="{{ $sort === 'desc' ? 'text-orange-500' : 'text-gray-900 dark:text-white' }}"
                     wire:click="setSort('desc')">Latest
             </button>

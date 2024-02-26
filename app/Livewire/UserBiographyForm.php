@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -14,8 +15,8 @@ class UserBiographyForm extends Component
 
     public User $user;
 
-    #[Rule('nullable|min:5')]
-    public $biography;
+    #[Validate('required|min:5')]
+    public string $biography = '';
 
     public function mount(User $user)
     {

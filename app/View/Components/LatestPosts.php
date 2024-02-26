@@ -16,7 +16,11 @@ class LatestPosts extends Component
      */
     public function __construct()
     {
-        $this->latestPosts = Post::published()->with('categories', 'author')->latest('published_at')->take(1)->get();
+        $this->latestPosts = Post::published()
+            ->with('categories', 'author')
+            ->latest('published_at')
+            ->take(1)
+            ->get();
 
     }
 

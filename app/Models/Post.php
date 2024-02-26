@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
@@ -46,10 +47,10 @@ class Post extends Model implements HasMedia
         return $this->belongsToMany(Category::class);
     }
 
-//    public function likes(): BelongsToMany
-//    {
-//        return $this->belongsToMany(User::class, 'like_post')->withTimestamps();
-//    }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     public function scopePublished($query)
     {
@@ -90,18 +91,6 @@ class Post extends Model implements HasMedia
         return ($mins < 1) ? 1 : $mins;
     }
 
-//    public function getReadingTime()
-//    {
-//        return new Attribute(
-//            get: function ($value, $attributes) {
-//                $words = Str::wordCount(strip_tags($attributes['body']));
-//                $minutes = ceil($words / 200);
-//
-//                return $minutes . ' ' . str('min')->plural($minutes) . ', '
-//                    . $words . ' ' . str('word')->plural($words);
-//            }
-//        );
-//    }
 
     public function getImage()
     {
@@ -127,8 +116,6 @@ class Post extends Model implements HasMedia
             ]
         ];
     }
-
-
 }
 
 

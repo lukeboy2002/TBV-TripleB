@@ -84,10 +84,11 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         return $this->hasMany(Post::class);
     }
 
-    public function likes(): BelongsToMany
+    public function comments()
     {
-        return $this->belongsToMany(Post::class, 'like_post')->withTimestamps();
+        return $this->hasMany(Comment::class);
     }
+
 
     public function hasLiked(Post $post)
     {

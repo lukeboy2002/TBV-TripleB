@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->index();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+//            $table->foreignIdFor(User::class)->index();
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image', 2048)->nullable();

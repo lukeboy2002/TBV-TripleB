@@ -34,20 +34,20 @@
         </div>
         <footer class="hidden sm:flex flex-wrap justify-between items-center mt-auto pb-3 pr-3 text-xs text-gray-500">
             <div class="flex">
+{{--                <div class="flex">--}}
+{{--                    <x-icons name="view" />{{ $post->views->count() }}--}}
+{{--                </div>--}}
                 <div class="flex">
-                    {{--            {{ $post->comments->count() }}--}}
-                    <x-icons name="view" />10
-                </div>
-                <div class="flex">
-                    {{--            {{ $post->comments->count() }}--}}
-                    <x-icons name="comment" />10
+                    <x-icons name="comment"/>{{ $post->comments->count() }}
                 </div>
                 <div class="flex">
                     <x-icons name="reading" />{{ $post->getReadingTime() }} min
                 </div>
             </div>
+            @Auth
             <div>
                 <livewire:likes :post="$post" />
             </div>
+            @endauth
         </footer>
     </article>

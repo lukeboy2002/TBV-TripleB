@@ -13,15 +13,12 @@ use Livewire\WithPagination;
 class PostList extends Component
 {
     use WithPagination;
-
     #[Url()]
     public $sort = 'desc';
 
     #[Url()]
     public $search = '';
 
-    #[Url()]
-    public $popular = false;
 
     #[Url()]
     public $category = '';
@@ -54,9 +51,6 @@ class PostList extends Component
             ->when($this->activeCategory, function ($query) {
                 $query->withCategory($this->category);
             })
-//            ->when($this->popular, function ($query) {
-//                $query->popular();
-//            })
             ->search($this->search)
             ->orderBy('published_at', $this->sort)
             ->paginate(6);

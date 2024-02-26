@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('post_views', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Post::class)->index();
-//            $table->foreignId('post_id')->references('id')->on('posts')->cascadeOnDelete();
-//            $table->foreignId('user_id')->nullable()->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignIdFor(User::class)->nullable()->index();
+//            $table->foreignIdFor(Post::class)->index();
+//            $table->foreignIdFor(User::class)->nullable()->index();
+            $table->foreignId('post_id')->references('id')->on('posts')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->references('id')->on('users')->cascadeOnDelete();
             $table->string('ip_address', 55);
             $table->string('user_agent', 255);
             $table->timestamps();
