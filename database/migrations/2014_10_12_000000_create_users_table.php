@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('profile_photo_path', 2048)->nullable();
             $table->string('image', 2048)->nullable();
             $table->text('biography')->nullable();
+            $table->boolean('logged_in')->default(false);
+            $table->datetime('last_login_time')->nullable();
+            $table->text('last_login_ip')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

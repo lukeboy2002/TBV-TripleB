@@ -39,12 +39,17 @@
                         </td>
                         <td class="px-6 py-4 text-right">
                             <div class="flex justify-end items-center space-x-2">
+                                @can('update:permission')
                                 <x-links.btn-secondary href="{{ route('admin.permissions.edit' , $permission) }}" class="px-2.5 py-2 text-xs font-medium">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </x-links.btn-secondary>
+                                @endcan
+
+                                @can('delete:permission')
                                 <x-buttons.danger class="px-3 py-2.5 text-xs font-medium" wire:click="delete( {{ $permission->id }})" wire:loading.attr="disabled">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </x-buttons.danger>
+                                @endcan
                             </div>
                         </td>
                     </tr>

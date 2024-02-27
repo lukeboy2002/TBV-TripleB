@@ -1,0 +1,29 @@
+.ck.ck-toolbar {
+    @apply bg-gray-50 dark:bg-gray-600 border-gray-300 dark:border-gray-500 rounded-t-lg !important
+}
+
+.ck-button {
+    @apply text-gray-900 dark:text-white bg-gray-50 dark:bg-gray-600 !important
+}
+
+.ck-on {
+    @apply bg-gray-200 dark:bg-gray-700 !important
+}
+
+.ck-toolbar__separator {
+    @apply bg-gray-300 dark:bg-gray-500 !important
+}
+
+.ck-editor__editable {
+    @apply bg-gray-50 dark:bg-gray-600 !important
+}
+
+.ck.ck-editor__editable_inline {
+    @apply border-gray-300 dark:border-gray-500 !important
+}
+
+.ck-rounded-corners {
+    @apply rounded-b-lg !important
+}
+
+

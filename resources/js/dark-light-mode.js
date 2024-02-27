@@ -1,4 +1,5 @@
 //DARKMODE
+document.addEventListener("livewire:navigated", () => {
 //icons
 const sunIcon = document.querySelector(".sun");
 const moonIcon = document.querySelector(".moon");
@@ -47,3 +48,4 @@ moonIcon.addEventListener("click", () => {
 
 //invoke theme check on initial load
 themeCheck();
+});

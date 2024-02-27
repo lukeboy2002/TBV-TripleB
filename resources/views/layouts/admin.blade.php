@@ -31,7 +31,7 @@
                 </x-cards.default>
             </header>
         @endif
-        <div class="h-96 mb-4">
+        <div class="min-h-96 mb-8">
             {{ $slot }}
         </div>
     </main>

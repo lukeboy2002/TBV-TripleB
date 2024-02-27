@@ -13,11 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
-
+Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
 Route::get('team', \App\Livewire\Team::class)->name('team');
+Route::get('blog', [\App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+Route::get('blog/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::get('accept-invitation/create', [\App\Http\Controllers\AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('HasInvitation');
 Route::post('accept-invitation/store', [\App\Http\Controllers\AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
@@ -35,9 +34,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', config('jetstrea
 
     Route::post('invite', [\App\Http\Controllers\Admin\InvitationController::class, 'store'])->name('invitations.store');
     Route::get('invite/create', [\App\Http\Controllers\Admin\InvitationController::class, 'create'])->name('invitations.create');
-    Route::post('user', [\App\Http\Controllers\Admin\UserController::class, 'upload'])->name('user.upload');
+    Route::post('user', [\App\Http\Controllers\Admin\UserController::class, 'upload'])->name('users.upload');
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
-
+    Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except('show', 'destroy');
+    Route::post('post', [\App\Http\Controllers\Admin\PostController::class, 'upload'])->name('posts.upload');
+    Route::resource('posts', \App\Http\Controllers\Admin\PostController::class)->except('destroy');
     Route::post('filepondupload', [\App\Http\Controllers\Admin\FilepondController::class, 'upload'])->name('filepond.upload');
     Route::delete('filepondrevert', [\App\Http\Controllers\Admin\FilepondController::class, 'revert'])->name('filepond.revert');
 });
@@ -51,6 +52,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', config('jetstrea
     Route::post('/permissions/{permission}/roles', [\App\Http\Controllers\Admin\PermissionController::class, 'assignRole'])->name('permissions.roles');
     Route::delete('/permissions/{permission}/roles/{role}', [\App\Http\Controllers\Admin\PermissionController::class, 'removeRole'])->name('permissions.roles.revoke');
     Route::resource('permissions', \App\Http\Controllers\Admin\PermissionController::class)->except('show', 'destroy');
+
+    Route::get('posts/trashed', [\App\Http\Controllers\Admin\PostController::class, 'trashed'])->name('posts.trashed');
+    Route::get('posts/trashed/{id}/restore', [\App\Http\Controllers\Admin\PostController::class, 'trashedRestore'])->name('posts.trashed.restore');
 
     Route::get('users/trashed', [\App\Http\Controllers\Admin\UserController::class, 'trashed'])->name('users.trashed');
     Route::get('users/trashed/{id}/restore', [\App\Http\Controllers\Admin\UserController::class, 'trashedRestore'])->name('users.trashed.restore');
