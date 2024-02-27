@@ -13,9 +13,7 @@ use Livewire\WithPagination;
 class PostsTable extends Component
 {
     use WithPagination;
-
     public $delete_id;
-
 
     #[Url(history:true)]
     public $search ='';

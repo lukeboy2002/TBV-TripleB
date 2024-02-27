@@ -4,11 +4,18 @@ namespace App\Livewire;
 
 use App\Models\Comment;
 use App\Models\Post;
+use Livewire\Attributes\Url;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Comments extends Component
 {
+    use WithPagination;
+
     public Post $post;
+
+    #[Url()]
+    public $perPage = 5;
 
     protected $listeners = [
         'commentCreated' => '$refresh',
@@ -38,6 +45,6 @@ class Comments extends Component
             ->with(['post', 'user', 'comments'])
             ->whereNull('parent_id')
             ->orderByDesc('created_at')
-            ->get();
+            ->paginate($this->perPage);
     }
 }

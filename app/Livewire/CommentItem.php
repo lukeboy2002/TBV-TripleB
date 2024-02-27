@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Comment;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CommentItem extends Component
 {
@@ -21,7 +22,6 @@ class CommentItem extends Component
 
     public function mount(Comment $comment)
     {
-//        $this->comment = $comment;
         $this->comment = $comment->load('user', 'comments');
 
     }

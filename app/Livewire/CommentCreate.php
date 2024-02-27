@@ -5,11 +5,13 @@ namespace App\Livewire;
 use App\Models\Comment;
 use App\Models\Post;
 use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CommentCreate extends Component
 {
-    #[Rule('required|min:3|max:200')]
+
+    #[Validate('required|min:3|max:200' ,onUpdate:true)]
     public string $comment;
 
     public Post $post;
@@ -33,6 +35,8 @@ class CommentCreate extends Component
 
     public function createComment()
     {
+        $this->validate();
+
         $user = auth()->user();
         if (!$user) {
             return $this->redirect('/login');
@@ -49,6 +53,7 @@ class CommentCreate extends Component
             $this->comment = '';
             $this->dispatch('commentUpdated');
         } else {
+
             $comment = Comment::create([
                 'comment' => $this->comment,
                 'post_id' => $this->post->id,

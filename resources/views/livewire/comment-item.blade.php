@@ -1,4 +1,4 @@
-<section class="antialiased [&:not(:first-child)]:border-t border-gray-200 dark:border-gray-700">
+<section class="antialiased [&:not(:last-child)]:border-b border-gray-200 dark:border-gray-700">
     <div class="max-w-7xl mx-auto px-4">
         <article class="px-6 py-3">
             <header class="flex justify-between items-center mb-2">
