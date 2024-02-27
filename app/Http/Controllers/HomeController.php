@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         $featuredPosts = Post::published()
             ->featured()
-            ->with('categories', 'author')
+            ->with('categories', 'author', 'comments')
             ->latest('published_at')
             ->take(1)
             ->get();

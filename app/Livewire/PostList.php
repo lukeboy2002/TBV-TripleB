@@ -19,7 +19,6 @@ class PostList extends Component
     #[Url()]
     public $search = '';
 
-
     #[Url()]
     public $category = '';
 
@@ -47,7 +46,7 @@ class PostList extends Component
     public function posts()
     {
         return Post::published()
-            ->with('author', 'categories')
+            ->with('author', 'categories', 'comments')
             ->when($this->activeCategory, function ($query) {
                 $query->withCategory($this->category);
             })
