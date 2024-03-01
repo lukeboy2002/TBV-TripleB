@@ -55,6 +55,13 @@
                     <span class="ml-3">Blogposts</span>
                 </x-links.admin-sitebar>
             </li>
+            <x-theme.divider_title title="Albums" />
+            <li>
+                <x-links.admin-sitebar href="{{ route('admin.albums.index') }}" :active="request()->routeIs('admin.albums.*')">
+                    <i class="fa-solid fa-images fa-xl text-gray-500 dark:text-gray-400"></i>
+                    <span class="ml-3">Albums</span>
+                </x-links.admin-sitebar>
+            </li>
         </ul>
         <ul class="pt-5 mt-5 space-y-2 border-t border-gray-200 dark:border-gray-700">
             <li>

@@ -25,13 +25,13 @@
 
     <main class="md:ml-64 min-h-screen px-8 pt-24">
         @if (isset($header))
-            <header>
+            <header class="mt-4">
                 <x-cards.default class="mx-auto py-6 px-4 mb-4">
                     <x-theme.heading>{{ $header }}</x-theme.heading>
                 </x-cards.default>
             </header>
         @endif
-        <div class="min-h-96 mb-8">
+        <div class="min-h-96 mb-8 mt-4">
             {{ $slot }}
         </div>
     </main>

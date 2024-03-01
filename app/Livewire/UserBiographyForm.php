@@ -16,7 +16,7 @@ class UserBiographyForm extends Component
     public User $user;
 
     #[Validate('required|min:5')]
-    public string $biography = '';
+    public $biography = '';
 
     public function mount(User $user)
     {
