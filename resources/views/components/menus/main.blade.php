@@ -9,7 +9,7 @@
         <x-links.btn-primary href="{{ route('posts.index') }}" class="px-3 py-2" :active="request()->routeIs('posts.index')">Blog</x-links.btn-primary>
     </li>
     <li>
-        <x-links.btn-primary href="#" class="px-3 py-2">Pricing</x-links.btn-primary>
+        <x-links.btn-primary href="{{ route('albums.index') }}" class="px-3 py-2" :active="request()->routeIs('albums.index')">Albums</x-links.btn-primary>
     </li>
     <li>
         <x-links.btn-primary href="#" class="px-3 py-2">Contact</x-links.btn-primary>

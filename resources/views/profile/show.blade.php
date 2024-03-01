@@ -13,11 +13,11 @@
                 <x-sections.border />
             @endif
 
-            @hasrole('member')
+{{--            @hasrole('member')--}}
             <livewire:user-biography-form :user="$user" />
 
             <x-sections.border />
-            @endhasrole
+{{--            @endhasrole--}}
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
                 <div class="mt-10 sm:mt-0">

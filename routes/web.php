@@ -17,6 +17,10 @@ Route::get('/', \App\Http\Controllers\HomeController::class)->name('home');
 Route::get('team', \App\Livewire\Team::class)->name('team');
 Route::get('blog', [\App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 Route::get('blog/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
+Route::resource('albums', \App\Http\Controllers\AlbumController::class);
+Route::get('/albums/{album}/image/{image}', [\App\Http\Controllers\AlbumController::class, 'showImage'])->name('albums.image');
+
+
 
 Route::get('accept-invitation/create', [\App\Http\Controllers\AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('HasInvitation');
 Route::post('accept-invitation/store', [\App\Http\Controllers\AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
@@ -37,6 +41,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', config('jetstrea
     Route::post('user', [\App\Http\Controllers\Admin\UserController::class, 'upload'])->name('users.upload');
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except('show', 'destroy');
+    Route::resource('albums', \App\Http\Controllers\Admin\AlbumController::class);
+    Route::post('albums/{album}/upload', [\App\Http\Controllers\Admin\AlbumController::class, 'upload'])->name('albums.upload')->middleware('auth');
+//    Route::get('/albums/{album}/image/{image}', [AlbumController::class, 'showImage'])->name('album.image.show');
+    Route::delete('/albums/{album}/image/{image}', [\App\Http\Controllers\Admin\AlbumController::class, 'destroyImage'])->name('albums.image.destroy');
+
     Route::post('post', [\App\Http\Controllers\Admin\PostController::class, 'upload'])->name('posts.upload');
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class)->except('destroy');
     Route::post('filepondupload', [\App\Http\Controllers\Admin\FilepondController::class, 'upload'])->name('filepond.upload');
