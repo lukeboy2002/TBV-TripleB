@@ -13,13 +13,6 @@
         <!-- LOGO -->
         <div class="flex justify-center">
             <x-theme.logo />
-            <div class="pt-4 block lg:text-center lg:flex lg:justify-center lg:items-center">
-                <x-links.btn-secondary class="px-3 py-2 text-xs font-medium" href="#">Volg ons</x-links.btn-secondary>
-
-                <div class="block space-x-2 pt-4 lg:pt-0 lg:flex lg:items-center lg:space-x-5 lg:ml-4">
-                    <x-menus.social-icons />
-                </div>
-            </div>
         </div>
         <div class="w-full sm:w-1/4 px-6 pt-10 sm:px-0 sm:pt-0">
             <div class="text-orange-500 font-black pb-3 uppercase">Laatste Nieuws</div>

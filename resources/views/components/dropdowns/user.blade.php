@@ -30,13 +30,22 @@
                 <ul class="py-1 text-gray-700 dark:text-white" aria-labelledby="dropdown">
                     <li>
                         @unlessrole('user')
+                        <x-links.primary href="{{ route('admin.users.index') }}" class="flex items-center py-2 px-4">
+                            <i class="fa-solid fa-users mr-2"></i>Users
+                        </x-links.primary>
                         <x-links.primary href="{{ route('admin.invitations.create') }}" class="flex items-center py-2 px-4">
                             <i class="fa-solid fa-people-arrows mr-2"></i>Invite User
                         </x-links.primary>
-                        @endunlessrole
-                        <x-links.primary href="#" class="flex items-center py-2 px-4">
-                            <i class="fa-solid fa-heart mr-2"></i>My likes
+                        <x-links.primary href="{{ route('admin.categories.index') }}" class="flex items-center py-2 px-4">
+                            <i class="fa-solid fa-tags mr-2"></i>Categories
                         </x-links.primary>
+                        <x-links.primary href="{{ route('admin.posts.index') }}" class="flex items-center py-2 px-4">
+                            <i class="fa-solid fa-newspaper mr-2"></i>Post
+                        </x-links.primary>
+                        <x-links.primary href="{{ route('admin.albums.index') }}" class="flex items-center py-2 px-4">
+                            <i class="fa-solid fa-images mr-2"></i>Albums
+                        </x-links.primary>
+                        @endunlessrole
                     </li>
                 </ul>
                 <ul class="py-1 text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">

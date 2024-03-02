@@ -5,12 +5,12 @@
 >
     <div class="overflow-y-auto py-5 px-3 h-full bg-white dark:bg-gray-800">
         <ul class="space-y-2">
-            <li>
-                <x-links.admin-sitebar href="{{ route('admin.settings') }}" :active="request()->routeIs('admin.settings')">
-                    <i class="fa-solid fa-chart-pie fa-xl text-gray-500 dark:text-gray-400"></i>
-                    <span class="ml-3">Overview</span>
-                </x-links.admin-sitebar>
-            </li>
+{{--            <li>--}}
+{{--                <x-links.admin-sitebar href="{{ route('admin.settings') }}" :active="request()->routeIs('admin.settings')">--}}
+{{--                    <i class="fa-solid fa-chart-pie fa-xl text-gray-500 dark:text-gray-400"></i>--}}
+{{--                    <span class="ml-3">Overview</span>--}}
+{{--                </x-links.admin-sitebar>--}}
+{{--            </li>--}}
             @can('show:role')
                 <x-theme.divider_title title="Roles and Permissions" />
                 <li>

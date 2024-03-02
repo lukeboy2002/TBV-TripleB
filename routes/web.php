@@ -19,8 +19,8 @@ Route::get('blog', [\App\Http\Controllers\PostController::class, 'index'])->name
 Route::get('blog/{post:slug}', [\App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 Route::resource('albums', \App\Http\Controllers\AlbumController::class);
 Route::get('/albums/{album}/image/{image}', [\App\Http\Controllers\AlbumController::class, 'showImage'])->name('albums.image');
-
-
+Route::get('contact', [\App\Http\Controllers\ContactController::class, 'create'])->name('contact');
+Route::post('contact/store', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
 
 Route::get('accept-invitation/create', [\App\Http\Controllers\AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('HasInvitation');
 Route::post('accept-invitation/store', [\App\Http\Controllers\AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
