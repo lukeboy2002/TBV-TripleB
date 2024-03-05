@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('message');
             $table->string('ip_address', 55);
             $table->string('user_agent', 255);
+            $table->boolean('active')->nullable()->default(true);
             $table->timestamps();
         });
     }

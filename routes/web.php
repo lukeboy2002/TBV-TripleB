@@ -45,7 +45,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', config('jetstrea
     Route::post('albums/{album}/upload', [\App\Http\Controllers\Admin\AlbumController::class, 'upload'])->name('albums.upload')->middleware('auth');
 //    Route::get('/albums/{album}/image/{image}', [AlbumController::class, 'showImage'])->name('album.image.show');
     Route::delete('/albums/{album}/image/{image}', [\App\Http\Controllers\Admin\AlbumController::class, 'destroyImage'])->name('albums.image.destroy');
-
     Route::post('post', [\App\Http\Controllers\Admin\PostController::class, 'upload'])->name('posts.upload');
     Route::resource('posts', \App\Http\Controllers\Admin\PostController::class)->except('destroy');
     Route::post('filepondupload', [\App\Http\Controllers\Admin\FilepondController::class, 'upload'])->name('filepond.upload');
@@ -57,18 +56,16 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:web', config('jetstrea
     Route::post('roles/{role}/permissions', [\App\Http\Controllers\Admin\RoleController::class, 'givePermission'])->name('roles.permissions');
     Route::delete('/roles/{role}/permissions/{permission}', [\App\Http\Controllers\Admin\RoleController::class, 'revokePermission'])->name('roles.permissions.revoke');
     Route::resource('roles', \App\Http\Controllers\Admin\RoleController::class)->except('show', 'destroy');
-
     Route::post('/permissions/{permission}/roles', [\App\Http\Controllers\Admin\PermissionController::class, 'assignRole'])->name('permissions.roles');
     Route::delete('/permissions/{permission}/roles/{role}', [\App\Http\Controllers\Admin\PermissionController::class, 'removeRole'])->name('permissions.roles.revoke');
     Route::resource('permissions', \App\Http\Controllers\Admin\PermissionController::class)->except('show', 'destroy');
-
     Route::get('posts/trashed', [\App\Http\Controllers\Admin\PostController::class, 'trashed'])->name('posts.trashed');
     Route::get('posts/trashed/{id}/restore', [\App\Http\Controllers\Admin\PostController::class, 'trashedRestore'])->name('posts.trashed.restore');
-
     Route::get('users/trashed', [\App\Http\Controllers\Admin\UserController::class, 'trashed'])->name('users.trashed');
     Route::get('users/trashed/{id}/restore', [\App\Http\Controllers\Admin\UserController::class, 'trashedRestore'])->name('users.trashed.restore');
     Route::post('users/{user}/roles', [\App\Http\Controllers\Admin\UserController::class, 'assignRole'])->name('users.roles');
     Route::delete('users/{user}/roles/{role}', [\App\Http\Controllers\Admin\UserController::class, 'removeRole'])->name('users.roles.revoke');
     Route::post('users/{user}/permissions', [\App\Http\Controllers\Admin\UserController::class, 'givePermission'])->name('users.permissions');
     Route::delete('users/{user}/permissions/{permission}', [\App\Http\Controllers\Admin\UserController::class, 'revokePermission'])->name('users.permissions.revoke');
+    Route::resource('contact', \App\Http\Controllers\Admin\ContactController::class)->except('destroy');
 });

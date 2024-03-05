@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class Contact_with_TripleB extends Mailable
+class ContactForm extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -29,7 +29,7 @@ class Contact_with_TripleB extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Contact With TBV-TripleB',
+            subject: 'Contact Form',
         );
     }
 
@@ -39,7 +39,7 @@ class Contact_with_TripleB extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.contact-with-tripleb',
+            view: 'emails.contact-form',
         );
     }
 

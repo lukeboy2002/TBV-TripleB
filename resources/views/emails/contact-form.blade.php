@@ -116,25 +116,25 @@
 </head>
 
 <body>
-    <div class="h-screen bg-gray-100 p-10">
-        <h1 class="pt-5 text-center text-3xl font-extrabold text-orange-500">TBV-TripleB</h1>
-        <div class="mx-auto max-w-xl rounded-lg bg-white p-4">
-            <div class="font-semibold text-black">Hello, <span class="text-orange-500">{{ ucfirst( $mailData['name'] ) }}</span> got in touch with us</div>
-            <div class="text-xs">this message has been sent at: <span class="italic">{{ $mailData['time'] }}</span></div>
-            <div class="mt-4 text-sm">
-                <div class="underline">Subject</div>
-                <div>{{ ucfirst( $mailData['subject'] ) }}</div>
-            </div>
-            <div class="mt-4 text-sm">
-                <div class="underline">Message</div>
-                <div>{{ ucfirst( $mailData['message'] ) }}</div>
-            </div>
-            <div class="mt-8 text-sm flex">
-                <div>Best Regards:</div>
-                <div class="ml-1">{{ ucfirst( $mailData['name'] ) }} - <a href="mailto:{{ $mailData['email'] }}" class="text-orange-500">{{ $mailData['email'] }}</a></div>
-            </div>
-            <div class="text-xs">{{ ( $mailData['ipaddress'] ) }}</div>
+<div class="h-screen bg-gray-100 p-10">
+    <h1 class="pt-5 text-center text-3xl font-extrabold text-orange-500">TBV-TripleB</h1>
+    <div class="mx-auto max-w-xl rounded-lg bg-white p-4">
+        <div class="font-semibold text-black">Hello, <span class="text-orange-500">{{ ucfirst( $mailData['name'] ) }}</span> got in touch with us</div>
+        <div class="text-xs">this message has been sent at: <span class="italic">{{ $mailData['time'] }}</span></div>
+        <div class="mt-4 text-sm">
+            <div class="underline">Subject</div>
+            <div>{{ ucfirst( $mailData['subject'] ) }}</div>
         </div>
+        <div class="mt-4 text-sm">
+            <div class="underline">Message</div>
+            <div>{{ ucfirst( $mailData['message'] ) }}</div>
+        </div>
+        <div class="mt-8 text-sm flex">
+            <div>Best Regards:</div>
+            <div class="ml-1">{{ ucfirst( $mailData['name'] ) }} - <a href="mailto:{{ $mailData['email'] }}" class="text-orange-500">{{ $mailData['email'] }}</a></div>
+        </div>
+        <div class="text-xs">{{ ( $mailData['ipaddress'] ) }}</div>
     </div>
+</div>
 </body>
 </html>
