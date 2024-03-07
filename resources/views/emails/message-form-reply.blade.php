@@ -8,13 +8,6 @@
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
-            /*background-color: #ffffff;*/
-            /*color: rgb(55 65 81);*/
-            /*height: 100%;*/
-            /*line-height: 1.4;*/
-            /*margin: 0;*/
-            /*padding: 2.5rem; !* 40px *!*/
-            /*width: 100% !important;*/
         }
 
         .h-screen {
@@ -112,6 +105,49 @@
             font-style: italic;
         }
 
+        blockquote {
+            margin: 1.5em 0 1.5em;
+            padding: 0 1em 0 2.5em;
+            position:relative;
+        }
+        blockquote:before
+        {
+            color: #ccc;
+            content: "\201C";
+            font-size: 5em;
+            position:absolute;
+            left:5px;
+            top: 0.3em;
+            line-height: 0.1em;
+        }
+
+        blockquote:after
+        {
+            color: #ccc;
+            content: "\201D";
+            font-size: 5em;
+            position:absolute;
+            right:3px;
+            bottom: 0em;
+            line-height: 0.1em;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        italic {
+            font-style: italic;
+        }
+
+        a {
+            color: rgb(249 115 22);
+            text-decoration: underline;
+        }
+
+        p {
+            margin: 0;
+        }
     </style>
 </head>
 
@@ -120,14 +156,13 @@
     <h1 class="pt-5 text-center text-3xl font-extrabold text-orange-500">Contact with TBV-TripleB</h1>
     <div class="mx-auto max-w-xl rounded-lg bg-white p-4">
         <div class="font-semibold text-black">Hello, <span class="text-orange-500">{{ ucfirst( $mailData['name'] ) }}</span> you got in touch with us</div>
-        <div class="text-xs">this is a copy of the mail that has been send to tripleB</div>
-        <div class="text-xs">your message has been sent at: <span class="italic">{{ $mailData['time'] }}</span></div>
         <div class="mt-4 text-sm">
             <div class="underline">Subject</div>
             <div>{{ ucfirst( $mailData['subject'] ) }}</div>
         </div>
         <div class="mt-4 text-sm">
-            <div>We will response soon</div>
+            <div class="underline">Message</div>
+            <div>{!! ucfirst( $mailData['message'] ) !!}</div>
         </div>
         <div class="mt-8 text-sm flex">
             <div>Best Regards:</div>

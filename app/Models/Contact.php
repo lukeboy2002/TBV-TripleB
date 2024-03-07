@@ -15,4 +15,9 @@ class Contact extends Model
         'ip_address',
         'user_agent',
     ];
+
+    public function scopeSearch($query, $value) {
+        $query->where('name', 'like', "%{$value}%")
+            ->orWhere('email', 'like', "%{$value}%");
+    }
 }

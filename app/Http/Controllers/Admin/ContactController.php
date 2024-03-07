@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactFormReply;
+use App\Mail\MessageFormReply;
 use App\Models\contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class ContactController extends Controller
@@ -30,7 +33,29 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'subject' => ['required', 'string', 'max:255'],
+            'message' => ['required', 'min:10'],
+        ]);
+
+        $mailData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'time' => now()
+        ];
+
+        Mail::to($request->get('email'))->send(new MessageFormReply($mailData));
+
+        Contact::destroy([
+             $request['id'],
+        ]);
+
+        toastr()->success('Message successfully send.', 'Send Message');
+        return redirect()->route('admin.contact.index');
     }
 
     /**
@@ -38,13 +63,16 @@ class ContactController extends Controller
      */
     public function show(contact $contact)
     {
-        //
+        return view('admin.contacts.show', [
+            'contact' => $contact,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(contact $contact)
+
+    public function edit(Contact $contact)
     {
         //
     }

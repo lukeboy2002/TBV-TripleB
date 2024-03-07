@@ -125,10 +125,6 @@
             <div class="underline">Subject</div>
             <div>{{ ucfirst( $mailData['subject'] ) }}</div>
         </div>
-        <div class="mt-4 text-sm">
-            <div class="underline">Message</div>
-            <div>{{ ucfirst( $mailData['message'] ) }}</div>
-        </div>
         <div class="mt-8 text-sm flex">
             <div>Best Regards:</div>
             <div class="ml-1">{{ ucfirst( $mailData['name'] ) }} - <a href="mailto:{{ $mailData['email'] }}" class="text-orange-500">{{ $mailData['email'] }}</a></div>

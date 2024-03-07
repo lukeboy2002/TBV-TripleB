@@ -21,18 +21,21 @@
             </div>
             <div>
                 <label for="message"></label>
-                <textarea x-ref="input"
-                          id="message"
-                          name="message"
-                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                          rows = 7
-                          placeholder="Message"
-                          required
-                ></textarea>
+                <x-forms.label for="message" value="Message" />
+                <x-forms.textarea id="message" name="message"></x-forms.textarea>
+                <x-forms.input-error for="message" class="mt-2" />
+{{--                <textarea x-ref="input"--}}
+{{--                          id="message"--}}
+{{--                          name="message"--}}
+{{--                          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"--}}
+{{--                          rows = 7--}}
+{{--                          placeholder="Message"--}}
+{{--                          required--}}
+{{--                ></textarea>--}}
                 <x-forms.input-error for="message" class="mt-2" />
             </div>
             <div class="flex justify-end">
-                <x-buttons.primary class="px-3 py-2 text-xs font-medium">
+                <x-buttons.primary type="submit" class="px-3 py-2 text-xs font-medium">
                     Submit
                 </x-buttons.primary>
             </div>
@@ -41,4 +44,19 @@
     <x-slot name="side">
         <img src="{{asset('storage/backgrounds/contact.jpeg')}}" alt="" class="h-full object-cover object-fill border-2 border-orange-500 rounded-lg">
     </x-slot>
+
+
+    @push('scripts')
+        <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#message'), {
+                    removePlugins: ['Heading', 'Table', 'CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed'],
+                })
+
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    @endpush
 </x-app-layout>
