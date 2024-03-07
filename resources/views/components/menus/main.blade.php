@@ -12,6 +12,6 @@
         <x-links.btn-primary href="{{ route('albums.index') }}" class="px-3 py-2" :active="request()->routeIs('albums.index')">Albums</x-links.btn-primary>
     </li>
     <li>
-        <x-links.btn-primary href="#" class="px-3 py-2">Contact</x-links.btn-primary>
+        <x-links.btn-primary href="{{ route('contact') }}" class="px-3 py-2" :active="request()->routeIs('contact')">Contact</x-links.btn-primary>
     </li>
 </ul>

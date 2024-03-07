@@ -21,7 +21,7 @@
 <body class="antialiased relative text-gray-900 dark:text-white bg-white dark:bg-gray-800 max-w-full overflow-x-hidden">
 
     <x-theme.admin.main-navigation />
-    <x-theme.admin.side-bar />
+    <x-side-bar />
 
     <main class="md:ml-64 min-h-screen px-8 pt-24">
         @if (isset($header))

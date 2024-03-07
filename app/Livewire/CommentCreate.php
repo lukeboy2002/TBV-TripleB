@@ -10,7 +10,6 @@ use Livewire\Component;
 
 class CommentCreate extends Component
 {
-
     #[Validate('required|min:3|max:200' ,onUpdate:true)]
     public string $comment;
 

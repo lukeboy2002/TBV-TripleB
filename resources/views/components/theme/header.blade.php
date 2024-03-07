@@ -8,7 +8,7 @@
                 <x-theme.contact-us />
             </div>
             <div class="flex items-center space-x-5 px-6">
-                <x-menus.social-icons />
+{{--                <x-menus.social-icons />--}}
             </div>
         </div>
     </div>
