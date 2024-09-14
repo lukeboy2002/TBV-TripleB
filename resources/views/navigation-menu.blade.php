@@ -10,12 +10,35 @@
                 <div class="flex">
                     <!-- Navigation Links -->
                     <div class="hidden space-x-4 sm:-my-px sm:flex">
-                        <x-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                        <x-link-nav href="{{ route('home') }}" :active="request()->routeIs('home')">
                             {{ __('Home') }}
-                        </x-nav-link>
+                        </x-link-nav>
+                        <x-link-nav href="{{ route('gallery') }}" :active="request()->routeIs('gallery')">
+                            {{ __('Gallery') }}
+                        </x-link-nav>
+                        <x-link-nav href="{{ route('specials') }}" :active="request()->routeIs('specials')">
+                            {{ __('Specials') }}
+                        </x-link-nav>
+                        <x-link-nav href="{{ route('about-us') }}" :active="request()->routeIs('about-us')">
+                            {{ __('About-us') }}
+                        </x-link-nav>
+                        <x-link-nav href="{{ route('book') }}" :active="request()->routeIs('book')">
+                            {{ __('Book') }}
+                        </x-link-nav>
+                        <x-link-nav href="{{ route('events') }}" :active="request()->routeIs('events')">
+                            {{ __('Events') }}
+                        </x-link-nav>
+                        <x-link-nav href="{{ route('shop') }}" :active="request()->routeIs('shop')">
+                            {{ __('Shop') }}
+                        </x-link-nav>
+                        <x-link-nav href="{{ route('blog') }}" :active="request()->routeIs('blog')">
+                            {{ __('Blog') }}
+                        </x-link-nav>
+                        <x-link-nav href="{{ route('contact') }}" :active="request()->routeIs('contact')">
+                            {{ __('Contact') }}
+                        </x-link-nav>
                         <div class="border border-l border-orange-500/30"></div>
                     </div>
-
                     <div class="hidden sm:flex sm:items-center sm:ms-6">
                         @if (Route::has('login'))
                             <!-- Settings Dropdown -->
@@ -53,9 +76,9 @@
                                                 {{ __('Manage Account') }}
                                             </div>
 
-                                            <x-dropdown-link href="{{ route('profile.show') }}">
+                                            <x-link-dropdown href="{{ route('profile.show') }}">
                                                 {{ __('Profile') }}
-                                            </x-dropdown-link>
+                                            </x-link-dropdown>
 
                                             <div class="border-t border-orange-500/30"></div>
 
@@ -72,14 +95,14 @@
                                         </x-slot>
                                     </x-dropdown>
                                 @else
-                                    <x-nav-link href="{{ route('login') }}">
+                                    <x-link-nav href="{{ route('login') }}">
                                         {{ __('Login') }}
-                                    </x-nav-link>
+                                    </x-link-nav>
 
                                     @if (Route::has('register'))
-                                        <x-nav-link href="{{ route('register') }}">
+                                        <x-link-nav href="{{ route('register') }}">
                                             {{ __('Register') }}
-                                        </x-nav-link>
+                                        </x-link-nav>
                                     @endif
                                 @endauth
                             </div>
@@ -106,9 +129,33 @@
         <!-- Responsive Navigation Menu -->
         <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
             <div class="space-y-1 pb-3 pt-2">
-                <x-responsive-nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">
+                <x-link-nav-responsive href="{{ route('home') }}" :active="request()->routeIs('home')">
                     {{ __('Home') }}
-                </x-responsive-nav-link>
+                </x-link-nav-responsive>
+                <x-link-nav-responsive href="{{ route('gallery') }}" :active="request()->routeIs('gallery')">
+                    {{ __('Gallery') }}
+                </x-link-nav-responsive>
+                <x-link-nav-responsive href="{{ route('specials') }}" :active="request()->routeIs('specials')">
+                    {{ __('Specials') }}
+                </x-link-nav-responsive>
+                <x-link-nav-responsive href="{{ route('about-us') }}" :active="request()->routeIs('about-us')">
+                    {{ __('About-us') }}
+                </x-link-nav-responsive>
+                <x-link-nav-responsive href="{{ route('book') }}" :active="request()->routeIs('book')">
+                    {{ __('Book') }}
+                </x-link-nav-responsive>
+                <x-link-nav-responsive href="{{ route('events') }}" :active="request()->routeIs('events')">
+                    {{ __('Events') }}
+                </x-link-nav-responsive>
+                <x-link-nav-responsive href="{{ route('shop') }}" :active="request()->routeIs('shop')">
+                    {{ __('Shop') }}
+                </x-link-nav-responsive>
+                <x-link-nav-responsive href="{{ route('blog') }}" :active="request()->routeIs('blog')">
+                    {{ __('Blog') }}
+                </x-link-nav-responsive>
+                <x-link-nav-responsive href="{{ route('contact') }}" :active="request()->routeIs('contact')">
+                    {{ __('Contact') }}
+                </x-link-nav-responsive>
             </div>
 
             @if (Route::has('login'))
@@ -133,27 +180,28 @@
 
                         <div class="mt-3 space-y-1">
                             <!-- Account Management -->
-                            <x-responsive-nav-link href="{{ route('profile.show') }}"
+                            <x-link-nav-responsive href="{{ route('profile.show') }}"
                                                    :active="request()->routeIs('profile.show')">
                                 {{ __('Profile') }}
-                            </x-responsive-nav-link>
+                            </x-link-nav-responsive>
 
                             <!-- Authentication -->
                             <form method="POST" action="{{ route('logout') }}" x-data>
                                 @csrf
 
-                                <x-responsive-nav-link href="{{ route('logout') }}"
+                                <x-link-nav-responsive href="{{ route('logout') }}"
                                                        @click.prevent="$root.submit();">
                                     {{ __('Log Out') }}
-                                </x-responsive-nav-link>
+                                </x-link-nav-responsive>
                             </form>
                         </div>
                     @else
-                        <a href="route('login')"
-                           class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 uppercase text-gray-400 hover:text-orange-500 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">Log
-                            in</a>
-                        <a href="route('register')"
-                           class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 uppercase text-gray-400 hover:text-orange-500 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">Register</a>
+                        <x-link-nav-responsive href="{{ route('login') }}">
+                            Login
+                        </x-link-nav-responsive>
+                        <x-link-nav-responsive href="{{ route('register') }}">
+                            Register
+                        </x-link-nav-responsive>
                     @endif
                 </div>
             @endauth
