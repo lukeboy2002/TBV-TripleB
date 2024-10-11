@@ -81,7 +81,10 @@
                                             </x-link-dropdown>
 
                                             <div class="border-t border-orange-500/30"></div>
-
+                                            <x-link-dropdown href="{{ route('games.create') }}">
+                                                {{ __('New Game') }}
+                                            </x-link-dropdown>
+                                            <div class="border-t border-orange-500/30"></div>
                                             <!-- Authentication -->
                                             <form method="POST" action="{{ route('logout') }}" x-data>
                                                 @csrf

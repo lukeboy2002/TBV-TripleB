@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('games', GameController::class);
+    //    Route::get('games/create', [GameController::class, 'create'])->name('games.create');
+    //    Route::post('games', [GameController::class, 'store'])->name('games.store');
 });
 
 Route::get('/gallery', function () {

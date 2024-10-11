@@ -25,5 +25,6 @@ class RonSeeder extends Seeder
             ]);
         $role = Role::select('id')->where('name', 'member')->first();
         $ron->roles()->attach($role);
+
     }
 }

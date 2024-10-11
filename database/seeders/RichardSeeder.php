@@ -25,5 +25,6 @@ class RichardSeeder extends Seeder
             ]);
         $role = Role::select('id')->where('name', 'member')->first();
         $richard->roles()->attach($role);
+
     }
 }
