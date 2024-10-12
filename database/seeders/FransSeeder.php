@@ -22,6 +22,7 @@ class FransSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('fransfrans'),
                 'remember_token' => Str::random(10),
+                'image' => 'members/Frans.png',
             ]);
         $role = Role::select('id')->where('name', 'member')->first();
         $frans->roles()->attach($role);

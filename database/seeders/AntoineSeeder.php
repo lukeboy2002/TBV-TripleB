@@ -22,6 +22,7 @@ class AntoineSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('antoineantoine'),
                 'remember_token' => Str::random(10),
+                'image' => 'members/Antoine.jpg',
             ]);
         $role = Role::select('id')->where('name', 'member')->first();
         $antoine->roles()->attach($role);

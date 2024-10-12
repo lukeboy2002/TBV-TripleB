@@ -19,8 +19,8 @@
                         <x-link-nav href="{{ route('specials') }}" :active="request()->routeIs('specials')">
                             {{ __('Specials') }}
                         </x-link-nav>
-                        <x-link-nav href="{{ route('about-us') }}" :active="request()->routeIs('about-us')">
-                            {{ __('About-us') }}
+                        <x-link-nav href="{{ route('team') }}" :active="request()->routeIs('team')">
+                            {{ __('Team') }}
                         </x-link-nav>
                         <x-link-nav href="{{ route('book') }}" :active="request()->routeIs('book')">
                             {{ __('Book') }}
@@ -81,7 +81,10 @@
                                             </x-link-dropdown>
 
                                             <div class="border-t border-orange-500/30"></div>
-
+                                            <x-link-dropdown href="{{ route('games.create') }}">
+                                                {{ __('New Game') }}
+                                            </x-link-dropdown>
+                                            <div class="border-t border-orange-500/30"></div>
                                             <!-- Authentication -->
                                             <form method="POST" action="{{ route('logout') }}" x-data>
                                                 @csrf
@@ -138,8 +141,8 @@
                 <x-link-nav-responsive href="{{ route('specials') }}" :active="request()->routeIs('specials')">
                     {{ __('Specials') }}
                 </x-link-nav-responsive>
-                <x-link-nav-responsive href="{{ route('about-us') }}" :active="request()->routeIs('about-us')">
-                    {{ __('About-us') }}
+                <x-link-nav-responsive href="{{ route('team') }}" :active="request()->routeIs('team')">
+                    {{ __('Team') }}
                 </x-link-nav-responsive>
                 <x-link-nav-responsive href="{{ route('book') }}" :active="request()->routeIs('book')">
                     {{ __('Book') }}

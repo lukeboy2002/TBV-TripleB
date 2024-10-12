@@ -16,6 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
+    @stack('styles')
     @livewireStyles
 </head>
 <body class="font-sans antialiased bg-white">
@@ -42,7 +43,7 @@
                 </aside>
             </div>
         @else
-            <div class="mx-auto max-w-7xl py-10 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl px-2 py-10 sm:px-6 lg:px-8">
                 {{ $slot }}
             </div>
         @endif
@@ -52,5 +53,6 @@
 @stack('modals')
 
 @livewireScripts
+@stack('scripts')
 </body>
 </html>

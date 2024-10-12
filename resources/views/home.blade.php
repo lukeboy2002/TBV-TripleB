@@ -103,4 +103,8 @@
     ultricies sit amet non erat. Donec luctus pretium congue. Nulla elementum tempus urna eu lacinia. Curabitur blandit
     magna nisi, eget tristique arcu consequat nec. Curabitur mattis placerat velit non commodo. Morbi porta ipsum eu
     massa tempus, ac interdum metus viverra.
+    <x-slot name="side">
+        <x-latest-cupholder/>
+        <x-scorelist/>
+    </x-slot>
 </x-app-layout>

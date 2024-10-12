@@ -22,6 +22,7 @@ class GuusSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('guusguus'),
                 'remember_token' => Str::random(10),
+                'image' => 'members/Guus.jpg',
             ]);
         $role = Role::select('id')->where('name', 'member')->first();
         $guus->roles()->attach($role);

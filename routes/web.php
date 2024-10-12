@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\FilepondController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -8,6 +11,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', HomeController::class)->name('home');
+Route::get('/team', TeamController::class)->name('team');
 
 Route::middleware([
     'auth:sanctum',
@@ -17,6 +21,13 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('games', GameController::class);
+
+    Route::post('filepondupload', [FilepondController::class, 'upload'])->name('filepond.upload');
+    Route::delete('filepondrevert', [FilepondController::class, 'revert'])->name('filepond.revert');
+    //    Route::get('games/create', [GameController::class, 'create'])->name('games.create');
+    //    Route::post('games', [GameController::class, 'store'])->name('games.store');
 });
 
 Route::get('/gallery', function () {
@@ -25,9 +36,9 @@ Route::get('/gallery', function () {
 Route::get('/specials', function () {
     return view('specials');
 })->name('specials');
-Route::get('/about-us', function () {
-    return view('about-us');
-})->name('about-us');
+//Route::get('/about-us', function () {
+//    return view('about-us');
+//})->name('about-us');
 Route::get('/book', function () {
     return view('book');
 })->name('book');
