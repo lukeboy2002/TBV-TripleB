@@ -26,4 +26,15 @@ class Points extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function game()
+    {
+        return $this->belongsTo(Game::class);
+    }
+
+    //    // Define the relationship back to the user
+    //    public function user()
+    //    {
+    //        return $this->belongsTo(User::class);
+    //    }
 }

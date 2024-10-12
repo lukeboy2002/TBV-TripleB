@@ -6,6 +6,9 @@ use App\Models\Game;
 use App\Models\Points;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class GameController extends Controller
 {
@@ -14,7 +17,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::with('users', 'winner', 'cupWinner')->get();
+        $games = Game::with('users', 'winner', 'cupWinner')->paginate(6);
 
         return view('games.index', compact('games'));
     }
@@ -49,14 +52,24 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        //        $game = DB::table('games')
-        //            ->join('game_user', 'games.id', '=', 'game_user.game_id') // assuming a pivot table for game-user relationship
-        //            ->join('users', 'game_user.user_id', '=', 'users.id')
-        //            ->join('points', 'points.game_id', '=', 'games.id')
-        //            ->select('games.*', 'users.username', 'points.value as points')
-        //            ->get();
-        //
-        //        return view('games.show', compact('game'));
+        $game = Game::where('games.id', $game->id)
+            ->with(['users', 'points'])
+            ->firstOrFail();
+
+        $game->game_winner = User::find($game->winner_id);
+        $game->cup_winner = User::find($game->cup_winner_id);
+
+        $game->user_scores = DB::table('game_user')
+            ->join('points', function ($join) {
+                $join->on('game_user.user_id', '=', 'points.user_id')
+                    ->on('game_user.game_id', '=', 'points.game_id');
+            })
+            ->join('users', 'game_user.user_id', '=', 'users.id')
+            ->where('game_user.game_id', $game->id)
+            ->select('users.username', 'points.points')
+            ->get();
+
+        return view('games.show', compact('game'));
     }
 
     /**
@@ -74,21 +87,16 @@ class GameController extends Controller
      */
     public function update(Request $request, Game $game)
     {
-        $request->validate([
-            'image' => 'image|mimes:jpg,jpeg,png,webp,svg|max:2048',
-        ]);
-
         Game::findOrFail($game->id);
         $game->winner_id = $request->winner_id;
         if ($request->cup_winner_id) {
             $game->cup_winner_id = $request->cup_winner_id;
         }
+        if ($request->input('image')) {
+            $newFilename = Str::after($request->input('image'), 'tmp/');
+            Storage::disk('public')->move($request->input('image'), "cupwinners/$newFilename");
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $extension = $file->getClientOriginalExtension();
-            $filename = $file->storeAs('cupwinners', $game->id.'-'.$game->cup_winner_id.'.'.$extension);
-
+            $filename = "cupwinners/$newFilename";
             $game->image = $filename;
         }
         $game->save();

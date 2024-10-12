@@ -16,44 +16,44 @@
             </h1>
         </div>
     </x-slot>
+        
+    <x-card>
+        <form action="{{ route('games.store') }}" method="POST">
+            @csrf
 
-    <!-- Form to create a new competition and mark attendance -->
-    <form action="{{ route('games.store') }}" method="POST">
-        @csrf
 
-
-        <div class="space-y-2 mb-6">
-            <x-label for="date">Competition Date</x-label>
-            <x-input type="date"
-                     name="date"
-                     id="date"
-                     value="{{ old('date', now()->format('Y-m-d')) }}"
-                     required/>
-        </div>
-
-        <div class="space-y-2">
-            <x-label for="players">Select Players</x-label>
-            <div class="flex justify-between text-sm">
-                <select
-                        class="js-example-basic-multiple w-full"
-                        id="users"
-                        name="users[]"
-                        data-placeholder="Select users..."
-                        data-allow-clear="false"
-                        multiple="multiple">
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ ucfirst($user->username) }}</option>
-                    @endforeach
-                </select>
-
+            <div class="space-y-2 mb-6">
+                <x-label for="date">Competition Date</x-label>
+                <x-input type="date"
+                         name="date"
+                         id="date"
+                         value="{{ old('date', now()->format('Y-m-d')) }}"
+                         required/>
             </div>
-        </div>
 
-        <div class="flex justify-end mt-4">
-            <x-button-primary type="submit">Start</x-button-primary>
-        </div>
-    </form>
+            <div class="space-y-2">
+                <x-label for="players">Select Players</x-label>
+                <div class="flex justify-between text-sm">
+                    <select
+                            class="js-example-basic-multiple w-full"
+                            id="users"
+                            name="users[]"
+                            data-placeholder="Select users..."
+                            data-allow-clear="false"
+                            multiple="multiple">
+                        @foreach($users as $user)
+                            <option value="{{ $user->id }}">{{ ucfirst($user->username) }}</option>
+                        @endforeach
+                    </select>
 
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-4">
+                <x-button-primary type="submit">Start</x-button-primary>
+            </div>
+        </form>
+    </x-card>
     <x-slot name="side">
         To be Continued
     </x-slot>

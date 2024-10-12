@@ -24,6 +24,11 @@ class Game extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function points()
+    {
+        return $this->hasMany(Points::class);
+    }
+
     public function winner()
     {
         return $this->belongsTo(User::class, 'winner_id');

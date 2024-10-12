@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FilepondController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,9 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('games', GameController::class);
+
+    Route::post('filepondupload', [FilepondController::class, 'upload'])->name('filepond.upload');
+    Route::delete('filepondrevert', [FilepondController::class, 'revert'])->name('filepond.revert');
     //    Route::get('games/create', [GameController::class, 'create'])->name('games.create');
     //    Route::post('games', [GameController::class, 'store'])->name('games.store');
 });
