@@ -22,6 +22,7 @@ class JacSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('jacjacjac'),
                 'remember_token' => Str::random(10),
+                'image' => 'members/Jac.png',
             ]);
         $role = Role::select('id')->where('name', 'member')->first();
         $jac->roles()->attach($role);

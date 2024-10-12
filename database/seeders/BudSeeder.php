@@ -22,6 +22,7 @@ class BudSeeder extends Seeder
                 'email_verified_at' => now(),
                 'password' => Hash::make('budbudbud'),
                 'remember_token' => Str::random(10),
+                'image' => 'members/Bud.jpg',
             ]);
         $role = Role::select('id')->where('name', 'member')->first();
         $bud->roles()->attach($role);
