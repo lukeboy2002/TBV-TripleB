@@ -26,8 +26,6 @@ Route::middleware([
 
     Route::post('filepondupload', [FilepondController::class, 'upload'])->name('filepond.upload');
     Route::delete('filepondrevert', [FilepondController::class, 'revert'])->name('filepond.revert');
-    //    Route::get('games/create', [GameController::class, 'create'])->name('games.create');
-    //    Route::post('games', [GameController::class, 'store'])->name('games.store');
 });
 
 Route::get('/gallery', function () {

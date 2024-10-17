@@ -22,7 +22,7 @@ class Points extends Model
         'won_cup',
     ];
 
-    public function users(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

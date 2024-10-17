@@ -69,7 +69,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function games(): BelongsToMany
     {
-        return $this->belongsToMany(Game::class);
+        return $this->belongsToMany(Game::class)->withTimestamps();
     }
 
     public function profile(): HasOne
@@ -77,9 +77,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Profile::class);
     }
 
-    public function points(): HasOne
+    public function points(): HasMany
     {
-        return $this->hasOne(Points::class);
+        return $this->hasMany(Points::class);
     }
 
     protected function defaultProfilePhotoUrl()
