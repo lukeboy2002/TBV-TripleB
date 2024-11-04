@@ -3,8 +3,12 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
+
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call([RolesAndPermissionsSeeder::class]);
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $admin = User::factory()
+            ->create([
+                'username' => 'admin',
+                'email' => 'admin@tbv-tripleb.nl',
+                'email_verified_at' => now(),
+                'password' => Hash::make('adminadmin'),
+                'remember_token' => Str::random(10),
+            ]);
+        $role = Role::select('id')->where('name', 'admin')->first();
+        $admin->roles()->attach($role);
     }
 }
