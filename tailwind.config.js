@@ -16,7 +16,17 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                'heading': ['"montserrat"'],
             },
+            colors: {
+                'menu': '#201e1d',
+                'dark': '#494746',
+                'light': '#e5e7eb',
+                'primary': '#f97316',
+            },
+            height: {
+                '124': '31rem',
+            }
         },
     },
 
