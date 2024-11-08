@@ -1,45 +1,61 @@
-<!DOCTYPE html>
+@props(['title' => ''])
+
+        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ $title }} - {{ config('app.name', '') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.bunny.net/css?family=montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet"/>
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Styles -->
+    @stack('styles')
+    @livewireStyles
+</head>
+<body class="font-sans antialiased bg-light text-dark dark:bg-dark dark:text-light">
+<x-banner/>
+<div class="grid min-h-[100dvh] grid-rows-[auto_1fr_auto]">
+    <livewire:navigation-menu/>
 
-        <!-- Styles -->
-        @livewireStyles
-    </head>
-    <body class="font-sans antialiased">
-        <x-banner />
+    <section class="px-0">
+        <!-- Page Heading -->
+        @if (isset($hero))
+            <div class="relative h-124">
+                {{ $hero }}
+            </div>
+        @endif
 
-        <div class="min-h-screen bg-gray-100">
-            @livewire('navigation-menu')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
+        <!-- Page Content -->
+        @if (isset($side))
+            <div class="mx-auto flex max-w-7xl flex-wrap py-4 sm:px-6 lg:px-8">
+                <main class="flex w-full flex-col px-3 md:w-3/4">
+                    {{ $slot }}
+                </main>
+                <aside class="flex w-full flex-col px-3 md:w-1/4 mb-20">
+                    {{ $side }}
+                </aside>
+            </div>
+        @else
+            <div class="mx-auto max-w-7xl py-10 sm:px-6 lg:px-8">
                 {{ $slot }}
-            </main>
-        </div>
+                safasfsaf
+            </div>
+        @endif
+    </section>
+    {{--    <x-footer/>--}}
+</div>
+@stack('modals')
 
-        @stack('modals')
-
-        @livewireScripts
-    </body>
+@livewireScripts
+@stack('scripts')
+</body>
 </html>
