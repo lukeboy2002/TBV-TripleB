@@ -107,9 +107,9 @@
                             </nav>
                         @endif
                     </div>
-                    <div class="flex pl-1 items-center space-x-2">
-                        <div class="border-l w-0.5 h-6 border-orange-500/30"></div>
-                        {{--                        <x-switchable-theme/>--}}
+                    <div class="border border-l border-primary/30"></div>
+                    <div class="flex items-center space-x-2">
+                        <x-switchable-theme/>
                     </div>
                 </div>
 

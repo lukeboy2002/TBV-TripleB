@@ -51,7 +51,7 @@
             </div>
         @endif
     </section>
-    {{--    <x-footer/>--}}
+    <x-footer/>
 </div>
 @stack('modals')
 
