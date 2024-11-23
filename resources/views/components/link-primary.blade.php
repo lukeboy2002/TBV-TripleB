@@ -1,0 +1,1 @@
+<a wire:navigate {{ $attributes->merge(['class' => 'text-dark dark:text-light hover:text-primary dark:hover:text-primary focus:outline-none focus:text-primary dark:focus:text-primary transition duration-150 ease-in-out']) }}>{{ $slot }}</a>

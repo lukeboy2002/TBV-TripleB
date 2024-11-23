@@ -4,7 +4,7 @@
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="flex justify-between items-center h-14">
-                <div class="flex items-center text-xl font-black text-primary text-heading tracking-widest">
+                <div class="flex items-center text-xl font-black text-primary font-heading tracking-widest">
                     <x-logo.menu/>
                     TBV-TripleB
                 </div>
