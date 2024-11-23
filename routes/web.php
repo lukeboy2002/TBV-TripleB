@@ -24,9 +24,6 @@ Route::get('/team', function () {
 Route::get('/game', function () {
     return view('game');
 })->name('game');
-Route::get('/blog', function () {
-    return view('blog');
-})->name('blog');
 Route::get('/event', function () {
     return view('event');
 })->name('event');

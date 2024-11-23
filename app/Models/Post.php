@@ -66,6 +66,29 @@ class Post extends Model implements HasMedia
         $query->where('featured', true);
     }
 
+    public function scopeSearch($query, string $search = '')
+    {
+        $query->where('title', 'like', "%{$search}%")
+            ->orWhere('body', 'like', "%{$search}%");
+    }
+
+    public function scopeWithCategory($query, string $category): void
+    {
+        $query->whereHas('category', function ($query) use ($category) {
+            $query->where('slug', $category);
+        });
+    }
+
+    public function shortBody($words = 30): string
+    {
+        return Str::words(strip_tags($this->body), $words);
+    }
+
+    public function shortTitle($words = 3): string
+    {
+        return Str::words(strip_tags($this->title), $words);
+    }
+
     public function sluggable(): array
     {
         return [
@@ -73,11 +96,6 @@ class Post extends Model implements HasMedia
                 'source' => 'title',
             ],
         ];
-    }
-
-    public function shortBody($words = 30): string
-    {
-        return Str::words(strip_tags($this->body), $words);
     }
 
     public function getImage()

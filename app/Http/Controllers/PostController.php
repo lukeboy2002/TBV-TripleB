@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -12,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        return view('posts.index');
     }
 
     /**
@@ -36,7 +37,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        if ($post->published_at >= Carbon::now()) {
+            abort(404);
+        }
+
+        return view('posts.show', compact('post'));
     }
 
     /**

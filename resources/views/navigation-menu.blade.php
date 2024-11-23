@@ -19,7 +19,7 @@
                     <x-link-nav href="{{ route('game') }}" :active="request()->routeIs('game')">
                         {{ __('Game') }}
                     </x-link-nav>
-                    <x-link-nav href="{{ route('blog') }}" :active="request()->routeIs('blog')">
+                    <x-link-nav href="{{ route('posts.index') }}" :active="request()->routeIs('posts.*')">
                         {{ __('Blog') }}
                     </x-link-nav>
                     <x-link-nav href="{{ route('event') }}" :active="request()->routeIs('event')">
@@ -143,7 +143,7 @@
                 <x-link-nav-responsive href="{{ route('game') }}" :active="request()->routeIs('game')">
                     {{ __('Game') }}
                 </x-link-nav-responsive>
-                <x-link-nav-responsive href="{{ route('blog') }}" :active="request()->routeIs('blog')">
+                <x-link-nav-responsive href="{{ route('posts.index') }}" :active="request()->routeIs('posts.*')">
                     {{ __('Blog') }}
                 </x-link-nav-responsive>
                 <x-link-nav-responsive href="{{ route('event') }}" :active="request()->routeIs('event')">
