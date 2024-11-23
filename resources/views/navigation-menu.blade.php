@@ -4,7 +4,7 @@
         <!-- Primary Navigation Menu -->
         <div class="max-w-7xl mx-auto px-4 lg:px-8">
             <div class="flex justify-between items-center h-14">
-                <div class="flex items-center text-xl font-black text-orange-500 tracking-widest">
+                <div class="flex items-center text-xl font-black text-primary text-heading tracking-widest">
                     <x-logo.menu/>
                     TBV-TripleB
                 </div>
@@ -28,7 +28,7 @@
                     <x-link-nav href="{{ route('gallery') }}" :active="request()->routeIs('gallery')">
                         {{ __('Gallery') }}
                     </x-link-nav>
-                    <div class="border border-l border-orange-500/30"></div>
+                    <div class="border border-l border-primary/30"></div>
                     <div class="hidden lg:flex lg:items-center lg:ms-6">
                         @if (Route::has("login"))
                             <nav class="-mx-3 flex flex-1 justify-end">
@@ -76,7 +76,7 @@
                                                 <x-link-dropdown wire:navigate href="{{ route('profile.show') }}">
                                                     {{ __("Profile") }}
                                                 </x-link-dropdown>
-                                                <div class="border-t border-orange-500/30"></div>
+                                                <div class="border-t border-primary/30"></div>
 
                                                 <!-- Authentication -->
                                                 <form method="POST"
@@ -169,7 +169,7 @@
                             @endif
 
                             <div>
-                                <div class="text-base font-medium text-gray-700 dark:text-gray-50">
+                                <div class="text-base font-medium text-dark dark:text-light">
                                     {{ Auth::user()->username }}
                                 </div>
                                 <div class="text-sm font-medium text-gray-500">
