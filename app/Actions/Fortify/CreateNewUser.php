@@ -39,5 +39,7 @@ class CreateNewUser implements CreatesNewUsers
         $role = Role::select('id')->where('name', 'user')->first();
         $user->roles()->attach($role);
 
+        return $user;
+
     }
 }

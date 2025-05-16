@@ -1,71 +1,73 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo/>
-        </x-slot>
-
-        <x-validation-errors class="mb-4"/>
-
-        <form method="POST" action="{{ route('register') }}">
+<x-app-layout title="Register">
+    <div class="w-full md:flex md:justify-between bg-background border border-border rounded-lg shadow-sm">
+        <div class="hidden md:block md:w-1/2 inset-0 overflow-hidden">
+            <img class="h-full object-cover rounded-l-lg" src="{{asset('storage/assets/register.jpg')}}" alt="">
+        </div>
+        <form method="POST" action="{{ route('register') }}" class="w-full md:w-1/2 p-4">
             @csrf
-
             <div>
-                <x-label for="username" value="{{ __('Username') }}"/>
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')"
-                         required autofocus autocomplete="username"/>
+                <x-tbv-label for="username" value="{{ __('Username') }}"/>
+                <x-tbv-input id="username" class="block mt-1 w-full" type="text" name="username"
+                             :value="old('username')"
+                             required autofocus autocomplete="username"/>
+                <x-tbv-input-error for="username" class="mt-2"/>
             </div>
-
             <div class="mt-4">
-                <x-label for="name" value="{{ __('Full name') }}"/>
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                         autofocus autocomplete="name"/>
+                <x-tbv-label for="name" value="{{ __('Full name') }}"/>
+                <x-tbv-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
+                             autofocus autocomplete="name"/>
+                <x-tbv-input-error for="name" class="mt-2"/>
             </div>
-
             <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}"/>
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                         autocomplete="username"/>
+                <x-tbv-label for="email" value="{{ __('Email') }}"/>
+                <x-tbv-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                             required
+                             autocomplete="username"/>
+                <x-tbv-input-error for="email" class="mt-2"/>
             </div>
-
             <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}"/>
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                         autocomplete="new-password"/>
+                <x-tbv-label for="password" value="{{ __('Password') }}"/>
+                <x-tbv-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                             autocomplete="new-password"/>
+                <x-tbv-input-error for="password" class="mt-2"/>
             </div>
-
             <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}"/>
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                         name="password_confirmation" required autocomplete="new-password"/>
+                <x-tbv-label for="password_confirmation" value="{{ __('Confirm Password') }}"/>
+                <x-tbv-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                             name="password_confirmation" required autocomplete="new-password"/>
+                <x-tbv-input-error for="password_confirmation" class="mt-2"/>
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
-                    <x-label for="terms">
+                    <x-tbv-label for="terms">
                         <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required/>
+                            <x-tbv-checkbox name="terms" id="terms" required/>
 
                             <div class="ms-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Privacy Policy').'</a>',
-                                ]) !!}
+                                {!! __('I agree to the') !!}
+                                <x-tbv-link href="{{ route('terms.show') }}">
+                                    {{ __('terms of service') }}
+                                </x-tbv-link>
+                                and
+                                <x-tbv-link class="text-sm" href="{{ route('policy.show') }}">
+                                    {{ __('privacy policy') }}
+                                </x-tbv-link>
                             </div>
                         </div>
-                    </x-label>
+                    </x-tbv-label>
                 </div>
             @endif
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                   href="{{ route('login') }}">
+                <x-tbv-link href="{{ route('login') }}">
                     {{ __('Already registered?') }}
-                </a>
+                </x-tbv-link>
 
-                <x-button class="ms-4">
+                <x-tbv-button class="ms-4">
                     {{ __('Register') }}
-                </x-button>
+                </x-tbv-button>
             </div>
         </form>
-    </x-authentication-card>
-</x-guest-layout>
+    </div>
+</x-app-layout>
