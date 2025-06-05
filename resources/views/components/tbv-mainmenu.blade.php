@@ -6,7 +6,7 @@
     <x-lucide-users class="h-5 w-5"/>
     Team
 </x-tbv-link-navigation>
-<x-tbv-link-navigation href="{{ route('post') }}" :active="request()->routeIs('post')" class="flex gap-2">
+<x-tbv-link-navigation href="{{ route('post.index') }}" :active="request()->routeIs('post')" class="flex gap-2">
     <x-lucide-newspaper class="h-5 w-5"/>
     Blog
 </x-tbv-link-navigation>

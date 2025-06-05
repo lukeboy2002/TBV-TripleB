@@ -35,6 +35,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
+    @stack('styles')
     @livewireStyles
 
 
@@ -48,7 +49,7 @@
 </div>
 <!-- END: Page Background -->
 
-<x-banner/>
+{{--<x-banner/>--}}
 
 <div class="min-h-screen relative z-10">
     <x-tbv-header/>
@@ -64,7 +65,7 @@
 
         <!-- Page Content -->
         @if (isset($side))
-            <div class="mx-auto flex max-w-7xl flex-wrap py-4 sm:px-6 lg:px-8">
+            <div class="mx-auto flex max-w-7xl flex-wrap py-4">
                 <main class="flex w-full flex-col px-3 md:w-3/4">
                     {{ $slot }}
                 </main>
@@ -81,6 +82,7 @@
 </div>
 
 @stack('modals')
+@stack('scripts')
 
 @livewireScripts
 </body>

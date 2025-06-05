@@ -1,19 +1,20 @@
 <div>
     <button wire:click="toggleModal" data-popover-target="tooltip-login"
-            class="flex items-center justify-center text-primary">
-        <x-lucide-key-round class="w-5 h-5"/>
+            class="flex items-center justify-center text-primary gap-2">
+        @if($showIcon)
+            <x-lucide-key-round class="w-5 h-5"/>
+            <div id="tooltip-login" role="tooltip"
+                 class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-primary transition-opacity duration-300 bg-background rounded-lg shadow-xs opacity-0 tooltip">
+                Login
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+        @endif
+        @if($showLabel)
+            <span class="text-primary underline text-xs hover:text-secondary focus:outline-none focus:text-secondary transition duration-150 ease-in-out">{{ __('Login') }}</span>
+        @endif
     </button>
 
-
-    <div id="tooltip-login" role="tooltip"
-         class="absolute z-50 invisible inline-block px-3 py-2 text-sm font-medium text-primary transition-opacity duration-300 bg-background rounded-lg shadow-xs opacity-0 tooltip">
-        Login
-        <div class="tooltip-arrow" data-popper-arrow></div>
-    </div>
-
-
     @if($showModal)
-
         <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
                 <div class="fixed inset-0 transition-opacity bg-background/75" aria-hidden="true"

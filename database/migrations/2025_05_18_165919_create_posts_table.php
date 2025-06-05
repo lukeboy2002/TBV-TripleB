@@ -18,10 +18,12 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->restrictOnDelete();
             $table->foreignIdFor(Category::class)->constrained()->restrictOnDelete();
             $table->string('title');
-            $table->longText('content');
+            $table->string('slug')->unique();
+            $table->longText('body');
             $table->string('image')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->boolean('featured')->default(false);
+            $table->unsignedBigInteger('likes_count')->default(0);
             $table->timestamps();
         });
     }

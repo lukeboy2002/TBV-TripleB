@@ -9,6 +9,10 @@ class LoginModal extends Component
 {
     public bool $showModal = false;
 
+    public bool $showIcon = true;
+
+    public bool $showLabel = false;
+
     public string $username = '';
 
     public string $password = '';
@@ -20,9 +24,32 @@ class LoginModal extends Component
         'password' => 'required',
     ];
 
-    public function mount()
+    public function mount($type = 'icon')
     {
-        $this->showModal = false;
+        match ($type) {
+            'icon' => $this->setIconOnly(),
+            'text' => $this->setTextOnly(),
+            'both' => $this->setBoth(),
+            default => $this->setIconOnly(),
+        };
+    }
+
+    private function setIconOnly(): void
+    {
+        $this->showIcon = true;
+        $this->showLabel = false;
+    }
+
+    private function setTextOnly(): void
+    {
+        $this->showIcon = false;
+        $this->showLabel = true;
+    }
+
+    private function setBoth(): void
+    {
+        $this->showIcon = true;
+        $this->showLabel = true;
     }
 
     public function login()
@@ -42,5 +69,10 @@ class LoginModal extends Component
     public function toggleModal()
     {
         $this->showModal = ! $this->showModal;
+    }
+
+    public function render()
+    {
+        return view('livewire.auth.login-modal');
     }
 }
