@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\User;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
+use Livewire\WithPagination;
+
+class TeamIndex extends Component
+{
+    use WithPagination;
+
+    #[Computed]
+    public function users()
+    {
+        return User::role('member')
+            ->simplePaginate(1);
+    }
+
+    public function render()
+    {
+        return view('livewire.team-index');
+    }
+}

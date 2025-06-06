@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,6 +10,7 @@ Route::get('/', function () {
 
 Route::get('post', [PostController::class, 'index'])->name('post.index');
 Route::get('post/{post}', [PostController::class, 'show'])->name('post.show');
+Route::get('team', [TeamController::class, 'index'])->name('team.index');
 
 Route::middleware([
     'auth:sanctum',
@@ -26,9 +28,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jets
     Route::resource('post', \App\Http\Controllers\Admin\PostController::class)->except('index', 'show');
 });
 
-Route::get('/team', function () {
-    return view('team');
-})->name('team');
 // Route::get('/post', function () {
 //    return view('post');
 // })->name('post');

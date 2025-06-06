@@ -2,7 +2,7 @@
     <x-lucide-home class="h-5 w-5"/>
     Home
 </x-tbv-link-navigation>
-<x-tbv-link-navigation href="{{ route('team') }}" :active="request()->routeIs('team')" class="flex gap-2">
+<x-tbv-link-navigation href="{{ route('team.index') }}" :active="request()->routeIs('team')" class="flex gap-2">
     <x-lucide-users class="h-5 w-5"/>
     Team
 </x-tbv-link-navigation>
