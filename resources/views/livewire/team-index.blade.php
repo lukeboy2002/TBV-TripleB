@@ -21,7 +21,6 @@
         <div class="rounded-lg bg-background-accent shadow-xs ring-1 ring-ring/30 p-2">
             <x-tbv-heading_h5>Player Info</x-tbv-heading_h5>
 
-
             <div class="relative overflow-x-auto">
                 <table class="w-full text-sm text-left rtl:text-right">
                     <tbody>
@@ -46,7 +45,7 @@
                             Points
                         </th>
                         <td class="py-4 text-primary">
-                            1
+                            {{ $user->total_points }}
                         </td>
                     </tr>
                     <tr class="text-primary-muted font-medium whitespace-nowrap">
@@ -54,7 +53,7 @@
                             Played Games
                         </th>
                         <td class="py-4 text-primary">
-                            2
+                            {{ $user->total_games_played }}
                         </td>
                     </tr>
                     <tr class="text-primary-muted font-medium whitespace-nowrap">
@@ -62,7 +61,7 @@
                             Games Won
                         </th>
                         <td class="py-4 text-primary">
-                            3
+                            {{ $user->total_games_won }}
                         </td>
                     </tr>
                     <tr class="text-primary-muted font-medium whitespace-nowrap">
@@ -70,13 +69,16 @@
                             Cups
                         </th>
                         <td class="py-4 text-primary">
-                            4
+                            {{ $user->total_cups_won }}
                         </td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
+        <div class="pt-4 md:mt-0">
+            <x-latest-cup-winner-image/>
+        </div>
     </aside>
+
 </div>

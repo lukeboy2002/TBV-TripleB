@@ -1,5 +1,5 @@
 <x-app-layout title="Create Post">
-    <x-tbv-heading_h1>New post</x-tbv-heading_h1>
+    <x-tbv-heading_h3>New post</x-tbv-heading_h3>
 
     <main>
 

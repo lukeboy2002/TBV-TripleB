@@ -1,5 +1,5 @@
 <div>
-    <nav class="fixed z-30 w-full bg-background/80 py-3 px-4 h-[6.5rem]">
+    <nav class="fixed z-50 w-full bg-background/80 py-3 px-4 h-[6.5rem]">
         <div class="flex justify-between items-center max-w-screen-2xl mx-auto">
             <div class="flex justify-start items-center">
                 <!-- Hamburger menu-->
@@ -80,7 +80,7 @@
 
     <!-- Drawer component -->
     <div id="drawer-navigation"
-         class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-background/95 w-80 lg:hidden"
+         class="fixed top-0 left-0 z-[100] h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-background/95 w-80 lg:hidden"
          tabindex="-1"
          aria-labelledby="drawer-navigation-label">
         <x-tbv-logo/>

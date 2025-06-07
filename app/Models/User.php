@@ -63,6 +63,38 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Profile::class);
     }
 
+    public function games()
+    {
+        return $this->belongsToMany(Game::class, 'game_players')
+            ->withPivot(['position', 'points', 'is_winner', 'cup_photo_path'])
+            ->withTimestamps();
+    }
+
+    public function getTotalGamesPlayedAttribute()
+    {
+        return $this->gamePlayers()->count();
+    }
+
+    public function gamePlayers()
+    {
+        return $this->hasMany(GamePlayer::class);
+    }
+
+    public function getTotalPointsAttribute()
+    {
+        return $this->gamePlayers()->sum('points');
+    }
+
+    public function getTotalGamesWonAttribute()
+    {
+        return $this->gamePlayers()->where('is_winner', true)->count();
+    }
+
+    public function getTotalCupsWonAttribute()
+    {
+        return $this->gamePlayers()->where('position', 1)->count();
+    }
+
     /**
      * Get the attributes that should be cast.
      *

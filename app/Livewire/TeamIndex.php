@@ -15,6 +15,14 @@ class TeamIndex extends Component
     public function users()
     {
         return User::role('member')
+            ->withCount(['gamePlayers as total_games_played'])
+            ->withSum('gamePlayers as total_points', 'points')
+            ->withCount(['gamePlayers as total_games_won' => function ($query) {
+                $query->where('is_winner', true);
+            }])
+            ->withCount(['gamePlayers as total_cups_won' => function ($query) {
+                $query->where('position', 1);
+            }])
             ->simplePaginate(1);
     }
 
