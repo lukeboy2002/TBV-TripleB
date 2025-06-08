@@ -30,6 +30,29 @@ class Invitation extends Model
         return $this->belongsTo(User::class, 'invited_by');
     }
 
+    public function generateInvitationToken()
+    {
+        $this->invitation_token = substr(md5(rand(0, 9).$this->email.time()), 0, 32);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink()
+    {
+        return urldecode(route('accept-invitation.create').'?invitation_token='.$this->invitation_token);
+    }
+
+    public function getInvitationDate()
+    {
+        return $this->invited_date->format('d F Y');
+    }
+
+    public function getRegisterTime()
+    {
+        return $this->registered_at->format('d F Y');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
