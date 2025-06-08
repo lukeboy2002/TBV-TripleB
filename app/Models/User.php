@@ -5,6 +5,7 @@ namespace App\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -61,6 +62,43 @@ class User extends Authenticatable implements MustVerifyEmail
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class);
+    }
+
+    public function games()
+    {
+        return $this->belongsToMany(Game::class, 'game_players')
+            ->withPivot(['position', 'points', 'is_winner', 'cup_photo_path'])
+            ->withTimestamps();
+    }
+
+    public function getTotalGamesPlayedAttribute()
+    {
+        return $this->gamePlayers()->count();
+    }
+
+    public function gamePlayers()
+    {
+        return $this->hasMany(GamePlayer::class);
+    }
+
+    public function invitee(): HasMany
+    {
+        return $this->hasMany(Invitation::class);
+    }
+
+    public function getTotalPointsAttribute()
+    {
+        return $this->gamePlayers()->sum('points');
+    }
+
+    public function getTotalGamesWonAttribute()
+    {
+        return $this->gamePlayers()->where('is_winner', true)->count();
+    }
+
+    public function getTotalCupsWonAttribute()
+    {
+        return $this->gamePlayers()->where('position', 1)->count();
     }
 
     /**
