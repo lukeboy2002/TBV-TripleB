@@ -13,9 +13,10 @@
                         <div class="rounded-lg bg-background-accent shadow-xs ring-1 ring-ring/30 p-2">
                             <x-tbv-heading_h5>Featured Image</x-tbv-heading_h5>
 
+
                             <div class="relative group">
                                 <img id="preview-image"
-                                     src="{{ asset('assets/placeholder.jpeg') }}"
+                                     src="{{ Storage::url('assets/placeholder.jpeg') }}"
                                      alt="Preview"
                                      class="w-full h-48 object-cover rounded-lg"
                                 />

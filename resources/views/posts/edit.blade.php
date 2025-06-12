@@ -45,9 +45,8 @@
                                     category</label>
                                 <select id="category" name="category_id"
                                         class="w-full text-sm bg-input border-border text-primary focus:border-border focus:ring-border rounded-md shadow-xs">
-                                    <option selected>{{ $post->category->name }}</option>
                                     @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

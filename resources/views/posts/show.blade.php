@@ -1,11 +1,11 @@
-<x-app-layout title="{{ $post->id }}">
+<x-app-layout title="{{ $post->title }}">
 
     <x-tbv-heading_h1>{{ $post->title }}</x-tbv-heading_h1>
     <div class="mx-auto flex max-w-7xl flex-wrap py-4 bg-background/80 rounded-lg">
         <div class="flex w-full flex-col px-3 md:w-3/4">
             <header class="block overflow-hidden">
                 <img class="rounded-lg w-full  object-cover"
-                     src="{{ asset($post->image) }}"
+                     src="{{ Storage::url($post->image) }}"
                      alt="{{ $post->title }}"/>
             </header>
             <main>
@@ -52,7 +52,7 @@
         </div>
 
         <aside class="hidden md:flex w-full flex-col px-3 md:w-1/4 gap-4">
-            <x-tbv-category/>
+            <x-category/>
 
             <div class="rounded-lg bg-background-accent shadow-xs ring-1 ring-ring/30 p-2">
                 <x-tbv-heading_h5>Tags</x-tbv-heading_h5>

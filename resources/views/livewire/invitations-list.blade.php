@@ -15,25 +15,29 @@
         <table class="min-w-full divide-y divide-divide/30">
             <thead class="bg-background">
             <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider cursor-pointer" wire:click="sortBy('email')">
+                <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider cursor-pointer"
+                    wire:click="sortBy('email')">
                     Email
                     @if($sortField === 'email')
                         <span>{!! $sortDirection === 'asc' ? '&uarr;' : '&darr;' !!}</span>
                     @endif
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider cursor-pointer" wire:click="sortBy('invited_by')">
+                <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider cursor-pointer"
+                    wire:click="sortBy('invited_by')">
                     Invited By
                     @if($sortField === 'invited_by')
                         <span>{!! $sortDirection === 'asc' ? '&uarr;' : '&darr;' !!}</span>
                     @endif
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider cursor-pointer" wire:click="sortBy('invited_date')">
+                <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider cursor-pointer"
+                    wire:click="sortBy('invited_date')">
                     Invited Date
                     @if($sortField === 'invited_date')
                         <span>{!! $sortDirection === 'asc' ? '&uarr;' : '&darr;' !!}</span>
                     @endif
                 </th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider cursor-pointer" wire:click="sortBy('registered_at')">
+                <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider cursor-pointer"
+                    wire:click="sortBy('registered_at')">
                     Status
                     @if($sortField === 'registered_at')
                         <span>{!! $sortDirection === 'asc' ? '&uarr;' : '&darr;' !!}</span>
@@ -67,9 +71,10 @@
                             </span>
                         @endif
                     </td>
+                    {{--                    TODO: MAKE THIS A MODAL--}}
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-primary">
                         @if(!$invitation->registered_at && (auth()->user()->hasRole('admin') || auth()->user()->id === $invitation->invited_by))
-                            <button wire:click="deleteInvitation({{ $invitation->id }})" 
+                            <button wire:click="deleteInvitation({{ $invitation->id }})"
                                     class="text-red-600 hover:text-red-900"
                                     onclick="return confirm('Are you sure you want to delete this invitation?')">
                                 Delete

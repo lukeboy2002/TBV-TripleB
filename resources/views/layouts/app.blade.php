@@ -49,9 +49,8 @@
 </div>
 <!-- END: Page Background -->
 
-{{--<x-banner/>--}}
 
-<div class="min-h-screen relative z-10">
+<div class="min-h-screen relative">
     <x-tbv-header/>
     <livewire:navigation-menu/>
 

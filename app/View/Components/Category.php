@@ -2,12 +2,11 @@
 
 namespace App\View\Components;
 
-use App\Models\Category;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class tbvCategory extends Component
+class Category extends Component
 {
     /**
      * Create a new component instance.
@@ -22,10 +21,11 @@ class tbvCategory extends Component
      */
     public function render(): View|Closure|string
     {
-        $categories = Category::withCount('posts')->get();
+        $categories = \App\Models\Category::withCount('posts')->get();
 
-        return view('components.tbv-category', [
+        return view('components.category', [
             'categories' => $categories,
         ]);
+
     }
 }

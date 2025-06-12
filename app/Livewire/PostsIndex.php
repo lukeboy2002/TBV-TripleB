@@ -54,6 +54,8 @@ class PostsIndex extends Component
 
     public function render()
     {
-        return view('livewire.posts-index');
+        $categories = Category::all();
+
+        return view('livewire.posts-index', compact('categories'));
     }
 }

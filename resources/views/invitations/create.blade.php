@@ -24,12 +24,12 @@
 
     <x-tbv-heading_h3>Invitations</x-tbv-heading_h3>
 
-    <livewire:invitations-list />
+    <livewire:invitations-list/>
 
     <x-slot name="side">
         <div class="flex flex-col gap-12">
             <x-tbv-search/>
-            <x-tbv-category/>
+            <x-category/>
         </div>
     </x-slot>
 
