@@ -49,6 +49,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+
         if (! auth()->user()->can('create', Post::class)) {
             abort(403, 'You do not have access to this page.');
         }
@@ -63,18 +64,44 @@ class PostController extends Controller
 
         $slug = SlugService::createSlug(Post::class, 'slug', $request->title);
 
+        // Store original values for comparison
+        $originalTitle = $post->title;
+        $originalBody = $post->body;
+        $originalCategoryId = $post->category_id;
+        $originalFeatured = $post->featured;
+        $originalSlug = $post->slug;
+
+        // Set the new values
         $post->title = $request->title;
         $post->body = $request->body;
         $post->category_id = $request->category_id;
         $post->featured = $request->boolean('featured');
         $post->slug = $slug;
 
+        // Check if any field has changed
+        $titleChanged = $originalTitle != $request->title;
+        $bodyChanged = $originalBody != $request->body;
+        $categoryChanged = $originalCategoryId != $request->category_id;
+        $featuredChanged = $originalFeatured != $request->boolean('featured');
+        $slugChanged = $originalSlug != $slug;
+
+        // Handle image upload
+        $imageChanged = false;
         if ($request->hasFile('image')) {
+            $imageChanged = true;
             if ($post->image) {
                 Storage::delete($post->image);
             }
             $path = $request->file('image')->store('posts', 'public');
             $post->image = $path;
+        }
+
+        // Force the model to be saved if any field has changed
+        if ($titleChanged || $bodyChanged || $categoryChanged || $featuredChanged || $slugChanged || $imageChanged) {
+            // If Laravel doesn't detect changes, force an update
+            if (! $post->isDirty()) {
+                $post->updated_at = now();
+            }
         }
 
         $post->save();

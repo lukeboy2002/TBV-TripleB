@@ -46,7 +46,7 @@
                         <div class="flex items-center">
                             @if($player->profile && $player->profile->image_path)
                                 <img class="h-10 w-10 rounded-full object-cover mr-3"
-                                     src="{{ asset($player->profile->image_path) }}" alt="{{ $player->name }}">
+                                     src="{{ Storage::url($player->profile->image_path) }}" alt="{{ $player->name }}">
                             @endif
                             <div>
                                 <div class="text-sm font-medium text-primary">{{ $player->name }}</div>

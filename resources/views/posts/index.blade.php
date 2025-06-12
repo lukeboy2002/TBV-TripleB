@@ -6,7 +6,7 @@
     <x-slot name="side">
         <div class="flex flex-col gap-12">
             <x-tbv-search/>
-            <x-tbv-category/>
+            <x-category/>
         </div>
     </x-slot>
 </x-app-layout>

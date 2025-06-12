@@ -2,7 +2,7 @@
     <x-slot name="header">
         <a href="{{ route('post.show', $post->slug) }}" class="block overflow-hidden">
             <img class="rounded-lg w-full max-h-48 object-cover transition-transform duration-300 hover:scale-110"
-                 src="{{ asset($post->image) }}"
+                 src="{{ Storage::url($post->image) }}"
                  alt="{{ $post->title }}"/>
         </a>
         <div class="absolute top-4 left-0">
@@ -22,7 +22,7 @@
             <div> {{ $post->getFormattedDate() }}</div>
         </div>
         <div class="text-primary text-sm">
-            {{ $post->shortBody() }}
+            {!! $post->shortBody() !!}
         </div>
     </div>
     <x-slot name="footer">

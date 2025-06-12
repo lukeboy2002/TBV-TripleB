@@ -2,9 +2,14 @@
 
     @foreach($this->users as $user)
         <div class="md:flex gap-4 w-full px-3 md:w-3/4">
+            {{--            <div class="w-full md:w-1/2">--}}
+            {{--                <img class="rounded-lg w-full h-[40rem] object-cover"--}}
+            {{--                     src="{{ asset($user->profile->image_path) }}"--}}
+            {{--                     alt="{{ $user->username }}"/>--}}
+            {{--            </div>--}}
             <div class="w-full md:w-1/2">
                 <img class="rounded-lg w-full h-[40rem] object-cover"
-                     src="{{ asset($user->profile->image_path) }}"
+                     src="{{ Storage::url($user->profile->image_path) }}"
                      alt="{{ $user->username }}"/>
             </div>
             <div class="w-full md:w-1/2 pt-4">

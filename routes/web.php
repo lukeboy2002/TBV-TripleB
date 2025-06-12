@@ -15,7 +15,7 @@ Route::get('post', [PostController::class, 'index'])->name('post.index');
 Route::get('post/{post}', [PostController::class, 'show'])->name('post.show');
 Route::get('team', [TeamController::class, 'index'])->name('team.index');
 
-Route::get('accept-invitation/create', [AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('HasInvitation');
+Route::get('accept-invitation/create', [AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('has.invitation');
 Route::post('accept-invitation/store', [AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
 
 Route::middleware([
