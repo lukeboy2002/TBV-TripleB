@@ -50,11 +50,12 @@
 
                             <x-slot name="content">
                                 <!-- Account Management -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                <div class="block px-4 py-2 text-xs text-primary-muted">
                                     {{ __('Manage Account') }}
                                 </div>
 
-                                <x-tbv-link-dropdown href="{{ route('profile.show') }}">
+                                <x-tbv-link-dropdown
+                                        href="{{ route('profile.settings', Auth::user()->username ) }}">
                                     {{ __('Profile') }}
                                 </x-tbv-link-dropdown>
 

@@ -16,4 +16,22 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getBirthdayDate()
+    {
+        return $this->birthday->format('j F Y');
+    }
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'birthday' => 'datetime',
+            'updated_at' => 'datetime',
+        ];
+    }
 }

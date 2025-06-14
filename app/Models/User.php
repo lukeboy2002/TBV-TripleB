@@ -61,6 +61,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class);
@@ -85,7 +90,22 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function invitee(): HasMany
     {
-        return $this->hasMany(Invitation::class);
+        return $this->hasMany(Invitation::class, 'invited_by');
+    }
+
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
     }
 
     public function getTotalPointsAttribute()

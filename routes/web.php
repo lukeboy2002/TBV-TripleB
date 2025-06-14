@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +15,8 @@ Route::get('/', function () {
 Route::get('post', [PostController::class, 'index'])->name('post.index');
 Route::get('post/{post}', [PostController::class, 'show'])->name('post.show');
 Route::get('team', [TeamController::class, 'index'])->name('team.index');
+
+Route::get('/user/{user}', [UserProfileController::class, 'show'])->name('profile.show');
 
 Route::get('accept-invitation/create', [AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('has.invitation');
 Route::post('accept-invitation/store', [AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
@@ -41,12 +44,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jets
     Route::get('/games', [GameController::class, 'index'])->name('games.index');
 });
 
-// Route::get('/post', function () {
-//    return view('post');
-// })->name('post');
 Route::get('/events', function () {
     return view('events');
 })->name('events');
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
+require __DIR__.'/jetstream.php';

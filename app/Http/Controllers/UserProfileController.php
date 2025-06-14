@@ -1,0 +1,152 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
+class UserProfileController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(User $user)
+    {
+        // Get user's activities for timeline
+        $activities = collect();
+
+        // Add posts to activities
+        $posts = $user->posts()->latest()->get();
+        foreach ($posts as $post) {
+            $activities->push([
+                'type' => 'post',
+                'model' => $post,
+                'date' => $post->created_at,
+                'message' => 'created a new post: '.$post->title,
+            ]);
+        }
+
+        // Add comments to activities
+        $comments = $user->comments()->latest()->get();
+        foreach ($comments as $comment) {
+            $activities->push([
+                'type' => 'comment',
+                'model' => $comment,
+                'date' => $comment->created_at,
+                'message' => 'commented on a post: '.$comment->post->title,
+            ]);
+        }
+
+        // Add likes to activities
+        $likes = $user->likes()->latest()->get();
+        foreach ($likes as $like) {
+            $likeableType = class_basename($like->likeable_type);
+            $message = 'liked a ';
+
+            if ($likeableType === 'Post') {
+                $message .= 'post: '.$like->likeable->title;
+            } elseif ($likeableType === 'Comment') {
+                $message .= 'comment on: '.$like->likeable->post->title;
+            } else {
+                $message .= strtolower($likeableType);
+            }
+
+            $activities->push([
+                'type' => 'like',
+                'model' => $like,
+                'date' => $like->created_at,
+                'message' => $message,
+            ]);
+        }
+
+        // Add invitations to activities
+        $invitations = $user->invitee()->latest()->get();
+        foreach ($invitations as $invitation) {
+            $activities->push([
+                'type' => 'invitation',
+                'model' => $invitation,
+                'date' => $invitation->invited_date,
+                'message' => 'invited '.$invitation->email.' to join',
+            ]);
+        }
+
+        // Sort activities by date (newest first) and limit to 10 items
+        $activities = $activities->sortByDesc('date')->take(6)->values();
+
+        // Get statistics
+        $stats = [
+            'posts' => $posts->count(),
+            'comments' => $comments->count(),
+            'likes' => $likes->count(),
+            'invitations' => $invitations->count(),
+        ];
+
+        return view('profile.show', [
+            'user' => $user,
+            'activities' => $activities,
+            'stats' => $stats,
+        ]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(User $user)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, User $user)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(User $user)
+    {
+        //
+    }
+
+    /**
+     * Show the user profile screen.
+     *
+     * @return View
+     */
+    public function settings(Request $request, User $user)
+    {
+        return view('profile.settings', [
+            'request' => $request,
+            'user' => $request->user(),
+        ]);
+    }
+}
