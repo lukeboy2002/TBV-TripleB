@@ -31,10 +31,24 @@
                         </x-tbv-button>
                     @else
                         <div class="flex items-center space-x-4 mt-2">
-                            <x-tbv-button>
-                                <x-lucide-user-plus class="h-4 w-4 mr-2"/>
-                                <span>Connect</span>
-                            </x-tbv-button>
+                            @if(auth()->user()->isFollowing($user))
+                                <form action="{{ route('user.unfollow', $user) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <x-tbv-button type="submit" color="red">
+                                        <x-lucide-user-minus class="h-4 w-4 mr-2"/>
+                                        <span>Unfollow</span>
+                                    </x-tbv-button>
+                                </form>
+                            @else
+                                <form action="{{ route('user.follow', $user) }}" method="POST">
+                                    @csrf
+                                    <x-tbv-button type="submit">
+                                        <x-lucide-user-plus class="h-4 w-4 mr-2"/>
+                                        <span>Follow</span>
+                                    </x-tbv-button>
+                                </form>
+                            @endif
                             <x-tbv-button_secondary>
                                 <x-lucide-message-square-more class="h-4 w-4 mr-2"/>
                                 <span>Message</span>
@@ -125,7 +139,7 @@
                 <section>
                     <x-tbv-heading_h5>Statistics</x-tbv-heading_h5>
 
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-4">
                         <x-tbv-stat-card
                                 title="Posts"
                                 :count="$stats['posts']"
@@ -146,6 +160,21 @@
                                 color="red"
                                 icon="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                         />
+
+                        <x-tbv-stat-card
+                                title="Followers"
+                                :count="$stats['followers']"
+                                color="purple"
+                                icon="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
+
+                        <x-tbv-stat-card
+                                title="Following"
+                                :count="$stats['following']"
+                                color="yellow"
+                                icon="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                        />
+
                         @if ($user->hasRole(['admin', 'member']))
                             <x-tbv-stat-card
                                     title="Invitations"
@@ -159,8 +188,10 @@
             </div>
 
 
-            <aside class="hidden md:flex w-full flex-col px-3 md:w-1/4 gap-4 bg-green-300">
-                Friends
+            <aside class="hidden md:flex w-full flex-col px-3 md:w-1/4 gap-4">
+                <livewire:user-following :user="$user"/>
+                <livewire:user-followers :user="$user"/>
+
             </aside>
         </main>
 

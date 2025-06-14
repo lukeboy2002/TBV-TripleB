@@ -104,6 +104,8 @@ class UserProfileController extends Controller
             'comments' => $comments->count(),
             'likes' => $likes->count(),
             'invitations' => $invitations->count(),
+            'followers' => $user->followers()->count(),
+            'following' => $user->following()->count(),
         ];
 
         return view('profile.show', [
@@ -148,5 +150,47 @@ class UserProfileController extends Controller
             'request' => $request,
             'user' => $request->user(),
         ]);
+    }
+
+    /**
+     * Follow a user.
+     */
+    public function follow(Request $request, User $user)
+    {
+        // Check if the authenticated user is trying to follow themselves
+        if ($request->user()->id === $user->id) {
+            return redirect()->back()->with('error', 'You cannot follow yourself.');
+        }
+
+        // Check if the authenticated user is already following the user
+        if ($request->user()->isFollowing($user)) {
+            return redirect()->back()->with('info', 'You are already following this user.');
+        }
+
+        // Follow the user
+        $request->user()->following()->attach($user->id);
+
+        return redirect()->back()->with('success', 'You are now following '.$user->username.'.');
+    }
+
+    /**
+     * Unfollow a user.
+     */
+    public function unfollow(Request $request, User $user)
+    {
+        // Check if the authenticated user is trying to unfollow themselves
+        if ($request->user()->id === $user->id) {
+            return redirect()->back()->with('error', 'You cannot unfollow yourself.');
+        }
+
+        // Check if the authenticated user is not following the user
+        if (! $request->user()->isFollowing($user)) {
+            return redirect()->back()->with('info', 'You are not following this user.');
+        }
+
+        // Unfollow the user
+        $request->user()->following()->detach($user->id);
+
+        return redirect()->back()->with('success', 'You have unfollowed '.$user->username.'.');
     }
 }

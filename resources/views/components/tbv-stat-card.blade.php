@@ -26,6 +26,16 @@
             'bg' => 'bg-blue-400',
             'border' => 'border-blue-600'
         ],
+        'purple' => [
+            'text' => 'text-purple-600',
+            'bg' => 'bg-purple-400',
+            'border' => 'border-purple-600'
+        ],
+        'yellow' => [
+            'text' => 'text-yellow-600',
+            'bg' => 'bg-yellow-400',
+            'border' => 'border-yellow-600'
+        ],
     ];
 
     $textColor = $colorClasses[$colorStr]['text'] ?? 'text-indigo-600';

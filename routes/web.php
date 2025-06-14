@@ -30,6 +30,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    // User follow/unfollow routes
+    Route::post('/user/{user}/follow', [UserProfileController::class, 'follow'])->name('user.follow');
+    Route::delete('/user/{user}/unfollow', [UserProfileController::class, 'unfollow'])->name('user.unfollow');
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
