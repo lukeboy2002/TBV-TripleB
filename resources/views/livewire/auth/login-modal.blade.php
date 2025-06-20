@@ -37,55 +37,126 @@
                         </div>
                         <!-- Modal body -->
                         <div class="p-4 md:p-5">
-                            <form wire:submit.prevent="login">
-                                <div>
-                                    <x-tbv-label class="text-left" for="username" value="{{ __('Username') }}"/>
-                                    <x-tbv-input id="username"
-                                                 class="block mt-1 w-full"
-                                                 type="text"
-                                                 wire:model="username"
-                                                 required
-                                                 autocomplete="username"/>
-                                    @error('login')
-                                    <div class="mt-2">
-                                        <p class="text-sm text-error flex gap-2 items-center">
-                                            <x-lucide-triangle-alert class="h-5 w-5 mr-2"/>
-                                            {{ $message }}
-                                        </p>
+                            @if($showingTwoFactorForm)
+                                <div x-data="{ recovery: @entangle('recovery') }">
+                                    <div class="mb-4 text-sm text-primary" x-show="! recovery">
+                                        {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
                                     </div>
-                                    @enderror
-                                </div>
 
-                                <div class="mt-4">
-                                    <x-tbv-label class="text-left" for="password" value="{{ __('Password') }}"/>
-                                    <x-tbv-input id="password"
-                                                 class="block mt-1 w-full"
-                                                 type="password"
-                                                 wire:model="password"
-                                                 required/>
-                                </div>
+                                    <div class="mb-4 text-sm text-primary" x-cloak x-show="recovery">
+                                        {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
+                                    </div>
 
-                                <div class="block mt-4">
-                                    <label for="remember_me" class="flex items-center">
-                                        <x-checkbox id="remember_me"
-                                                    wire:model="remember"
-                                                    class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 rounded-sm focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
-                                        <span class="ms-2 text-sm text-primary">{{ __('Remember me') }}</span>
-                                    </label>
-                                </div>
+                                    <form wire:submit.prevent="verifyTwoFactorCode">
+                                        <div class="mt-4" x-show="! recovery">
+                                            <x-tbv-label class="text-left" for="code" value="{{ __('Code') }}" />
+                                            <x-tbv-input id="code" 
+                                                class="block mt-1 w-full" 
+                                                type="text" 
+                                                inputmode="numeric" 
+                                                wire:model="code" 
+                                                autofocus 
+                                                autocomplete="one-time-code" />
+                                            @error('code')
+                                            <div class="mt-2">
+                                                <p class="text-sm text-error flex gap-2 items-center">
+                                                    <x-lucide-triangle-alert class="h-5 w-5 mr-2"/>
+                                                    {{ $message }}
+                                                </p>
+                                            </div>
+                                            @enderror
+                                        </div>
 
-                                <div class="flex items-center justify-end mt-4">
-                                    @if (Route::has('password.request'))
-                                        <x-tbv-link href="{{ route('password.request') }}">
-                                            {{ __('Forgot your password?') }}
-                                        </x-tbv-link>
-                                    @endif
+                                        <div class="mt-4" x-cloak x-show="recovery">
+                                            <x-tbv-label class="text-left" for="recovery_code" value="{{ __('Recovery Code') }}" />
+                                            <x-tbv-input id="recovery_code" 
+                                                class="block mt-1 w-full" 
+                                                type="text" 
+                                                wire:model="code" 
+                                                autocomplete="one-time-code" />
+                                            @error('code')
+                                            <div class="mt-2">
+                                                <p class="text-sm text-error flex gap-2 items-center">
+                                                    <x-lucide-triangle-alert class="h-5 w-5 mr-2"/>
+                                                    {{ $message }}
+                                                </p>
+                                            </div>
+                                            @enderror
+                                        </div>
 
-                                    <x-tbv-button class="ms-4" type="submit">
-                                        {{ __('Log in') }}
-                                    </x-tbv-button>
+                                        <div class="flex items-center justify-end mt-4">
+                                            <button type="button" 
+                                                class="text-sm text-primary hover:text-secondary underline cursor-pointer"
+                                                x-show="! recovery"
+                                                x-on:click="$wire.toggleRecoveryMode()">
+                                                {{ __('Use a recovery code') }}
+                                            </button>
+
+                                            <button type="button" 
+                                                class="text-sm text-primary hover:text-secondary underline cursor-pointer"
+                                                x-cloak
+                                                x-show="recovery"
+                                                x-on:click="$wire.toggleRecoveryMode()">
+                                                {{ __('Use an authentication code') }}
+                                            </button>
+
+                                            <x-tbv-button class="ms-4" type="submit">
+                                                {{ __('Log in') }}
+                                            </x-tbv-button>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
+                            @else
+                                <form wire:submit.prevent="login">
+                                    <div>
+                                        <x-tbv-label class="text-left" for="username" value="{{ __('Username') }}"/>
+                                        <x-tbv-input id="username"
+                                                    class="block mt-1 w-full"
+                                                    type="text"
+                                                    wire:model="username"
+                                                    required
+                                                    autocomplete="username"/>
+                                        @error('login')
+                                        <div class="mt-2">
+                                            <p class="text-sm text-error flex gap-2 items-center">
+                                                <x-lucide-triangle-alert class="h-5 w-5 mr-2"/>
+                                                {{ $message }}
+                                            </p>
+                                        </div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <x-tbv-label class="text-left" for="password" value="{{ __('Password') }}"/>
+                                        <x-tbv-input id="password"
+                                                    class="block mt-1 w-full"
+                                                    type="password"
+                                                    wire:model="password"
+                                                    required/>
+                                    </div>
+
+                                    <div class="block mt-4">
+                                        <label for="remember_me" class="flex items-center">
+                                            <x-checkbox id="remember_me"
+                                                        wire:model="remember"
+                                                        class="w-4 h-4 text-orange-500 bg-gray-100 border-gray-300 rounded-sm focus:ring-orange-500 dark:focus:ring-orange-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+                                            <span class="ms-2 text-sm text-primary">{{ __('Remember me') }}</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="flex items-center justify-end mt-4">
+                                        @if (Route::has('password.request'))
+                                            <x-tbv-link href="{{ route('password.request') }}">
+                                                {{ __('Forgot your password?') }}
+                                            </x-tbv-link>
+                                        @endif
+
+                                        <x-tbv-button class="ms-4" type="submit">
+                                            {{ __('Log in') }}
+                                        </x-tbv-button>
+                                    </div>
+                                </form>
+                            @endif
 
                         </div>
                     </div>

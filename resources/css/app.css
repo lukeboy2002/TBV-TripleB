@@ -139,6 +139,10 @@
     display: none;
 }
 
+.tab-active {
+    @apply bg-background-accent text-secondary;
+}
+
 /* Date input calendar icon styling - changes black icon to secondary color (orange) */
 input[type="date"]::-webkit-calendar-picker-indicator,
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {

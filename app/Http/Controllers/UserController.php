@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
-class UserProfileController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -108,7 +107,7 @@ class UserProfileController extends Controller
             'following' => $user->following()->count(),
         ];
 
-        return view('profile.show', [
+        return view('profile.user', [
             'user' => $user,
             'activities' => $activities,
             'stats' => $stats,
@@ -139,22 +138,6 @@ class UserProfileController extends Controller
         //
     }
 
-    /**
-     * Show the user profile screen.
-     *
-     * @return View
-     */
-    public function settings(Request $request, User $user)
-    {
-        return view('profile.settings', [
-            'request' => $request,
-            'user' => $request->user(),
-        ]);
-    }
-
-    /**
-     * Follow a user.
-     */
     public function follow(Request $request, User $user)
     {
         // Check if the authenticated user is trying to follow themselves

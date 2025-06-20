@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Invitation;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -43,6 +44,10 @@ class AcceptInvitationController extends Controller
         $invitation = Invitation::where('email', $user->email)->firstOrFail();
         $invitation->update([
             'registered_at' => now(),
+        ]);
+
+        $profile = Profile::create([
+            'user_id' => $user->id,
         ]);
 
         return redirect()->route('home')->with('success', 'Account successfully created. You can login.', 'Accept Invitation');

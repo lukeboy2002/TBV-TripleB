@@ -55,12 +55,18 @@
                                 </div>
 
                                 <x-tbv-link-dropdown
-                                        href="{{ route('profile.settings', Auth::user()->username ) }}">
+                                        href="{{ route('profile.show') }}">
                                     {{ __('Profile') }}
                                 </x-tbv-link-dropdown>
 
                                 <div class="border-t border-secondary/30 my-2"></div>
-
+                                @can('create', App\Models\Profile::class)
+                                    <x-tbv-link-dropdown
+                                            href="{{ route('admin.invitations.create') }}">
+                                        {{ __('Invite User') }}
+                                    </x-tbv-link-dropdown>
+                                    <div class="border-t border-secondary/30 my-2"></div>
+                                @endcan
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}" x-data>
                                     @csrf

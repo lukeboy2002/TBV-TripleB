@@ -5,8 +5,11 @@ use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
+
+require __DIR__.'/jetstream.php';
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,7 +19,7 @@ Route::get('post', [PostController::class, 'index'])->name('post.index');
 Route::get('post/{post}', [PostController::class, 'show'])->name('post.show');
 Route::get('team', [TeamController::class, 'index'])->name('team.index');
 
-Route::get('/user/{user}', [UserProfileController::class, 'show'])->name('profile.show');
+Route::get('/user/{user}', [UserController::class, 'show'])->name('profile.user');
 
 Route::get('accept-invitation/create', [AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('has.invitation');
 Route::post('accept-invitation/store', [AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
@@ -53,5 +56,3 @@ Route::get('/events', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-
-require __DIR__.'/jetstream.php';
