@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
@@ -49,6 +50,9 @@ class DatabaseSeeder extends Seeder
         foreach ($users as $user) {
             $role = Role::select('id')->where('name', 'user')->first();
             $user->roles()->attach($role);
+            $profile = Profile::create([
+                'user_id' => $user->id,
+            ]);
         }
 
         $posts = Post::factory(200)

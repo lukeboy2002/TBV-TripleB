@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->text('biography')->nullable();
             $table->string('image_path', 2048)->nullable();
-            $table->string('cover_path', 1024)->nullable();
+            $table->string('cover_path', 1024)->nullable()->default('covers/default.png');
             $table->timestamps();
         });
     }

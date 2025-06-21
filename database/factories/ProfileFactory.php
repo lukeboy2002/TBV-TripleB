@@ -23,7 +23,6 @@ class ProfileFactory extends Factory
             'city' => fake()->city(),
             'biography' => fake()->realText(150),
             'image_path' => fake()->imageUrl(),
-            'cover_path' => fake()->imageUrl(),
         ];
     }
 }

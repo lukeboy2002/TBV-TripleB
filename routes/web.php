@@ -5,7 +5,10 @@ use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+
+require __DIR__.'/jetstream.php';
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,6 +17,8 @@ Route::get('/', function () {
 Route::get('post', [PostController::class, 'index'])->name('post.index');
 Route::get('post/{post}', [PostController::class, 'show'])->name('post.show');
 Route::get('team', [TeamController::class, 'index'])->name('team.index');
+
+Route::get('/user/{user}', [UserController::class, 'show'])->name('profile.user');
 
 Route::get('accept-invitation/create', [AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('has.invitation');
 Route::post('accept-invitation/store', [AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
@@ -27,6 +32,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
+    // User follow/unfollow routes
+    Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow');
+    Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
@@ -41,9 +49,6 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jets
     Route::get('/games', [GameController::class, 'index'])->name('games.index');
 });
 
-// Route::get('/post', function () {
-//    return view('post');
-// })->name('post');
 Route::get('/events', function () {
     return view('events');
 })->name('events');

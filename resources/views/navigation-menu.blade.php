@@ -50,16 +50,23 @@
 
                             <x-slot name="content">
                                 <!-- Account Management -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                <div class="block px-4 py-2 text-xs text-primary-muted">
                                     {{ __('Manage Account') }}
                                 </div>
 
-                                <x-tbv-link-dropdown href="{{ route('profile.show') }}">
+                                <x-tbv-link-dropdown
+                                        href="{{ route('profile.show') }}">
                                     {{ __('Profile') }}
                                 </x-tbv-link-dropdown>
 
                                 <div class="border-t border-secondary/30 my-2"></div>
-
+                                @can('create', App\Models\Profile::class)
+                                    <x-tbv-link-dropdown
+                                            href="{{ route('admin.invitations.create') }}">
+                                        {{ __('Invite User') }}
+                                    </x-tbv-link-dropdown>
+                                    <div class="border-t border-secondary/30 my-2"></div>
+                                @endcan
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}" x-data>
                                     @csrf
