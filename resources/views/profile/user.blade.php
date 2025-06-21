@@ -25,10 +25,10 @@
             @auth
                 <div class="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
                     @can ('update', $user)
-                        <x-tbv-link-btn href="{{ route('profile.show') }}">
+                        <a href="{{ route('profile.show') }}" class="inline-flex items-center px-4 py-2 bg-secondary border border-transparent rounded-md font-semibold text-xs text-primary uppercase tracking-widest hover:bg-secondary/70 focus:bg-secondary/70 active:bg-secondary/70 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
                             <x-lucide-user-round-pen class="h-4 w-4 mr-2"/>
                             <span>Edit</span>
-                        </x-tbv-link-btn>
+                        </a>
                     @else
                         <div class="flex items-center space-x-4 mt-2">
                             @if(auth()->user()->isFollowing($user))
@@ -98,7 +98,7 @@
                                 <span class="text-primary-muted">{{ $user->profile ? $user->profile->city : 'not available' }}</span>
                             </li>
                         </ul>
-                        <div class="w-1/2">
+                        <div class="w-1/2 content">
                             {!! $user->profile ? $user->profile->biography : '' !!}
                         </div>
                     </div>

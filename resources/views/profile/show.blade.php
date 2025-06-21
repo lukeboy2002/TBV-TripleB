@@ -1,7 +1,7 @@
 <x-app-layout title="Profile">
 
-    <div class="mx-auto max-w-7xl bg-background/80 rounded-lg relative pb-4">
-        <div class="md:flex h-screen">
+    <div class="mx-auto max-w-7xl bg-background/80 rounded-lg relative pb-4 h-full">
+        <div class="md:flex min-h-screen h-full">
             <ul class="pt-10 flex-column space-y space-y-4 text-sm font-medium text-primary-muted mb-4 md:mb-0 md:w-1/4"
                 id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
                 @if (Laravel\Fortify\Features::canUpdateProfileInformation())
@@ -54,7 +54,7 @@
                         </button>
                     </li>
                 @endif
-                
+
             </ul>
             <div class="p-6 bg-background text-medium text-primary rounded-lg w-full"
                  id="default-tab-content">

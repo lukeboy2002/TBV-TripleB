@@ -94,6 +94,24 @@ class UserController extends Controller
             ]);
         }
 
+        // Add profile updates to activities
+        if ($user->profile) {
+            $activities->push([
+                'type' => 'profile_update',
+                'model' => $user->profile,
+                'date' => $user->profile->updated_at,
+                'message' => 'updated their profile information',
+            ]);
+        }
+
+        // Add user model updates to activities
+        $activities->push([
+            'type' => 'user_update',
+            'model' => $user,
+            'date' => $user->updated_at,
+            'message' => 'updated their account information',
+        ]);
+
         // Sort activities by date (newest first) and limit to 10 items
         $activities = $activities->sortByDesc('date')->take(6)->values();
 

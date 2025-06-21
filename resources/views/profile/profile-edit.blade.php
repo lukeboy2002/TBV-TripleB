@@ -55,7 +55,7 @@
                 <x-tbv-input id="city" type="text" class="mt-1 block w-full" wire:model="state.city"/>
                 <x-tbv-input-error for="state.city" class="mt-2"/>
             </div>
-            {{--            HIER GAAT IEST FOUT--}}
+
             <div class="col-span-6">
                 <x-tbv-label for="biography" value="{{ __('Biography') }}"/>
                 <div wire:ignore>
@@ -101,19 +101,24 @@
     <script>
         document.addEventListener('livewire:init', () => {
             ClassicEditor
-                .create(document.querySelector('#biography'))
+                .create(document.querySelector('#biography'), {
+                    toolbar: [
+                        'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'
+                    ],
+                })
                 .then(editor => {
                     editor.model.document.on('change:data', () => {
                         @this.
-                        set('biography', editor.getData());
-                    })
+                        set('state.biography', editor.getData());
+                    });
                     Livewire.on('reinit', () => {
-                        editor.setData('', '')
-                    })
+                        editor.setData('', '');
+                    });
                 })
                 .catch(error => {
                     console.error(error);
                 });
         })
     </script>
+
 @endpush

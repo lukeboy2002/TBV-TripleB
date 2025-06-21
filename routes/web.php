@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/jetstream.php';
@@ -34,8 +33,8 @@ Route::middleware([
     })->name('dashboard');
 
     // User follow/unfollow routes
-    Route::post('/user/{user}/follow', [UserProfileController::class, 'follow'])->name('user.follow');
-    Route::delete('/user/{user}/unfollow', [UserProfileController::class, 'unfollow'])->name('user.unfollow');
+    Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow');
+    Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
