@@ -127,6 +127,18 @@ class User extends Authenticatable implements MustVerifyEmail
             ->withTimestamps();
     }
 
+    // Messages sent by this user
+    public function sentMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'user_id');
+    }
+
+    // Messages received by this user
+    public function receivedMessages(): HasMany
+    {
+        return $this->hasMany(Message::class, 'recipient_id');
+    }
+
     /**
      * Determine if the current user is following the given user.
      */
@@ -156,6 +168,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getTotalCupsWonAttribute()
     {
         return $this->gamePlayers()->where('position', 1)->count();
+    }
+
+    // Count of unread messages
+    public function unreadMessagesCount(): int
+    {
+        return $this->receivedMessages()->where('is_read', false)->count();
     }
 
     /**

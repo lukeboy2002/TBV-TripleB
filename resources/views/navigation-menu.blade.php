@@ -24,16 +24,21 @@
                     @auth
                         <livewire:appearance-selector/>
                         <x-lucide-minus class="w-auto h-8 rotate-90 text-secondary/30 "/>
-                        <x-tbv-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-                                @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                    <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-hidden focus:border-gray-300 transition">
-                                        <img class="size-8 rounded-full object-cover"
-                                             src="{{ Auth::user()->profile_photo_url }}"
-                                             alt="{{ Auth::user()->username }}"/>
-                                    </button>
-                                @else
-                                    <span class="inline-flex rounded-md">
+                        <div class="flex items-center gap-4">
+                            <a href="{{ route('messages') }}" class="relative">
+                                <x-lucide-message-square class="h-6 w-6 mr-2"/>
+                                <livewire:unread-message-count />
+                            </a>
+                            <x-tbv-dropdown align="right" width="48">
+                                <x-slot name="trigger">
+                                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                        <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-hidden focus:border-gray-300 transition">
+                                            <img class="size-8 rounded-full object-cover"
+                                                 src="{{ Auth::user()->profile_photo_url }}"
+                                                 alt="{{ Auth::user()->username }}"/>
+                                        </button>
+                                    @else
+                                        <span class="inline-flex rounded-md">
                                     <button type="button"
                                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-hidden focus:bg-gray-50 dark:focus:bg-gray-700 active:bg-gray-50 dark:active:bg-gray-700 transition ease-in-out duration-150">
                                         {{ Auth::user()->username }}
@@ -45,39 +50,40 @@
                                         </svg>
                                     </button>
                                 </span>
-                                @endif
-                            </x-slot>
+                                    @endif
+                                </x-slot>
 
-                            <x-slot name="content">
-                                <!-- Account Management -->
-                                <div class="block px-4 py-2 text-xs text-primary-muted">
-                                    {{ __('Manage Account') }}
-                                </div>
+                                <x-slot name="content">
+                                    <!-- Account Management -->
+                                    <div class="block px-4 py-2 text-xs text-primary-muted">
+                                        {{ __('Manage Account') }}
+                                    </div>
 
-                                <x-tbv-link-dropdown
-                                        href="{{ route('profile.show') }}">
-                                    {{ __('Profile') }}
-                                </x-tbv-link-dropdown>
-
-                                <div class="border-t border-secondary/30 my-2"></div>
-                                @can('create', App\Models\Profile::class)
                                     <x-tbv-link-dropdown
-                                            href="{{ route('admin.invitations.create') }}">
-                                        {{ __('Invite User') }}
+                                            href="{{ route('profile.show') }}">
+                                        {{ __('Profile') }}
                                     </x-tbv-link-dropdown>
-                                    <div class="border-t border-secondary/30 my-2"></div>
-                                @endcan
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}" x-data>
-                                    @csrf
 
-                                    <x-tbv-link-dropdown href="{{ route('logout') }}"
-                                                         @click.prevent="$root.submit();">
-                                        {{ __('Log Out') }}
-                                    </x-tbv-link-dropdown>
-                                </form>
-                            </x-slot>
-                        </x-tbv-dropdown>
+                                    <div class="border-t border-secondary/30 my-2"></div>
+                                    @can('create', App\Models\Profile::class)
+                                        <x-tbv-link-dropdown
+                                                href="{{ route('admin.invitations.create') }}">
+                                            {{ __('Invite User') }}
+                                        </x-tbv-link-dropdown>
+                                        <div class="border-t border-secondary/30 my-2"></div>
+                                    @endcan
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}" x-data>
+                                        @csrf
+
+                                        <x-tbv-link-dropdown href="{{ route('logout') }}"
+                                                             @click.prevent="$root.submit();">
+                                            {{ __('Log Out') }}
+                                        </x-tbv-link-dropdown>
+                                    </form>
+                                </x-slot>
+                            </x-tbv-dropdown>
+                        </div>
                     @endauth
                 @endif
             </div>
