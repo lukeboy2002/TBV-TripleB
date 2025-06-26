@@ -109,13 +109,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Like::class);
     }
 
-    /**
-     * Get the users that are following this user.
-     */
-    public function followers(): BelongsToMany
+    public function messages(): HasMany
     {
-        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id')
-            ->withTimestamps();
+        return $this->hasMany(ChatMessage::class);
+    }
+
+    /**
+     * Determine if the current user is following the given user.
+     */
+    public function isFollowing(User $user): bool
+    {
+        return $this->following()->where('following_id', $user->id)->exists();
     }
 
     /**
@@ -128,19 +132,20 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Determine if the current user is following the given user.
-     */
-    public function isFollowing(User $user): bool
-    {
-        return $this->following()->where('following_id', $user->id)->exists();
-    }
-
-    /**
      * Determine if the current user is followed by the given user.
      */
     public function isFollowedBy(User $user): bool
     {
         return $this->followers()->where('follower_id', $user->id)->exists();
+    }
+
+    /**
+     * Get the users that are following this user.
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id')
+            ->withTimestamps();
     }
 
     public function getTotalPointsAttribute()

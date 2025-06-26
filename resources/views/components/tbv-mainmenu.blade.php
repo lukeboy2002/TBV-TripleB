@@ -15,7 +15,14 @@
     Games
 </x-tbv-link-navigation>
 @endrole
-
+@role('admin|member')
+<x-tbv-link-navigation wire:navigate href="{{ route('chat') }}"
+                       :active="request()->routeIs('chat')"
+                       class="flex gap-2">
+    <x-lucide-message-square class="h-5 w-5"/>
+    Chat
+</x-tbv-link-navigation>
+@endrole
 <x-tbv-link-navigation wire:navigate href="{{ route('post.index') }}" :active="request()->routeIs('post')"
                        class="flex gap-2">
     <x-lucide-newspaper class="h-5 w-5"/>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcceptInvitationController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\InvitationController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
@@ -35,6 +36,8 @@ Route::middleware([
     // User follow/unfollow routes
     Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow');
     Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
+
+    Route::get('chat', ChatController::class)->name('chat');
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
