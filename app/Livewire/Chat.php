@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Events\MessageSent;
 use App\Models\ChatMessage;
 use App\Models\User;
 use Livewire\Component;
@@ -16,11 +17,14 @@ class Chat extends Component
 
     public $messages;
 
+    public $loginID;
+
     public function mount()
     {
         $this->users = User::whereNotIn('id', [auth()->id(), 1])->get();
         $this->selectedUser = $this->users->first();
         $this->loadMessages();
+        $this->loginID = auth()->id();
     }
 
     public function LoadMessages()
@@ -58,6 +62,24 @@ class Chat extends Component
         $this->messages->push($message);
 
         $this->newMessage = '';
+
+        broadcast(new MessageSent($message));
+    }
+
+    public function getListeners()
+    {
+        return [
+            "echo-private:chat.{$this->loginID},MessageSent" => 'newChatMessageNotification',
+        ];
+
+    }
+
+    public function newChatMessageNotification($message)
+    {
+        if ($message['sender_id'] == $this->selectedUser->id) {
+            $messageObj = ChatMessage::find($message['id']);
+            $this->messages->push($messageObj);
+        }
     }
 
     public function render()
