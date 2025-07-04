@@ -25,7 +25,8 @@
             @auth
                 <div class="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
                     @can ('update', $user)
-                        <a href="{{ route('profile.show') }}" class="inline-flex items-center px-4 py-2 bg-secondary border border-transparent rounded-md font-semibold text-xs text-primary uppercase tracking-widest hover:bg-secondary/70 focus:bg-secondary/70 active:bg-secondary/70 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
+                        <a href="{{ route('profile.show') }}"
+                           class="inline-flex items-center px-4 py-2 bg-secondary border border-transparent rounded-md font-semibold text-xs text-primary uppercase tracking-widest hover:bg-secondary/70 focus:bg-secondary/70 active:bg-secondary/70 focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 disabled:opacity-50 transition ease-in-out duration-150">
                             <x-lucide-user-round-pen class="h-4 w-4 mr-2"/>
                             <span>Edit</span>
                         </a>
@@ -140,6 +141,13 @@
                     <x-tbv-heading_h5>Statistics</x-tbv-heading_h5>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-4">
+                        <x-tbv-stat-card
+                                title="Albums"
+                                :count="$stats['albums']"
+                                color="blue"
+                                icon="M18 22H4a2 2 0 0 1-2-2V6 M22 13l-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18 M12 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0 M6 2h16a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2"
+                        />
+
                         <x-tbv-stat-card
                                 title="Posts"
                                 :count="$stats['posts']"

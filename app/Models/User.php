@@ -104,18 +104,22 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Comment::class);
     }
 
+    public function albums(): HasMany
+    {
+        return $this->hasMany(Album::class);
+    }
+
     public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
     }
 
     /**
-     * Get the users that are following this user.
+     * Determine if the current user is following the given user.
      */
-    public function followers(): BelongsToMany
+    public function isFollowing(User $user): bool
     {
-        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id')
-            ->withTimestamps();
+        return $this->following()->where('following_id', $user->id)->exists();
     }
 
     /**
@@ -128,19 +132,20 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Determine if the current user is following the given user.
-     */
-    public function isFollowing(User $user): bool
-    {
-        return $this->following()->where('following_id', $user->id)->exists();
-    }
-
-    /**
      * Determine if the current user is followed by the given user.
      */
     public function isFollowedBy(User $user): bool
     {
         return $this->followers()->where('follower_id', $user->id)->exists();
+    }
+
+    /**
+     * Get the users that are following this user.
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'follows', 'following_id', 'follower_id')
+            ->withTimestamps();
     }
 
     public function getTotalPointsAttribute()

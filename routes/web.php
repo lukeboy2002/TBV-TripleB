@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcceptInvitationController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\InvitationController;
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
@@ -22,6 +23,10 @@ Route::get('/user/{user}', [UserController::class, 'show'])->name('profile.user'
 
 Route::get('accept-invitation/create', [AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('has.invitation');
 Route::post('accept-invitation/store', [AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
+
+Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
+Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
+Route::get('/albums/{album}/image/{image}', [AlbumController::class, 'showImage'])->name('album.image.show');
 
 Route::middleware([
     'auth:sanctum',
@@ -47,6 +52,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jets
     Route::delete('invite/{invitation}', [InvitationController::class, 'destroy'])->name('invitations.destroy');
 
     Route::get('/games', [GameController::class, 'index'])->name('games.index');
+
+    Route::post('albums/{album}/upload', [\App\Http\Controllers\Admin\AlbumController::class, 'upload'])->name('albums.upload');
+
+    Route::resource('/albums', \App\Http\Controllers\Admin\AlbumController::class)->except('index', 'show');
+
 });
 
 Route::get('/events', function () {
