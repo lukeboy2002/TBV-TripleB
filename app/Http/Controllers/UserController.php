@@ -50,6 +50,17 @@ class UserController extends Controller
             ]);
         }
 
+        // Add albums to activities
+        $albums = $user->albums()->latest()->get();
+        foreach ($albums as $album) {
+            $activities->push([
+                'type' => 'album',
+                'model' => $album,
+                'date' => $album->created_at,
+                'message' => 'created a new Album',
+            ]);
+        }
+
         // Add comments to activities
         $comments = $user->comments()->latest()->get();
         foreach ($comments as $comment) {
@@ -118,6 +129,7 @@ class UserController extends Controller
         // Get statistics
         $stats = [
             'posts' => $posts->count(),
+            'albums' => $albums->count(),
             'comments' => $comments->count(),
             'likes' => $likes->count(),
             'invitations' => $invitations->count(),

@@ -61,7 +61,7 @@
                         <div>
                             <x-tbv-label for="title" value="{{ __('Title') }}"/>
                             <x-tbv-input id="title" class="block mt-1 w-full" type="text" name="title"
-                                         value="{{ $post->title }}"
+                                         value="{{ old('name', $post->title) }}"
                                          required autofocus autocomplete="title"/>
                         </div>
 

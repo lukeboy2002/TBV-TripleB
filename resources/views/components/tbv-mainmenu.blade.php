@@ -34,6 +34,11 @@
     <x-lucide-calendar-range class="h-5 w-5"/>
     Events
 </x-tbv-link-navigation>
+<x-tbv-link-navigation wire:navigate href="{{ route('albums.index') }}" :active="request()->routeIs('albums.*')"
+                       class="flex gap-2">
+    <x-lucide-images class="h-5 w-5"/>
+    Albums
+</x-tbv-link-navigation>
 <x-tbv-link-navigation wire:navigate href="{{ route('contact') }}" :active="request()->routeIs('contact')"
                        class="flex gap-2">
     <x-lucide-receipt-text class="h-5 w-5"/>
