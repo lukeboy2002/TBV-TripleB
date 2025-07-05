@@ -2,8 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Mail\NewEvent;
 use App\Models\Agenda;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -49,6 +52,12 @@ class AgendaCreate extends Component
         $this->reset(['name', 'description', 'date', 'image']);
 
         $this->dispatch('agenda-created', $agenda->id);
+
+        // Send notification to all users with the 'member' role
+        $members = User::role('member')->get();
+        foreach ($members as $member) {
+            Mail::to($member->email)->send(new NewEvent($agenda, Auth::user()->username));
+        }
 
         session()->flash('message', 'Appointment created successfully!');
 

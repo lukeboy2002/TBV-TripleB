@@ -117,6 +117,17 @@
             border-right: 18px solid rgb(249 115 22);
             border-top: 8px solid rgb(249 115 22);
         }
+        
+        .event-details {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+        }
+        
+        .event-details p {
+            margin: 5px 0;
+        }
     </style>
 </head>
 
@@ -141,11 +152,17 @@
                             <!-- Body content -->
                             <tr>
                                 <td class="content-cell" style="max-width: 100vw; padding: 32px;">
-                                    <h1>Hello! {{ $mailData['title'] }}</h1>
-                                    <p>You are invited by <span
-                                                class="user">{{ ucfirst( $mailData['invited_by'] ) }}</span> to Join our
-                                        website</p>
-                                    <p>Please click the button below to verify your email address.</p>
+                                    <h1>New Event: {{ $agenda->name }}</h1>
+                                    <p>A new event has been created by <span class="user">{{ ucfirst($creator) }}</span></p>
+                                    
+                                    <div class="event-details">
+                                        <p><strong>Date:</strong> {{ $agenda->date->format('F j, Y g:i A') }}</p>
+                                        @if($agenda->description)
+                                            <p><strong>Description:</strong> {{ $agenda->description }}</p>
+                                        @endif
+                                    </div>
+                                    
+                                    <p>Please indicate if you will be attending this event.</p>
                                     <table class="action" align="center" width="100%" cellpadding="0" cellspacing="0"
                                            role="presentation" style="-premailer-width: 100%;">
                                         <tr>
@@ -159,10 +176,9 @@
                                                                    role="presentation">
                                                                 <tr>
                                                                     <td>
-                                                                        <a href="{{ $mailData['link'] }}" class="button"
+                                                                        <a href="{{ route('agenda.show', $agenda) }}" class="button"
                                                                            target="_blank" rel="noopener"
-                                                                           style="-webkit-text-size-adjust: none;">Activate
-                                                                            Account</a>
+                                                                           style="-webkit-text-size-adjust: none;">View Event</a>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -172,9 +188,7 @@
                                             </td>
                                         </tr>
                                     </table>
-                                    <p>Regards,<br><span
-                                                class="user">TripleB, {{ ucfirst( $mailData['invited_by'] ) }}</span>
-                                    </p>
+                                    <p>Regards,<br><span class="user">TripleB Team</span></p>
                                 </td>
                             </tr>
                         </table>

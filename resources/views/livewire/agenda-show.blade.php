@@ -7,9 +7,15 @@
         <div class="px-4 py-5 sm:px-6 flex justify-end items-center">
 
             <div class="flex space-x-3">
-                <x-tbv-link-btn href="{{ route('agenda.index') }}">
+                <x-tbv-link-btn-secondary href="{{ route('agenda.index') }}">
                     Back
-                </x-tbv-link-btn>
+                </x-tbv-link-btn-secondary>
+
+                @can('update', $agenda)
+                    <x-tbv-link-btn href="{{ route('agenda.edit', $agenda) }}">
+                        Edit
+                    </x-tbv-link-btn>
+                @endcan
 
                 @can('delete', $agenda)
                     <x-tbv-button-danger wire:click="toggleModal">
@@ -19,7 +25,7 @@
             </div>
         </div>
 
-        <div class="border-t border-border">
+        <div>
             <dl>
                 @if($agenda->image_path)
                     <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -68,6 +74,7 @@
             </dl>
         </div>
     </div>
+    @hasanyrole('admin|member')
     <x-slot name="side">
         <div class="flex flex-col gap-4">
             <div>
@@ -133,6 +140,7 @@
             @endif
         </div>
     </x-slot>
+    @endhasanyrole
 
     @if($showModal)
         <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog"

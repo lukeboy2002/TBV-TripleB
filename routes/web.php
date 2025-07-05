@@ -8,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
 use App\Livewire\AgendaCreate;
+use App\Livewire\AgendaEdit;
 use App\Livewire\AgendaIndex;
 use App\Livewire\AgendaShow;
 use Illuminate\Support\Facades\Route;
@@ -46,7 +47,9 @@ Route::middleware([
     // User follow/unfollow routes
     Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow');
     Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
+
     Route::get('/agenda/create/new', AgendaCreate::class)->name('agenda.create');
+    Route::get('/agenda/{agenda:slug}/edit', AgendaEdit::class)->name('agenda.edit');
 
 });
 

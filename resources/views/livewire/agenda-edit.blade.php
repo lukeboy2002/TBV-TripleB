@@ -1,5 +1,5 @@
 <div>
-    <x-tbv-heading_h3>Create Events</x-tbv-heading_h3>
+    <x-tbv-heading_h3>Edit Event</x-tbv-heading_h3>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-background/80">
         @if (session()->has('message'))
             <div class="mb-4 bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
@@ -10,7 +10,7 @@
 
         <div class="shadow overflow-hidden sm:rounded-lg">
             <div class="px-4 py-5 sm:p-6">
-                <form wire:submit="save">
+                <form wire:submit="update">
                     <div class="grid grid-cols-1 gap-6">
                         <div>
                             <x-tbv-label for="name">Event Name</x-tbv-label>
@@ -44,6 +44,11 @@
                                 <div class="mt-2">
                                     <img src="{{ $image->temporaryUrl() }}" class="h-32 w-32 object-cover rounded">
                                 </div>
+                            @elseif ($agenda->image_path)
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500 mb-1">Current image:</p>
+                                    <img src="{{ Storage::url($agenda->image_path) }}" class="h-32 w-32 object-cover rounded">
+                                </div>
                             @endif
                         </div>
 
@@ -52,7 +57,7 @@
                                 Cancel
                             </x-tbv-link-btn-secondary>
                             <x-tbv-button type="submit">
-                                Create Event
+                                Update Event
                             </x-tbv-button>
                         </div>
                     </div>
