@@ -22,7 +22,7 @@
             <div class="flex items-center lg:order-2">
                 @if (Route::has('login'))
                     @auth
-                        <livewire:appearance-selector/>
+                        {{--                        <livewire:appearance-selector/>--}}
                         <x-lucide-minus class="w-auto h-8 rotate-90 text-secondary/30 "/>
                         <x-tbv-dropdown align="right" width="48">
                             <x-slot name="trigger">
