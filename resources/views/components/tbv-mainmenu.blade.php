@@ -29,7 +29,7 @@
     New Post
 </x-tbv-link-navigation>
 @endrole
-<x-tbv-link-navigation wire:navigate href="{{ route('events') }}" :active="request()->routeIs('events')"
+<x-tbv-link-navigation wire:navigate href="{{ route('agenda.index') }}" :active="request()->routeIs('agenda.*')"
                        class="flex gap-2">
     <x-lucide-calendar-range class="h-5 w-5"/>
     Events

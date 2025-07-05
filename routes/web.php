@@ -7,6 +7,9 @@ use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserController;
+use App\Livewire\AgendaCreate;
+use App\Livewire\AgendaIndex;
+use App\Livewire\AgendaShow;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/jetstream.php';
@@ -28,6 +31,9 @@ Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
 Route::get('/albums/{album}', [AlbumController::class, 'show'])->name('albums.show');
 Route::get('/albums/{album}/image/{image}', [AlbumController::class, 'showImage'])->name('album.image.show');
 
+Route::get('/agenda', AgendaIndex::class)->name('agenda.index');
+Route::get('/agenda/{agenda:slug}', AgendaShow::class)->name('agenda.show');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -40,6 +46,8 @@ Route::middleware([
     // User follow/unfollow routes
     Route::post('/user/{user}/follow', [UserController::class, 'follow'])->name('user.follow');
     Route::delete('/user/{user}/unfollow', [UserController::class, 'unfollow'])->name('user.unfollow');
+    Route::get('/agenda/create/new', AgendaCreate::class)->name('agenda.create');
+
 });
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
