@@ -1,71 +1,110 @@
 <x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo/>
-        </x-slot>
+    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+        <x-logo.logo class="mb-4"/>
+        <x-card.auth>
+            {{--            @session('status')--}}
+            {{--            <div class="mb-4 font-medium text-sm text-success">--}}
+            {{--                {{ $value }}--}}
+            {{--            </div>--}}
+            {{--            @endsession--}}
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <x-heading.headingauth>Create your Account</x-heading.headingauth>
+                <form method="POST" action="{{ route('register') }}" class="space-y-4">
+                    @csrf
 
-        <x-validation-errors class="mb-4"/>
+                    <div>
+                        <x-form.label for="username" value="{{ __('Username') }}"/>
+                        <x-form.input id="username"
+                                      name="username"
+                                      type="text"
+                                      class="block mt-1 w-full"
+                                      :value="old('username')"
+                                      placeholder="{{ __('username')}}"
+                                      required
+                                      autofocus
+                                      autocomplete="username"/>
+                        <x-form.error for="username"/>
+                    </div>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+                    <div>
+                        <x-form.label for="name" value="{{ __('Full name') }}"/>
+                        <x-form.input id="name"
+                                      name="name"
+                                      type="text"
+                                      class="block mt-1 w-full"
+                                      :value="old('name')"
+                                      placeholder="{{ __('Full name')}}"
+                                      required
+                                      autocomplete="name"/>
+                        <x-form.error for="name"/>
+                    </div>
 
-            <div>
-                <x-label for="username" value="{{ __('Username') }}"/>
-                <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')"
-                         required autofocus autocomplete="username"/>
-            </div>
+                    <div>
+                        <x-form.label for="email" value="{{ __('Email') }}"/>
+                        <x-form.input id="email"
+                                      name="email"
+                                      type="email"
+                                      class="block mt-1 w-full"
+                                      :value="old('email')"
+                                      placeholder="{{ __('Email')}}"
+                                      required
+                                      autocomplete="username"/>
+                        <x-form.error for="email"/>
+                    </div>
 
-            <div>
-                <x-label for="name" value="{{ __('Full name') }}"/>
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                         autocomplete="name"/>
-            </div>
+                    <div class="mt-4">
+                        <x-form.label for="password" value="{{ __('Password') }}"/>
+                        <x-form.input id="password"
+                                      name="password"
+                                      type="password"
+                                      class="block mt-1 w-full"
+                                      placeholder="{{ __('Password') }}"
+                                      required
+                                      autocomplete="new-password"/>
+                        <x-form.error for="password"/>
+                    </div>
 
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}"/>
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required
-                         autocomplete="username"/>
-            </div>
+                    <div>
+                        <x-form.label for="password_confirmation" value="{{ __('Confirm Password') }}"/>
+                        <x-form.input id="password_confirmation"
+                                      name="password_confirmation"
+                                      type="password"
+                                      class="block mt-1 w-full"
+                                      placeholder="{{ __('Confirm Password') }}"
+                                      required
+                                      autocomplete="new-password"/>
+                        <x-form.error for="password_confirmation"/>
+                    </div>
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}"/>
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required
-                         autocomplete="new-password"/>
-            </div>
 
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}"/>
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password"
-                         name="password_confirmation" required autocomplete="new-password"/>
-            </div>
+                    @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                        <div class="mt-4">
+                            <x-label for="terms">
+                                <div class="flex items-center">
+                                    <x-form.checkbox name="terms" id="terms" required/>
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required/>
-
-                            <div class="ms-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
+                                    <div class="ms-2 text-primary-muted">
+                                        {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                                'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm font-medium text-primary-muted hover:text-secondary focus:outline-none focus:text-secondary">'.__('Terms of Service').'</a>',
+                                                'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm font-medium text-primary-muted hover:text-secondary focus:outline-none focus:text-secondary">'.__('Privacy Policy').'</a>',
+                                        ]) !!}
+                                    </div>
+                                </div>
+                            </x-label>
                         </div>
-                    </x-label>
-                </div>
-            @endif
+                    @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
-                   href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ms-4">
-                    {{ __('Register') }}
-                </x-button>
+                    <div class="flex items-center justify-end gap-2 mt-4">
+                        <x-link.default
+                                href="{{ route('login') }}">
+                            {{ __('Already registered?') }}
+                        </x-link.default>
+                        <x-button.default type="submit">
+                            {{ __('Register') }}
+                        </x-button.default>
+                    </div>
+                </form>
             </div>
-        </form>
-    </x-authentication-card>
+        </x-card.auth>
+    </div>
 </x-guest-layout>
