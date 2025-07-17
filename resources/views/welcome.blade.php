@@ -1,6 +1,6 @@
-<x-app-layout>
+<x-admin-layout>
     <x-slot name="header">jgsakhgfdh</x-slot>
     <div>
         <x-welcome/>
     </div>
-</x-app-layout>
+</x-admin-layout>

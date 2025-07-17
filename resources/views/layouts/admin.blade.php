@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.bunny.net/css?family=montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+          rel="stylesheet"/>
+
+    <!-- Scripts -->
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark')
+        }
+    </script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Styles -->
+    @livewireStyles
+</head>
+<body class="font-sans antialiased">
+<x-banner/>
+
+<div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    @livewire('navigation-menu')
+
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="flex gap-2">
+            <aside class="md:w-64 bg-background rounded-lg border border-secondary/30 shadow-sm p-4">
+                <div class="flex flex-col space-y-4">
+                    <x-menu-admin/>
+                </div>
+            </aside>
+            <section class="w-full">
+                <!-- Page Heading -->
+                @if (isset($header))
+                    <header class="my-4">
+                        {{ $header }}
+                    </header>
+                @endif
+
+                <!-- Page Content -->
+                <main>
+                    {{ $slot }}
+                </main>
+            </section>
+        </div>
+    </div>
+</div>
+
+@stack('modals')
+
+@livewireScripts
+</body>
+</html>

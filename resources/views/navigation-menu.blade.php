@@ -15,7 +15,7 @@
                 <!-- Desktop menu -->
                 <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1 ml-6">
                     <div class="flex flex-col mt-4 space-x-6 text-sm font-medium lg:flex-row xl:space-x-8 lg:mt-0">
-                        <x-mainmenu/>
+                        <x-menu-main/>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@
         @php
             $componentName = 'lucide-' . $icon;
         @endphp
-        <x-dynamic-component :component="$componentName" class="w-5 h-5"/>
+        <x-dynamic-component :component="$componentName" class="w-6 h-6 sm:w-5 sm:h-5"/>
     @endif
     {{ $slot }}
 </a>
