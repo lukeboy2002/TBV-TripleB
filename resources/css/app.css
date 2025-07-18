@@ -84,3 +84,8 @@
 [x-cloak] {
     display: none;
 }
+
+
+.content {
+    color: var(--primary);
+}
