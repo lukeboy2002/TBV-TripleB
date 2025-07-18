@@ -21,7 +21,7 @@ class AdminSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('adminadmin'),
+                'password' => Hash::make('#Aa19727402#'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'admin')->first();
