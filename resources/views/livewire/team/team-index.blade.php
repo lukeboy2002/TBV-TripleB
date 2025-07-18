@@ -24,7 +24,7 @@
 
                 <div class="w-full md:w-1/2">
                     <img class="rounded-lg w-full h-[20rem] md:h-[40rem] object-cover"
-                         src="{{ Storage::url($user->profile->image_path) }}"
+                         src="/storage/{{ $user->profile->image_path }}"
                          alt="{{ $user->username }}"/>
                 </div>
 
