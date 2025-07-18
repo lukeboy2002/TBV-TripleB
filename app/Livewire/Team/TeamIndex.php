@@ -15,7 +15,7 @@ class TeamIndex extends Component
     #[Computed]
     public function users()
     {
-        return User::role('member')
+        return User::role('member', 'web')
 //            ->withCount(['gamePlayers as total_games_played'])
 //            ->withSum('gamePlayers as total_points', 'points')
 //            ->withCount(['gamePlayers as total_games_won' => function ($query) {
