@@ -1,10 +1,13 @@
 <?php
 
+use App\Livewire\Team\TeamIndex;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+Route::get('/team', TeamIndex::class)->name('team');
 
 Route::middleware([
     'auth:sanctum',
