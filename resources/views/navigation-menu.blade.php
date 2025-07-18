@@ -60,6 +60,12 @@
                                 </x-dropdown-link>
 
                                 <div class="border-t border-secondary/30 my-2"></div>
+                                @hasrole('admin')
+                                <x-dropdown-link href="{{ route('admin.role.index') }}">
+                                    Roles
+                                </x-dropdown-link>
+                                <div class="border-t border-secondary/30 my-2"></div>
+                                @endhasrole
                                 {{--                                @can('create', App\Models\Profile::class)--}}
                                 <x-dropdown-link
                                         href="#">
@@ -135,9 +141,6 @@
         <div class="py-4 overflow-y-auto">
             <div class="flex flex-col gap-4 font-medium">
                 <x-menu-main/>
-                {{--                <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
-                {{--                    {{ __('Dashboard') }}--}}
-                {{--                </x-nav-link>--}}
             </div>
         </div>
     </div>

@@ -25,3 +25,7 @@ Route::get('/events', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
+
+Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
+    Route::get('role', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('role.index');
+});
