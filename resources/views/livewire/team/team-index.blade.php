@@ -21,7 +21,7 @@
                         </svg>
                     </div>
                 </div>
-                
+
 
                 <div class="w-full md:w-1/2">
                     <img class="rounded-lg w-full h-[20rem] md:h-[40rem] object-cover"
