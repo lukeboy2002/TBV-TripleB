@@ -134,9 +134,10 @@
         </button>
         <div class="py-4 overflow-y-auto">
             <div class="flex flex-col gap-4 font-medium">
-                <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                    {{ __('Dashboard') }}
-                </x-nav-link>
+                <x-menu-main/>
+                {{--                <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
+                {{--                    {{ __('Dashboard') }}--}}
+                {{--                </x-nav-link>--}}
             </div>
         </div>
     </div>
