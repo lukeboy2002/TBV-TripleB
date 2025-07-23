@@ -60,19 +60,8 @@
                                 </x-dropdown-link>
 
                                 <div class="border-t border-secondary/30 my-2"></div>
-                                @hasrole('admin')
-                                <x-dropdown-link href="{{ route('admin.role.index') }}">
-                                    Roles
-                                </x-dropdown-link>
+                                <x-menu-user/>
                                 <div class="border-t border-secondary/30 my-2"></div>
-                                @endhasrole
-                                {{--                                @can('create', App\Models\Profile::class)--}}
-                                <x-dropdown-link
-                                        href="#">
-                                    {{ __('Invite User') }}
-                                </x-dropdown-link>
-                                <div class="border-t border-secondary/30 my-2"></div>
-                                {{--                                @endcan--}}
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}" x-data>
                                     @csrf

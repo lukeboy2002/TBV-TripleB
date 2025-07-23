@@ -65,6 +65,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(Profile::class);
     }
 
+    public function scopeSearch($query, $value)
+    {
+        $query->where('users.username', 'like', "%{$value}%")
+            ->orWhere('users.name', 'like', "%{$value}%")
+            ->orWhere('users.email', 'like', "%{$value}%");
+    }
+
     /**
      * Get the attributes that should be cast.
      *
