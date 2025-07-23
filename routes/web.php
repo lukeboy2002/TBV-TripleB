@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
 use App\Livewire\Team\TeamIndex;
 use Illuminate\Support\Facades\Route;
 
@@ -27,5 +30,14 @@ Route::get('/contact', function () {
 })->name('contact');
 
 Route::prefix('admin')->name('admin.')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('role', [App\Http\Controllers\Admin\RoleController::class, 'index'])->name('role.index');
+
+    Route::get('roles', [RoleController::class, 'index'])->name('roles.index');
+    Route::get('roles/{role}', [RoleController::class, 'edit'])->name('roles.edit');
+
+    Route::get('permissions', [PermissionController::class, 'index'])->name('permissions.index');
+    Route::get('permissions/{permission}', [PermissionController::class, 'edit'])->name('permissions.edit');
+
+    Route::get('users', [UserController::class, 'index'])->name('users.index');
+    Route::get('users/{user}', [UserController::class, 'edit'])->name('users.edit');
+
 });

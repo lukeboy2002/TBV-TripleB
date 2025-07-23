@@ -2,10 +2,10 @@
 
 namespace App\Policies;
 
-use App\Models\Role;
+use App\Models\Permission;
 use App\Models\User;
 
-class RolePolicy
+class PermissionPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,9 +18,9 @@ class RolePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Role $role): bool
+    public function view(User $user, Permission $permission): bool
     {
-        return false;
+        return $user->hasAnyRole(['admin']) || $user->hasPermissionTo('view:permission');
     }
 
     /**
@@ -28,29 +28,29 @@ class RolePolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasAnyRole(['admin']) || $user->hasPermissionTo('create:role');
+        return $user->hasAnyRole(['admin']) || $user->hasPermissionTo('create:permission');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Role $role): bool
+    public function update(User $user, Permission $permission): bool
     {
-        return $user->hasAnyRole(['admin']) || $user->hasPermissionTo('update:role');
+        return $user->hasAnyRole(['admin']) || $user->hasPermissionTo('update:permission');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Role $role): bool
+    public function delete(User $user, Permission $permission): bool
     {
-        return $user->hasAnyRole(['admin']) || $user->hasPermissionTo('delete:role');
+        return $user->hasAnyRole(['admin']) || $user->hasPermissionTo('delete:permission');
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Role $role): bool
+    public function restore(User $user, Permission $permission): bool
     {
         return false;
     }
@@ -58,7 +58,7 @@ class RolePolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Role $role): bool
+    public function forceDelete(User $user, Permission $permission): bool
     {
         return false;
     }
