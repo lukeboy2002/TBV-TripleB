@@ -5,7 +5,6 @@ namespace App\Providers;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,10 +23,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::automaticallyEagerLoadRelationships();
-        Model::preventLazyLoading(! $this->app->isProduction());
-        Model::preventSilentlyDiscardingAttributes(! $this->app->isProduction());
-        Model::preventAccessingMissingAttributes(! $this->app->isProduction());
+        //        Model::automaticallyEagerLoadRelationships();
+        //        Model::preventLazyLoading(! $this->app->isProduction());
+        //        Model::preventSilentlyDiscardingAttributes(! $this->app->isProduction());
+        //        Model::preventAccessingMissingAttributes(! $this->app->isProduction());
 
         Relation::enforceMorphMap([
             'user' => User::class,
