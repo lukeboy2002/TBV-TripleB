@@ -5,11 +5,20 @@ namespace App\Providers;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use App\Policies\PermissionPolicy;
+use App\Policies\RolePolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    protected $policies = [
+        User::class => UserPolicy::class,
+        Role::class => RolePolicy::class,
+        Permission::class => PermissionPolicy::class,
+    ];
+
     /**
      * Register any application services.
      */
@@ -23,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         //        Model::automaticallyEagerLoadRelationships();
         //        Model::preventLazyLoading(! $this->app->isProduction());
         //        Model::preventSilentlyDiscardingAttributes(! $this->app->isProduction());
@@ -33,5 +43,6 @@ class AppServiceProvider extends ServiceProvider
             'role' => Role::class,
             'permission' => Permission::class,
         ]);
+
     }
 }
