@@ -38,7 +38,7 @@
         <div class="flex gap-2">
             <aside class="md:w-64 bg-background rounded-lg border border-secondary/30 shadow-sm p-4">
                 <div class="flex flex-col space-y-4">
-                    <x-menu-admin/>
+                    <x-menu.admin/>
                 </div>
             </aside>
             <section class="w-full">

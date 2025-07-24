@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout title="Dashboard">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Dashboard') }}
@@ -12,12 +12,6 @@
                 <div class="text-edit text-lg font-bold">EDIT</div>
                 <div class="text-success text-lg font-bold">SUCCESS</div>
             </x-card.default>
-            @if(auth()->user()->can('view:user'))
-                HIER ALLE USERS
-            @endif
-            {{--            @can('view:user')--}}
-            {{--                Hier alle users--}}
-            {{--            @endcan--}}
         </div>
     </div>
 

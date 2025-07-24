@@ -5,13 +5,10 @@ namespace App\Livewire\Admin;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
 class UserUpdate extends Component
 {
-    use AuthorizesRequests;
-
     public User $user;
 
     public $selectedRole;
@@ -22,7 +19,10 @@ class UserUpdate extends Component
 
     public function mount(User $user)
     {
-        $this->authorize('update', $user);
+        if (! auth()->user()->can('update:user')) {
+            abort(403, 'You do not have access to this page.');
+        }
+
         $this->user = $user;
 
         // Set the initial selected role

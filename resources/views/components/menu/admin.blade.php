@@ -14,7 +14,7 @@
     </div>
 </div>
 
-@can('view:role')
+@if(auth()->user()->can('view:role'))
     <div class="relative">
         <x-link.navigation href="{{ route('admin.roles.index') }}" icon="notebook"
                            class="justify-center md:justify-start py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -30,9 +30,9 @@
             <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
     </div>
-@endcan
+@endif
 
-@can('view:permission')
+@if(auth()->user()->can('view:permission'))
     <div class="relative">
         <x-link.navigation href="{{ route('admin.permissions.index') }}" icon="notebook"
                            class="justify-center md:justify-start py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -48,9 +48,9 @@
             <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
     </div>
-@endcan
+@endif
 
-@can('view:user')
+@if(auth()->user()->can('view:user'))
     <div class="relative">
         <x-link.navigation href="{{ route('admin.users.index') }}" icon="users"
                            class="justify-center md:justify-start py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -65,9 +65,9 @@
             <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
     </div>
-@endcan
+@endif
 
-@can('create:user')
+@if(auth()->user()->can('create:user'))
     <div class="relative">
         <x-link.navigation href="#" icon="users"
                            class="justify-center md:justify-start py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -82,7 +82,7 @@
             <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
     </div>
-@endcan
+@endif
 
 
 <div class="relative">

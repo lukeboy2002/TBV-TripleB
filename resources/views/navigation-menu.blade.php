@@ -15,7 +15,7 @@
                 <!-- Desktop menu -->
                 <div class="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1 ml-6">
                     <div class="flex flex-col mt-4 space-x-6 text-sm font-medium lg:flex-row xl:space-x-8 lg:mt-0">
-                        <x-menu-main/>
+                        <x-menu.main/>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                                 </x-dropdown-link>
 
                                 <div class="border-t border-secondary/30 my-2"></div>
-                                <x-menu-user/>
+                                <x-menu.user/>
                                 <div class="border-t border-secondary/30 my-2"></div>
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}" x-data>
@@ -129,7 +129,7 @@
         </button>
         <div class="py-4 overflow-y-auto">
             <div class="flex flex-col gap-4 font-medium">
-                <x-menu-main/>
+                <x-menu.main/>
             </div>
         </div>
     </div>

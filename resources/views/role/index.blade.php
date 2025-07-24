@@ -2,10 +2,11 @@
     <x-heading.heading1>Roles</x-heading.heading1>
     <livewire:admin.role-index/>
 
-    @can('create', App\Models\Role::class)
+
+    @if(auth()->user()->can('create:role'))
         <div class="mt-6">
             <x-heading.heading2>Add Role</x-heading.heading2>
             <livewire:admin.role-create/>
         </div>
-    @endcan
+    @endif
 </x-admin-layout>

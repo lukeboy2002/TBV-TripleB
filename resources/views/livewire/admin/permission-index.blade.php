@@ -32,16 +32,16 @@
                     </td>
                     <td class="py-4 text-right">
                         <div class="flex space-x-2 mr-2">
-                            @can('update', $permission)
+                            @if(auth()->user()->can('update:permission'))
                                 <x-button.icon wire:click="updatePermission({{ $permission->id }})"
                                                class="text-edit"
                                                icon="square-pen"/>
-                            @endcan
-                            @can('delete', $permission)
+                            @endif
+                            @if(auth()->user()->can('delete:permission'))
                                 <x-button.icon wire:click="deletePermission({{ $permission->id }})"
                                                class="text-error"
                                                icon="trash"/>
-                            @endcan
+                            @endif
                         </div>
                     </td>
                 </tr>

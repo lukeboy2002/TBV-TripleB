@@ -14,9 +14,9 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        if (! auth()->user()->can('update', $user)) {
-            abort(403, 'You do not have access to this page.');
-        }
+        //        if (! auth()->user()->can('update:user')) {
+        //            abort(403, 'You do not have access to this page.');
+        //        }
 
         return view('user.edit', [
             'user' => $user,

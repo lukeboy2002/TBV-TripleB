@@ -16,7 +16,9 @@ class PermissionCreate extends Component
 
     public function save()
     {
-        $this->authorize('create', Permission::class);
+        if (! auth()->user()->can('create:permission')) {
+            abort(403, 'You do not have access to this page.');
+        }
 
         $this->validate();
 

@@ -62,8 +62,9 @@ class PermissionIndex extends Component
 
     public function deletePermission(Permission $permission)
     {
-
-        $this->authorize('delete', $permission);
+        if (! auth()->user()->can('delete:permission')) {
+            abort(403, 'You do not have access to this page.');
+        }
 
         $this->permission = $permission;
         $this->showModal = true;
@@ -93,7 +94,9 @@ class PermissionIndex extends Component
 
     public function updatePermission(Permission $permission)
     {
-        $this->authorize('update', $permission);
+        if (! auth()->user()->can('update:permission')) {
+            abort(403, 'You do not have access to this page.');
+        }
 
         $this->permission = $permission;
         $this->selectedRoles = $permission->roles->pluck('id')->toArray();

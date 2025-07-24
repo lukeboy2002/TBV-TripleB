@@ -11,11 +11,11 @@
             />
         </div>
         <div class="flex items-center">
-            @can('create:user')
+            @if(auth()->user()->can('create:user'))
                 <x-link.button href="#" class="px-3 py-2 text-xs font-medium">
                     Invite User
                 </x-link.button>
-            @endcan
+            @endif
         </div>
     </div>
     <div class="relative overflow-x-auto shadow-md rounded-lg">
@@ -90,16 +90,16 @@
                     <td class="py-4 text-right">
                         {{--                        TODO: edit user and delete only bij member how invited this user or admin--}}
                         <div class="flex space-x-2 mr-2">
-                            @can('update',$user)
+                            @if(auth()->user()->can('update:user'))
                                 <x-link.icon href="{{ route('admin.users.edit' , $user) }}"
                                              class="text-edit"
                                              icon="user-pen"/>
-                            @endcan
-                            @can('delete', $user)
+                            @endif
+                            @if(auth()->user()->can('delete:user'))
                                 <x-button.icon wire:click="deleteUser({{ $user->id }})"
                                                class="text-error"
                                                icon="trash"/>
-                            @endcan
+                            @endif
                         </div>
                     </td>
                 </tr>

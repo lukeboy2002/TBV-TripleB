@@ -54,7 +54,9 @@ class UserIndex extends Component
 
     public function deleteUser(User $user)
     {
-        $this->authorize('delete', $user);
+        if (! auth()->user()->can('delete:user')) {
+            abort(403, 'You do not have access to this page.');
+        }
 
         $this->user = $user;
         $this->showModal = true;

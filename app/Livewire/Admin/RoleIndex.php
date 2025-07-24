@@ -63,7 +63,9 @@ class RoleIndex extends Component
     public function deleteRole(Role $role)
     {
 
-        $this->authorize('delete', $role);
+        if (! auth()->user()->can('delete:role')) {
+            abort(403, 'You do not have access to this page.');
+        }
 
         $this->role = $role;
         $this->showModal = true;
@@ -93,7 +95,9 @@ class RoleIndex extends Component
 
     public function updateRole(Role $role)
     {
-        $this->authorize('update', $role);
+        if (! auth()->user()->can('update:role')) {
+            abort(403, 'You do not have access to this page.');
+        }
 
         $this->role = $role;
         $this->selectedPermissions = $role->permissions->pluck('id')->toArray();

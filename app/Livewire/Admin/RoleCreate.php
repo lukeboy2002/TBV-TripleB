@@ -15,7 +15,9 @@ class RoleCreate extends Component
 
     public function save()
     {
-        $this->authorize('create', Role::class);
+        if (! auth()->user()->can('create:role')) {
+            abort(403, 'You do not have access to this page.');
+        }
 
         $this->validate();
 

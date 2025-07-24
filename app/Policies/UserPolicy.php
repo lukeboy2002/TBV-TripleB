@@ -27,7 +27,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasAnyRole(['admin', 'members']) || $user->hasPermissionTo('create:user');
+        return false;
     }
 
     /**
@@ -35,7 +35,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return $user->hasAnyRole(['admin']) || $user->hasPermissionTo('update:user');
+        return false;
     }
 
     /**
@@ -43,7 +43,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return $user->hasAnyRole(['admin']) || $user->hasPermissionTo('delete:user');
+        return false;
     }
 
     /**

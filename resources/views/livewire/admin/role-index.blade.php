@@ -31,16 +31,16 @@
                     </td>
                     <td class="py-4 text-right">
                         <div class="flex space-x-2 mr-2">
-                            @can('update', $role)
+                            @if(auth()->user()->can('update:role'))
                                 <x-button.icon wire:click="updateRole({{ $role->id }})"
                                                class="text-edit"
                                                icon="circle-plus"/>
-                            @endcan
-                            @can('delete', $role)
+                            @endif
+                            @if(auth()->user()->can('delete:role'))
                                 <x-button.icon wire:click="deleteRole({{ $role->id }})"
                                                class="text-error"
                                                icon="trash"/>
-                            @endcan
+                            @endif
                         </div>
                     </td>
                 </tr>
@@ -124,8 +124,9 @@
                         </div>
                         <!-- Modal body -->
                         <div class="p-4 md:p-5">
-                            <h3 class="mb-5 text-lg font-normal text-primary-muted">Select permissions to assign to this role:</h3>
-                            
+                            <h3 class="mb-5 text-lg font-normal text-primary-muted">Select permissions to assign to this
+                                role:</h3>
+
                             <div class="mb-5 max-h-60 overflow-y-auto px-2">
                                 @foreach($availablePermissions as $permission)
                                     <div class="flex items-center mb-2">
@@ -143,7 +144,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            
+
                             <x-button.default wire:click.prevent="assignPermissions" type="button">
                                 Save
                             </x-button.default>
