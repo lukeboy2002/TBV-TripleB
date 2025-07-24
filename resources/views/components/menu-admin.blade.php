@@ -32,7 +32,7 @@
     </div>
 @endcan
 
-@can('view:permission', App\Models\Permission::class)
+@can('view:permission')
     <div class="relative">
         <x-link.navigation href="{{ route('admin.permissions.index') }}" icon="notebook"
                            class="justify-center md:justify-start py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -50,7 +50,7 @@
     </div>
 @endcan
 
-@can('view:user', App\Models\User::class)
+@can('view:user')
     <div class="relative">
         <x-link.navigation href="{{ route('admin.users.index') }}" icon="users"
                            class="justify-center md:justify-start py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -67,7 +67,7 @@
     </div>
 @endcan
 
-@can('create:user', App\Models\User::class)
+@can('create:user')
     <div class="relative">
         <x-link.navigation href="#" icon="users"
                            class="justify-center md:justify-start py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
