@@ -5,16 +5,19 @@ namespace App\Providers;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use App\Policies\PermissionPolicy;
+use App\Policies\RolePolicy;
+use App\Policies\UserPolicy;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    //    protected $policies = [
-    //        User::class => UserPolicy::class,
-    //        Role::class => RolePolicy::class,
-    //        Permission::class => PermissionPolicy::class,
-    //    ];
+    protected $policies = [
+        User::class => UserPolicy::class,
+        Role::class => RolePolicy::class,
+        Permission::class => PermissionPolicy::class,
+    ];
 
     /**
      * Register any application services.
