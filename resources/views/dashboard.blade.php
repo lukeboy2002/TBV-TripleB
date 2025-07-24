@@ -12,9 +12,12 @@
                 <div class="text-edit text-lg font-bold">EDIT</div>
                 <div class="text-success text-lg font-bold">SUCCESS</div>
             </x-card.default>
-            @can('view:user')
-                Hier alle users
-            @endcan
+            @if(auth()->user()->can('view:user'))
+                HIER ALLE USERS
+            @endif
+            {{--            @can('view:user')--}}
+            {{--                Hier alle users--}}
+            {{--            @endcan--}}
         </div>
     </div>
 
