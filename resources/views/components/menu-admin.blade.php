@@ -14,7 +14,7 @@
     </div>
 </div>
 
-@can('view:role', App\Models\Role::class)
+@can('view:role')
     <div class="relative">
         <x-link.navigation href="{{ route('admin.roles.index') }}" icon="notebook"
                            class="justify-center md:justify-start py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
