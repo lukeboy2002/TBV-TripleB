@@ -11,6 +11,8 @@
             />
         </div>
         <div class="flex items-center">
+
+
             @if(auth()->user()->can('create:user'))
                 <x-link.button href="#" class="px-3 py-2 text-xs font-medium">
                     Invite User
@@ -23,30 +25,22 @@
             <thead class="text-xs text-primary bg-background-hover">
             <tr>
                 @include('livewire.table.sortable-th',[
-                    'name' => 'username',
-                     'displayName' => 'Username'
+                    'name' => 'email',
+                     'displayName' => 'Email'
                 ])
-                <th scope="col" class="px-6 py-3">
-                    Full name
-                </th>
-                @include('livewire.table.sortable-th',[
-                     'name' => 'email',
-                      'displayName' => 'Email'
-                 ])
                 @include('livewire.table.sortable-th',[
                     'name' => 'invited_by',
                      'displayName' => 'Invited'
                 ])
                 @include('livewire.table.sortable-th',[
-                    'name' => 'model_id',
-                     'displayName' => 'Role'
+                    'name' => 'invited_date',
+                     'displayName' => 'Invited'
                 ])
-                {{--                <th scope="col" class="px-6 py-3">--}}
-                {{--                    Logged in--}}
-                {{--                </th>--}}
-                {{--                <th scope="col" class="px-6 py-3">--}}
-                {{--                    Last login time--}}
-                {{--                </th>--}}
+
+                @include('livewire.table.sortable-th',[
+                    'name' => 'registered_at',
+                     'displayName' => 'Registered'
+                ])
                 <th scope="col" class="px-6 py-3">
                     <span class="sr-only">Edit</span>
                 </th>
@@ -56,46 +50,31 @@
             @foreach($users as $user)
                 <tr wire:key="{{$user->id}}" class="bg-transparent border-b border-secondary/30 ">
                     {{--                    TODO: Make link to user profile--}}
-                    <th scope="row"
-                        class="px-6 py-4 font-medium whitespace-nowrap ">
-                        <a href="#"
-                           class="text-primary hover:text-secondary focus:outline-none focus:text-secondary">{{ ucfirst($user->username) }}</a>
-                    </th>
-                    <td class="px-6 py-4">
-                        {{ $user->name }}
-                    </td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 font-medium whitespace-nowrap ">
                         {{ $user->email }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ ucfirst($user->invitedBy->username ?? 'admin') }}
+                        {{ $user->invitedBy->username ?? 'Unknown' }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ ucfirst($user->role_name) }}
+                        {{ $user->getInvitationDate() }}
                     </td>
-                    {{--                    <td class="px-6 py-4">--}}
-                    {{--                        @if( $user->logged_in =='1' )--}}
-                    {{--                            <i class="fa-regular fa-circle-check text-green-600 fa-xl"></i>--}}
-                    {{--                        @else--}}
-                    {{--                            <i class="fa-regular fa-circle-xmark text-red-700 fa-xl"></i>--}}
-                    {{--                        @endif--}}
-                    {{--                    </td>--}}
-                    {{--                    <td class="px-6 py-4">--}}
-                    {{--                        @if($user->last_login_time)--}}
-                    {{--                            {{ $user->getLastLoginTime() }}--}}
-                    {{--                        @else--}}
-                    {{--                            <p>not available</p>--}}
-                    {{--                        @endif--}}
-                    {{--                    </td>--}}
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        @if($user->registered_at)
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                Registered ({{ $user->getRegisterTime() }})
+                            </span>
+                        @else
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                Pending
+                            </span>
+                        @endif
+                    </td>
                     <td class="py-4 text-right">
                         {{--                        TODO: edit user and delete only bij member how invited this user or admin--}}
                         <div class="flex space-x-2 mr-2">
-                            @if(auth()->user()->can('update:user'))
-                                <x-link.icon href="{{ route('admin.users.edit' , $user) }}"
-                                             class="text-edit"
-                                             icon="user-pen"/>
-                            @endif
-                            @if(auth()->user()->can('delete:user'))
+                            @if ( auth()->user()->can('delete', $user))
+                                {{--                            @if(!$user->registered_at && (auth()->user()->hasRole('admin') || auth()->user()->id === $user->invited_by))--}}
                                 <x-button.icon wire:click="deleteUser({{ $user->id }})"
                                                class="text-error"
                                                icon="trash"/>
@@ -115,8 +94,6 @@
         {{ $users->links() }}
     </div>
 
-    <!-- Delete User Confirmation Modal -->
-    {{--    TODO: delete user including all post, commente etc??--}}
     @if($showModal)
         <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title"
              role="dialog"

@@ -58,6 +58,7 @@ class RolesAndPermissionsSeeder extends Seeder
             $permission4,
         ]);
         $memberRole = Role::create(['name' => 'member'])->syncPermissions([
+            $userPermission1,
             $userPermission2,
         ]);
     }

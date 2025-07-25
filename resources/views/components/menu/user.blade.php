@@ -19,7 +19,7 @@
 
 @if(auth()->user()->can('create:user'))
     <x-dropdown-link
-            href="#">
+            href="{{ route('admin.invitations.index') }}">
         {{ __('Invite User') }}
     </x-dropdown-link>
 @endif

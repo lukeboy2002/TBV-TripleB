@@ -25,7 +25,7 @@ class RoleCreate extends Component
             'name' => $this->name,
         ]);
 
-        session()->flash('success', 'The role has been created');
+        flash()->success('The role has been created.');
 
         $this->reset(['name']);
         $this->dispatch('roleCreated');

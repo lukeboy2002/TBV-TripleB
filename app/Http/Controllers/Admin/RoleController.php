@@ -3,23 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Role;
+use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    public function index()
+    /**
+     * Handle the incoming request.
+     */
+    public function __invoke(Request $request)
     {
         return view('role.index');
-    }
-
-    public function edit(Role $role)
-    {
-        if (! auth()->user()->can('update', $role)) {
-            abort(403, 'You do not have access to this page.');
-        }
-
-        return view('role.edit', [
-            'role' => $role,
-        ]);
     }
 }
