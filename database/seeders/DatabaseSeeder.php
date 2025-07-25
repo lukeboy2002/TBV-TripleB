@@ -36,6 +36,11 @@ class DatabaseSeeder extends Seeder
             $this->call(Ruudseeder::class),
         ]];
         $members = User::all();
+        //        foreach ($members as $member) {
+        //            Invitation::factory(3)->create([
+        //                'invited_by' => $member->id,
+        //            ]);
+        //        }
 
         $users = User::factory(10)->create();
         foreach ($users as $user) {

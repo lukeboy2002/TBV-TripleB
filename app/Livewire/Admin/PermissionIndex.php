@@ -76,7 +76,8 @@ class PermissionIndex extends Component
 
             $this->permission->delete();
 
-            session()->flash('success', 'The permission has been deleted');
+            flash()->success('The permission has been deleted');
+
             $this->dispatch('permissionDeleted');
             $this->showModal = false;
         }
@@ -109,7 +110,8 @@ class PermissionIndex extends Component
         if ($this->permission) {
             $this->permission->roles()->sync($this->selectedRoles);
 
-            session()->flash('success', 'Roles have been assigned to the permission');
+            flash()->success('Roles have been assigned to the permission');
+
             $this->showRoleModal = false;
         }
     }
@@ -118,6 +120,7 @@ class PermissionIndex extends Component
     public function permissions()
     {
         return Permission::orderBy($this->sortBy, $this->sortDir)
+            ->with('roles')
             ->paginate($this->perPage);
     }
 }

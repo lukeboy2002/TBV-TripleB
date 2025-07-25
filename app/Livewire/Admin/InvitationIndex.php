@@ -2,12 +2,12 @@
 
 namespace App\Livewire\Admin;
 
-use App\Models\User;
+use App\Models\Invitation;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class UserIndex extends Component
+class InvitationIndex extends Component
 {
     use withPagination;
 
@@ -23,16 +23,16 @@ class UserIndex extends Component
     public $sortDir = 'DESC';
 
     #[Url()]
-    public $perPage = 10;
+    public $perPage = 5;
 
     public $confirmingDeletion = false;
 
     public $user;
 
-    public function mount()
-    {
-        $this->showModal = false;
-    }
+    protected $listeners = [
+        'userCreated' => 'refreshUsers',
+        'userDeleted' => 'refreshUsers',
+    ];
 
     public function updatedSearch()
     {
@@ -52,10 +52,15 @@ class UserIndex extends Component
         $this->sortDir = 'DESC';
     }
 
-    public function deleteUser(User $user)
+    public function mount()
     {
-        if (! auth()->user()->can('delete:user')) {
-            abort(403, 'You do not have access to this page.');
+        $this->showModal = false;
+    }
+
+    public function deleteUser(Invitation $user)
+    {
+        if (! auth()->user()->can('delete', $user)) {
+            abort(403, 'You do not have access to delete this invitation.');
         }
 
         $this->user = $user;
@@ -64,12 +69,18 @@ class UserIndex extends Component
 
     public function confirmDelete()
     {
+        if (! auth()->user()->can('delete', $this->user)) {
+            abort(403, 'You do not have access to delete this invitation.');
+        }
+
         if ($this->user) {
             $this->user->delete();
 
             flash()->success('The user has been deleted');
 
-            $this->redirect(route('admin.users.index'));
+            $this->dispatch('userDeleted');
+            $this->showModal = false;
+
         }
     }
 
@@ -80,14 +91,24 @@ class UserIndex extends Component
 
     public function render()
     {
-        return view('livewire.admin.user-index', [
-            'users' => User::search($this->search)
+        $currentUser = auth()->user();
+
+        // Admins mogen alles zien
+        if ($currentUser->hasRole('admin')) {
+            $users = Invitation::search($this->search)
                 ->with('invitedBy')
-                ->leftJoin('model_has_roles as role', 'users.id', '=', 'role.model_id')
-                ->leftJoin('roles', 'role.role_id', '=', 'roles.id')
-                ->select('users.*', 'roles.name as role_name') // Specificeren van de tabel 'roles'
                 ->orderBy($this->sortBy, $this->sortDir)
-                ->paginate($this->perPage),
+                ->paginate($this->perPage);
+        } else {
+            $users = Invitation::where('invited_by', $currentUser->id)
+                ->with('invitedBy')
+                ->search($this->search)
+                ->orderBy($this->sortBy, $this->sortDir)
+                ->paginate($this->perPage);
+        }
+
+        return view('livewire.admin.invitation-index', [
+            'users' => $users,
         ]);
     }
 }

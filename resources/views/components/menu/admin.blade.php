@@ -69,7 +69,7 @@
 
 @if(auth()->user()->can('create:user'))
     <div class="relative">
-        <x-link.navigation href="#" icon="users"
+        <x-link.navigation href="{{ route('admin.invitations.index') }}" icon="users"
                            class="justify-center md:justify-start py-2 px-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
                            data-popover-target="tooltip-users">
             <span class="hidden md:inline">Invite User</span>

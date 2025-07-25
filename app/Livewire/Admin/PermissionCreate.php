@@ -32,7 +32,7 @@ class PermissionCreate extends Component
             $adminRole->givePermissionTo($permission);
         }
 
-        session()->flash('success', 'The permission has been created');
+        flash()->success('The permission has been created');
 
         $this->reset(['name']);
         $this->dispatch('permissionCreated');
