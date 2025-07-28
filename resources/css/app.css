@@ -1,6 +1,84 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+/*@import "../../node_modules/flowbite/src/themes/default.css";*/
+
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+@plugin "flowbite/plugin";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/laravel/jetstream/**/*.blade.php';
+@source "../../node_modules/flowbite/**/*.js";
+@source "../../node_modules/flowbite";
+
+@theme {
+    --font-sans: Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --font-secondary: 'montserrat';
+
+    --color-background: var(--background);
+    --color-background-hover: var(--background-hover);
+
+    --color-primary: var(--primary);
+    --color-primary-invert: var(--primary-invert);
+    --color-primary-muted: var(--primary-muted);
+
+    --color-secondary: var(--secondary);
+
+    --color-error: var(--error);
+    --color-edit: var(--edit);
+    --color-success: var(--success);
+}
+
+:root {
+    --background: hsl(0 0% 98%); /* neutral-50 */
+    --background-hover: hsl(0 0% 96.1%); /* neutral-100 */
+
+    --primary: hsl(215 27.9% 16.9%); /* gray-800 */
+    --primary-invert: hsl(0 0% 98%); /* neutral-50 */
+    --primary-muted: hsl(220 8.9% 46.1%); /* gray-500 */
+
+    --secondary: hsl(24.6 95% 53.1%); /* orange-500 */
+
+    --error: hsl(0 72.2% 50.6%); /* red-700 */
+    --edit: hsl(221.2 83.2% 53.3%); /* blue-600 */
+    --success: hsl(142.4 71.8% 29.2%); /* green-700 */
+
+}
+
+.dark {
+    --background: hsl(215 27.9% 16.9%); /* gray-800 */
+    --background-hover: hsl(216.9 19.1% 26.7%); /* gray-700 */
+
+    --primary: hsl(0 0% 98%); /* neutral-50 */
+    --primary-invert: hsl(215 27.9% 16.9%); /* gray-800 */
+    --primary-muted: hsl(217.9 10.6% 64.9%); /* gray-400 */
+
+    --secondary: hsl(20.5 90.2% 48.2%); /* orange-600 */
+
+    --error: hsl(0 84.2% 60.2%); /* red-500 */
+    --edit: hsl(217.2 91.2% 59.8%); /* blue-500 */
+    --success: hsl(142.1 70.6% 45.3%); /* green-500 */
+}
+
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+}
 
 [x-cloak] {
     display: none;
