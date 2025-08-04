@@ -77,6 +77,92 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentcolor);
     }
+
+    .content h1 {
+        @apply text-secondary font-secondary text-2xl;
+    }
+
+    .content h2 {
+        @apply text-secondary font-secondary font-bold text-xl my-1;
+    }
+
+    .content h3 {
+        @apply text-secondary font-secondary font-bold text-lg my-1;
+    }
+
+    .content h4 {
+        @apply text-secondary font-secondary font-bold my-1;
+    }
+
+    .content ol {
+        @apply list-decimal;
+    }
+
+    .content ol > li {
+        @apply text-secondary font-secondary ml-4;
+    }
+
+    .content ul > li {
+        @apply text-secondary font-secondary list-disc ml-4;
+    }
+
+    /*.content blockquote {*/
+    /*    @apply text-primary relative pl-8 pr-8 before:content-['"'] after:content-['"'] before:absolute before:-left-2 before:top-0 before:text-secondary before:text-4xl after:absolute after:-right-2 after:top-0 after:text-secondary after:text-4xl;*/
+    /*}*/
+    .content blockquote {
+        @apply text-primary relative pl-8 pr-8;
+    }
+
+    .content blockquote::before,
+    .content blockquote::after {
+        position: absolute;
+        font-size: 5rem;
+        line-height: 1;
+        color: var(--secondary);
+        font-weight: bold;
+    }
+
+    .content blockquote::before {
+        content: '"';
+        left: -0.5rem;
+        top: -0.5rem;
+    }
+
+    .content blockquote::after {
+        content: '"';
+        right: -0.5rem;
+        top: -0.5rem;
+    }
+
+    .ck-reset_all :not(.ck-reset_all-excluded *), .ck.ck-reset_all {
+        @apply !bg-background !text-primary;
+    }
+
+    .ck.ck-editor__main > .ck-editor__editable {
+        @apply !bg-background text-primary;
+    }
+
+    .ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar, .ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+        @apply !rounded-t-lg !border-secondary/30;
+    }
+
+    .ck-rounded-corners {
+        @apply !rounded-b-lg !border-secondary/30;
+    }
+
+    .ck.ck-button:active, .ck.ck-button:focus, a.ck.ck-button:active, a.ck.ck-button:focus {
+        @apply !outline-none !ring-0 !ring-offset-0 !border-secondary bg-background-hover;
+    }
+
+    /* Date input calendar icon styling - changes black icon to secondary color (orange) */
+    input[type="date"]::-webkit-calendar-picker-indicator,
+    input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='hsl(24.6,95%,53.1%)' fill-opacity='0.3'><path d='M19 3h-1V2h-2v1H8V2H6v1H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM5 19V8h14v11H5z'/></svg>");
+        background-repeat: no-repeat;
+        background-size: contain;
+        cursor: pointer;
+    }
+
 }
 
 [x-cloak] {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Team;
 
 use App\Models\User;
 use Livewire\Attributes\Computed;
@@ -21,6 +21,6 @@ class TeamIndex extends Component
 
     public function render()
     {
-        return view('livewire.team-index');
+        return view('livewire.team.team-index');
     }
 }
