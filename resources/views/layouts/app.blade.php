@@ -28,6 +28,7 @@
 
     <!-- Styles -->
     @livewireStyles
+    @stack('styles')
 </head>
 <body class="font-sans antialiased">
 <x-banner/>
@@ -35,23 +36,33 @@
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
     @livewire('navigation-menu')
 
-    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+    <section class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
         <!-- Page Heading -->
         @if (isset($header))
             <header class="my-4">
                 {{ $header }}
             </header>
         @endif
-
         <!-- Page Content -->
-        <main>
-            {{ $slot }}
-        </main>
-    </div>
+        @if (isset($side))
+            <div class="mx-auto flex max-w-7xl flex-wrap">
+                <main class="flex w-full flex-col px-3 md:w-3/4">
+                    {{ $slot }}
+                </main>
+                <aside class="flex w-full flex-col pt-12 md:pt-0 px-3 md:w-1/4 mb-20">
+                    {{ $side }}
+                </aside>
+            </div>
+        @else
+            <main>
+                {{ $slot }}
+            </main>
+        @endif
+    </section>
 </div>
 
 @stack('modals')
-
+@stack('scripts')
 @livewireScripts
 </body>
 </html>

@@ -2,10 +2,14 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
+use Spatie\Tags\Tag;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -17,6 +21,11 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(RolesAndPermissionsSeeder::class);
+
+        $this->call(CategorySeeder::class);
+        $categories = Category::all();
+        $this->call(TagsSeeder::class);
+        $tags = Tag::all();
 
         $members = [[
             $this->call(AdminSeeder::class),
@@ -44,6 +53,16 @@ class DatabaseSeeder extends Seeder
             $profile = Profile::create([
                 'user_id' => $user->id,
             ]);
+        }
+
+        $posts = Post::factory(200)
+            ->has(Comment::factory(15)->recycle([$members, $users]))
+            ->recycle([$members, $categories])
+            ->create();
+        foreach ($posts as $post) {
+            $random_tag = rand(0, 3);
+            $tag = $tags[$random_tag];
+            $post->tags()->attach($tag);
         }
     }
 }

@@ -1,8 +1,10 @@
-{{--@if(auth()->user()->can('view:user'))--}}
-{{--    <x-dropdown-link--}}
-{{--            href="{{ route('admin.users.index') }}">--}}
-{{--        {{ __('Show Users') }}--}}
-{{--    </x-dropdown-link>--}}
+{{--@if(auth()->user()->can('create:post'))--}}
+@can('create:post')
+    <x-dropdown-link
+            href="{{ route('posts.create') }}">
+        {{ __('New Post') }}
+    </x-dropdown-link>
+@endcan
 {{--@endif--}}
 
 {{--@if(auth()->user()->can('view:role'))--}}

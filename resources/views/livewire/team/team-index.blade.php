@@ -65,6 +65,7 @@
                                     {{ $user->profile->city }}
                                 </td>
                             </tr>
+                            {{--                            TODO: Add player stats--}}
                             {{--                    <tr class="text-primary-muted font-medium whitespace-nowrap">--}}
                             {{--                        <th scope="row" class="py-4">--}}
                             {{--                            Points--}}

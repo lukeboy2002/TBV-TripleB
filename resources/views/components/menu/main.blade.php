@@ -2,7 +2,7 @@
     Home
 </x-link.navigation>
 
-<x-link.navigation href="{{ route('team') }}" :active="request()->routeIs('team')" icon="users">
+<x-link.navigation href="{{ route('team.index') }}" :active="request()->routeIs('team.*')" icon="users">
     Team
 </x-link.navigation>
 
@@ -14,7 +14,7 @@
     Photos
 </x-link.navigation>
 
-<x-link.navigation href="{{ route('blog') }}" :active="request()->routeIs('blog')" icon="newspaper">
+<x-link.navigation href="{{ route('post.index') }}" :active="request()->routeIs('post.*')" icon="newspaper">
     Blog
 </x-link.navigation>
 

@@ -1,3 +1,3 @@
 <x-app-layout title="Team">
-    <livewire:team-index/>
+    <livewire:team.team-index/>
 </x-app-layout>
