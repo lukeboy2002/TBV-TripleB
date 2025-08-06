@@ -6,8 +6,8 @@
     Team
 </x-link.navigation>
 
-<x-link.navigation href="{{ route('scores') }}" :active="request()->routeIs('scores')" icon="dices">
-    Scores
+<x-link.navigation href="{{ route('games.index') }}" :active="request()->routeIs('games.*')" icon="dices">
+    Games
 </x-link.navigation>
 
 <x-link.navigation href="{{ route('photos') }}" :active="request()->routeIs('photo')" icon="images">

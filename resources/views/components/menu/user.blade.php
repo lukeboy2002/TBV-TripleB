@@ -5,6 +5,7 @@
         {{ __('New Post') }}
     </x-dropdown-link>
 @endcan
+
 {{--@endif--}}
 
 {{--@if(auth()->user()->can('view:role'))--}}

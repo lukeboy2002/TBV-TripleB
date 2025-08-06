@@ -25,7 +25,6 @@ class PostFactory extends Factory
         'posts/post-6.jpg',
         'posts/post-7.jpg',
         'posts/post-8.jpg',
-        'posts/post-9.jpg',
     ];
 
     /**
