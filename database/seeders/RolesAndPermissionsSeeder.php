@@ -38,11 +38,17 @@ class RolesAndPermissionsSeeder extends Seeder
         $permission3 = Permission::create(['name' => 'update:permission']);
         $permission4 = Permission::create(['name' => 'delete:permission']);
 
-        // USER MODEL
+        // POST MODEL
         $postPermission1 = Permission::create(['name' => 'create:post']);
         $postPermission2 = Permission::create(['name' => 'view:post']);
         $postPermission3 = Permission::create(['name' => 'update:post']);
         $postPermission4 = Permission::create(['name' => 'delete:post']);
+
+        // GAME MODEL
+        $gamePermission1 = Permission::create(['name' => 'create:game']);
+        $gamePermission2 = Permission::create(['name' => 'view:game']);
+        $gamePermission3 = Permission::create(['name' => 'update:game']);
+        $gamePermission4 = Permission::create(['name' => 'delete:game']);
 
         // CREATE ROLES
         $userRole = Role::create(['name' => 'user'])->syncPermissions([
@@ -66,12 +72,18 @@ class RolesAndPermissionsSeeder extends Seeder
             $postPermission2,
             $postPermission3,
             $postPermission4,
+            $gamePermission1,
+            $gamePermission2,
+            $gamePermission3,
+            $gamePermission4,
         ]);
         $memberRole = Role::create(['name' => 'member'])->syncPermissions([
             $userPermission1,
             $userPermission2,
             $postPermission1,
             $postPermission2,
+            $gamePermission1,
+            $gamePermission2,
         ]);
     }
 }

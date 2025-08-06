@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GamesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
@@ -9,13 +10,11 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/team', TeamController::class)->name('team.index');
+Route::get('/games', GamesController::class)->name('games.index');
 
 Route::get('post', [PostController::class, 'index'])->name('post.index');
 Route::get('post/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
-Route::get('/scores', function () {
-    return view('pages.scores');
-})->name('scores');
 Route::get('/photos', function () {
     return view('pages.photos');
 })->name('photos');
