@@ -65,46 +65,43 @@
                                     {{ $user->profile->city }}
                                 </td>
                             </tr>
-                            {{--                            TODO: Add player stats--}}
-                            {{--                    <tr class="text-primary-muted font-medium whitespace-nowrap">--}}
-                            {{--                        <th scope="row" class="py-4">--}}
-                            {{--                            Points--}}
-                            {{--                        </th>--}}
-                            {{--                        <td class="py-4 text-primary">--}}
-                            {{--                            {{ $user->total_points }}--}}
-                            {{--                        </td>--}}
-                            {{--                    </tr>--}}
-                            {{--                    <tr class="text-primary-muted font-medium whitespace-nowrap">--}}
-                            {{--                        <th scope="row" class="py-4">--}}
-                            {{--                            Played Games--}}
-                            {{--                        </th>--}}
-                            {{--                        <td class="py-4 text-primary">--}}
-                            {{--                            {{ $user->total_games_played }}--}}
-                            {{--                        </td>--}}
-                            {{--                    </tr>--}}
-                            {{--                    <tr class="text-primary-muted font-medium whitespace-nowrap">--}}
-                            {{--                        <th scope="row" class="py-4">--}}
-                            {{--                            Games Won--}}
-                            {{--                        </th>--}}
-                            {{--                        <td class="py-4 text-primary">--}}
-                            {{--                            {{ $user->total_games_won }}--}}
-                            {{--                        </td>--}}
-                            {{--                    </tr>--}}
-                            {{--                    <tr class="text-primary-muted font-medium whitespace-nowrap">--}}
-                            {{--                        <th scope="row" class="py-4">--}}
-                            {{--                            Cups--}}
-                            {{--                        </th>--}}
-                            {{--                        <td class="py-4 text-primary">--}}
-                            {{--                            {{ $user->total_cups_won }}--}}
-                            {{--                        </td>--}}
-                            {{--                    </tr>--}}
+                            <tr class="text-primary-muted font-medium whitespace-nowrap">
+                                <th scope="row" class="py-4">
+                                    Points
+                                </th>
+                                <td class="py-4 text-primary">
+                                    {{ $user->total_points }}
+                                </td>
+                            </tr>
+                            <tr class="text-primary-muted font-medium whitespace-nowrap">
+                                <th scope="row" class="py-4">
+                                    Played Games
+                                </th>
+                                <td class="py-4 text-primary">
+                                    {{ $user->total_games_played }}
+                                </td>
+                            </tr>
+                            <tr class="text-primary-muted font-medium whitespace-nowrap">
+                                <th scope="row" class="py-4">
+                                    Games Won
+                                </th>
+                                <td class="py-4 text-primary">
+                                    {{ $user->total_games_won }}
+                                </td>
+                            </tr>
+                            <tr class="text-primary-muted font-medium whitespace-nowrap">
+                                <th scope="row" class="py-4">
+                                    Cups
+                                </th>
+                                <td class="py-4 text-primary">
+                                    {{ $user->total_cups_won }}
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                {{--        <div class="pt-4 md:mt-0">--}}
-                {{--            <x-latest-cup-winner-image/>--}}
-                {{--        </div>--}}
+
             </aside>
         @endforeach
     </x-card.default>
