@@ -10,7 +10,7 @@
     Games
 </x-link.navigation>
 
-<x-link.navigation href="{{ route('photos') }}" :active="request()->routeIs('photo')" icon="images">
+<x-link.navigation href="{{ route('albums.index') }}" :active="request()->routeIs('albums.*')" icon="images">
     Photos
 </x-link.navigation>
 

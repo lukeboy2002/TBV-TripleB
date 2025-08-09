@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Album;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
@@ -64,5 +65,9 @@ class DatabaseSeeder extends Seeder
             $tag = $tags[$random_tag];
             $post->tags()->attach($tag);
         }
+
+        $album = Album::factory(6)
+            ->recycle([$members])
+            ->create();
     }
 }
