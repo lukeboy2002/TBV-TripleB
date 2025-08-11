@@ -1,5 +1,7 @@
 <x-app-layout title="Create Post">
-    <x-heading.main>Create new Post</x-heading.main>
+    <x-slot name="header">
+        <x-heading.main>Create new Post</x-heading.main>
+    </x-slot>
     <x-card.default>
         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data"
               class="lg:flex gap-8 w-full">

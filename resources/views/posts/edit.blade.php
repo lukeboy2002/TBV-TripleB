@@ -1,5 +1,8 @@
 <x-app-layout title="Edit Post">
-    <x-heading.main>Edit Post - {{ $post->id }}</x-heading.main>
+    <x-slot name="header">
+        <x-heading.main>Edit Post</x-heading.main>
+    </x-slot>
+
     <x-card.default>
         <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data"
               class="lg:flex gap-8 w-full">

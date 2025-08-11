@@ -31,7 +31,6 @@ class CommentPolicy
         return false;
     }
 
-    //    TODO: check if there is a reply, delete and edit not allowed.
     /**
      * Determine whether the user can update the model.
      */
@@ -45,6 +44,11 @@ class CommentPolicy
      */
     public function delete(User $user, Comment $comment): bool
     {
+        // Disallow deleting a comment if it has replies
+        if ($comment->comments()->exists()) {
+            return false;
+        }
+
         return $user->id === $comment->user_id;
     }
 

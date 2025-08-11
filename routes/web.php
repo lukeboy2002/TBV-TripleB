@@ -2,30 +2,21 @@
 
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\GamesController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('/team', TeamController::class)->name('team.index');
 Route::get('/games', GamesController::class)->name('games.index');
 Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
 Route::get('/albums/{album:slug}', [AlbumController::class, 'show'])->name('albums.show');
-
 Route::get('post', [PostController::class, 'index'])->name('post.index');
 Route::get('post/{post:slug}', [PostController::class, 'show'])->name('post.show');
 
-Route::get('/contact', function () {
-    return view('pages.contact');
-})->name('contact');
-
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
     Route::post('post/upload', [\App\Http\Controllers\Admin\PostController::class, 'upload'])->name('post.upload');
     Route::resource('posts', App\Http\Controllers\Admin\PostController::class)->except('index', 'show', 'destroy');
     Route::post('/album/{album}/upload', [\App\Http\Controllers\Admin\AlbumController::class, 'upload'])->name('album.upload');

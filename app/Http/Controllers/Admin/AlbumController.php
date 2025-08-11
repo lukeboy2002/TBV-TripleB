@@ -35,7 +35,7 @@ class AlbumController extends Controller
             abort(403, 'You do not have access to this page.');
         }
 
-        $photos = $album->getMedia();
+        $photos = $album->getMedia('albums');
 
         return view('albums.edit', [], [
             'album' => $album,
@@ -136,7 +136,7 @@ class AlbumController extends Controller
     {
         if ($request->has('image')) {
             $album->addMedia($request->image)
-                ->toMediaCollection();
+                ->toMediaCollection('albums');
         }
 
         return redirect()->back();

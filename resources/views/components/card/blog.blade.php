@@ -1,4 +1,4 @@
-<article class="bg-background shadow-sm rounded-lg flex flex-col h-full">
+<article class="bg-background flex flex-col h-full">
     @if (isset($header))
         <header class="relative">
             {{ $header }}

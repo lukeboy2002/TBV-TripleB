@@ -25,6 +25,10 @@
                            'name' => 'cup',
                             'displayName' => 'Won Cup'
                        ])
+                    {{--                    @include('livewire.sortable-th',[--}}
+                    {{--                           'name' => 'avg',--}}
+                    {{--                            'displayName' => 'Avg'--}}
+                    {{--                       ])--}}
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-secondary/30">
@@ -44,10 +48,11 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-6 py-4">{{ $player->total_games_played }}</td>
-                        <td class="px-6 py-4">{{ $player->total_points }}</td>
-                        <td class="px-6 py-4">{{ $player->total_games_won }}</td>
-                        <td class="px-6 py-4">{{ $player->total_cups_won }}</td>
+                        <td class="px-6 py-4 text-center">{{ $player->total_games_played }}</td>
+                        <td class="px-6 py-4 text-center">{{ $player->total_points }}</td>
+                        <td class="px-6 py-4 text-center">{{ $player->total_games_won }}</td>
+                        <td class="px-6 py-4 text-center">{{ $player->total_cups_won }}</td>
+                        {{--                        <td class="px-6 py-4">{{ number_format($player->average_points ?? 0, 2) }}</td>--}}
                     </tr>
                 @endforeach
                 </tbody>

@@ -27,22 +27,4 @@
             </span>
         </a>
     </x-heading.sub>
-    <div class="flex flex-col gap-4 pt-4">
-        <div class="flex items-center text-primary text-xs gap-x-1">
-            <img class="size-8 rounded-full object-cover mr-2"
-                 src="{{ $post->author->profile_photo_url }}"
-                 alt="{{ $post->author->username }}"/>
-            <div> by <a href="#" class="text-secondary">{{ ucfirst($post->author->username) }}</a> at</div>
-            <div> {{ $post->getFormattedDate() }}</div>
-        </div>
-        <div class="text-primary text-sm">
-            {!! $post->shortBody() !!}
-        </div>
-    </div>
-    <x-slot name="footer">
-        <a class="px-3 py-2 text-xs font-medium text-center text-primary bg-secondary rounded-lg hover:bg-secondary/60 focus:ring-4 focus:outline-none focus:ring-ring"
-           href="{{ route('post.show', $post->slug)  }}">
-            Read More
-        </a>
-    </x-slot>
 </x-card.blog>

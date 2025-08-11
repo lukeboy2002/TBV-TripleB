@@ -75,6 +75,11 @@ class Likes extends Component
         $this->likeable->likes()->where('user_id', Auth::id())->delete();
         $this->likeable->decrement('likes_count');
         $this->isLiked = false;
+
+        // Notify the post stats
+        if (method_exists($this->likeable, 'getMorphClass') && $this->type === 'post') {
+            $this->dispatch('postUnliked');
+        }
     }
 
     protected function like(): void
@@ -88,6 +93,11 @@ class Likes extends Component
         ]);
         $this->likeable->increment('likes_count');
         $this->isLiked = true;
+
+        // Notify the post stats
+        if (method_exists($this->likeable, 'getMorphClass') && $this->type === 'post') {
+            $this->dispatch('postLiked');
+        }
     }
 
     public function render()

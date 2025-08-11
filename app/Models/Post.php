@@ -41,6 +41,7 @@ class Post extends Model implements HasMedia
         'updated_at',
         'featured',
         'likes_count',
+        'views_count',
     ];
 
     /**

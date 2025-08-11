@@ -1,6 +1,5 @@
 <x-app-layout title="Blog">
     <x-slot name="header">
-
         <x-heading.main>Game Management</x-heading.main>
     </x-slot>
     <livewire:games.games-manager/>

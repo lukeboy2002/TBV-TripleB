@@ -12,11 +12,10 @@
             <x-card.album :album="$album"/>
         @endforeach
     </div>
-
-    {{--    <x-slot name="side">--}}
-    {{--        <div class="w-full flex flex-col gap-6 md:gap-12">--}}
-    {{--            <x-search/>--}}
-    {{--            <x-category-list/>--}}
-    {{--        </div>--}}
-    {{--    </x-slot>--}}
+    
+    <x-slot name="side">
+        <div class="w-full flex flex-col gap-6 md:gap-12">
+            <livewire:albums.latest-album-image/>
+        </div>
+    </x-slot>
 </x-app-layout>

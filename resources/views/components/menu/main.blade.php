@@ -17,7 +17,3 @@
 <x-link.navigation href="{{ route('post.index') }}" :active="request()->routeIs('post.*')" icon="newspaper">
     Blog
 </x-link.navigation>
-
-<x-link.navigation href="{{ route('contact') }}" :active="request()->routeIs('contact')" icon="receipt-text">
-    Contact
-</x-link.navigation>

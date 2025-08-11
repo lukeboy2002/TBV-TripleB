@@ -1,5 +1,7 @@
 <x-app-layout title="Show Album">
-    <x-heading.main>{{ $album->name }}</x-heading.main>
+    <x-slot name="header">
+        <x-heading.main>{{ $album->name }}</x-heading.main>
+    </x-slot>
     <x-card.default>
         <div x-data="{ open:false, src:'', alt:'' }">
             <div class="relative w-full">

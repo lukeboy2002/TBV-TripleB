@@ -19,6 +19,7 @@ class PlayerStats extends Component
     protected $columnMap = [
         'played' => 'total_games_played',
         'points' => 'total_points',
+        'avg' => 'average_points',
         'won' => 'total_games_won',
         'cup' => 'total_cups_won',
         'username' => 'username',
@@ -43,7 +44,6 @@ class PlayerStats extends Component
     //        // The component will automatically refresh and reload the player statistics
     //    }
 
-    //    TODO: add avarage points column
     #[On('game-completed')]
     public function render()
     {
@@ -54,6 +54,7 @@ class PlayerStats extends Component
             ->with('profile')
             ->withCount(['gamePlayers as total_games_played'])
             ->withSum('gamePlayers as total_points', 'points')
+            ->withAvg('gamePlayers as average_points', 'points')
             ->withCount(['gamePlayers as total_games_won' => function ($query) {
                 $query->where('is_winner', true);
             }])

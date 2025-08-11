@@ -1,5 +1,7 @@
 <x-app-layout title="Create Album">
-    <x-heading.main>Create Album</x-heading.main>
+    <x-slot name="header">
+        <x-heading.main>Create Album</x-heading.main>
+    </x-slot>
     <x-card.default>
         <form action="{{ route('album.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

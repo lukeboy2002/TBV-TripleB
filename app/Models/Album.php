@@ -7,6 +7,7 @@ use Database\Factories\AlbumFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Str;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -44,6 +45,16 @@ class Album extends Model implements HasMedia
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function shortName($smallChars = 20, $midChars = 15, $largeChars = 50): array
+    {
+        return [
+            'small' => Str::limit(strip_tags($this->name), $smallChars),
+            'mid' => Str::limit(strip_tags($this->name), $midChars),
+            'large' => Str::limit(strip_tags($this->name), $largeChars),
+        ];
+
     }
 
     public function registerMediaCollections(): void

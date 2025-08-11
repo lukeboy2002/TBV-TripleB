@@ -1,6 +1,7 @@
 <x-app-layout title="Post">
-
-    <x-heading.main>{{ $post->title }}</x-heading.main>
+    <x-slot name="header">
+        <x-heading.main>{{ $post->title }}</x-heading.main>
+    </x-slot>
     <x-card.blog>
         <x-slot name="header">
             <a href="{{ route('post.show', $post->slug) }}" class="block overflow-hidden">
@@ -8,6 +9,8 @@
                      src="{{ Storage::url($post->image) }}"
                      alt="{{ $post->title }}"/>
             </a>
+
+            <livewire:posts.stats :post="$post"/>
         </x-slot>
         <div class="flex justify-between p-4">
             <div class="flex items-center text-primary text-xs gap-x-1">

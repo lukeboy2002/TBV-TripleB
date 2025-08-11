@@ -1,6 +1,8 @@
 <x-app-layout title="Edit Album">
-    <x-heading.main>Album edit</x-heading.main>
-
+    <x-slot name="header">
+        <x-heading.main>Album edit</x-heading.main>
+    </x-slot>
+    
     <x-heading.sub>Album</x-heading.sub>
     <x-card.default>
         <form action="{{ route('album.update', $album) }}" method="POST" enctype="multipart/form-data">
