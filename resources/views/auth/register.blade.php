@@ -29,6 +29,14 @@
                             </div>
 
                             <div>
+                                <x-form.label for="email" value="{{ __('Email') }}"/>
+                                <x-form.input id="email" class="block mt-1 w-full" type="email" name="email"
+                                              :value="old('email')"
+                                              required autocomplete="email"/>
+                                <x-form.error for="email"/>
+                            </div>
+
+                            <div>
                                 <x-form.label for="password" value="{{ __('Password') }}"/>
                                 <x-form.input id="password" class="block mt-1 w-full" type="password" name="password"
                                               required
