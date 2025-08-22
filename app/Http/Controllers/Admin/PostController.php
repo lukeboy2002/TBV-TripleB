@@ -59,7 +59,7 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'body' => ['required', 'min:10'],
             'category_id' => ['required', 'exists:categories,id'],
-            'featured' => ['nullable', 'boolean'],
+            'featured' => ['sometimes', 'boolean'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -79,7 +79,7 @@ class PostController extends Controller
             'category_id' => $request['category_id'],
             'image' => isset($newFilename) ? "posts/$newFilename" : $post->image,
             'body' => $request['body'],
-            'featured' => $request['featured'],
+            'featured' => $request->boolean('featured'), // dit geeft false als niet aanwezig
             'updated_at' => NOW(),
         ]);
 
@@ -102,7 +102,7 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'body' => ['required', 'min:10'],
             'category_id' => ['required', 'exists:categories,id'],
-            'featured' => ['nullable', 'boolean'],
+            'featured' => ['sometimes', 'boolean'],
         ]);
 
         if ($request->hasFile('image')) {
@@ -118,7 +118,7 @@ class PostController extends Controller
             'slug' => $slug,
             'image' => $path,
             'body' => $request['body'],
-            'featured' => $request['featured'],
+            'featured' => $request->boolean('featured'),
             'published_at' => $request['published_at'],
         ]);
 

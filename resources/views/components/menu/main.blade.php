@@ -17,3 +17,7 @@
 <x-link.navigation href="{{ route('post.index') }}" :active="request()->routeIs('post.*')" icon="newspaper">
     Blog
 </x-link.navigation>
+
+<x-link.navigation href="{{ route('agenda.index') }}" :active="request()->routeIs('agenda.*')" icon="calendar-days">
+    Events
+</x-link.navigation>

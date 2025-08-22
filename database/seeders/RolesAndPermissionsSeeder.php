@@ -56,6 +56,12 @@ class RolesAndPermissionsSeeder extends Seeder
         $albumPermission3 = Permission::create(['name' => 'update:album']);
         $albumPermission4 = Permission::create(['name' => 'delete:album']);
 
+        // AGENDA MODEL
+        $eventPermission1 = Permission::create(['name' => 'create:event']);
+        $eventPermission2 = Permission::create(['name' => 'view:event']);
+        $eventPermission3 = Permission::create(['name' => 'update:event']);
+        $eventPermission4 = Permission::create(['name' => 'delete:event']);
+
         // CREATE ROLES
         $userRole = Role::create(['name' => 'user'])->syncPermissions([
             $miscPermission,
@@ -86,6 +92,10 @@ class RolesAndPermissionsSeeder extends Seeder
             $albumPermission2,
             $albumPermission3,
             $albumPermission4,
+            $eventPermission1,
+            $eventPermission2,
+            $eventPermission3,
+            $eventPermission4,
         ]);
         $memberRole = Role::create(['name' => 'member'])->syncPermissions([
             $userPermission1,
@@ -96,6 +106,8 @@ class RolesAndPermissionsSeeder extends Seeder
             $gamePermission2,
             $albumPermission1,
             $albumPermission2,
+            $eventPermission1,
+            $eventPermission2,
         ]);
     }
 }
