@@ -1,6 +1,6 @@
 <x-card.side>
     <x-slot name="header">
-        Search
+        Zoeken
     </x-slot>
     <div x-data="{ query: '{{ request('search', '') }}'}"
          x-on:keyup.enter.window="$dispatch('search',{ search : query})"

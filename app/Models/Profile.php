@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Database\Factories\ProfileFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,7 +38,11 @@ class Profile extends Model
 
     public function getBirthdayDate()
     {
-        return $this->birthday->format('j F Y');
+        Carbon::setLocale('nl'); // Stel de taal in op Nederlands
+
+        return $this->birthday->translatedFormat('j F Y');
+
+        //        return $this->birthday->format('j F Y');
     }
 
     /**

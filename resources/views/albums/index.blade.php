@@ -1,19 +1,21 @@
-<x-app-layout title="Blog">
+<x-app-layout>
     <x-slot name="header">
-        <x-heading.main>Albums</x-heading.main>
+        <x-heading.main>Foto Albums</x-heading.main>
     </x-slot>
-    @can('create:event')
+    @can('create:album')
         <div class="flex justify-end space-x-2 mb-4">
-            <x-link.button href="{{ route('agenda.create') }}">New Event</x-link.button>
+            <x-link.button href="{{ route('album.create') }}">Nieuw Album</x-link.button>
         </div>
     @endcan
     <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
-        EVENTS
+        @foreach($albums as $album)
+            <x-card.album :album="$album"/>
+        @endforeach
     </div>
 
     <x-slot name="side">
         <div class="w-full flex flex-col gap-6 md:gap-12">
-            Latest Event
+            <livewire:albums.latest-album-image/>
         </div>
     </x-slot>
 </x-app-layout>

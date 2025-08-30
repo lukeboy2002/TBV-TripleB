@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Livewire\Agenda;
 
 use App\Models\Agenda;
+use Livewire\Component;
 
-class AgendaController extends Controller
+class Upcoming extends Component
 {
-    public function index()
+    public function render()
     {
         $query = Agenda::query();
 
@@ -15,18 +16,11 @@ class AgendaController extends Controller
             $query->where('private', false);
         }
 
-        $agendas = $query
+        $agenda = $query
             ->orderBy('date')
-            ->paginate(10);
+            ->first();
 
-        return view('agenda.index', [
-            'agendas' => $agendas,
-        ]);
-    }
-
-    public function show(Agenda $agenda)
-    {
-        return view('agenda.show', [
+        return view('livewire.agenda.upcoming', [
             'agenda' => $agenda,
         ]);
     }

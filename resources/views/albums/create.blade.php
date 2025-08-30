@@ -1,6 +1,6 @@
 <x-app-layout title="Create Album">
     <x-slot name="header">
-        <x-heading.main>Create Album</x-heading.main>
+        <x-heading.main>Nieuw fotoalbum</x-heading.main>
     </x-slot>
     <x-card.default>
         <form action="{{ route('album.store') }}" method="POST" enctype="multipart/form-data">
@@ -8,7 +8,7 @@
             <div class="lg:flex gap-8 w-full">
                 <div class="flex-row space-y-6 w-full  lg:w-3/4 px-3">
                     <div>
-                        <x-form.label for="name" value="{{ __('Name') }}"/>
+                        <x-form.label for="name" value="{{ __('Naam') }}"/>
                         <x-form.input id="name"
                                       name="name"
                                       type="text"

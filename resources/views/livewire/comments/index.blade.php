@@ -1,6 +1,6 @@
 <div class="mt-4">
-    <x-heading.sub>Comments ({{ $commentsCount }})</x-heading.sub>
-    
+    <x-heading.sub>Reacties ({{ $commentsCount }})</x-heading.sub>
+
     <livewire:comments.create :post="$post"/>
 
     <x-card.default>
@@ -13,7 +13,7 @@
                 {{ $comments->links() }}
             </div>
         @else
-            <p class="text-primary text-sm p-4">No comments</p>
+            <p class="text-primary text-sm p-4">geen reacties</p>
         @endif
     </x-card.default>
 </div>

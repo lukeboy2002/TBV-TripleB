@@ -1,15 +1,15 @@
 <x-card.side>
     <x-slot name="header">
         <div class="flex items-center gap-1">
-            latest game
+            Laatste wedstijd
         </div>
     </x-slot>
     @if(!$latestGame)
-        <div class="text-primary-muted p-2">No completed games yet.</div>
+        <div class="text-primary-muted p-2">Geen wedstijden.</div>
     @else
         <div class="p-4">
             <div class="text-sm text-secondary font-black mb-3">
-                Played: {{ optional($latestGame->date)->format('M d, Y H:i') }}
+                Gespeeld: {{ optional($latestGame->date)->format('M d, Y H:i') }}
             </div>
 
             <div class="divide-y divide-secondary/30">
@@ -20,12 +20,12 @@
                                 {{ ucfirst($player->user->username ?? ($player->user->name ?? 'Unknown')) }}
                             </div>
                             @if($player->is_winner)
-                                <span class="text-xs bg-success/20 text-success px-2 py-0.5 rounded">Winner</span>
+                                <span class="text-xs bg-success/20 text-success px-2 py-0.5 rounded">Winnaar</span>
                             @endif
                         </div>
                         <div class="text-sm text-primary-muted">
                             @if(!is_null($player->points))
-                                <span class="ml-2">• Points: {{ $player->points }}</span>
+                                <span class="ml-2">• Punten: {{ $player->points }}</span>
                             @endif
                         </div>
                     </div>

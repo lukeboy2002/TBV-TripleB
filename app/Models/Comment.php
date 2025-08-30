@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Database\Factories\CommentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -54,7 +55,11 @@ class Comment extends Model
 
     public function getFormattedDate()
     {
-        return $this->created_at->format('j F Y');
+        Carbon::setLocale('nl'); // Stel de taal in op Nederlands
+
+        return $this->created_at->translatedFormat('j F Y');
+
+        //        return $this->created_at->format('j F Y');
     }
 
     /**

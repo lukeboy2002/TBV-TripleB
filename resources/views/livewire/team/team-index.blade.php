@@ -32,59 +32,59 @@
             </div>
         </div>
 
-        <aside class="lg:flex w-full flex-col pt-4 px-3 lg:w-1/4 gap-4">
+        <aside class="lg:flex w-full flex-col pt-4 px-3 lg:w-1/3 gap-4">
 
             <div class="rounded-lg bg-background shadow-xs border border-secondary/30 p-2 relative">
                 <div wire:loading
                      class="rounded-lg absolute inset-0 flex items-center justify-center bg-background/90 z-10">
                 </div>
-                <x-heading.sub>Player Info</x-heading.sub>
+                <x-heading.sub>Speler Info</x-heading.sub>
                 <div class="relative overflow-x-auto">
                     <table class="w-full text-sm text-left rtl:text-right">
                         <tbody>
-                        <tr class="text-primary-muted font-medium whitespace-nowrap">
+                        <tr class="text-primary-muted font-medium">
                             <th scope="row" class="py-4">
-                                Name
+                                Naam
                             </th>
                             <td class="py-4 text-primary">
                                 {{ $user->name }}
                             </td>
                         </tr>
-                        <tr class="text-primary-muted font-medium whitespace-nowrap">
+                        <tr class="text-primary-muted font-medium">
                             <th scope="row" class="py-4">
-                                City
+                                Woonplaats
                             </th>
                             <td class="py-4 text-primary">
                                 {{ $user->profile->city }}
                             </td>
                         </tr>
-                        <tr class="text-primary-muted font-medium whitespace-nowrap">
+                        <tr class="text-primary-muted font-medium">
                             <th scope="row" class="py-4">
-                                Points
+                                Aantal Punten
                             </th>
                             <td class="py-4 text-primary">
                                 {{ $user->total_points }}
                             </td>
                         </tr>
-                        <tr class="text-primary-muted font-medium whitespace-nowrap">
+                        <tr class="text-primary-muted font-medium">
                             <th scope="row" class="py-4">
-                                Played Games
+                                Gespeelde Wedstijden
                             </th>
                             <td class="py-4 text-primary">
                                 {{ $user->total_games_played }}
                             </td>
                         </tr>
-                        <tr class="text-primary-muted font-medium whitespace-nowrap">
+                        <tr class="text-primary-muted font-medium">
                             <th scope="row" class="py-4">
-                                Games Won
+                                Gewonnen Wedstijden
                             </th>
                             <td class="py-4 text-primary">
                                 {{ $user->total_games_won }}
                             </td>
                         </tr>
-                        <tr class="text-primary-muted font-medium whitespace-nowrap">
+                        <tr class="text-primary-muted font-medium">
                             <th scope="row" class="py-4">
-                                Cups
+                                Gewonnen bekers
                             </th>
                             <td class="py-4 text-primary">
                                 {{ $user->total_cups_won }}

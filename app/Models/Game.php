@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -26,6 +27,15 @@ class Game extends Model
     public function gamePlayers(): HasMany
     {
         return $this->hasMany(GamePlayer::class);
+    }
+
+    //    TODO SET DATE IN BLADE
+    public function getFormattedDate()
+    {
+        Carbon::setLocale('nl'); // Stel de taal in op Nederlands
+
+        return $this->created_at->translatedFormat('j F Y');
+
     }
 
     /**

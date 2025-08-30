@@ -1,12 +1,12 @@
 <div>
     @if($currentGame)
         <div class="mb-6">
-            <x-heading.sub>Current Game in Progress</x-heading.sub>
+            <x-heading.sub>Huidige spel</x-heading.sub>
             <x-card.default>
-                <p class="text-sm text-secondary font-black">Started: {{ $currentGame->date->format('M d, Y H:i') }}</p>
+                <p class="text-sm text-secondary font-black">Gestart: {{ $currentGame->date->format('M d, Y H:i') }}</p>
 
                 <div class="mt-4">
-                    <h5 class="font-medium text-primary">Remaining Players:</h5>
+                    <h5 class="font-medium text-primary">Nog aanwezige spelers:</h5>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
                         @foreach($currentGame->gamePlayers as $gamePlayer)
                             @if(!in_array($gamePlayer->user_id, $eliminatedPlayers))
@@ -18,7 +18,7 @@
                                                 class="px-3 py-1 bg-error text-primary rounded hover:bg-error/50 flex items-center gap-2"
                                         >
                                             <x-lucide-paintbrush class="w-4 h-4"/>
-                                            Eliminate
+                                            uit het spel
                                         </button>
                                     </div>
                                 </div>
@@ -29,7 +29,7 @@
 
                 @if(count($eliminatedPlayers) > 0)
                     <div class="mt-4">
-                        <h5 class="font-medium text-primary">Eliminated Players:</h5>
+                        <h5 class="font-medium text-primary">Spelers uit het spel:</h5>
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
                             @foreach($currentGame->gamePlayers()->whereIn('user_id', $eliminatedPlayers)->orderBy('position')->get() as $gamePlayer)
                                 <div class="p-3 border rounded-lg {{ $gamePlayer->position == 1 ? 'bg-danger' : '' }}">
@@ -37,7 +37,7 @@
                                         <div>
                                             <span class="font-medium text-primary">{{ ucfirst($gamePlayer->user->username) }}</span>
                                             <span class="text-sm text-primary block">
-                                            Position: {{ $gamePlayer->position }} | Points: {{ $gamePlayer->points }}
+                                            Positie: {{ $gamePlayer->position }} | Punten: {{ $gamePlayer->points }}
                                         </span>
                                         </div>
 
@@ -47,14 +47,14 @@
                                                        id="cup-photo-{{ $gamePlayer->id }}">
                                                 <label for="cup-photo-{{ $gamePlayer->id }}"
                                                        class="cursor-pointer px-3 py-1 border border-border-secondary text-white text-center rounded hover:bg-danger-hover">
-                                                    Upload Cup Photo
+                                                    Upload foto
                                                 </label>
                                                 <x-form.error for="cupPhoto" class="mt-2"/>
 
                                                 @if($cupPhoto)
                                                     <x-button.secondary
                                                             wire:click="uploadCupPhoto({{ $gamePlayer->user_id }})">
-                                                        Save Photo
+                                                        Save
                                                     </x-button.secondary>
                                                 @endif
                                             </div>
@@ -70,17 +70,17 @@
     @else
         @if($showGameForm)
             <div class="mb-6">
-                <x-heading.sub>New Game</x-heading.sub>
+                <x-heading.sub>Nieuwe wedstijd</x-heading.sub>
                 <x-card.default>
                     <form wire:submit.prevent="startNewGame">
                         <div class="my-4">
-                            <x-form.label for="gameDate" value="{{ __('Game date') }}" class="pb-2"/>
+                            <x-form.label for="gameDate" value="{{ __('Datum') }}" class="pb-2"/>
                             <x-form.input type="datetime-local" wire:model="gameDate" class="w-full"/>
                             <x-form.error for="gameDate" class="mt-2"/>
                         </div>
 
                         <div class="mb-4">
-                            <x-form.label for="selectedPlayers" value="{{ __('Select Players') }}"/>
+                            <x-form.label for="selectedPlayers" value="{{ __('Selecteer spelers') }}"/>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
                                 @foreach($availablePlayers as $player)
                                     <label class="flex items-center text-primary space-x-2 p-2 border border-secondary/30 rounded-lg cursor-pointer hover:bg-background-hover hover:text-secondary hover:border-secondary">
@@ -97,7 +97,7 @@
                                 Cancel
                             </x-button.secondary>
                             <x-button.default type="submit">
-                                Start Game
+                                Nieuwe wedstijd starten
                             </x-button.default>
                         </div>
                     </form>
@@ -108,34 +108,33 @@
                 <div class="flex justify-end space-x-2">
                     <x-button.default
                             wire:click="$set('showGameForm', true)">
-                        New Game
+                        Nieuwe wedstijd starten
                     </x-button.default>
                 </div>
             @endcan
         @endif
     @endif
 
-    <x-heading.sub>Recent Games</x-heading.sub>
+    <x-heading.sub>Recente wedstijden</x-heading.sub>
     <x-card.default>
         @if($recentGames->isEmpty())
-            <p class="text-primary-muted">No completed games yet.</p>
+            <p class="text-primary-muted">Geen wedstijden tot nu toe</p>
         @else
             <div class="overflow-x-auto">
                 <table class="min-w-full divide-y divide-secondary/30">
                     <thead class="bg-background">
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider">
-                            Date
+                            Datum
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider">
-                            Players
+                            Spelers
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider">
-                            Cup
-                            Winner
+                            Winnaar beker
                         </th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-primary-muted uppercase tracking-wider">
-                            Winner
+                            Winnaar
                         </th>
                     </tr>
                     </thead>

@@ -17,7 +17,9 @@
                 <img class="size-8 rounded-full object-cover mr-2"
                      src="{{ $post->author->profile_photo_url }}"
                      alt="{{ $post->author->username }}"/>
-                <div> by <a href="#" class="text-secondary">{{ ucfirst($post->author->username) }}</a> at</div>
+                <div> van <a href="#" class="text-secondary">
+                        {{ ucfirst($post->author->username) }}</a> gepubliseerd op
+                </div>
                 <div> {{ $post->getFormattedDate() }}</div>
             </div>
             <div class="flex items-center text-primary text-xs gap-x-1">
@@ -37,7 +39,7 @@
         <x-slot name="footer">
             <div class="flex items-center justify-between px-6">
                 <div class="flex items-center gap-x-2 text-primary">
-                    <div class="font-bold uppercase mr-2">Share article:</div>
+                    <div class="font-bold uppercase mr-2">deel post:</div>
                     <x-link.icon
                             href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url(route('post.show', $post->slug, false))) }}"
                             icon="facebook"

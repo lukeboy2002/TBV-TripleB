@@ -17,6 +17,9 @@
 
                 <livewire:actions.agenda-actions :agenda="$agenda"/>
             </div>
+            <div class="px-4 pt-3">
+                <p class="text-sm text-primary-muted">{{ $agenda->getFormattedDateTime() }}</p>
+            </div>
             <div class="content text-primary pt-4 px-4">
                 {!! $agenda->description !!}
             </div>

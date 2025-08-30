@@ -1,10 +1,10 @@
 <x-app-layout title="Events">
     <x-slot name="header">
-        <x-heading.main>Events</x-heading.main>
+        <x-heading.main>Agenda</x-heading.main>
     </x-slot>
     @can('create:event')
         <div class="flex justify-end space-x-2 mb-4">
-            <x-link.button href="{{ route('agenda.create') }}">New Event</x-link.button>
+            <x-link.button href="{{ route('agenda.create') }}">Nieuw item</x-link.button>
         </div>
     @endcan
 
@@ -26,7 +26,7 @@
                                     <div>
                                         <p class="text-sm font-medium text-secondary truncate">{{ $agenda->name }}</p>
                                         <p class="flex items-center text-sm text-primary-muted">
-                                            <span>{{ $agenda->date->format('F j, Y g:i A') }}</span>
+                                            <span>{{ $agenda->getFormattedDateTime() }}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -61,7 +61,7 @@
 
     <x-slot name="side">
         <div class="w-full flex flex-col gap-6 md:gap-12">
-            Latest Event
+            <livewire:agenda.upcoming/>
         </div>
     </x-slot>
 </x-app-layout>

@@ -22,7 +22,7 @@
                         <!-- Modal header -->
                         <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-secondary/30">
                             <h3 class="text-xl font-semibold text-secondary font-secondary">
-                                Delete Event
+                                Verwijder agenda item
                             </h3>
                             <x-button.icon type="button"
                                            class="text-secondary"
@@ -36,13 +36,13 @@
                             <div class="flex justify-center mb-4 text-error" aria-hidden="true">
                                 <x-lucide-circle-alert class="h-12 w-12"/>
                             </div>
-                            <h3 class="mb-5 text-lg font-normal text-primary-muted">Are you sure you
-                                want to delete this event</h3>
+                            <h3 class="mb-5 text-lg font-normal text-primary-muted">Weet je zeker dat je dit agenda item
+                                wilt verwijderen?</h3>
                             <x-button.default wire:click.prevent="deleteAgenda" type="button">
-                                Yes, I'm sure
+                                Ja
                             </x-button.default>
                             <x-button.secondary wire:click="toggleModal" type="button">
-                                No, cancel
+                                Nee
                             </x-button.secondary>
                         </div>
                     </div>

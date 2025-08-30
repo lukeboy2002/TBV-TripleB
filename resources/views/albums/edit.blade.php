@@ -1,8 +1,8 @@
 <x-app-layout title="Edit Album">
     <x-slot name="header">
-        <x-heading.main>Album edit</x-heading.main>
+        <x-heading.main>Bewerk Foto Album</x-heading.main>
     </x-slot>
-    
+
     <x-heading.sub>Album</x-heading.sub>
     <x-card.default>
         <form action="{{ route('album.update', $album) }}" method="POST" enctype="multipart/form-data">
@@ -11,7 +11,7 @@
             <div class="lg:flex gap-8 w-full">
                 <div class="flex-row space-y-6 w-full  lg:w-3/4 px-3">
                     <div>
-                        <x-form.label for="name" value="{{ __('Name') }}"/>
+                        <x-form.label for="name" value="{{ __('Album Naam') }}"/>
                         <x-form.input id="name"
                                       name="name"
                                       type="text"
@@ -25,7 +25,7 @@
                 </div>
                 <aside class="w-full space-y-4 lg:w-1/4 flex-col pt-4 px-3 gap-4">
                     <div>
-                        <x-heading.sub>Album Image</x-heading.sub>
+                        <x-heading.sub>Album Foto</x-heading.sub>
                         <div class="relative group">
                             @if($album->image)
                                 <img src="{{ asset($album->image) }}"
@@ -64,7 +64,7 @@
             <form method="POST" action="{{ route('album.upload', $album->slug) }}" enctype="multipart/form-data">
                 @csrf
                 <div>
-                    <x-form.label for="image" value="Image"/>
+                    <x-form.label for="image" value="Foto"/>
                     <x-form.input type="file" id="image" name="image"/>
                     <x-form.error for="image" class="mt-2"/>
                 </div>
@@ -72,7 +72,8 @@
                     <x-button.default>Upload</x-button.default>
                 </div>
             </form>
-
+            {{--            TODO UPLOAD MULTIPLE IMAGES--}}
+            {{--            TODO CHECK DELETE IMAGE--}}
             <div class="my-6">
                 <h5 class="font-medium text-primary">Images:</h5>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-8 py-4">
@@ -86,17 +87,17 @@
                                       action="{{ route('album.image.destroy', [$album->id, $photo->id]) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <x-button.default class="px-3 py-2 text-xs font-medium">Delete</x-button.default>
+                                    <x-button.default class="px-3 py-2 text-xs font-medium">Verwijder</x-button.default>
                                 </form>
                             </div>
                         </div>
                     @empty
-                        <p class="text-sm text-error">No images yet.</p>
+                        <p class="text-sm text-error">Nog geen foto's in dit album</p>
                     @endforelse
                 </div>
             </div>
             <div class="flex justify-end items-center">
-                <x-link.button href="{{ route('albums.show', $album) }}">Ready</x-link.button>
+                <x-link.button href="{{ route('albums.show', $album) }}">Klaar</x-link.button>
             </div>
         </x-card.default>
     </div>

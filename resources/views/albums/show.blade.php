@@ -27,7 +27,7 @@
             @can('update', $album)
                 <div class="mt-4 flex justify-end items-center gap-1">
                     <x-link.icon href="{{ route('album.edit', $album->slug) }}" icon="image-plus" class="text-edit"/>
-                    <span class="text-xs text-primary">add images</span>
+                    <span class="text-xs text-primary">voeg foto's toe</span>
                 </div>
             @endcan
 

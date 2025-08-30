@@ -39,7 +39,7 @@
                         <a wire:click.prevent="startReply"
                            class="inline-flex items-center px-4 text-sm text-primary hover:text-secondary focus:outline-none focus:text-secondary transition ease-in-out duration-150">
                             <x-lucide-message-square-reply class="h-4 w-4 mr-1"/>
-                            Reply
+                            Reageer
                         </a>
                     @endauth
                 </div>
@@ -64,14 +64,14 @@
             <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
                 <div class="fixed inset-0 transition-opacity bg-background/75" aria-hidden="true"
                      wire:click="toggleModal"></div>
-
+                {{--                TODO CHECK MODAL--}}
                 <!-- Main modal -->
                 <div class="flex justify-between items-center h-screen max-w-md mx-auto">
                     <div class="relative bg-background rounded-lg shadow-sm w-full">
                         <!-- Modal header -->
                         <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
                             <h3 class="text-xl font-semibold text-secondary font-secondary">
-                                Delete Comment
+                                Verwijder reactie
                             </h3>
                             <button type="button"
                                     class="end-2.5 text-primary hover:text-secondary text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
@@ -85,13 +85,13 @@
                             <div class="flex justify-center mb-4 text-danger" aria-hidden="true">
                                 <x-lucide-circle-alert class="h-12 w-12"/>
                             </div>
-                            <h3 class="mb-5 text-lg font-normal text-primary-muted">Are you sure you
-                                want to delete this comment?</h3>
+                            <h3 class="mb-5 text-lg font-normal text-primary-muted">Weet je zeker dat je deze reacties
+                                wilt verwijderen?</h3>
                             <x-button.default wire:click.prevent="deleteComment" type="button">
-                                Yes, I'm sure
+                                Ja
                             </x-button.default>
                             <x-button.secondary wire:click="toggleModal" type="button">
-                                No, cancel
+                                Nee
                             </x-button.secondary>
                         </div>
                     </div>

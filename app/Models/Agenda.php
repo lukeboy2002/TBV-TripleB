@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,10 +27,12 @@ class Agenda extends Model implements HasMedia
         'slug',
         'description',
         'date',
+        'end_date',
         'image',
         'private',
     ];
 
+    //    TODO ADD MULTIDATE, WEEKEND
     /**
      * Get the route key for the model.
      *
@@ -62,6 +65,26 @@ class Agenda extends Model implements HasMedia
         ];
     }
 
+    public function getFormattedDateTime()
+    {
+        Carbon::setLocale('nl'); // Stel de taal in op Nederlands
+
+        $start = $this->date?->translatedFormat('j F Y, H:i');
+        $end = $this->end_date ? $this->end_date->translatedFormat('j F Y, H:i') : null;
+
+        return $end ? ($start.' - '.$end) : $start;
+    }
+
+    public function getFormattedDate()
+    {
+        Carbon::setLocale('nl'); // Stel de taal in op Nederlands
+
+        $start = $this->date?->translatedFormat('j F Y');
+        $end = $this->end_date ? $this->end_date->translatedFormat('j F Y') : null;
+
+        return $end ? ($start.' - '.$end) : $start;
+    }
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('agendas');
@@ -84,6 +107,7 @@ class Agenda extends Model implements HasMedia
     {
         return [
             'date' => 'datetime',
+            'end_date' => 'datetime',
             'private' => 'boolean',
         ];
     }

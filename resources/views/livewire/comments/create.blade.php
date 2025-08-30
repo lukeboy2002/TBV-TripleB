@@ -18,7 +18,7 @@
                       name="comment"
                       class="bg-transparent text-sm text-primary-muted placeholder-primary-muted rounded-lg block w-full p-2.5 border border-secondary/30 focus:border-secondary focus:outline-none focus:ring-0"
                       :rows="isEdit || focused ? '2' : '1'"
-                      placeholder="Leave a comment"
+                      placeholder="Laat een reactie achter..."
                       required
             ></textarea>
                 <x-form.error for="comment" class="mt-2"/>
@@ -29,13 +29,13 @@
                     Cancel
                 </x-button.secondary>
                 <x-button.default wire:click="createComment" type="submit">
-                    Submit
+                    Verstuur
                 </x-button.default>
             </div>
         </div>
     @else
         <div class="flex justify-end items-center space-x-1 rounded-lg p-4">
-            <p class="text-primary text-xs">Only registered users can leave a comment.</p>
+            <p class="text-primary text-xs">Alleen geregistreerde gebruikers kunnen een reactie achterlaten.</p>
             <a href="{{route('login')}}"
                class="text-xs text-primary underline hover:text-secondary hover:underline focus:outline-none focus:text-secondary focus:underline">
                 login

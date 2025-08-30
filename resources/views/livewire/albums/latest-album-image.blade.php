@@ -1,11 +1,11 @@
 <x-card.side>
     <x-slot name="header">
         <div class="flex items-center gap-1">
-            latest photo
+            Laatste foto
         </div>
     </x-slot>
     @if(!$latestMedia || !$album)
-        <div class="text-primary-muted p-2">No album photos yet.</div>
+        <div class="text-primary-muted p-2">Geen foto's</div>
     @else
         <a href="{{ route('albums.show', $album->slug) }}" class="block">
             <img

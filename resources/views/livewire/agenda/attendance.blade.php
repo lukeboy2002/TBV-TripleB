@@ -1,5 +1,5 @@
 <x-card.side>
-    <x-slot name="header">Attendance</x-slot>
+    <x-slot name="header">Mijn Aanwezigheid</x-slot>
     @hasanyrole('admin|member')
     <div class="space-y-3">
         @if (session()->has('message'))
@@ -12,19 +12,19 @@
             <button type="button"
                     wire:click="setStatus('attending')"
                     class="w-full px-3 py-1 rounded border text-xs {{ $status === 'attending' ? 'bg-green-100 border-green-300 text-green-800' : 'border-secondary/30' }}">
-                Present
+                Aanwezig
             </button>
 
             <button type="button"
                     wire:click="setStatus('not_attending')"
                     class="w-full px-3 py-1 rounded border text-xs {{ $status === 'not_attending' ? 'bg-red-100 border-red-300 text-red-800' : 'border-secondary/30' }}">
-                Not present
+                Niet aanwezig
             </button>
 
             <button type="button"
                     wire:click="setStatus('maybe')"
                     class="w-full px-3 py-1 rounded border text-xs {{ $status === 'maybe' ? 'bg-yellow-100 border-yellow-300 text-yellow-800' : 'border-secondary/30' }}">
-                Don’t know yet
+                Mischien
             </button>
         </div>
     </div>

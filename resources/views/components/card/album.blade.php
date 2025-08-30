@@ -28,7 +28,7 @@
         <div class="flex justify-between items-center">
             <x-link.button
                     href="{{ route('albums.show', $album->slug) }}">
-                view album
+                bekijk album
             </x-link.button>
             <div class="flex gap-2 items-center">
                 @can('update', $album)

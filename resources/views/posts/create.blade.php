@@ -1,6 +1,6 @@
 <x-app-layout title="Create Post">
     <x-slot name="header">
-        <x-heading.main>Create new Post</x-heading.main>
+        <x-heading.main>Nieuwe Post</x-heading.main>
     </x-slot>
     <x-card.default>
         <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data"
@@ -8,14 +8,14 @@
             @csrf
             <div class="flex-row space-y-6 w-full  lg:w-3/4 px-3">
                 <div>
-                    <x-form.label for="title" value="{{ __('Title') }}"/>
+                    <x-form.label for="title" value="{{ __('Titel') }}"/>
                     <x-form.input id="title" class="w-full" type="text" name="title"
                                   :value="old('title')"
                                   required autofocus autocomplete="title"/>
                     <x-form.error for="title" class="mt-2"/>
                 </div>
                 <div>
-                    <x-form.label for="body" value="{{ __('Content') }}"/>
+                    <x-form.label for="body" value="{{ __('Beschrijving / post') }}"/>
                     <textarea id="body" name="body"
                               class="w-full text-primary-muted bg-transparent rounded-lg border-secondary/30 focus:border-secondary focus:ring-0"
                               rows="10"
@@ -34,7 +34,7 @@
                                        checked
                                 >
                                 <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-500 dark:peer-checked:bg-orange-500"></div>
-                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Featured</span>
+                                <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Spotlight</span>
                             </label>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
 
             <aside class="w-full space-y-4 lg:w-1/4 flex-col pt-4 px-3 gap-4">
                 <div>
-                    <x-heading.sub>Featured Image</x-heading.sub>
+                    <x-heading.sub>Post Afbeelding</x-heading.sub>
                     <div class="relative group">
                         <img id="preview-image"
                              src="{{ Storage::url('assets/placeholder.png') }}"
@@ -71,7 +71,7 @@
                 </div>
 
                 <div>
-                    <x-heading.sub>Category</x-heading.sub>
+                    <x-heading.sub>Categorie</x-heading.sub>
                     <x-form.select id="category" name="category_id"
                                    class="w-full text-sm bg-input border-border text-primary focus:border-border focus:ring-border rounded-md shadow-xs">
                         @foreach($categories as $category)
@@ -80,7 +80,8 @@
                     </x-form.select>
                 </div>
                 <div>
-                    <x-heading.sub>Publish date</x-heading.sub>
+                    {{--                    TODO SET DATE TO NOW--}}
+                    <x-heading.sub>Publicatiedatum</x-heading.sub>
                     <x-form.input
                             class="w-full"
                             type="date"

@@ -1,7 +1,7 @@
 <x-card.side>
     <x-slot name="header">
         <div class="flex items-center gap-1">
-            <span class="block xs:hidden md:hidden lg:block">Latest</span> Cup Winner
+            Beker winnaar
         </div>
     </x-slot>
     @if($winner)
@@ -15,6 +15,6 @@
             </div>
         </div>
     @else
-        <div class="text-primary-muted p-2">No cup winner available yet.</div>
+        <div class="text-primary-muted p-2">Geen beker winnaar</div>
     @endif
 </x-card.side>

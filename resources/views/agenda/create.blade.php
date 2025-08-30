@@ -1,6 +1,6 @@
 <x-app-layout title="Create Event">
     <x-slot name="header">
-        <x-heading.main>Create Event</x-heading.main>
+        <x-heading.main>Nieuw agenda Item</x-heading.main>
     </x-slot>
     <x-card.default>
         <form action="{{ route('agenda.store') }}" method="POST" enctype="multipart/form-data">
@@ -8,7 +8,7 @@
             <div class="lg:flex gap-8 w-full">
                 <div class="flex-row space-y-6 w-full  lg:w-3/4 px-3">
                     <div>
-                        <x-form.label for="name" value="{{ __('Name') }}"/>
+                        <x-form.label for="name" value="{{ __('Titel') }}"/>
                         <x-form.input id="name"
                                       name="name"
                                       type="text"
@@ -20,7 +20,7 @@
                         <x-form.error for="name"/>
                     </div>
                     <div>
-                        <x-form.label for="date" value="{{ __('Date & Time') }}"/>
+                        <x-form.label for="date" value="{{ __('Startdatum en tijd') }}"/>
                         <x-form.input id="date"
                                       name="date"
                                       type="datetime-local"
@@ -29,10 +29,21 @@
                                       required
                                       autofocus
                         />
-                        <x-form.error for="name"/>
+                        <p class="text-xs text-primary-muted mt-1">Kies een begindatum. Voor een meerdaags event vul ook een einddatum in.</p>
+                        <x-form.error for="date"/>
                     </div>
                     <div>
-                        <x-form.label for="description" value="{{ __('Content') }}"/>
+                        <x-form.label for="end_date" value="{{ __('Einddatum en tijd (optioneel)') }}"/>
+                        <x-form.input id="end_date"
+                                      name="end_date"
+                                      type="datetime-local"
+                                      class="block w-full"
+                                      :value="old('end_date')"
+                        />
+                        <x-form.error for="end_date"/>
+                    </div>
+                    <div>
+                        <x-form.label for="description" value="{{ __('Beschrijving') }}"/>
                         <textarea id="description" name="description"
                                   class="w-full text-primary-muted bg-transparent rounded-lg border-secondary/30 focus:border-secondary focus:ring-0"
                                   rows="10"
@@ -50,13 +61,13 @@
                                    checked
                             >
                             <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-500 dark:peer-checked:bg-orange-500"></div>
-                            <span class="ml-3 text-sm font-medium text-primary">Private</span>
+                            <span class="ml-3 text-sm font-medium text-primary">Prive <span class="text-xs italic">(alleen teamleden)</span></span>
                         </label>
                     </div>
                 </div>
                 <aside class="w-full space-y-4 lg:w-1/4 flex-col pt-4 px-3 gap-4">
                     <div>
-                        <x-heading.sub>Image</x-heading.sub>
+                        <x-heading.sub>Afbeelding</x-heading.sub>
                         <div class="relative group">
                             <img id="preview-image"
                                  src="{{ Storage::url('assets/placeholder.png') }}"

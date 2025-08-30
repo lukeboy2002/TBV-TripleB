@@ -1,5 +1,5 @@
 <div class="mt-6">
-    <x-heading.sub>Player Statistics</x-heading.sub>
+    <x-heading.sub>Standen</x-heading.sub>
     <x-card.default>
         <div class="overflow-x-auto">
             <table class="min-w-full divide-y divide-secondary/30">
@@ -7,23 +7,23 @@
                 <tr>
                     @include('livewire.sortable-th',[
                            'name' => 'username',
-                            'displayName' => 'Player'
+                            'displayName' => 'Username'
                        ])
                     @include('livewire.sortable-th',[
                            'name' => 'played',
-                            'displayName' => 'Games Played'
+                            'displayName' => 'Gespeeld'
                        ])
                     @include('livewire.sortable-th',[
                            'name' => 'points',
-                            'displayName' => 'Points'
+                            'displayName' => 'Punten'
                        ])
                     @include('livewire.sortable-th',[
                            'name' => 'won',
-                            'displayName' => 'Games Won'
+                            'displayName' => 'Gewonnen'
                        ])
                     @include('livewire.sortable-th',[
                            'name' => 'cup',
-                            'displayName' => 'Won Cup'
+                            'displayName' => 'Bekers'
                        ])
                     {{--                    @include('livewire.sortable-th',[--}}
                     {{--                           'name' => 'avg',--}}

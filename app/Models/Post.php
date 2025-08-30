@@ -76,7 +76,11 @@ class Post extends Model implements HasMedia
 
     public function getFormattedDate()
     {
-        return $this->published_at->format('j F Y');
+        Carbon::setLocale('nl'); // Stel de taal in op Nederlands
+
+        return $this->published_at->translatedFormat('j F Y');
+
+        //        return $this->published_at->format('j F Y');
     }
 
     public function scopePublished($query): void

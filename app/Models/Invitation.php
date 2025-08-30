@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Database\Factories\InvitationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -45,7 +46,10 @@ class Invitation extends Model
 
     public function getInvitationDate()
     {
-        return $this->invited_date->format('d F Y');
+        Carbon::setLocale('nl'); // Stel de taal in op Nederlands
+
+        return $this->invited_date->translatedFormat('j F Y');
+        //        return $this->invited_date->format('d F Y');
     }
 
     public function getRegisterTime()

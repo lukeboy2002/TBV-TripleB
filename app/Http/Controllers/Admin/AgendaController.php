@@ -58,6 +58,7 @@ class AgendaController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'min:10'],
             'date' => ['required', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:date'],
             'private' => ['sometimes', 'boolean'],
         ]);
 
@@ -79,6 +80,7 @@ class AgendaController extends Controller
             'image' => isset($newFilename) ? "agendas/$newFilename" : $agenda->image,
             'description' => $request['description'],
             'date' => $request['date'],
+            'end_date' => $request['end_date'] ?? null,
             'private' => $request->boolean('private'),
         ]);
 
@@ -101,6 +103,7 @@ class AgendaController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['required', 'min:10'],
             'date' => ['required', 'date'],
+            'end_date' => ['nullable', 'date', 'after_or_equal:date'],
             'private' => ['sometimes', 'boolean'],
         ]);
 
@@ -117,6 +120,7 @@ class AgendaController extends Controller
             'image' => $path,
             'description' => $request['description'],
             'date' => $request['date'],
+            'end_date' => $request['end_date'] ?? null,
             'private' => $request->boolean('private'), // dit geeft false als niet aanwezig
         ]);
 

@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-6">
     <x-card.side>
-        <x-slot name="header">Present</x-slot>
+        <x-slot name="header">Aanwezig</x-slot>
         @forelse($attending as $attendance)
             <div class="flex items-center gap-4 p-2">
                 <div class="flex-shrink-0">
@@ -10,12 +10,12 @@
                 <div class="text-sm font-medium text-secondary">{{ ucfirst($attendance->user->username) }}</div>
             </div>
         @empty
-            <div class="p-2 text-secondary">No one confirmed yet.</div>
+            <div class="p-2 text-secondary">Nog geen leden zijn aanwezig</div>
         @endforelse
     </x-card.side>
 
     <x-card.side>
-        <x-slot name="header">Not present</x-slot>
+        <x-slot name="header">Niet aanwezig</x-slot>
         @forelse($notAttending as $attendance)
             <div class="flex items-center gap-4 p-2">
                 <div class="flex-shrink-0">
@@ -25,12 +25,12 @@
                 <div class="text-sm font-medium text-secondary">{{ ucfirst($attendance->user->username) }}</div>
             </div>
         @empty
-            <div class="p-2 text-secondary">No members marked not present.</div>
+            <div class="p-2 text-secondary">Nog geen leden zijn niet aanwezig</div>
         @endforelse
     </x-card.side>
 
     <x-card.side>
-        <x-slot name="header">Maybe</x-slot>
+        <x-slot name="header">Misschien</x-slot>
         @forelse($maybe as $attendance)
             <div class="flex items-center gap-4 p-2">
                 <div class="flex-shrink-0">
@@ -40,7 +40,7 @@
                 <div class="text-sm font-medium text-secondary">{{ ucfirst($attendance->user->username) }}</div>
             </div>
         @empty
-            <div class="p-2 text-secondary">No undecided members.</div>
+            <div class="p-2 text-secondary">Nog geen leden zijn misschien aanwezig.</div>
         @endforelse
     </x-card.side>
 </div>

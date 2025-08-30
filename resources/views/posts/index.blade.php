@@ -4,7 +4,7 @@
     </x-slot>
     @can('create:post')
         <div class="flex justify-end space-x-2 mb-4">
-            <x-link.button href="{{ route('posts.create') }}">New Post</x-link.button>
+            <x-link.button href="{{ route('posts.create') }}">Nieuwe Post</x-link.button>
         </div>
     @endcan
     <livewire:posts.posts-index/>
