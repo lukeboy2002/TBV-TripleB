@@ -32,7 +32,6 @@ class Agenda extends Model implements HasMedia
         'private',
     ];
 
-    //    TODO ADD MULTIDATE, WEEKEND
     /**
      * Get the route key for the model.
      *

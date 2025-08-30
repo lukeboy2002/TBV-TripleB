@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->dateTime('date');
+            $table->dateTime('end_date')->nullable();
             $table->string('image', 2048)->nullable();
             $table->boolean('private')->default(false);
             $table->timestamps();
