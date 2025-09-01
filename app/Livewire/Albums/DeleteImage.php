@@ -18,24 +18,11 @@ class DeleteImage extends Component
 
     public bool $showModal = false;
 
-    //    public bool $confirming = false;
-
     public function mount(Album $album, int $imageId): void
     {
         $this->album = $album;
         $this->imageId = $imageId;
     }
-
-    //    public function openConfirm(): void
-    //    {
-    //        $this->authorize('update', $this->album);
-    //        $this->confirming = true;
-    //    }
-    //
-    //    public function closeConfirm(): void
-    //    {
-    //        $this->confirming = false;
-    //    }
 
     public function toggleModal()
     {
@@ -57,9 +44,6 @@ class DeleteImage extends Component
             session()->flash('error', 'De foto is niet gevonden.');
         }
 
-        //        // Close the modal and force a full page reload to ensure UI is in sync
-        //        $this->showModal = false;
-        //        $this->js('window.location.reload()');
         $this->redirect(route('album.edit', $this->album->slug));
 
     }
