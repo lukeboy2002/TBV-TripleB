@@ -3,7 +3,7 @@
         <div class="mb-6">
             <x-heading.sub>Huidige spel</x-heading.sub>
             <x-card.default>
-                <p class="text-sm text-secondary font-black">Gestart: {{ $currentGame->date->format('M d, Y H:i') }}</p>
+                <p class="text-sm text-secondary font-black">Gestart: {{ $currentGame->getFormattedDate() }}</p>
 
                 <div class="mt-4">
                     <h5 class="font-medium text-primary">Nog aanwezige spelers:</h5>
@@ -142,7 +142,7 @@
                     @foreach($recentGames as $game)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-primary-muted">
-                                {{ $game->date->format('M d, Y H:i') }}
+                                {{ $game->getFormattedDate() }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-primary-muted">
                                 {{ $game->gamePlayers->count() }}

@@ -48,7 +48,6 @@
                         </td>
 
                         <td class="py-4 text-right">
-                            {{--                        TODO: edit user and delete only bij member how invited this user or admin--}}
                             <div class="flex space-x-2 mr-2">
                                 @if ( auth()->user()->can('delete', $user))
                                     {{--                            @if(!$user->registered_at && (auth()->user()->hasRole('admin') || auth()->user()->id === $user->invited_by))--}}

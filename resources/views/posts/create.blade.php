@@ -80,14 +80,13 @@
                     </x-form.select>
                 </div>
                 <div>
-                    {{--                    TODO SET DATE TO NOW--}}
                     <x-heading.sub>Publicatiedatum</x-heading.sub>
                     <x-form.input
                             class="w-full"
                             type="date"
                             name="published_at"
                             id="published_at"
-                            :value="old('published_at')"
+                            :value="old('published_at', now()->toDateString())"
                     />
                     <x-form.error for="published_at" class="mt-2"/>
                 </div>

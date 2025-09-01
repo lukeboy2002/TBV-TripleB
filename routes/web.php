@@ -28,7 +28,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::post('post/upload', [\App\Http\Controllers\Admin\PostController::class, 'upload'])->name('post.upload');
     Route::resource('posts', App\Http\Controllers\Admin\PostController::class)->except('index', 'show', 'destroy');
     Route::post('/album/{album}/upload', [\App\Http\Controllers\Admin\AlbumController::class, 'upload'])->name('album.upload');
-    Route::delete('/album/{album}/image/{image}', [\App\Http\Controllers\Admin\AlbumController::class, 'destroyImage'])->name('album.image.destroy');
     Route::resource('/album', App\Http\Controllers\Admin\AlbumController::class)->except('index', 'show');
     Route::get('invitations', InvitationController::class)->name('invitations.index');
     Route::post('agenda/upload', [\App\Http\Controllers\Admin\AgendaController::class, 'upload'])->name('agenda.upload');

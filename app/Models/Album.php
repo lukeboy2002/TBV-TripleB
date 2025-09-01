@@ -17,8 +17,8 @@ class Album extends Model implements HasMedia
     /** @use HasFactory<AlbumFactory> */
     use HasFactory;
 
-    use interactsWithMedia;
-    use sluggable;
+    use InteractsWithMedia;
+    use Sluggable;
 
     /**
      * The attributes that are mass assignable.

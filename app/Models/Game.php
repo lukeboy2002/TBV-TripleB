@@ -29,12 +29,11 @@ class Game extends Model
         return $this->hasMany(GamePlayer::class);
     }
 
-    //    TODO SET DATE IN BLADE
     public function getFormattedDate()
     {
         Carbon::setLocale('nl'); // Stel de taal in op Nederlands
 
-        return $this->created_at->translatedFormat('j F Y');
+        return $this->date->translatedFormat('j F Y, H:i');
 
     }
 

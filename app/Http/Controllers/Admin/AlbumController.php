@@ -134,19 +134,19 @@ class AlbumController extends Controller
 
     public function upload(Request $request, Album $album)
     {
-        if ($request->has('image')) {
-            $album->addMedia($request->image)
-                ->toMediaCollection('albums');
+        // Validate multiple images
+        $request->validate([
+            'images' => ['required', 'array'],
+            'images.*' => ['image', 'mimes:jpeg,png,jpg,gif,webp', 'max:8192'],
+        ]);
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $album->addMedia($image)->toMediaCollection('albums');
+            }
         }
 
-        return redirect()->back();
-    }
-
-    public function destroyImage(Album $album, $id)
-    {
-        $media = $album->getMedia();
-        $image = $media->where('id', $id)->first();
-        $image->delete();
+        flash()->success('Images uploaded.');
 
         return redirect()->back();
     }

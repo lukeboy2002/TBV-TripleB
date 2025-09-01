@@ -64,31 +64,29 @@
             <form method="POST" action="{{ route('album.upload', $album->slug) }}" enctype="multipart/form-data">
                 @csrf
                 <div>
-                    <x-form.label for="image" value="Foto"/>
-                    <x-form.input type="file" id="image" name="image"/>
-                    <x-form.error for="image" class="mt-2"/>
+                    <div class="flex items-center gap-2">
+                        <x-form.label for="images" value="Foto's"/>
+                        <div class="text-xs text-primary mb-2">(uploaden van meerdere foto's mogelijk)</div>
+                    </div>
+                    <x-form.input type="file" id="images" name="images[]" multiple accept="image/*"/>
+                    <x-form.error for="images" class="mt-2"/>
+                    <div id="images-preview" class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4"></div>
                 </div>
                 <div class="sm:col-span-6 pt-5">
                     <x-button.default>Upload</x-button.default>
                 </div>
             </form>
-            {{--            TODO UPLOAD MULTIPLE IMAGES--}}
             {{--            TODO CHECK DELETE IMAGE--}}
             <div class="my-6">
                 <h5 class="font-medium text-primary">Images:</h5>
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-x-4 gap-y-8 py-4">
                     @forelse ($photos as $photo)
-                        <div>
+                        <div class="mb-4">
                             <img class="h-full max-w-full rounded-lg object-cover"
                                  src="{{ $photo->getUrl('thumbnail') }}"
                                  alt="">
                             <div class="flex justify-end mt-2">
-                                <form method="POST"
-                                      action="{{ route('album.image.destroy', [$album->id, $photo->id]) }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <x-button.default class="px-3 py-2 text-xs font-medium">Verwijder</x-button.default>
-                                </form>
+                                <livewire:albums.delete-image :album="$album" :image-id="$photo->id"/>
                             </div>
                         </div>
                     @empty
@@ -109,21 +107,16 @@
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function (e) {
-                        // Target the specific image container
                         const imageContainer = document.querySelector('.relative.group');
                         if (imageContainer) {
-                            // Check if there's already an image
                             const existingImg = imageContainer.querySelector('img');
                             if (existingImg) {
-                                // Update existing image
                                 existingImg.src = e.target.result;
                             } else {
-                                // Create new image if none exists
                                 const newImg = document.createElement('img');
                                 newImg.src = e.target.result;
                                 newImg.alt = "Preview";
                                 newImg.className = "w-full h-48 object-cover rounded-lg";
-                                // Insert the new image at the beginning of the container
                                 imageContainer.insertBefore(newImg, imageContainer.firstChild);
                             }
                         }
@@ -131,6 +124,38 @@
                     reader.readAsDataURL(file);
                 }
             }
+
+            // Multiple images preview for Add Images section
+            document.addEventListener('DOMContentLoaded', function () {
+                const input = document.getElementById('images');
+                const preview = document.getElementById('images-preview');
+                if (!input || !preview) return;
+
+                const renderPreviews = (files) => {
+                    preview.innerHTML = '';
+                    if (!files || files.length === 0) return;
+
+                    Array.from(files).forEach((file) => {
+                        if (!file.type.startsWith('image/')) return;
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            const wrapper = document.createElement('div');
+                            wrapper.className = 'relative';
+                            const img = document.createElement('img');
+                            img.src = e.target.result;
+                            img.alt = file.name;
+                            img.className = 'w-full h-36 object-cover rounded-lg shadow';
+                            wrapper.appendChild(img);
+                            preview.appendChild(wrapper);
+                        };
+                        reader.readAsDataURL(file);
+                    });
+                };
+
+                input.addEventListener('change', (e) => {
+                    renderPreviews(e.target.files);
+                });
+            });
         </script>
     @endpush
 </x-app-layout>
