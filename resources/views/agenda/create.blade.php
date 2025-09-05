@@ -29,7 +29,8 @@
                                       required
                                       autofocus
                         />
-                        <p class="text-xs text-primary-muted mt-1">Kies een begindatum. Voor een meerdaags event vul ook een einddatum in.</p>
+                        <p class="text-xs text-primary-muted mt-1">Kies een begindatum. Voor een meerdaags event vul ook
+                            een einddatum in.</p>
                         <x-form.error for="date"/>
                     </div>
                     <div>
