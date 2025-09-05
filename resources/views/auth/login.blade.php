@@ -13,7 +13,7 @@
                         <form method="POST" action="{{ route('login') }}" class="space-y-6">
                             @csrf
                             <div>
-                                <x-form.label for="username" value="{{ __('Username') }}"/>
+                                <x-form.label for="username" value="Gebruikersnaam"/>
                                 <x-form.input id="username" class="block mt-1 w-full" type="text" name="username"
                                               icon="user"
                                               :value="old('username')"
@@ -22,12 +22,12 @@
                             </div>
                             <div>
                                 <div class="flex justify-between items-center">
-                                    <x-form.label for="password" value="{{ __('Password') }}"/>
+                                    <x-form.label for="password" value="Wachtwoord"/>
                                     <div class="flex items-center justify-end">
                                         @if (Route::has('password.request'))
                                             <x-link.default
                                                     href="{{ route('password.request') }}">
-                                                {{ __('Forgot?') }}
+                                                Vergeten?
                                             </x-link.default>
                                         @endif
                                     </div>
@@ -42,7 +42,7 @@
                             <div>
                                 <x-form.label for="remember_me">
                                     <x-form.checkbox id="remember_me" name="remember"/>
-                                    <span class="ms-2 text-sm text-primary-muted">{{ __('Remember me') }}</span>
+                                    <span class="ms-2 text-sm text-primary-muted">Onthoud mij</span>
                                 </x-form.label>
                             </div>
 
@@ -53,9 +53,9 @@
                             @if (Route::has('register'))
                                 <div class="flex justify-end">
                                     <p class="text-sm font-light text-primary-muted">
-                                        Don’t have an account yet?
+                                        Nog geen account?
                                         <x-link.default href="{{ route('register') }}">
-                                            {{ __('Sign up') }}
+                                            registreer
                                         </x-link.default>
                                     </p>
                                 </div>
