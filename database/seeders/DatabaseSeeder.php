@@ -2,16 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Album;
 use App\Models\Category;
-use App\Models\Comment;
-use App\Models\Invitation;
-use App\Models\Post;
-use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
-use Spatie\Tags\Tag;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -26,8 +19,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CategorySeeder::class);
         $categories = Category::all();
-        $this->call(TagsSeeder::class);
-        $tags = Tag::all();
+        //        $this->call(TagsSeeder::class);
+        //        $tags = Tag::all();
 
         $members = [[
             $this->call(AdminSeeder::class),
@@ -47,33 +40,33 @@ class DatabaseSeeder extends Seeder
             $this->call(Ruudseeder::class),
         ]];
         $members = User::all();
-        foreach ($members as $member) {
-            Invitation::factory(2)->create([
-                'invited_by' => $member->id,
-            ]);
-        }
+        //        foreach ($members as $member) {
+        //            Invitation::factory(2)->create([
+        //                'invited_by' => $member->id,
+        //            ]);
+        //        }
 
-        $users = User::factory(10)->create();
-        foreach ($users as $user) {
-            $role = Role::select('id')->where('name', 'user')->first();
-            $user->roles()->attach($role);
-            $profile = Profile::create([
-                'user_id' => $user->id,
-            ]);
-        }
+        //        $users = User::factory(10)->create();
+        //        foreach ($users as $user) {
+        //            $role = Role::select('id')->where('name', 'user')->first();
+        //            $user->roles()->attach($role);
+        //            $profile = Profile::create([
+        //                'user_id' => $user->id,
+        //            ]);
+        //        }
 
-        $posts = Post::factory(200)
-            ->has(Comment::factory(15)->recycle([$members, $users]))
-            ->recycle([$members, $categories])
-            ->create();
-        foreach ($posts as $post) {
-            $random_tag = rand(0, 3);
-            $tag = $tags[$random_tag];
-            $post->tags()->attach($tag);
-        }
-
-        $album = Album::factory(6)
-            ->recycle([$members])
-            ->create();
+        //        $posts = Post::factory(200)
+        //            ->has(Comment::factory(15)->recycle([$members, $users]))
+        //            ->recycle([$members, $categories])
+        //            ->create();
+        //        foreach ($posts as $post) {
+        //            $random_tag = rand(0, 3);
+        //            $tag = $tags[$random_tag];
+        //            $post->tags()->attach($tag);
+        //        }
+        //
+        //        $album = Album::factory(6)
+        //            ->recycle([$members])
+        //            ->create();
     }
 }

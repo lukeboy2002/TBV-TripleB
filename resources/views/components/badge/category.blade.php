@@ -28,6 +28,6 @@
     $color = $active ? $activeColors : $baseColors;
 @endphp
 
-<button {{ $attributes->merge(['class' => "$color text-xs px-4 py-1 text-neutral-950 rounded-r-lg"]) }}>
+<button type="button" {{ $attributes->merge(['class' => "$color text-xs px-4 py-1 text-neutral-950 rounded-r-lg"]) }}>
     {{ $slot }}
 </button>

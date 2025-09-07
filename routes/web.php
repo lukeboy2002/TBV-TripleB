@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcceptInvitationController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\InvitationController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\AlbumController;
@@ -32,4 +33,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     Route::get('invitations', InvitationController::class)->name('invitations.index');
     Route::post('agenda/upload', [\App\Http\Controllers\Admin\AgendaController::class, 'upload'])->name('agenda.upload');
     Route::resource('/agenda', App\Http\Controllers\Admin\AgendaController::class)->except('index', 'show', 'destroy');
+    Route::get('categories', CategoryController::class)->name('categories.create');
 });

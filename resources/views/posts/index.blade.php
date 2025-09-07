@@ -12,7 +12,7 @@
     <x-slot name="side">
         <div class="w-full flex flex-col gap-6 md:gap-12">
             <x-search/>
-            <x-category-list/>
+            <livewire:category-list/>
         </div>
     </x-slot>
 </x-app-layout>

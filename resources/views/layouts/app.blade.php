@@ -36,7 +36,7 @@
     @livewire('navigation-menu')
     @if (isset($hero))
         <div class="bg-black/20">
-            <div class="max-w-7xl mx-auto">
+            <div class="w-full mx-auto">
                 {{ $hero }}
             </div>
         </div>
@@ -51,10 +51,10 @@
         <!-- Page Content -->
         @if (isset($side))
             <div class="mx-auto flex max-w-7xl flex-wrap">
-                <main class="flex w-full flex-col px-3 md:w-3/4">
+                <main class="flex w-full flex-col px-3 lg:w-3/4">
                     {{ $slot }}
                 </main>
-                <aside class="flex w-full flex-col pt-12 md:pt-0 px-3 md:w-1/4 mb-20">
+                <aside class="flex w-full flex-col pt-12 md:pt-0 px-3 lg:w-1/4 mb-20">
                     {{ $side }}
                 </aside>
             </div>

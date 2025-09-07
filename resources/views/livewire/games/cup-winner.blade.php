@@ -5,7 +5,7 @@
         </div>
     </x-slot>
     @if($winner)
-        <div class="p-2">
+        <div class="p-4">
             <div class="">
                 <div class="flex justify-center items-center w-full">
                     <img src="{{ Storage::url($winner->cup_photo_path) }}"

@@ -1,4 +1,4 @@
-<x-app-layout title="Events">
+<x-app-layout title="Agenda">
     <x-slot name="header">
         <x-heading.main>Agenda</x-heading.main>
     </x-slot>
@@ -50,7 +50,7 @@
                 </div>
             @empty
                 <div class="px-4 py-4 text-secondary font-bold text-xl">
-                    No events found.
+                    Geen agenda items aanwezig.
                 </div>
             @endforelse
         </div>

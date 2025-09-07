@@ -60,16 +60,18 @@
                 </x-card.default>
             </div>
         @endif
-        <div>
-            <x-heading.sub>Laatste berichten</x-heading.sub>
-            <x-card.default>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
-                    @foreach($latestPosts as $post)
-                        <x-card.blog-featured :post="$post"/>
-                    @endforeach
-                </div>
-            </x-card.default>
-        </div>
+        @if(!$latestPosts->isEmpty())
+            <div>
+                <x-heading.sub>Laatste berichten</x-heading.sub>
+                <x-card.default>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
+                        @foreach($latestPosts as $post)
+                            <x-card.blog-featured :post="$post"/>
+                        @endforeach
+                    </div>
+                </x-card.default>
+            </div>
+        @endif
     </div>
 
     <x-slot name="side">
