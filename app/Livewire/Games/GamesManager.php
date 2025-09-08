@@ -146,6 +146,14 @@ class GamesManager extends Component
         $this->showGameForm = true;
     }
 
+    public function updatedCupPhoto()
+    {
+        // Early validation as soon as a file is selected/captured
+        $this->validateOnly('cupPhoto', [
+            'cupPhoto' => 'image|max:2048',
+        ]);
+    }
+
     public function uploadCupPhoto($playerId)
     {
         $this->validate([
@@ -153,7 +161,16 @@ class GamesManager extends Component
             'cupPhoto' => 'required|image|max:2048',
         ]);
 
-        $path = $this->cupPhoto->store('cup-photos', 'public');
+        try {
+            $path = $this->cupPhoto->store('cup-photos', 'public');
+        } catch (\Throwable $e) {
+            // Provide user-friendly feedback if the upload/storage fails
+            $this->addError('cupPhoto', 'Uploaden van de foto is mislukt. Probeer het opnieuw.');
+
+            // Optionally log the error (uncomment if logger is available)
+            // \Log::error('Cup photo upload failed', ['error' => $e->getMessage()]);
+            return;
+        }
 
         $gamePlayer = GamePlayer::where('user_id', $playerId)
             ->where('position', 1)
