@@ -37,7 +37,7 @@
                         <td class="px-6 py-4">
                             <div class="flex items-center">
                                 @if($player->profile && $player->profile->image_path)
-                                    <img class="min-h-10 min-w-10 rounded-full object-cover mr-3"
+                                    <img class="h-10 w-10 rounded-full object-cover mr-3"
                                          src="{{ asset('storage/'. $player->profile->image_path) }}"
                                          alt="{{ $player->name }}">
                                 @endif
