@@ -161,7 +161,7 @@ class AgendaController extends Controller
             $event = new Agenda;
             $event->id = 0;
             $event->exists = true;
-            $image = $event->addMediaFromRequest('upload')->toMediaCollection('agenda');
+            $image = $event->addMediaFromRequest('upload')->toMediaCollection('agendas');
 
             return response()->json([
                 'uploaded' => true,
