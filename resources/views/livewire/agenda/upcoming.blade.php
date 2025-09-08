@@ -7,7 +7,6 @@
     @if(!$agenda)
         <div class="text-primary-muted p-2">Geen aankomende evenementen.</div>
     @else
-
         <div class="p-4">
             <p class="text-sm font-medium text-secondary truncate">{{ $agenda->name }}</p>
             <p class="flex justify-end items-center text-xs text-primary-muted">{{ $agenda->getFormattedDate() }}</p>
@@ -18,6 +17,5 @@
                 </div>
             @endif
         </div>
-
     @endif
 </x-card.side>
