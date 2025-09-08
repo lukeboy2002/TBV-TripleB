@@ -4,12 +4,12 @@
             <div class="flex justify-start items-center">
                 <!-- Hamburger menu-->
                 <button type="button"
-                        class="lg:hidden flex items-center bg-background rounded-full h-8 w-8 justify-center text-primary z-[100]"
+                        class="lg:hidden flex items-center bg-background rounded-full h-10 w-10 justify-center text-primary z-50"
                         data-drawer-target="drawer-navigation"
                         data-drawer-toggle="drawer-navigation"
                         aria-controls="drawer-navigation">
                     <span class="sr-only">Open menu</span>
-                    <x-lucide-align-left class="w-5 h-5"/>
+                    <x-lucide-align-left class="w-8 h-8"/>
                 </button>
                 <x-logo.logo/>
                 <!-- Desktop menu -->
@@ -113,13 +113,15 @@
     <div id="drawer-navigation"
          class="fixed top-0 left-0 z-[100] h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-background/95 w-80 lg:hidden"
          tabindex="-1"
-         aria-labelledby="drawer-navigation-label">
+         aria-labelledby="drawer-navigation-label"
+         data-drawer-backdrop="false"
+         data-drawer-body-scrolling="true">
         <x-logo.logo/>
         <button type="button"
                 data-drawer-hide="drawer-navigation"
                 aria-controls="drawer-navigation"
                 class="text-secondary bg-transparent hover:bg-accent hover:text-accent-foreground rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center">
-            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+            <svg aria-hidden="true" class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"
                  xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
                       d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
