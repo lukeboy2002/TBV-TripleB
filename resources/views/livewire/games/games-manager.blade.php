@@ -43,7 +43,7 @@
 
                                         @if($gamePlayer->position == 1 && !$gamePlayer->cup_photo_path && $this->isFirstGameOfDay($currentGame))
                                             <div class="flex gap-2">
-                                                <input type="file" wire:model="cupPhoto" class="hidden"
+                                                <input type="file" wire:model="cupPhoto" class="hidden" accept="image/*" capture="environment"
                                                        id="cup-photo-{{ $gamePlayer->id }}">
                                                 <label for="cup-photo-{{ $gamePlayer->id }}"
                                                        class="cursor-pointer px-3 py-1 border border-border-secondary text-white text-center rounded hover:bg-danger-hover">

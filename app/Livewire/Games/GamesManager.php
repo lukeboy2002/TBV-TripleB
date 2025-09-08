@@ -149,7 +149,8 @@ class GamesManager extends Component
     public function uploadCupPhoto($playerId)
     {
         $this->validate([
-            'cupPhoto' => 'required|image|max:1024',
+            // max is in kilobytes => 2048 KB = 2 MB
+            'cupPhoto' => 'required|image|max:2048',
         ]);
 
         $path = $this->cupPhoto->store('cup-photos', 'public');
