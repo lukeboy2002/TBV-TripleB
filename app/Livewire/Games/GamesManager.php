@@ -85,35 +85,47 @@ class GamesManager extends Component
             return;
         }
 
+        // Determine totals based on the current game, not transient component state
+        $totalPlayers = $this->currentGame->gamePlayers()->count();
+
         $position = count($this->eliminatedPlayers) + 1;
         $points = $position;
-        $isWinner = ($position === count($this->selectedPlayers));
 
         $gamePlayer = $this->currentGame->gamePlayers()->where('user_id', $playerId)->first();
+        if (! $gamePlayer) {
+            return; // Safety: player not part of current game
+        }
+
+        // Eliminated players are not winners; the last remaining player will be the winner
         $gamePlayer->update([
             'position' => $position,
             'points' => $points,
-            'is_winner' => $isWinner,
+            'is_winner' => false,
         ]);
 
         $this->eliminatedPlayers[] = $playerId;
 
-        // If this was the last player, complete the game
-        if (count($this->eliminatedPlayers) === count($this->selectedPlayers) - 1) {
+        // If only one player remains, complete the game and mark them as winner
+        if (count($this->eliminatedPlayers) === ($totalPlayers - 1)) {
             // The last remaining player is the winner
-            $lastPlayerId = collect($this->selectedPlayers)->diff($this->eliminatedPlayers)->first();
-            $this->currentGame->gamePlayers()->where('user_id', $lastPlayerId)->update([
-                'position' => count($this->selectedPlayers),
-                'points' => count($this->selectedPlayers),
-                'is_winner' => true,
-            ]);
+            $allPlayerIds = $this->currentGame->gamePlayers()->pluck('user_id')->toArray();
+            $lastPlayerId = collect($allPlayerIds)->diff($this->eliminatedPlayers)->first();
+
+            if ($lastPlayerId) {
+                $this->currentGame->gamePlayers()->where('user_id', $lastPlayerId)->update([
+                    'position' => $totalPlayers,
+                    'points' => $totalPlayers,
+                    'is_winner' => true,
+                ]);
+
+                $this->eliminatedPlayers[] = $lastPlayerId;
+            }
 
             $this->currentGame->update([
                 'status' => 'completed',
                 'completed_at' => now(),
             ]);
 
-            $this->eliminatedPlayers[] = $lastPlayerId;
             $this->currentGame = null;
 
             // Dispatch event that game is completed to refresh player statistics
