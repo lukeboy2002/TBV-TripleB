@@ -115,7 +115,8 @@
          tabindex="-1"
          aria-labelledby="drawer-navigation-label"
          data-drawer-backdrop="false"
-         data-drawer-body-scrolling="true">
+         data-drawer-body-scrolling="true"
+         aria-hidden="true">
         <x-logo.logo/>
         <button type="button"
                 data-drawer-hide="drawer-navigation"

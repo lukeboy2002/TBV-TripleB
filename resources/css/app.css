@@ -171,3 +171,11 @@
 [x-cloak] {
     display: none;
 }
+
+
+/* Mobile fix: prevent the off-screen drawer from intercepting taps when closed */
+@layer base {
+  #drawer-navigation[aria-hidden="true"] {
+    pointer-events: none;
+  }
+}
