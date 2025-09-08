@@ -4,7 +4,7 @@
             <x-logo/>
         </div>
         <div class="h-full w-full flex flex-col items-center justify-center mx-auto">
-            <div class="w-full max-w-md">
+            <div class="w-full max-w-md px-3 lg:px-0">
                 <div>
                     <x-heading.main>Login</x-heading.main>
                 </div>

@@ -81,6 +81,5 @@
             <livewire:games.latest-game/>
             <livewire:albums.latest-album-image/>
         </div>
-
     </x-slot>
 </x-app-layout>

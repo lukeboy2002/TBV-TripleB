@@ -105,7 +105,7 @@
             </div>
         @else
             @can('create:game')
-                <div class="flex justify-end space-x-2">
+                <div class="flex justify-end space-x-2 pb-4 lg:pb-0">
                     <x-button.default
                             wire:click="$set('showGameForm', true)">
                         Nieuwe wedstijd starten
