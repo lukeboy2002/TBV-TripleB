@@ -25,7 +25,7 @@
                         <x-heading.sub>Album Image</x-heading.sub>
                         <div class="relative group">
                             <img id="preview-image"
-                                 src="{{ Storage::url('assets/placeholder.png') }}"
+                                 src="{{ asset('storage/assets/placeholder.png') }}"
                                  alt="Preview"
                                  class="w-full h-48 object-scale-down rounded-lg bg-transparent"
                             />
