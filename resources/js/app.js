@@ -1,5 +1,5 @@
 import './bootstrap';
-import { initFlowbite } from 'flowbite';
+import {initFlowbite} from 'flowbite';
 import './apperance';
 
 // Helper to clean up any leftover Flowbite drawer backdrops and reset drawer state
@@ -59,3 +59,63 @@ document.addEventListener('livewire:navigated', () => {
     initFlowbite();
     bindDrawerLinkAutoClose();
 });
+
+function initCkeditorIfPresent() {
+    const el = document.querySelector('#description');
+    if (!el || typeof window.ClassicEditor === 'undefined') return;
+
+    // Determine upload URL from data attribute or meta tag
+    const uploadUrl = el.dataset.uploadUrl || (document.querySelector('meta[name="agenda-upload-url"]')?.getAttribute('content')) || '';
+    // CSRF token from meta tag (standard in Laravel layouts)
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+
+    window.ClassicEditor
+        .create(el)
+        .then(editor => {
+            if (uploadUrl) {
+                editor.plugins.get('FileRepository').createUploadAdapter = (loader) => new MyUploadAdapter(loader, uploadUrl, csrfToken);
+            }
+        })
+        .catch(error => {
+            console.error('CKEditor init error:', error);
+        });
+}
+
+class MyUploadAdapter {
+    constructor(loader, uploadUrl, csrfToken) {
+        this.loader = loader;
+        this.uploadUrl = uploadUrl;
+        this.csrfToken = csrfToken;
+    }
+
+    upload() {
+        return this.loader.file.then(file => new Promise((resolve, reject) => {
+            const data = new FormData();
+            data.append('upload', file);
+
+            fetch(this.uploadUrl, {
+                method: 'POST',
+                headers: this.csrfToken ? { 'X-CSRF-TOKEN': this.csrfToken } : undefined,
+                body: data
+            })
+                .then(response => response.json())
+                .then(result => {
+                    if (result?.uploaded && result?.url) {
+                        resolve({ default: result.url });
+                    } else if (result?.url) {
+                        // Some backends just return the URL
+                        resolve({ default: result.url });
+                    } else {
+                        reject(result?.error?.message || 'Upload failed');
+                    }
+                })
+                .catch(error => reject(error));
+        }));
+    }
+
+    abort() {}
+}
+
+// Hook CKEditor init to lifecycle events
+document.addEventListener('DOMContentLoaded', initCkeditorIfPresent);
+document.addEventListener('livewire:navigated', initCkeditorIfPresent);

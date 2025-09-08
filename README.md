@@ -60,3 +60,20 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # TBV-TripleBNew
+
+
+## CKEditor Uploads Deployment Checklist (2025-09-08)
+
+To ensure CKEditor image uploads work correctly in production, verify the following on your server:
+
+- Run: php artisan storage:link
+- Ensure APP_URL in .env matches your public site URL (e.g., https://example.com)
+- Filesystem public disk serves from /storage and points to storage/app/public (config/filesystems.php)
+- Ensure write permissions for storage and bootstrap/cache (e.g., chown www-data and chmod as needed)
+- Increase upload limits if necessary:
+  - In php.ini: upload_max_filesize, post_max_size, memory_limit
+  - Web server (Nginx/Apache) client/upload size
+- Verify CKEditor uses the correct endpoints:
+  - Posts: route('post.upload')
+  - Agendas: route('agenda.upload')
+- If using Spatie Media Library, confirm media collections exist on models and public disk is used for uploads.
