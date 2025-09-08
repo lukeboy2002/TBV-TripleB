@@ -38,7 +38,8 @@
                             <div class="flex items-center">
                                 @if($player->profile && $player->profile->image_path)
                                     <img class="h-10 w-10 rounded-full object-cover mr-3"
-                                         src="{{ Storage::url($player->profile->image_path) }}"
+                                         src="{{ asset('storage/'. $player->profile->image_path) }}"
+                                         {{--                                         src="{{ Storage::url($player->profile->image_path) }}"--}}
                                          alt="{{ $player->name }}">
                                 @endif
                                 <div>
