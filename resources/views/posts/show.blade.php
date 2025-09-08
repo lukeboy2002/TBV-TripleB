@@ -6,7 +6,7 @@
         <x-slot name="header">
             <a href="{{ route('post.show', $post->slug) }}" class="block overflow-hidden">
                 <img class="rounded-lg h-[30rem] min-h-full w-full object-cover"
-                     src="{{ Storage::url($post->image) }}"
+                     src="{{ asset('storage/'. $post->image) }}"
                      alt="{{ $post->title }}"/>
             </a>
 

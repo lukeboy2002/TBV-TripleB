@@ -19,7 +19,7 @@
                                     @if($agenda->image)
                                         <div class="flex-shrink-0 h-12 w-12 mr-3">
                                             <img class="h-12 w-12 rounded-full object-cover"
-                                                 src="{{ Storage::url($agenda->image) }}"
+                                                 src="{{ asset('storage/'. $agenda->image) }}"
                                                  alt="{{ $agenda->name }}">
                                         </div>
                                     @endif

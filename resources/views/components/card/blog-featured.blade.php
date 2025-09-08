@@ -2,7 +2,7 @@
     <x-slot name="header">
         <a href="{{ route('post.show', $post->slug) }}" class="block overflow-hidden">
             <img class="rounded-lg w-full max-h-48 object-cover transition-transform duration-300 hover:scale-110"
-                 src="{{ Storage::url($post->image) }}"
+                 src="{{ asset('storage/'. $post->image) }}"
                  alt="{{ $post->title }}"/>
             <livewire:posts.stats :post="$post"/>
 

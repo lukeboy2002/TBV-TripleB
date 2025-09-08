@@ -6,7 +6,7 @@
     <x-card.blog>
         <x-slot name="header">
             <img class="rounded-lg h-[30rem] min-h-full w-full object-cover"
-                 src="{{ Storage::url($agenda->image) }}"
+                 src="{{ asset('storage/'. $agenda->image) }}"
                  alt="{{ $agenda->name }}"/>
         </x-slot>
         <div class="px-4">

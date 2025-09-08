@@ -2,7 +2,7 @@
     <x-slot name="header">
         <a href="{{ route('albums.show', $album->slug) }}" class="block overflow-hidden">
             <img class="rounded-lg w-full max-h-48 object-cover transition-transform duration-300 hover:scale-110"
-                 src="{{ Storage::url($album->image) }}"
+                 src="{{ asset('storage/'. $album->image) }}"
                  alt="{{ $album->name }}"/>
             <span class="absolute flex justify-center items-center bottom-2 right-2 p-2 h-8 w-8 rounded-full bg-background text-primary text-sm font-bold">
                 {{ $album->images_count }}
