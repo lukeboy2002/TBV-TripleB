@@ -6,8 +6,8 @@ return [
         // Use array syntax as recommended by Livewire. Size is in kilobytes.
         'rules' => ['image', 'max:2048'],
 
-        // You can optionally set disk and directory for temp uploads if needed.
-        // 'disk' => null,
-        // 'directory' => null,
+        // Ensure Livewire uses the local disk for temporary uploads and a known directory
+        'disk' => 'local',
+        'directory' => 'livewire-tmp',
     ],
 ];
