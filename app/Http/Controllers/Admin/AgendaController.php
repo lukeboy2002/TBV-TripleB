@@ -158,24 +158,34 @@ class AgendaController extends Controller
     public function upload(Request $request)
     {
         try {
+            if (! $request->hasFile('upload')) {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => [
+                        'message' => 'No file uploaded.',
+                    ],
+                ]);
+            }
+
             $event = new Agenda;
             $event->id = 0;
             $event->exists = true;
-            $image = $event->addMediaFromRequest('upload')->toMediaCollection('agendas');
+
+            // Store on the public disk explicitly to ensure URL accessibility in production
+            $image = $event->addMediaFromRequest('upload')->toMediaCollection('agendas', 'public');
 
             return response()->json([
-                'uploaded' => true,
+                'uploaded' => 1,
+                'fileName' => $image->file_name,
                 'url' => $image->getUrl(),
             ]);
         } catch (Exception $e) {
-            return response()->json(
-                [
-                    'uploaded' => false,
-                    'error' => [
-                        'message' => $e->getMessage(),
-                    ],
-                ]
-            );
+            return response()->json([
+                'uploaded' => 0,
+                'error' => [
+                    'message' => $e->getMessage(),
+                ],
+            ]);
         }
     }
 }
