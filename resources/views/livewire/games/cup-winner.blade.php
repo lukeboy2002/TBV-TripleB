@@ -8,10 +8,10 @@
         <div class="p-4">
             <div class="">
                 <div class="flex justify-center items-center w-full">
-                    {{--                    <img src="{{ Storage::url($winner->cup_photo_path) }}"--}}
-                    src="{{ asset('storage/'. $winner->cup_photo_path) }}"
-                    alt="Cup Winner"
-                    class="object-cover rounded-lg">
+                    <img src="{{ asset('storage/'. $winner->cup_photo_path) }}"
+                         {{--                         src="{{ asset('storage/'. $winner->cup_photo_path) }}"--}}
+                         alt="Cup Winner"
+                         class="object-cover rounded-lg">
                 </div>
             </div>
         </div>
