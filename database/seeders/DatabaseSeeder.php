@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -17,8 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolesAndPermissionsSeeder::class);
 
-        $this->call(CategorySeeder::class);
-        $categories = Category::all();
         //        $this->call(TagsSeeder::class);
         //        $tags = Tag::all();
 
