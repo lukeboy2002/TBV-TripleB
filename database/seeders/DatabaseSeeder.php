@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
             $profile = Profile::create([
                 'user_id' => $user->id,
             ]);
-        }ß
+        }
 
         //        $posts = Post::factory(200)
         //            ->has(Comment::factory(15)->recycle([$members, $users]))
