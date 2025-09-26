@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Database\Factories\ProfileFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -23,9 +22,6 @@ class Profile extends Model
         'user_id',
         'city',
         'biography',
-        //        'birthday',
-        //        'phone_number',
-        //        'cover_path',
         'image_path',
         'created_at',
         'updated_at',
@@ -34,15 +30,6 @@ class Profile extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function getBirthdayDate()
-    {
-        Carbon::setLocale('nl'); // Stel de taal in op Nederlands
-
-        return $this->birthday->translatedFormat('j F Y');
-
-        //        return $this->birthday->format('j F Y');
     }
 
     /**

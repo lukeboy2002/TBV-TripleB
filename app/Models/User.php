@@ -67,16 +67,6 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
-    public function invitee(): HasMany
-    {
-        return $this->hasMany(Invitation::class, 'invited_by');
-    }
-
-    public function invitedBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'invited_by');
-    }
-
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
@@ -90,6 +80,16 @@ class User extends Authenticatable
     public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function invitee(): HasMany
+    {
+        return $this->hasMany(Invitation::class, 'invited_by');
+    }
+
+    public function invitedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'invited_by');
     }
 
     public function getTotalGamesPlayedAttribute()

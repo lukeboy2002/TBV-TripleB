@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Agenda;
-use App\Models\Album;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
@@ -26,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Model::automaticallyEagerLoadRelationships();
+        //        Model::automaticallyEagerLoadRelationships();
 
         Model::preventLazyLoading(! $this->app->isProduction());
         Model::preventSilentlyDiscardingAttributes(! $this->app->isProduction());
@@ -36,8 +34,6 @@ class AppServiceProvider extends ServiceProvider
             'post' => Post::class,
             'comment' => Comment::class,
             'user' => User::class,
-            'album' => Album::class,
-            'agenda' => Agenda::class,
         ]);
     }
 }
