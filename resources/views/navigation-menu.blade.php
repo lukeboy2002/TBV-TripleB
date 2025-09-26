@@ -108,7 +108,6 @@
         </div>
     </nav>
 
-
     <!-- Drawer component -->
     <div id="drawer-navigation"
          class="fixed top-0 left-0 z-[100] h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-background/95 w-80 lg:hidden"

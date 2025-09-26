@@ -2,22 +2,22 @@
     Home
 </x-link.navigation>
 
-<x-link.navigation href="{{ route('team.index') }}" :active="request()->routeIs('team.*')" icon="users">
+<x-link.navigation href="#" icon="users">
     Team
 </x-link.navigation>
 
-<x-link.navigation href="{{ route('games.index') }}" :active="request()->routeIs('games.*')" icon="dices">
+<x-link.navigation href="#" icon="dices">
     Wedstijden
 </x-link.navigation>
 
-<x-link.navigation href="{{ route('albums.index') }}" :active="request()->routeIs('albums.*')" icon="images">
+<x-link.navigation href="#" icon="images">
     Foto's
 </x-link.navigation>
 
-<x-link.navigation href="{{ route('post.index') }}" :active="request()->routeIs('post.*')" icon="newspaper">
+<x-link.navigation href="#" icon="newspaper">
     Blog
 </x-link.navigation>
 
-<x-link.navigation href="{{ route('agenda.index') }}" :active="request()->routeIs('agenda.*')" icon="calendar-days">
+<x-link.navigation href="#" icon="calendar-days">
     Agenda
 </x-link.navigation>

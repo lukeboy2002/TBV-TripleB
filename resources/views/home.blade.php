@@ -47,39 +47,8 @@
         </div>
 
     </div>
-    <div>
-        @if(!$featuredPosts->isEmpty())
-            <div class="mb-6">
-                <x-heading.sub>In de spotlights</x-heading.sub>
-                <x-card.default>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
-                        @foreach($featuredPosts as $post)
-                            <x-card.blog-featured :post="$post"/>
-                        @endforeach
-                    </div>
-                </x-card.default>
-            </div>
-        @endif
-        @if(!$latestPosts->isEmpty())
-            <div>
-                <x-heading.sub>Laatste berichten</x-heading.sub>
-                <x-card.default>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
-                        @foreach($latestPosts as $post)
-                            <x-card.blog-featured :post="$post"/>
-                        @endforeach
-                    </div>
-                </x-card.default>
-            </div>
-        @endif
-    </div>
 
     <x-slot name="side">
-        <div class="w-full flex flex-col gap-6 md:gap-12">
-            <livewire:agenda.upcoming/>
-            <livewire:games.cup-winner/>
-            <livewire:games.latest-game/>
-            <livewire:albums.latest-album-image/>
-        </div>
+        
     </x-slot>
 </x-app-layout>
