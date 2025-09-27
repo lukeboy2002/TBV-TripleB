@@ -28,7 +28,7 @@
                             <x-slot name="trigger">
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                     <button class="flex text-sm border-2 border-transparent rounded-full focus:outline-hidden focus:border-gray-300 transition">
-                                        <img class="size-10 lg:size-8 rounded-full object-cover aspect-square mr-3"
+                                        <img class="size-10 lg:size-8 rounded-full object-cover aspect-square"
                                              src="{{ Auth::user()->profile_photo_url }}"
                                              alt="{{ Auth::user()->username }}"/>
                                     </button>

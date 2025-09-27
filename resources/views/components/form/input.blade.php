@@ -3,7 +3,7 @@
     'icon' => null  // Pass a custom icon name (e.g., 'user', 'mail', etc.) to use with Lucide icons
 ])
 
-<div class="relative">
+<div class="relative w-full">
     <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
         @if ($icon)
             @php

@@ -34,35 +34,15 @@
 
 <div class="min-h-screen bg-body z-0">
     @livewire('navigation-menu')
-    @if (isset($hero))
-        <div class="bg-black/20">
-            <div class="w-full mx-auto">
-                {{ $hero }}
-            </div>
-        </div>
-    @endif
-    <section class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="my-4">
-                {{ $header }}
-            </header>
-        @endif
-        <!-- Page Content -->
-        @if (isset($side))
-            <div class="mx-auto flex max-w-7xl flex-wrap">
-                <main class="flex w-full flex-col px-3 lg:w-3/4">
-                    {{ $slot }}
-                </main>
-                <aside class="flex w-full flex-col px-3 pt-0 lg:w-1/4 mb-20">
-                    {{ $side }}
-                </aside>
-            </div>
-        @else
-            <main>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto flex max-w-7xl flex-wrap">
+            <main class="flex w-full flex-col px-3 py-6 lg:w-3/4">
                 {{ $slot }}
             </main>
-        @endif
+            <aside class="hidden lg:flex w-full flex-col px-3 pt-0 h-screen lg:pt-6 lg:w-1/4 mb-20">
+                <x-menu.admin/>
+            </aside>
+        </div>
     </section>
 </div>
 

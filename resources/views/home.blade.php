@@ -49,6 +49,6 @@
     </div>
 
     <x-slot name="side">
-        
+        <livewire:category.category-list/>
     </x-slot>
 </x-app-layout>

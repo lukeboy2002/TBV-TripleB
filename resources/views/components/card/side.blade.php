@@ -4,7 +4,7 @@
             <x-heading.side>{{ $header }}</x-heading.side>
         </div>
     @endif
-    <main class="bg-background-hover rounded-b-lg">
+    <main class="bg-background-hover rounded-b-lg py-4 px-4">
         {{ $slot }}
     </main>
 </div>

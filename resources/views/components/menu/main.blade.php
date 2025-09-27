@@ -1,23 +1,23 @@
 <x-link.navigation href="{{ route('home') }}" :active="request()->routeIs('home')" icon="home">
-    Home
+    {{ __('Home') }}
 </x-link.navigation>
 
 <x-link.navigation href="#" icon="users">
-    Team
+    {{ __('Team') }}
 </x-link.navigation>
 
 <x-link.navigation href="#" icon="dices">
-    Wedstijden
+    {{ __('Games') }}
 </x-link.navigation>
 
 <x-link.navigation href="#" icon="images">
-    Foto's
+    {{ __('Images') }}
 </x-link.navigation>
 
 <x-link.navigation href="#" icon="newspaper">
-    Blog
+    {{ __('Blog') }}
 </x-link.navigation>
 
 <x-link.navigation href="#" icon="calendar-days">
-    Agenda
+    {{ __('Agenda') }}
 </x-link.navigation>
