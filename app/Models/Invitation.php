@@ -22,7 +22,7 @@ class Invitation extends Model
         'invited_by',
         'invited_date',
         'invitation_token',
-        'regregistered_at',
+        'registered_at',
     ];
 
     public function invitedBy(): BelongsTo
