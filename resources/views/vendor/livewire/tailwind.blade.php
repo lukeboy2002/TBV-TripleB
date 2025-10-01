@@ -96,7 +96,6 @@
                         @foreach ($elements as $element)
                             {{-- "Three Dots" Separator --}}
                             @if (is_string($element))
-                                {{--                                TODO: READY--}}
                                 <span aria-disabled="true">
                                     <span class="relative size-10 rounded-full inline-flex items-center justify-center px-4 py-2 -ml-px text-lg font-secondary font-black text-primary border border-transparent cursor-default leading-5">{{ $element }}</span>
                                 </span>
@@ -106,13 +105,11 @@
                             @if (is_array($element))
                                 @foreach ($element as $page => $url)
                                     <span wire:key="paginator-{{ $paginator->getPageName() }}-page{{ $page }}">
-{{--                                        TODO: READY--}}
                                         @if ($page == $paginator->currentPage())
                                             <span aria-current="page">
                                                 <span class="relative size-10 rounded-full inline-flex items-center justify-center px-4 py-2 -ml-px text-lg font-secondary font-black text-secondary border border-secondary cursor-default leading-5">{{ $page }}</span>
                                             </span>
                                         @else
-                                            {{--                                        TODO: READY--}}
                                             <button type="button"
                                                     wire:click="gotoPage({{ $page }}, '{{ $paginator->getPageName() }}')"
                                                     x-on:click="{{ $scrollIntoViewJsSnippet }}"

@@ -23,6 +23,17 @@
             document.documentElement.classList.remove('dark')
         }
     </script>
+
+    <style>
+        html {
+            background-color: hsl(220 14.3% 95.9%); /* gray-100 */
+        }
+
+        html.dark {
+            background-color: hsl(220.9 39.3% 11%); /* gray-900 */
+        }
+    </style>
+    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->

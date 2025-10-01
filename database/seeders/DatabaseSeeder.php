@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Invitation;
 use App\Models\Post;
 use App\Models\Profile;
 use App\Models\User;
@@ -42,11 +43,11 @@ class DatabaseSeeder extends Seeder
             $this->call(Ruudseeder::class),
         ]];
         $members = User::all();
-        //        foreach ($members as $member) {
-        //            Invitation::factory(2)->create([
-        //                'invited_by' => $member->id,
-        //            ]);
-        //        }
+        foreach ($members as $member) {
+            Invitation::factory(2)->create([
+                'invited_by' => $member->id,
+            ]);
+        }
 
         $users = User::factory(10)->create();
         foreach ($users as $user) {
