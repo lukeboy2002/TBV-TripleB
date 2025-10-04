@@ -30,9 +30,9 @@
                         <div>{{ ucfirst($user->username) }}</div>
                         <div>{{ $this->users->links() }}</div>
                     </div>
-                    <div class="mt-4 content text-primary">{!! $user->profile->biography !!}</div>
+                    <div class="mt-4 prose prose-orange dark:prose-invert text-primary">{!! $user->profile->biography !!}</div>
                 </div>
-                {{--            </div>--}}
+
             </x-card.default>
         </main>
         <aside class="md:flex lg:flex-col flex-row w-full px-3 pt-0 md:full lg:w-1/4 gap-6">
