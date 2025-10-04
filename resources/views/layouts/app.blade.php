@@ -33,7 +33,7 @@
             background-color: hsl(220.9 39.3% 11%); /* gray-900 */
         }
     </style>
-    
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
@@ -53,12 +53,6 @@
         </div>
     @endif
     <section class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="my-4">
-                {{ $header }}
-            </header>
-        @endif
         <!-- Page Content -->
         @if (isset($side))
             <div class="mx-auto flex max-w-7xl flex-wrap">

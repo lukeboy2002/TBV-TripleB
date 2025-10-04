@@ -1,4 +1,4 @@
-<div>
+<div {{ $attributes->merge(['class' =>"w-full"]) }}>
     @if (isset($header))
         <div class="px-2 rounded-t-lg bg-background">
             <x-heading.side>{{ $header }}</x-heading.side>

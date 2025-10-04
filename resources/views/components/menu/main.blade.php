@@ -2,7 +2,7 @@
     {{ __('Home') }}
 </x-link.navigation>
 
-<x-link.navigation href="#" icon="users">
+<x-link.navigation href="{{ route('team') }}" :active="request()->routeIs('team')" icon="users">
     {{ __('Team') }}
 </x-link.navigation>
 
