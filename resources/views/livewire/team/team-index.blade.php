@@ -58,6 +58,19 @@
                     </tr>
                     </tbody>
                 </table>
+                @auth
+                    @if(auth()->id() === $user->id)
+                        <x-slot name="footer">
+
+                            <div class="flex justify-end">
+                                <x-link.default href="{{ route('profile.show') }}" icon="square-pen">
+                                    {{ __('Edit Profile') }}
+                                </x-link.default>
+                            </div>
+
+                        </x-slot>
+                    @endif
+                @endauth
             </x-card.side>
             <x-card.side>
                 <x-slot name="header">{{ __("Player Stats") }}</x-slot>

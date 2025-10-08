@@ -1,24 +1,31 @@
 {
-    "$schema": "https://json.schemastore.org/package.json",
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "build": "vite build",
-        "dev": "vite"
-    },
-    "devDependencies": {
-        "@tailwindcss/forms": "^0.5.7",
-        "@tailwindcss/postcss": "^4.1.11",
-        "@tailwindcss/typography": "^0.5.10",
-        "@tailwindcss/vite": "^4.1.11",
-        "axios": "^1.8.2",
-        "concurrently": "^9.0.1",
-        "laravel-vite-plugin": "^2.0.0",
-        "postcss": "^8.4.32",
-        "tailwindcss": "^4.1.11",
-        "vite": "^7.0.4"
-    },
-    "dependencies": {
-        "flowbite": "^3.1.2"
-    }
+  "$schema": "https://json.schemastore.org/package.json",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tailwindcss/typography": "^0.5.10",
+    "@tailwindcss/vite": "^4.1.11",
+    "axios": "^1.8.2",
+    "concurrently": "^9.0.1",
+    "laravel-vite-plugin": "^2.0.0",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^4.1.11",
+    "vite": "^7.0.4"
+  },
+  "dependencies": {
+    "@tiptap/core": "^3.6.5",
+    "@tiptap/pm": "^3.6.5",
+    "@tiptap/starter-kit": "^3.6.5",
+    "flowbite": "^3.1.2",
+    "flowbite-typography": "^1.0.5"
+  },
+  "overrides": {
+    "prosemirror-model": "1.19.3"
+  }
 }
