@@ -4,8 +4,18 @@
             <x-heading.side>{{ $header }}</x-heading.side>
         </div>
     @endif
-    <main class="bg-background-hover rounded-b-lg py-4 px-4">
-        {{ $slot }}
-    </main>
+    @if (isset($footer))
+        <main class="bg-background-hover py-4 px-4">
+            {{ $slot }}
+        </main>
+
+        <div class="p-2 rounded-b-lg bg-background">
+            {{ $footer }}
+        </div>
+    @else
+        <main class="bg-background-hover rounded-b-lg py-4 px-4">
+            {{ $slot }}
+        </main>
+    @endif
 </div>
 

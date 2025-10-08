@@ -16,10 +16,16 @@
             </div>
 
             <div class="col-span-6">
-                <x-form.label for="biography" value="Biografie"/>
-                <div x-data="{ value: @entangle('biography').defer }" wire:ignore>
-                    <textarea id="biography" x-ref="editor" x-cloak class="w-full"></textarea>
+                <div wire:ignore>
+                    <x-tiptapeditor.editor :enable-image-upload="true">
+                        <label for="editor" class="sr-only">Biografie</label>
+                        <div id="editor"
+                             data-initial="{{ $this->biography ?? '' }}"
+                             data-upload-url="{{ route('editor.uploads.images') }}"
+                             class="block w-full px-0 text-sm text-gray-800 bg-white border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-400"></div>
+                    </x-tiptapeditor.editor>
                 </div>
+                <input id="biography" name="biography" type="hidden" wire:model.defer="biography">
                 <x-form.error for="biography" class="mt-2"/>
             </div>
         </x-slot>
@@ -37,52 +43,52 @@
         </x-slot>
     </x-form-section>
 
-    @push('scripts')
-        <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
+    {{--    @push('scripts')--}}
+    {{--        <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>--}}
 
-        <script>
-            document.addEventListener('livewire:init', () => {
-                const el = document.getElementById('biography');
-                let ck;
+    {{--        <script>--}}
+    {{--            document.addEventListener('livewire:init', () => {--}}
+    {{--                const el = document.getElementById('biography');--}}
+    {{--                let ck;--}}
 
-                ClassicEditor
-                    .create(el, {
-                        toolbar: [
-                            'heading', '|',
-                            'bold', 'italic', 'underline', 'strikethrough', '|',
-                            'link', 'blockQuote', 'bulletedList', 'numberedList', '|',
-                            'undo', 'redo'
-                        ]
-                    })
-                    .then(editor => {
-                        ck = editor;
+    {{--                ClassicEditor--}}
+    {{--                    .create(el, {--}}
+    {{--                        toolbar: [--}}
+    {{--                            'heading', '|',--}}
+    {{--                            'bold', 'italic', 'underline', 'strikethrough', '|',--}}
+    {{--                            'link', 'blockQuote', 'bulletedList', 'numberedList', '|',--}}
+    {{--                            'undo', 'redo'--}}
+    {{--                        ]--}}
+    {{--                    })--}}
+    {{--                    .then(editor => {--}}
+    {{--                        ck = editor;--}}
 
-                        // Init value vanuit Livewire
-                        editor.setData(@js($biography ?? ''));
+    {{--                        // Init value vanuit Livewire--}}
+    {{--                        editor.setData(@js($biography ?? ''));--}}
 
-                        // Sync richting Livewire
-                        editor.model.document.on('change:data', () => {
-                            @this.
-                            set('biography', editor.getData());
-                        });
+    {{--                        // Sync richting Livewire--}}
+    {{--                        editor.model.document.on('change:data', () => {--}}
+    {{--                            @this.--}}
+    {{--                            set('biography', editor.getData());--}}
+    {{--                        });--}}
 
-                        // Sync terug vanuit Livewire
-                        Livewire.on('refresh-biography', (newVal) => {
-                            if (typeof newVal === 'string' && newVal !== editor.getData()) {
-                                editor.setData(newVal);
-                            }
-                        });
-                    })
-                    .catch(error => console.error(error));
+    {{--                        // Sync terug vanuit Livewire--}}
+    {{--                        Livewire.on('refresh-biography', (newVal) => {--}}
+    {{--                            if (typeof newVal === 'string' && newVal !== editor.getData()) {--}}
+    {{--                                editor.setData(newVal);--}}
+    {{--                            }--}}
+    {{--                        });--}}
+    {{--                    })--}}
+    {{--                    .catch(error => console.error(error));--}}
 
-                // Livewire hooks
-                Livewire.hook('component.initialized', (component) => {
-                    const editorWrapper = el.closest('[wire\\:ignore]');
-                    if (editorWrapper) {
-                        // wire:ignore voorkomt diff-problemen
-                    }
-                });
-            });
-        </script>
-    @endpush
+    {{--                // Livewire hooks--}}
+    {{--                Livewire.hook('component.initialized', (component) => {--}}
+    {{--                    const editorWrapper = el.closest('[wire\\:ignore]');--}}
+    {{--                    if (editorWrapper) {--}}
+    {{--                        // wire:ignore voorkomt diff-problemen--}}
+    {{--                    }--}}
+    {{--                });--}}
+    {{--            });--}}
+    {{--        </script>--}}
+    {{--    @endpush--}}
 </div>

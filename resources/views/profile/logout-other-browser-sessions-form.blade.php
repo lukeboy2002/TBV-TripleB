@@ -70,8 +70,7 @@
         </div>
 
         <!-- Log Out Other Devices Confirmation Modal -->
-        <x-dialog-modal wire:model.live=" confirmingLogout
-                ">
+        <x-dialog-modal wire:model.live="confirmingLogout">
             <x-slot name="title">
                 Log uit op andere apparaten of browsers
             </x-slot>
