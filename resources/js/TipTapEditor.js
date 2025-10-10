@@ -34,7 +34,7 @@ function initTipTap() {
                         if (!attributes.fontSize) {
                             return {};
                         }
-                        return { style: `font-size: ${attributes.fontSize}` };
+                        return {style: `font-size: ${attributes.fontSize}`};
                     },
                 },
             };
@@ -62,9 +62,9 @@ function initTipTap() {
     const hiddenInput = document.getElementById('biography');
     const initial = editorRoot.getAttribute('data-initial') || (hiddenInput ? hiddenInput.value : '');
 
-        const uploadUrl = editorRoot.getAttribute('data-upload-url') || '/editor/uploads/images';
+    const uploadUrl = editorRoot.getAttribute('data-upload-url') || '/editor/uploads/images';
 
-        const editor = new Editor({
+    const editor = new Editor({
         element: document.querySelector('#editor'),
         extensions: [
             StarterKit.configure({
@@ -108,6 +108,45 @@ function initTipTap() {
             hiddenInput.dispatchEvent(new Event('input', {bubbles: true}));
         }
     });
+
+    const setBtnActive = (btnId, isActive) => {
+        const el = document.getElementById(btnId);
+        if (!el) return;
+        // Active styles: text-primary and light bg; inactive: text-primary-muted only
+        if (isActive) {
+            el.classList.add('text-secondary');
+            el.classList.add('bg-gray-100');
+            el.classList.add('dark:bg-gray-600');
+            el.classList.remove('text-primary-muted');
+        } else {
+            el.classList.remove('text-secondary');
+            el.classList.remove('bg-gray-100');
+            el.classList.remove('dark:bg-gray-600');
+            el.classList.add('text-primary-muted');
+        }
+    };
+
+    const updateToolbarState = () => {
+        // marks
+        setBtnActive('toggleBoldButton', editor.isActive('bold'));
+        setBtnActive('toggleItalicButton', editor.isActive('italic'));
+        setBtnActive('toggleUnderlineButton', editor.isActive('underline'));
+        setBtnActive('toggleCodeButton', editor.isActive('code'));
+        setBtnActive('toggleLinkButton', editor.isActive('link'));
+        // lists / blocks
+        setBtnActive('toggleListButton', editor.isActive('bulletList'));
+        setBtnActive('toggleOrderedListButton', editor.isActive('orderedList'));
+        setBtnActive('toggleBlockquoteButton', editor.isActive('blockquote'));
+        // alignment
+        setBtnActive('toggleLeftAlignButton', editor.isActive({textAlign: 'left'}));
+        setBtnActive('toggleCenterAlignButton', editor.isActive({textAlign: 'center'}));
+        setBtnActive('toggleRightAlignButton', editor.isActive({textAlign: 'right'}));
+    };
+
+    // update on init and selection changes
+    editor.on('selectionUpdate', updateToolbarState);
+    editor.on('update', updateToolbarState);
+    setTimeout(updateToolbarState, 0);
 
     // set up custom event listeners for the buttons (guarded)
     safeOn('toggleBoldButton', 'click', () => editor.chain().focus().toggleBold().run());
@@ -165,13 +204,13 @@ function initTipTap() {
                 const token = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
                 const res = await fetch(uploadUrl, {
                     method: 'POST',
-                    headers: token ? { 'X-CSRF-TOKEN': token } : {},
+                    headers: token ? {'X-CSRF-TOKEN': token} : {},
                     body: formData,
                 });
                 if (!res.ok) throw new Error('Upload failed');
                 const data = await res.json();
                 if (data?.url) {
-                    editor.chain().focus().setImage({ src: data.url }).run();
+                    editor.chain().focus().setImage({src: data.url}).run();
                 }
             } catch (err) {
                 console.error('Image upload error', err);
@@ -188,7 +227,7 @@ function initTipTap() {
             imageInput.click();
         } else {
             const url = window.prompt('Enter image URL:', 'https://placehold.co/600x400');
-            if (url) editor.chain().focus().setImage({ src: url }).run();
+            if (url) editor.chain().focus().setImage({src: url}).run();
         }
     });
     safeOn('addVideoButton', 'click', () => {
