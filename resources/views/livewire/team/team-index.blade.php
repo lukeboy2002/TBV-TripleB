@@ -81,7 +81,7 @@
                             {{ __('Points') }}
                         </th>
                         <td class="py-4 text-primary">
-                            {{--                            {{ $user->total_points }}--}}
+                            {{ $user->total_points }}
                         </td>
                     </tr>
                     <tr class="text-primary-muted font-medium">
@@ -89,7 +89,7 @@
                             {{ __('Matches played') }}
                         </th>
                         <td class="py-4 text-primary">
-                            {{--                            {{ $user->total_games_played }}--}}
+                            {{ $user->total_games_played }}
                         </td>
                     </tr>
                     <tr class="text-primary-muted font-medium">
@@ -97,7 +97,7 @@
                             {{ __('Matches won') }}
                         </th>
                         <td class="py-4 text-primary">
-                            {{--                            {{ $user->total_games_won }}--}}
+                            {{ $user->total_games_won }}
                         </td>
                     </tr>
                     <tr class="text-primary-muted font-medium">
@@ -105,7 +105,7 @@
                             {{ __('Cups won') }}
                         </th>
                         <td class="py-4 text-primary">
-                            {{--                            {{ $user->total_cups_won }}--}}
+                            {{ $user->total_cups_won }}
                         </td>
                     </tr>
                     </tbody>
