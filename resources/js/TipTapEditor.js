@@ -313,3 +313,6 @@ if (document.readyState !== 'loading') {
 }
 // Livewire v3 navigation event
 document.addEventListener('livewire:navigated', initTipTap);
+
+
+// TODO: Remove Image in directory

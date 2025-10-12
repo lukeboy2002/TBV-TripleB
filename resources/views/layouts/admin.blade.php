@@ -40,8 +40,11 @@
             <main class="flex w-full flex-col px-3 py-6 lg:w-3/4">
                 {{ $slot }}
             </main>
-            <aside class="hidden lg:flex w-full flex-col px-3 pt-0 h-screen lg:pt-6 lg:w-1/4 mb-20">
+            <aside class="hidden lg:flex w-full flex-col px-3 pt-0 h-screen lg:pt-6 lg:w-1/4 mb-20 gap-6">
                 <x-menu.admin/>
+
+                {{ $side ?? '' }}
+
             </aside>
         </div>
     </section>

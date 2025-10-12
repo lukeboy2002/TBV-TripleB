@@ -6,7 +6,7 @@
     {{ __('Team') }}
 </x-link.navigation>
 
-<x-link.navigation href="#" icon="dices">
+<x-link.navigation href="{{ route('games') }}" :active="request()->routeIs('games')" icon="dices">
     {{ __('Games') }}
 </x-link.navigation>
 

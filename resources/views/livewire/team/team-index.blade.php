@@ -25,7 +25,7 @@
                          alt="{{ $user->username }}"/>
                 </div>
 
-                <div class="w-full md:w-1/2">
+                <div class="w-full md:w-1/2 pt-4 lg:pt-0">
                     <div class="text-2xl font-secondary font-bold text-secondary flex justify-between">
                         <div>{{ ucfirst($user->username) }}</div>
                         <div>{{ $this->users->links() }}</div>
@@ -81,7 +81,7 @@
                             {{ __('Points') }}
                         </th>
                         <td class="py-4 text-primary">
-                            {{--                            {{ $user->total_points }}--}}
+                            {{ $user->total_points }}
                         </td>
                     </tr>
                     <tr class="text-primary-muted font-medium">
@@ -89,7 +89,7 @@
                             {{ __('Matches played') }}
                         </th>
                         <td class="py-4 text-primary">
-                            {{--                            {{ $user->total_games_played }}--}}
+                            {{ $user->total_games_played }}
                         </td>
                     </tr>
                     <tr class="text-primary-muted font-medium">
@@ -97,7 +97,7 @@
                             {{ __('Matches won') }}
                         </th>
                         <td class="py-4 text-primary">
-                            {{--                            {{ $user->total_games_won }}--}}
+                            {{ $user->total_games_won }}
                         </td>
                     </tr>
                     <tr class="text-primary-muted font-medium">
@@ -105,7 +105,7 @@
                             {{ __('Cups won') }}
                         </th>
                         <td class="py-4 text-primary">
-                            {{--                            {{ $user->total_cups_won }}--}}
+                            {{ $user->total_cups_won }}
                         </td>
                     </tr>
                     </tbody>
