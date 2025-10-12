@@ -80,15 +80,14 @@ class GamesCreate extends Component
     public function updatedCupPhoto()
     {
         $this->validateOnly('cupPhoto', [
-            // Allow common camera formats incl. HEIC/HEIF and bigger temp size; we'll compress to <=2MB server-side
-            'cupPhoto' => 'file|mimes:jpg,jpeg,png,webp,heic,heif|max:12288', // 12MB
+            'cupPhoto' => 'image|max:2048',
         ]);
     }
 
     public function uploadCupPhoto(UploadCupPhoto $action, $playerId)
     {
         $this->validate([
-            'cupPhoto' => 'required|file|mimes:jpg,jpeg,png,webp,heic,heif|max:12288',
+            'cupPhoto' => 'required|image|max:2048',
         ]);
 
         $ok = $action($this->cupPhoto, (int) $playerId);
