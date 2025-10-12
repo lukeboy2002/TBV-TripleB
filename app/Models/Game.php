@@ -20,11 +20,7 @@ class Game extends Model
 
     public function cupWinner()
     {
-        // Ensure the user relation is eager-loaded to avoid lazy-loading issues
-        return $this->gamePlayers()
-            ->where('position', 1)
-            ->with('user')
-            ->first()?->user;
+        return $this->gamePlayers()->where('position', 1)->first()?->user;
     }
 
     public function gamePlayers(): HasMany

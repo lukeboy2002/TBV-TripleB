@@ -11,3 +11,9 @@
         {{ __('Invite User') }}
     </x-dropdown-link>
 @endcan
+
+@can('create:game')
+    <x-dropdown-link href="{{ route('game.create') }}">
+        {{ __('Create Game') }}
+    </x-dropdown-link>
+@endcan

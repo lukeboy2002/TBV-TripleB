@@ -25,7 +25,7 @@
                          alt="{{ $user->username }}"/>
                 </div>
 
-                <div class="w-full md:w-1/2">
+                <div class="w-full md:w-1/2 pt-4 lg:pt-0">
                     <div class="text-2xl font-secondary font-bold text-secondary flex justify-between">
                         <div>{{ ucfirst($user->username) }}</div>
                         <div>{{ $this->users->links() }}</div>

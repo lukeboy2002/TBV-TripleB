@@ -4,7 +4,7 @@
             {{ __('Cup Holder')}}
         </x-slot>
 
-        <div class="p-4">
+        <div class="py-4 px-2">
             @if($winner)
                 <div class="flex justify-center items-center w-full">
                     <img src="{{ asset('storage/'. $winner->cup_photo_path) }}"
