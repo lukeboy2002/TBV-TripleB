@@ -77,13 +77,14 @@ class GamesCreate extends Component
         [$this->selectedPlayers, $this->gameDate, $this->showGameForm] = $action();
     }
 
-    public function updatedCupPhoto()
-    {
-        $this->validateOnly('cupPhoto', [
-            'cupPhoto' => 'image|max:2048',
-        ]);
-    }
+    //    public function updatedCupPhoto()
+    //    {
+    //        $this->validateOnly('cupPhoto', [
+    //            'cupPhoto' => 'image|max:2048',
+    //        ]);
+    //    }
 
+    //    TODO: UPLOAD IMAGES MADE BY PHONE
     public function uploadCupPhoto(UploadCupPhoto $action, $playerId)
     {
         $this->validate([
