@@ -33,7 +33,7 @@ class RolandSeeder extends Seeder
                 'user_id' => $roland->id,
                 'image_path' => 'members/Roland.jpg',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

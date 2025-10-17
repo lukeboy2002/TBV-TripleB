@@ -33,7 +33,7 @@ class GuusSeeder extends Seeder
                 'user_id' => $guus->id,
                 'image_path' => 'members/guus.jpg',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

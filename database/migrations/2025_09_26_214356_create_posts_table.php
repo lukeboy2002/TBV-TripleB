@@ -19,10 +19,10 @@ return new class extends Migration
             $table->foreignIdFor(Category::class)->constrained()->restrictOnDelete();
             $table->string('title');
             $table->string('slug')->unique();
-            $table->longText('content');
-            $table->string('image', 2048)->nullable();
+            $table->longText('body');
+            $table->string('featured_image', 2048)->nullable();
             $table->timestamp('published_at')->nullable();
-            $table->boolean('featured')->default(false);
+            $table->boolean('is_featured')->default(false);
             $table->unsignedBigInteger('likes_count')->default(0);
             $table->unsignedBigInteger('views_count')->default(0)->index();
             $table->timestamps();

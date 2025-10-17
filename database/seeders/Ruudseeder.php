@@ -33,7 +33,7 @@ class Ruudseeder extends Seeder
                 'user_id' => $ruud->id,
                 'image_path' => 'members/Ruud.jpg',
                 'city' => 'Berkel-Enschot',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

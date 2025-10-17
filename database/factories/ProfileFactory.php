@@ -21,7 +21,7 @@ class ProfileFactory extends Factory
         return [
             'user_id' => User::factory(),
             'city' => fake()->city(),
-            'biography' => fake()->realText(150),
+            'body' => fake()->realText(150),
             'image_path' => fake()->imageUrl(),
         ];
     }

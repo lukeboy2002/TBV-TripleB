@@ -33,7 +33,7 @@ class JacSeeder extends Seeder
                 'user_id' => $jac->id,
                 'image_path' => 'members/Jac.png',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

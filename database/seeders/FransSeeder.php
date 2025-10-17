@@ -33,7 +33,7 @@ class FransSeeder extends Seeder
                 'user_id' => $frans->id,
                 'image_path' => 'members/Frans.png',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }
