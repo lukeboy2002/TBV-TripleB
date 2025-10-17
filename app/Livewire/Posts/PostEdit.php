@@ -4,9 +4,12 @@ namespace App\Livewire\Posts;
 
 use App\Models\Category;
 use App\Models\Post;
+use ArrayAccess;
 use Illuminate\Support\Str;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Storage;
+use Throwable;
 
 class PostEdit extends Component
 {
@@ -18,7 +21,7 @@ class PostEdit extends Component
 
     public $slug;
 
-    public $content;
+    public $body;
 
     public $featured_image;
 
@@ -39,7 +42,7 @@ class PostEdit extends Component
         $this->post = $post;
         $this->title = $post->title;
         $this->slug = $post->slug;
-        $this->content = $post->content;
+        $this->body = $post->body;
         $this->is_featured = $post->is_featured;
         $this->published_at = $post->published_at?->format('Y-m-d');
         $this->category_id = $post->category_id;
@@ -59,27 +62,40 @@ class PostEdit extends Component
         $this->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|unique:posts,slug,'.$this->post->id,
-            'content' => 'required',
+            'body' => 'required',
             'category_id' => 'required|exists:categories,id',
             'new_featured_image' => 'nullable|image|max:2048',
             'published_at' => 'nullable|date',
         ]);
 
-        // Upload nieuwe afbeelding indien aanwezig
+        // Keep the current stored path so we can delete it later if replaced
+        $oldPath = $this->post->featured_image; // string or null
+
+        // If a new image was uploaded, store it and update the property
         if ($this->new_featured_image) {
-            $path = $this->new_featured_image->store('posts', 'public');
-            $this->featured_image = $path;
+            $newPath = $this->new_featured_image->store('posts', 'public');
+            $this->featured_image = $newPath; // will be written to DB below
         }
 
         $this->post->update([
             'title' => $this->title,
             'slug' => $this->slug,
-            'content' => $this->content,
+            'body' => $this->body,
             'featured_image' => $this->featured_image,
             'is_featured' => $this->is_featured,
             'published_at' => $this->published_at,
             'category_id' => $this->category_id,
         ]);
+
+        // If a new file replaced an existing one, delete the old file from storage
+        if ($this->new_featured_image && $oldPath && $oldPath !== $this->featured_image) {
+            try {
+                Storage::disk('public')->delete($oldPath);
+            } catch (Throwable $e) {
+                // Optional: log the failure instead of throwing
+                // logger()->warning('Failed to delete old post image', ['path' => $oldPath, 'error' => $e->getMessage()]);
+            }
+        }
 
         // Tags synchroniseren
         $tags = $this->tags;
