@@ -12,8 +12,7 @@
             }
     }" class="mb-4">
         <div class="mb-2">
-            <textarea x-ref="input" wire:model="comment" @click="focused = true" wire:loading.attr="disabled"
-                      wire:target="createComment"
+            <textarea x-ref="input" wire:model="comment" @click="focused = true"
                       id="comment"
                       name="comment"
                       class="bg-transparent text-sm text-primary-muted placeholder-primary-muted rounded-lg block w-full p-2.5 border border-secondary/30 focus:border-secondary focus:outline-none focus:ring-0"
@@ -28,10 +27,8 @@
                                 type="button">
                 {{ __('Cancel') }}
             </x-button.secondary>
-            <x-button.default wire:click="createComment" type="submit" wire:loading.attr="disabled"
-                              wire:target="createComment">
+            <x-button.default wire:click="createComment" type="submit">
                 {{ __('Send') }}
-
             </x-button.default>
         </div>
     </div>
