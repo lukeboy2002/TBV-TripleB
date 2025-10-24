@@ -11,6 +11,7 @@ use Livewire\Component;
 
 class Likes extends Component
 {
+    //    TODO: Likes with thumbs up/down icons
     public $type;
 
     public $id;

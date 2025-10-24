@@ -28,6 +28,8 @@ class PostStats extends Component
         $this->refreshCounts();
     }
 
+    //    TODO: Likes with thumbs up/down icons
+
     public function refreshCounts(): void
     {
         // Keep the local model fresh and set the counters
