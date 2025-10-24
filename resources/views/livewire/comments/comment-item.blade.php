@@ -33,7 +33,7 @@
             @else
                 <div class="flex justify-between items-end">
                     <div class="text-primary-muted prose prose-orange dark:prose-invert text-sm">
-                        {!! \Illuminate\Support\Str::markdown($comment->comment) !!}
+                        {!! $comment->comment !!}
                     </div>
                     @auth
                         <a wire:click.prevent="startReply"

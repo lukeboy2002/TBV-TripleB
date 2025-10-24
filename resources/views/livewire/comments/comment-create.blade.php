@@ -23,11 +23,6 @@
             ></textarea>
             <x-form.error for="comment" class="mt-2"/>
         </div>
-        <p class="mt-1 text-xs text-primary-muted" :class="isEdit || focused ? '' : 'hidden'">
-            <a href="https://www.markdownguide.org/cheat-sheet/"
-               class="hover:text-secondary hover:underline focus:outline-none focus:text-secondary focus:underline"
-               target="_blank">{{ __('You can use Markdown') }}</a>
-        </p>
         <div class="flex justify-end space-x-2" :class="isEdit || focused ? '' : 'hidden'">
             <x-button.secondary @click="focused = false; isEdit = false; $wire.dispatch('cancelEditing')"
                                 type="button">
