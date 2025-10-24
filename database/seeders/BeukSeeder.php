@@ -33,7 +33,7 @@ class BeukSeeder extends Seeder
                 'user_id' => $beuk->id,
                 'image_path' => 'members/Beuk.png',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

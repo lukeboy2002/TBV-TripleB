@@ -21,7 +21,7 @@ class Profile extends Model
         'id',
         'user_id',
         'city',
-        'biography',
+        'body',
         'image_path',
         'created_at',
         'updated_at',

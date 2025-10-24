@@ -1,5 +1,5 @@
 @props(['enableImageUpload' => false])
-<div class="flex items-center flex-wrap">
+<div class="flex items-center flex-wrap gap-y-2">
 
     <div class="flex items-center gap-2 pt-2 flex-wrap">
         <button id="typographyDropdownButton" data-dropdown-toggle="typographyDropdown"

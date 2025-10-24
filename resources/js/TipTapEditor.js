@@ -59,7 +59,7 @@ function initTipTap() {
         },
     });
     // tip tap editor setup
-    const hiddenInput = document.getElementById('biography');
+    const hiddenInput = document.getElementById('body');
     const initial = editorRoot.getAttribute('data-initial') || (hiddenInput ? hiddenInput.value : '');
 
     const uploadUrl = editorRoot.getAttribute('data-upload-url') || '/editor/uploads/images';

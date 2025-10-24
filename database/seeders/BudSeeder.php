@@ -33,7 +33,7 @@ class BudSeeder extends Seeder
                 'user_id' => $bud->id,
                 'image_path' => 'members/Bud.jpg',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

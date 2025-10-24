@@ -33,7 +33,7 @@ class AntoineSeeder extends Seeder
                 'user_id' => $antoine->id,
                 'image_path' => 'members/Antoine.jpg',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

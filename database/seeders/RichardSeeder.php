@@ -33,7 +33,7 @@ class RichardSeeder extends Seeder
                 'user_id' => $richard->id,
                 'image_path' => 'members/Richard.jpg',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

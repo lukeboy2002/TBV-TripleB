@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\User;
@@ -30,10 +31,14 @@ class AppServiceProvider extends ServiceProvider
         Model::preventSilentlyDiscardingAttributes(! $this->app->isProduction());
         Model::preventAccessingMissingAttributes(! $this->app->isProduction());
 
-        Relation::enforceMorphMap([
+        Relation::morphMap([
             'post' => Post::class,
             'comment' => Comment::class,
             'user' => User::class,
+            // 'category' is not required here since Category is not used in a polymorphic relation
+            // but keeping it is harmless. Remove or keep based on preference.
+            // 'category' => Category::class,
+            //            'tag' => Tag::class,
         ]);
     }
 }

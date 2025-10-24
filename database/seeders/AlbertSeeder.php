@@ -33,7 +33,7 @@ class AlbertSeeder extends Seeder
                 'user_id' => $albert->id,
                 'image_path' => 'members/Albert.jpg',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

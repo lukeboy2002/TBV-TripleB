@@ -33,7 +33,7 @@ class JohanSeeder extends Seeder
                 'user_id' => $johan->id,
                 'image_path' => 'members/Johan.jpg',
                 'city' => 'Tilburg',
-                'biography' => '',
+                'body' => '',
             ]);
     }
 }

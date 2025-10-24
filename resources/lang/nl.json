@@ -5,9 +5,7 @@
   "Images": "Foto's",
   "Blog": "Blog",
   "Agenda": "Agenda",
-
   "Username": "Gebruikersnaam",
-
   "Categories": "Categorieën",
   "Category": "Categorie",
   "Name": "Naam",
@@ -16,13 +14,11 @@
   "Color": "Kleur",
   "Total posts": "Totaal aantal posts",
   "Create new category": "Nieuwe categorie maken",
-
   "Invite User": "Gebruiker uitnodigen",
   "Invited by": "Uitgenodigd door",
   "Invited at": "Uitgenodigd op",
   "Delete Invitation": "Uitnodiging verwijderen",
   "Are you sure you want to delete this invitation?": "Weet je zeker dat je deze uitnodiging wilt verwijderen?",
-
   "Player": "Speler",
   "Players": "Spelers",
   "Played": "Gespeeld",
@@ -33,7 +29,6 @@
   "Matches won": "Gewonnen Wedstijden",
   "Cups won": "Gewonnen bekers",
   "Edit Profile": "Profiel bewerken",
-
   "Players present": "Spelers aanwezig",
   "Started": "Gestart",
   "Start New Game": "Nieuwe wedstijd starten",
@@ -54,15 +49,19 @@
   "Lost": "Verloren",
   "Players from the game:": "Spelers uit het spel",
   "Position": "Positie",
-
-
-
-  "Save": "Opslaan",
   "No blog posts found": "Geen blogposts gevonden.",
+  "Save": "Opslaan",
   "More": "Meer",
-  "by": "door",
+  "More in Category": "Meer in Categorie",
+  "More from": "Meer van",
+  "By": "Door",
+  "Choose category": "Kies categorie",
+  "Add multiple tags using commas.": "Voeg meerdere tags toe door komma’s te gebruiken.",
   "published on": "gepubliceerd op",
   "Our Blog": "Onze Blog",
+  "View all by": "Bekijk alle berichten van",
+  "Delete Post": "Verwijder Post",
+  "Are you sure you want to delete this post and all associated comments?": "Weet je zeker dat je dit bericht en alle bijbehorende reacties wilt verwijderen?",
   "New Post": "Nieuwe Post",
   "Title": "Titel",
   "Text": "Tekst,",
@@ -71,13 +70,13 @@
   "Publication date": "Publicatiedatum",
   "Published on": "Gepubliceerd op",
   "Share article": "Deel artikel",
-  "Delete Post": "Verwijder Post",
-  "Are you sure you want to delete this post and all associated comments?": "Weet je zeker dat je dit bericht en alle bijbehorende reacties wilt verwijderen?"
   "Comments": "Reacties",
   "Comment": "Reageer",
   "No comments yet": "Nog geen reacties",
+  "Reply": "Reageer",
+  "Delete Comment": "Verwijder reactie",
   "Sent": "Versturen",
   "Only registered users can leave a comment.": "Alleen geregistreerde gebruikers kunnen een reactie achterlaten.",
-  "Delete comment": "Verwijder reactie",
-  "Are you sure you want to delete these comment?": "Weet je zeker dat je deze reactie wilt verwijderen?"
+  "Are you sure you want to delete this comment?": "Weet je zeker dat je deze reactie wilt verwijderen?",
+  "You can use Markdown": "Je kunt Markdown gebruiken"
 }

@@ -14,7 +14,7 @@
     {{ __('Images') }}
 </x-link.navigation>
 
-<x-link.navigation href="#" icon="newspaper">
+<x-link.navigation href="{{ route('posts.index') }}" :active="request()->routeIs('posts.*')" icon="newspaper">
     {{ __('Blog') }}
 </x-link.navigation>
 

@@ -10,7 +10,7 @@ class UpdateProfileBioForm extends Component
 {
     public $city;
 
-    public $biography;
+    public $body;
 
     public function mount()
     {
@@ -18,34 +18,34 @@ class UpdateProfileBioForm extends Component
 
         if ($profile) {
             $this->city = $profile->city;
-            $this->biography = $profile->biography;
+            $this->body = $profile->body;
         } else {
-            $this->biography = $this->biography ?? '';
+            $this->body = $this->body ?? '';
         }
 
         // Ensure editor gets initial value
-        $this->dispatch('refresh-biography', $this->biography);
+        $this->dispatch('refresh-biography', $this->body);
     }
 
     public function updateProfileBio()
     {
         $this->validate([
             'city' => 'nullable|string|max:255',
-            'biography' => 'nullable|min:10',
+            'body' => 'nullable|min:10',
         ]);
 
         Profile::updateOrCreate(
             ['user_id' => Auth::id()],
             [
                 'city' => $this->city,
-                'biography' => $this->biography,
+                'body' => $this->body,
             ]
         );
 
         // Jetstream-style action message
         $this->dispatch('saved');
         // Update editor content if needed
-        $this->dispatch('refresh-biography', $this->biography);
+        $this->dispatch('refresh-biography', $this->body);
         session()->flash('message', 'Profielinformatie opgeslagen!');
     }
 
