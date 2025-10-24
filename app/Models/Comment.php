@@ -52,6 +52,11 @@ class Comment extends Model
         return $this->morphMany(Like::class, 'likeable');
     }
 
+    public function getFormattedDate()
+    {
+        return $this->created_at->format('d F Y');
+    }
+
     /**
      * Get the attributes that should be cast.
      *

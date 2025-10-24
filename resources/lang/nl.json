@@ -73,8 +73,10 @@
   "Comments": "Reacties",
   "Comment": "Reageer",
   "No comments yet": "Nog geen reacties",
+  "Reply": "Reageer",
+  "Delete Comment": "Verwijder reactie",
   "Sent": "Versturen",
   "Only registered users can leave a comment.": "Alleen geregistreerde gebruikers kunnen een reactie achterlaten.",
-  "Delete comment": "Verwijder reactie",
-  "Are you sure you want to delete these comment?": "Weet je zeker dat je deze reactie wilt verwijderen?"
+  "Are you sure you want to delete this comment?": "Weet je zeker dat je deze reactie wilt verwijderen?",
+  "You can use Markdown": "Je kunt Markdown gebruiken"
 }

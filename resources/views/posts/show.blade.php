@@ -82,12 +82,12 @@
                 </div>
 
                 <div>
-                    {{--                    <livewire:likes type="post" id="{{ $post->id }}"/>--}}
+                    <livewire:likes.likes type="post" id="{{ $post->id }}"/>
                 </div>
             </div>
         </x-slot>
     </x-card.blog>
-    {{--    <livewire:comments.index :post="$post"/>--}}
+    <livewire:comments.comments-index :post=" $post"/>
 
     <x-slot name="side">
         <div class="flex flex-col gap-6">
@@ -146,7 +146,8 @@
                         @endforeach
                     </div>
                     <div class="pt-3 flex justify-end">
-                        <x-link.default href="{{ route('posts.index', ['category' => $post->category->slug]) }}">
+                        <x-link.default
+                                href="{{ route('posts.index', ['category' => $post->category->slug]) }}">
                             {{ __('View all in') }} {{ $post->category->name }}
                         </x-link.default>
                     </div>
