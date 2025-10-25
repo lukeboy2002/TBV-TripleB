@@ -44,6 +44,8 @@ class CommentCreate extends Component
             $this->commentModel->comment = $this->comment;
             $this->commentModel->save();
 
+            // Clear validation errors and reset the input after a successful update
+            $this->resetValidation();
             $this->comment = '';
             $this->dispatch('commentUpdated');
         } else {
@@ -56,6 +58,7 @@ class CommentCreate extends Component
             ]);
 
             $this->dispatch('commentCreated', $comment->id);
+            $this->resetValidation();
             $this->comment = '';
         }
     }

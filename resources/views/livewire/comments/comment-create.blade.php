@@ -11,7 +11,8 @@
                 })
             }
     }" class="mb-4">
-        <div class="mb-2">
+        <form wire:submit.prevent="createComment">
+            <div class="mb-2">
             <textarea x-ref="input" wire:model="comment" @click="focused = true"
                       id="comment"
                       name="comment"
@@ -20,17 +21,18 @@
                       placeholder="{{ __('Leave a comment') }}"
                       required
             ></textarea>
-            <x-form.error for="comment" class="mt-2"/>
-        </div>
-        <div class="flex justify-end space-x-2" :class="isEdit || focused ? '' : 'hidden'">
-            <x-button.secondary @click="focused = false; isEdit = false; $wire.dispatch('cancelEditing')"
-                                type="button">
-                {{ __('Cancel') }}
-            </x-button.secondary>
-            <x-button.default wire:click="createComment" type="submit">
-                {{ __('Send') }}
-            </x-button.default>
-        </div>
+                <x-form.error for="comment" class="mt-2"/>
+            </div>
+            <div class="flex justify-end space-x-2" :class="isEdit || focused ? '' : 'hidden'">
+                <x-button.secondary @click="focused = false; isEdit = false; $wire.dispatch('cancelEditing')"
+                                    type="button">
+                    {{ __('Cancel') }}
+                </x-button.secondary>
+                <x-button.default type="submit">
+                    {{ __('Send') }}
+                </x-button.default>
+            </div>
+        </form>
     </div>
 @else
     <div class="flex justify-end items-center space-x-1 rounded-lg p-4">
