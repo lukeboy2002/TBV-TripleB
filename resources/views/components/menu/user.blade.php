@@ -1,3 +1,13 @@
+@role('admin')
+<x-dropdown-link
+        href="{{ route('roles.index') }}">
+    {{ __('Roles') }}
+</x-dropdown-link>
+<x-dropdown-link
+        href="{{ route('users.index') }}">
+    {{ __('Users') }}
+</x-dropdown-link>
+@endrole
 @can('create:category')
     <x-dropdown-link
             href="{{ route('categories.index') }}">

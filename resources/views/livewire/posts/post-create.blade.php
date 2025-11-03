@@ -8,7 +8,7 @@
                 <x-card.default class="flex flex-col gap-6">
 
                     <div>
-                        <x-form.label>{{ __('Title') }}</x-form.label>
+                        <x-form.label for="title">{{ __('Title') }}</x-form.label>
                         <x-form.input type="text" wire:model="title" class="w-full border rounded p-2"/>
                         <x-form.error for="title"/>
                     </div>
