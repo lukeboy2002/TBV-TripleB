@@ -80,13 +80,22 @@
   "Are you sure you want to delete this comment?": "Weet je zeker dat je deze reactie wilt verwijderen?",
   "You can use Markdown": "Je kunt Markdown gebruiken",
   "Roles": "Rollen",
+  "Role": "Rol",
   "Permissions": "Permissies",
+  "All Roles": "Alle Rollen",
   "Users": "Gebruikers",
+  "Edit User": "Gebruiker bewerken",
+  "Create Role": "Nieuwe rol maken",
+  "Change Role": "Rol wijzigen",
+  "Add or change additional permissions": "Voeg of wijzig extra permissies toe",
   "New Role": "Nieuwe rol",
   "Edit Role": "Rol Bewerken",
   "Delete Role": "Verwijder rol",
   "Are you sure you want to delete this role?": "Weet je zeker dat je deze rol wilt verwijderen?",
   "Create Game": "Nieuw spel",
   "Cancel": "Annuleren",
-  "Select permissions": "Selecteer permissies,"
+  "Select permissions": "Selecteer permissies,",
+  "Ban": "Verban",
+  "Banned": "Verbannen",
+  "No users are banned": "Geen gebruikers zijn verbannen"
 }

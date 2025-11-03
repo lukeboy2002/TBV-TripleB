@@ -1,5 +1,5 @@
 <div>
-    <x-heading.sub>Edit User, {{ $user->username }}</x-heading.sub>
+    <x-heading.sub>{{ __('Edit User') }}, {{ $user->username }}</x-heading.sub>
     <div class="flex flex-col gap-6">
         <x-card.default>
             <div class="flex flex-col gap-2 mb-4">
@@ -7,12 +7,12 @@
                 <div class="text-sm text-primary italic">{{ $user->name }}</div>
             </div>
 
-            <x-heading.side>Edit Role</x-heading.side>
+            <x-heading.side>{{ __('Change Role') }}</x-heading.side>
             <form wire:submit.prevent="updateRole">
                 <div class="max-w-sm">
                     <label class="block text-sm text-primary mb-1">Role</label>
-                    <select wire:model="selectedRole" class="w-full rounded-md border border-secondary/30 bg-background px-3 py-2 text-primary focus:outline-none focus:ring-2 focus:ring-secondary">
-                        <option value="">— No role —</option>
+                    <select wire:model="selectedRole"
+                            class="w-full rounded-md border border-secondary/30 bg-background px-3 py-2 text-primary focus:outline-none focus:ring-2 focus:ring-secondary">
                         @foreach($availableRoles as $roleName)
                             <option value="{{ $roleName }}">{{ ucfirst($roleName) }}</option>
                         @endforeach
@@ -23,7 +23,7 @@
                 </div>
             </form>
 
-            <x-heading.side>Or add Permissions</x-heading.side>
+            <x-heading.side>{{ __('Add or change additional permissions') }}</x-heading.side>
             <form wire:submit.prevent="updatePermissions">
                 <div class="flex flex-wrap gap-4">
                     @foreach($allPermissions as $permission)

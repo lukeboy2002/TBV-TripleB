@@ -9,7 +9,7 @@
                         <tr>
                             @include('livewire.components.sortable-th',[
                                 'name' => 'username',
-                                 'displayName' => 'Username'
+                                 'displayName' => __('Username')
                             ])
 
                             <th scope="col" class="px-6 py-3">{{ __('Role') }}</th>
@@ -43,10 +43,10 @@
                                 <td class="px-6 py-4">
                                     <label class="relative inline-flex items-center mr-5 cursor-pointer">
                                         <input
-                                            type="checkbox"
-                                            class="sr-only peer"
-                                            @checked($user->is_banned)
-                                            wire:click="toggleBan({{ $user->id }})"
+                                                type="checkbox"
+                                                class="sr-only peer"
+                                                @checked($user->is_banned)
+                                                wire:click="toggleBan({{ $user->id }})"
                                         >
                                         <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-500 dark:peer-checked:bg-orange-500"></div>
                                     </label>
@@ -67,7 +67,7 @@
             </x-card.default>
         </main>
         <aside class="pt-6 flex w-full flex-col px-3 lg:pt-0 lg:w-1/4 mb-6 lg:mb-20 gap-6">
-            <livewire:users.users-banned />
+            <livewire:users.users-banned/>
         </aside>
     </div>
 </div>

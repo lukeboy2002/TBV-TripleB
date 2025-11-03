@@ -1,5 +1,5 @@
 <div>
-    <x-heading.sub>Create Role</x-heading.sub>
+    <x-heading.sub>{{ __('Create Role') }}</x-heading.sub>
     <div class="flex flex-col gap-6">
         <x-card.default>
             <form wire:submit.prevent="createRole">

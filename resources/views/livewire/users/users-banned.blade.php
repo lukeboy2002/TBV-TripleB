@@ -24,7 +24,7 @@
     @else
         <div class="text-primary-muted flex flex-col items-center gap-2">
             <x-lucide-user-x class="w-14 h-14 text-secondary"/>
-            <p class="text-xl">
+            <p class="text-xl text-center">
                 {{ __('No users are banned') }}</p>
         </div>
     @endif

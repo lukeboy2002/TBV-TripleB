@@ -1,7 +1,7 @@
 <div>
     <div class="flex justify-between gap-4 mb-2">
         <div class="w-full">
-            <x-heading.sub>All Roles</x-heading.sub>
+            <x-heading.sub>{{ __('All Roles') }}</x-heading.sub>
         </div>
         <x-link.button href="{{ route('roles.create') }}">{{ __('New Role') }}</x-link.button>
     </div>
