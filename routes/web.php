@@ -39,8 +39,8 @@ Route::middleware('setLocale')->group(function () {
         Route::get('roles', [App\Http\Controllers\Admin\RolesController::class, 'index'])->middleware('role:admin')->name('roles.index');
         Route::get('roles/create', [App\Http\Controllers\Admin\RolesController::class, 'create'])->middleware('role:admin')->name('roles.create');
         Route::get('roles/{role}/edit', [App\Http\Controllers\Admin\RolesController::class, 'edit'])->middleware('role:admin')->name('roles.edit');
-
-        Route::get('users', App\Http\Controllers\Admin\UsersController::class)->middleware('role:admin')->name('users.index');
+        Route::get('users', [App\Http\Controllers\Admin\UserRolesController::class, 'index'])->middleware('role:admin')->name('users.index');
+        Route::get('users/{user:username}/edit', [App\Http\Controllers\Admin\UserRolesController::class, 'edit'])->middleware('role:admin')->name('users.edit');
         Route::get('categories', App\Http\Controllers\Admin\CategoryController::class)->middleware('role:admin|member')->name('categories.index');
         Route::get('invitations', App\Http\Controllers\Admin\InvitationController::class)->middleware('role:admin|member')->name('invitations.index');
         Route::get('post/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->middleware('role:admin|member')->name('post.create');

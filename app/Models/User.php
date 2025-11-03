@@ -62,6 +62,16 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
+
     public function profile(): HasOne
     {
         return $this->hasOne(Profile::class);
@@ -129,6 +139,12 @@ class User extends Authenticatable
         return $this->gamePlayers()->where('position', 1)->count();
     }
 
+    public function scopeSearch($query, string $search = '')
+    {
+        $query->where('name', 'like', "%{$search}%")
+            ->orWhere('username', 'like', "%{$search}%");
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -139,6 +155,17 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_banned' => 'boolean',
         ];
+    }
+
+    public function scopeBanned($query)
+    {
+        return $query->where('is_banned', true);
+    }
+
+    public function scopeNotBanned($query)
+    {
+        return $query->where('is_banned', false);
     }
 }

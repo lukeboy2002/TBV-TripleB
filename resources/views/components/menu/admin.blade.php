@@ -3,23 +3,20 @@
 
     <div class="flex flex-col gap-y-4">
         @role('admin')
-        <div class="items-center flex gap-2 px-1 text-base font-medium leading-5 text-primary">
-            <x-lucide-lock class="w-6 h-6 sm:w-5 sm:h-5"/>
-            {{ __('Roles & Permissions') }}
-        </div>
-        <div class=" pl-6 flex flex-col gap-4
-            ">
-            <x-link.navigation href="{{ route('roles.index') }}"
-                               :active="request()->routeIs('roles.index')">
-                {{ __('Roles') }}
-            </x-link.navigation>
-            <x-link.navigation href="{{ route('users.index') }}"
-                               :active="request()->routeIs('users.index')">
-                {{ __('Users') }}
-            </x-link.navigation>
-        </div>
+        <x-link.navigation href="{{ route('roles.index') }}"
+                           :active="request()->routeIs('roles.*')"
+                           icon="shield">
+            {{ __('Roles') }}
+        </x-link.navigation>
+
+        <x-link.navigation href="{{ route('users.index') }}"
+                           :active="request()->routeIs('users.*')"
+                           icon="user-cog">
+            {{ __('Users') }}
+        </x-link.navigation>
 
         @endrole
+
         <x-link.navigation href="{{ route('categories.index') }}"
                            :active="request()->routeIs('categories.index')"
                            icon="tags">
@@ -43,6 +40,7 @@
                            icon="dices">
             {{ __('Create Game') }}
         </x-link.navigation>
-    </div>
+    </
+    >
 </x-card.side>
 
