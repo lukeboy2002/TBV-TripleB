@@ -35,19 +35,84 @@
 <div class="min-h-screen bg-body z-0">
     @livewire('navigation-menu')
 
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mx-auto flex max-w-7xl flex-wrap">
-            <main class="flex w-full flex-col px-3 py-6 lg:w-3/4">
-                {{ $slot }}
-            </main>
-            <aside class="hidden lg:flex w-full flex-col px-3 pt-0 h-screen lg:pt-6 lg:w-1/4 mb-20 gap-6">
-                <x-menu.admin/>
+    {{--    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">--}}
+    {{--        <div class="mx-auto flex max-w-7xl flex-wrap">--}}
+    {{--            <main class="flex w-full flex-col px-3 py-6 lg:w-3/4">--}}
+    {{--                {{ $slot }}--}}
+    {{--            </main>--}}
+    {{--            <aside class="hidden lg:flex w-full flex-col px-3 pt-0 h-screen lg:pt-6 lg:w-1/4 mb-20 gap-6">--}}
+    {{--                <x-menu.admin/>--}}
 
-                {{ $side ?? '' }}
+    {{--                {{ $side ?? '' }}--}}
 
-            </aside>
+    {{--            </aside>--}}
+    {{--        </div>--}}
+    {{--    </section>--}}
+
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Sidebar -->
+        <aside
+                class="fixed top-[6.5rem] left-0 h-[calc(100vh-6.5rem)] bg-gray-800 text-white flex flex-col items-center py-6 transition-all duration-300 group hover:w-56 w-16 z-40 "
+        >
+            <nav class="flex flex-col space-y-4 w-full">
+                <!-- Menu item -->
+                <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-700 transition-all duration-200">
+                    <!-- Icoon -->
+                    <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M3 7h18M3 12h18M3 17h18"/>
+                    </svg>
+                    <!-- Tekst -->
+                    <span
+                            class="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    Dashboard
+                </span>
+                </a>
+
+                <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-700 transition-all duration-200">
+                    <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M5 13l4 4L19 7"/>
+                    </svg>
+                    <span
+                            class="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    Games
+                </span>
+                </a>
+
+                <a href="#" class="flex items-center px-4 py-2 hover:bg-gray-700 transition-all duration-200">
+                    <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M12 4v16m8-8H4"/>
+                    </svg>
+                    <span
+                            class="ml-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+                    Nieuw spel
+                </span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Content -->
+        <div class="pl-16">
+            <!-- Page Content -->
+            @if (isset($side))
+                <div class="mx-auto flex max-w-7xl flex-wrap">
+                    <main class="flex w-full flex-col px-3 lg:w-3/4">
+                        {{ $slot }}
+                    </main>
+                    <aside class="flex w-full flex-col px-3 pt-0 lg:w-1/4 mb-20">
+                        {{ $side }}
+                    </aside>
+                </div>
+            @else
+                <main>
+                    {{ $slot }}
+                </main>
+            @endif
         </div>
     </section>
+
 </div>
 
 @stack('modals')
