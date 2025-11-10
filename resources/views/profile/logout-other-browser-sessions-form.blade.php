@@ -1,17 +1,15 @@
 <x-action-section>
     <x-slot name="title">
-        Browsersessies
+        {{ __("Browser sessions") }}
     </x-slot>
 
     <x-slot name="description">
-        Log uit op andere apparaten of browsers
+        {{ __('Log out on other devices or browsers') }}
     </x-slot>
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-primary-muted">
-            Indien nodig kun je uitloggen bij al je andere browsers en apparaten. Hieronder zie je een overzicht van
-            enkele recente sessies, maar dit overzicht is mogelijk niet volledig. Denk je dat je account is gehackt,
-            wijzig dan ook je wachtwoord.
+            {{ __('If necessary, you can log out of all your other browsers and devices. Below you will see an overview some recent sessions, but this overview may not be complete. Do you think your account has been hacked? then also change your password.') }}
         </div>
 
         @if (count($this->sessions) > 0)
@@ -60,31 +58,29 @@
 
         <div class="flex items-center mt-5">
             <x-button.danger wire:click="confirmLogout" wire:loading.attr="disabled">
-                Log uit bij andere browsersessies
+                {{ __('Log out of other browser sessions') }}
             </x-button.danger>
 
             <x-action-message class="ms-3" on="loggedOut">
                 <x-lucide-check class="h-5 w-5 mr-2"/>
-                Klaar
+                {{ __('Done') }}
             </x-action-message>
         </div>
 
         <!-- Log Out Other Devices Confirmation Modal -->
         <x-dialog-modal wire:model.live="confirmingLogout">
             <x-slot name="title">
-                Log uit op andere apparaten of browsers
+                {{ __('Log out on other devices or browsers') }}
             </x-slot>
 
             <x-slot name="content">
-                Voer uw wachtwoord in om te bevestigen dat u zich wilt afmelden bij uw andere browsersessies op al
-                uw
-                apparaten.
+                {{ __('Enter your password to confirm that you want to log out of your other browsing sessions on all your devices.') }}
 
                 <div class="mt-4" x-data="{}"
                      x-on:confirming-logout-other-browser-sessions.window="setTimeout(() => $refs.password.focus(), 250)">
                     <x-form.input type="password" class="mt-1 block w-3/4"
                                   autocomplete="current-password"
-                                  placeholder="Wachtwoord"
+                                  placeholder="{{ __('Password') }}"
                                   x-ref="password"
                                   wire:model="password"
                                   wire:keydown.enter="logoutOtherBrowserSessions"/>
@@ -101,7 +97,7 @@
                 <x-button.danger class="ms-3"
                                  wire:click="logoutOtherBrowserSessions"
                                  wire:loading.attr="disabled">
-                    Log uit bij andere browsersessies
+                    {{ __('Log out on other devices or browsers') }}
                 </x-button.danger>
             </x-slot>
         </x-dialog-modal>

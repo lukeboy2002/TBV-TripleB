@@ -6,7 +6,7 @@
         <div class="h-full w-full flex flex-col items-center justify-center mx-auto">
             <div class="w-full max-w-md px-3 lg:px-0">
                 <div>
-                    <x-heading.main>Login</x-heading.main>
+                    <x-heading.main>{{ __('Login') }}</x-heading.main>
                 </div>
                 <div>
                     <x-card.default class="form">
@@ -14,7 +14,7 @@
                         <form method="POST" action="{{ route('login') }}" class="space-y-6">
                             @csrf
                             <div>
-                                <x-form.label for="username" value="Gebruikersnaam"/>
+                                <x-form.label for="username" value="{{ __('Username') }}"/>
                                 <x-form.input id="username" class="block mt-1 w-full" type="text" name="username"
                                               icon="user"
                                               :value="old('username')"
@@ -23,12 +23,12 @@
                             </div>
                             <div>
                                 <div class="flex justify-between items-center">
-                                    <x-form.label for="password" value="Wachtwoord"/>
+                                    <x-form.label for="password" value="{{ __('Password') }}"/>
                                     <div class="flex items-center justify-end">
                                         @if (Route::has('password.request'))
                                             <x-link.default
                                                     href="{{ route('password.request') }}">
-                                                Vergeten?
+                                                {{ __('Forgotten?') }}
                                             </x-link.default>
                                         @endif
                                     </div>
@@ -43,7 +43,7 @@
                             <div>
                                 <x-form.label for="remember_me">
                                     <x-form.checkbox id="remember_me" name="remember"/>
-                                    <span class="ms-2 text-sm text-primary-muted">Onthoud mij</span>
+                                    <span class="ms-2 text-sm text-primary-muted">{{ __('Remember me') }}</span>
                                 </x-form.label>
                             </div>
 
@@ -52,16 +52,19 @@
                             </x-button.default>
 
                             @if (Route::has('register'))
-                                <div class="flex justify-end">
-                                    <p class="text-sm font-light text-primary-muted">
-                                        Nog geen account?
+                                <div class="flex justify-end w-full">
+                                    <p class="text-sm font-light text-primary-muted flex gap-1 items-center">
+                                        {{ __('No account yet?') }}
                                         <x-link.default href="{{ route('register') }}">
-                                            registreer
+                                            {{ __('Register') }}
                                         </x-link.default>
                                     </p>
                                 </div>
                             @endif
                         </form>
+                        <div class="mt-4 flex justify-end">
+                            <x-authenticate-passkey/>
+                        </div>
                     </x-card.default>
                 </div>
             </div>

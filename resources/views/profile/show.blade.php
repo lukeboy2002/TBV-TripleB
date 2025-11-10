@@ -1,7 +1,7 @@
-<x-app-layout title="Profiel">
-    <x-slot name="header">
-        <x-heading.main>Mijn Profiel</x-heading.main>
-    </x-slot>
+<x-app-layout title="{{ __('Profile') }}">
+
+    <x-heading.main>{{ __('My profile') }}</x-heading.main>
+
 
     <div>
         <div class="max-w-7xl mx-auto py-8 sm:px-6 lg:px-8">
@@ -23,6 +23,8 @@
                 <x-section-border/>
             @endif
 
+            <livewire:passkeys/>
+            <x-section-border/>
             @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
                 <div class="mt-10 sm:mt-0">
                     @livewire('profile.two-factor-authentication-form')

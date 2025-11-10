@@ -1,10 +1,10 @@
 <x-action-section>
     <x-slot name="title">
-        Two Factor Authentication
+        {{ __('Two Factor Authentication') }}Two Factor Authentication
     </x-slot>
 
     <x-slot name="description">
-        Voeg extra beveiliging toe aan uw account met behulp van tweefactorauthenticatie
+        {{ __('Add extra security to your account using two-factor authentication') }}
     </x-slot>
 
     <x-slot name="content">
@@ -13,26 +13,26 @@
                 @if ($showingConfirmation)
                     <div class="text-edit flex gap-2 items-center">
                         <x-lucide-circle-check-big class="h-5 w-5"/>
-                        Voltooi het inschakelen van tweefactorauthenticatie
+                        {{ __('Finish enabling two-factor authentication') }}
                     </div>
                 @else
                     <div class="text-success flex gap-2 items-center">
                         <x-lucide-circle-check class="h-5 w-5"/>
-                        U heeft tweefactorauthenticatie ingeschakeld.
+                        {{ __('You have enabled two-factor authentication.') }}
                     </div>
                 @endif
             @else
                 <div class="text-error flex gap-2 items-center">
                     <x-lucide-triangle-alert class="h-5 w-5"/>
-                    U heeft tweefactorauthenticatie niet ingeschakeld
+                    {{ __('You have not enabled two-factor authentication') }}
                 </div>
             @endif
         </h3>
 
         <div class="mt-3 max-w-xl text-sm text-primary-muted">
-            <p>Wanneer tweefactorauthenticatie is ingeschakeld, wordt u tijdens de authenticatie om een veilig,
-                willekeurig token gevraagd. U kunt dit token ophalen via bijvoorbeeld Google Authenticator-applicatie
-                van uw telefoon
+            <p>
+                {{ __('When two factor authentication is enabled, you will be prompted for a secure, random token during
+                authentication. You may retrieve this token from your phone\'s Google Authenticator application.') }}
             </p>
         </div>
 
@@ -41,10 +41,10 @@
                 <div class="mt-4 max-w-xl text-sm text-primary-muted">
                     <p class="font-semibold">
                         @if ($showingConfirmation)
-                            Om het inschakelen van tweefactorauthenticatie te voltooien, scant u de volgende QR-code
-                            met bijvoorbeeld Google Authenticator-applicatie op uw telefoon of voert u de
-                            installatiesleutel in en geeft u
-                            degegenereerde OTP-code op.
+                            {{ __('To complete enabling two-factor authentication, scan the following QR code
+                            for example with Google Authenticator application on your phone or enter the
+                            enter the installation key and give it
+                            degenerate OTP code.') }}
                         @else
                             {{ __('Two factor authentication is now enabled. Scan the following QR code using your phone\'s authenticator application or enter the setup key.') }}
                         @endif
@@ -79,8 +79,7 @@
             @if ($showingRecoveryCodes)
                 <div class="mt-4 max-w-xl text-sm text-primary-muted">
                     <p class="font-semibold">
-                        Bewaar deze herstelcodes op een veilige plek. Ze kunnen worden gebruikt om de toegang tot uw
-                        account te herstellen als uw twee factor authenticatie apparaat verloren is gegaan
+                        {{ __('Keep these recovery codes in a safe place. They can be used to restore access to your account if your two-factor authentication device is lost') }}
                     </p>
                 </div>
 
@@ -96,7 +95,7 @@
             @if (! $this->enabled)
                 <x-confirms-password wire:then="enableTwoFactorAuthentication">
                     <x-button.default type="button" wire:loading.attr="disabled">
-                        Inschakelen
+                        {{ __('Enable') }}
                     </x-button.default>
                 </x-confirms-password>
             @else
@@ -109,13 +108,13 @@
                 @elseif ($showingConfirmation)
                     <x-confirms-password wire:then="confirmTwoFactorAuthentication">
                         <x-button.default type="button" class="me-3" wire:loading.attr="disabled">
-                            Bevestig
+                            {{ __('Confirm') }}
                         </x-button.default>
                     </x-confirms-password>
                 @else
                     <x-confirms-password wire:then="showRecoveryCodes">
                         <x-button.default class="me-3">
-                            Herstel codes weergeven
+                            {{ __('Show recovery codes') }}
                         </x-button.default>
                     </x-confirms-password>
                 @endif
@@ -129,11 +128,10 @@
                 @else
                     <x-confirms-password wire:then="disableTwoFactorAuthentication">
                         <x-danger-button wire:loading.attr="disabled">
-                            Uitschakelen
+                            {{ __('Disable') }}
                         </x-danger-button>
                     </x-confirms-password>
                 @endif
-
             @endif
         </div>
     </x-slot>

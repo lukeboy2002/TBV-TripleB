@@ -6,7 +6,7 @@
         <div class="h-full w-full flex flex-col items-center justify-center mx-auto">
             <div class="w-full max-w-md">
                 <div>
-                    <x-heading.main>Reset Password</x-heading.main>
+                    <x-heading.main>{{ __('Reset Password'}}</x-heading.main>
                 </div>
                 <div>
                     <x-card.default class="form">
