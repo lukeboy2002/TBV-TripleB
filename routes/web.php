@@ -21,6 +21,8 @@ Route::middleware('setLocale')->group(function () {
         return Redirect::back();
     })->name('language.switch');
 
+    Route::passkeys();
+
     Route::get('/', function () {
         return view('home');
     })->name('home');

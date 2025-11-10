@@ -1,10 +1,10 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="title">
-        Profiel informatie
+        {{ __('Profile information') }}
     </x-slot>
 
     <x-slot name="description">
-        Update de profielgegevens en het e-mailadres van uw account.
+        {{ __('Update your account profile information and email address.') }}
     </x-slot>
 
     <x-slot name="form">
@@ -40,12 +40,12 @@
                 </div>
 
                 <x-button.default class="mt-2 me-2" type="button" x-on:click.prevent="$refs.photo.click()">
-                    {{ __('Kies een nieuwe afbeelding') }}
+                    {{ __('Choose a new image') }}
                 </x-button.default>
 
                 @if ($this->user->profile_photo_path)
                     <x-button.secondary type="button" class="mt-2" wire:click="deleteProfilePhoto">
-                        {{ __('Verwijder afbeelding') }}
+                        {{ __('Delete Image') }}
                     </x-button.secondary>
                 @endif
 
@@ -55,7 +55,7 @@
 
         <!-- Username -->
         <div class="col-span-6 sm:col-span-4">
-            <x-form.label for="username" value="Gebruikersnaam"/>
+            <x-form.label for="username" value="{{ __('Username') }}"/>
             <x-form.input id="username" type="text" class="mt-1 block w-full" wire:model="state.username" required
                           autocomplete="username"/>
             <x-form.error for="name" class="mt-2"/>
@@ -63,7 +63,7 @@
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-form.label for="name" value="Volledige naam"/>
+            <x-form.label for="name" value="{{ __('Full name') }}"/>
             <x-form.input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required
                           autocomplete="name"/>
             <x-form.error for="name" class="mt-2"/>
@@ -83,13 +83,13 @@
                     <button type="button"
                             class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             wire:click.prevent="sendEmailVerification">
-                        Klik hier om de verificatie-e-mail opnieuw te verzenden.
+                        {{ __('Click here to resend the verification email.') }}
                     </button>
                 </p>
 
                 @if ($this->verificationLinkSent)
                     <p class="mt-2 font-medium text-sm text-success">
-                        Er is een nieuwe verificatielink naar uw e-mailadres verzonden.
+                        {{ __('A new verification link has been sent to your email address.') }}
                     </p>
                 @endif
             @endif
@@ -98,11 +98,11 @@
 
     <x-slot name="actions">
         <x-action-message class="me-3" on="saved">
-            Ogeslagen.
+            {{ __('Saved') }}.
         </x-action-message>
 
         <x-button.default wire:loading.attr="disabled" wire:target="photo">
-            Save
+            {{ __('Save') }}
         </x-button.default>
     </x-slot>
 </x-form-section>

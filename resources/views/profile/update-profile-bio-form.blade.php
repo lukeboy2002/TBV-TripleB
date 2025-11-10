@@ -1,16 +1,16 @@
 <div>
     <x-form-section submit="updateProfileBio">
         <x-slot name="title">
-            Extra informatie
+            {{ __('Additional user information') }}
         </x-slot>
 
         <x-slot name="description">
-            Update de profielgegevens.
+            {{ __('Update your account profile information.') }}
         </x-slot>
 
         <x-slot name="form">
             <div class="col-span-6 sm:col-span-4">
-                <x-form.label for="city" value="Woonplaats"/>
+                <x-form.label for="city" value="{{ __('City') }}"/>
                 <x-form.input id="city" type="text" class="mt-1 block w-full" wire:model="city"/>
                 <x-form.error for="city" class="mt-2"/>
             </div>
@@ -18,7 +18,7 @@
             <div class="col-span-6">
                 <div wire:ignore>
                     <x-tiptapeditor.editor :enable-image-upload="true">
-                        <label for="editor" class="sr-only">Biografie</label>
+                        <label for="editor" class="sr-only">{{ __('Biography') }}</label>
                         <div id="editor"
                              data-initial="{{ $this->body ?? '' }}"
                              data-upload-url="{{ route('editor.uploads.images') }}"
@@ -33,11 +33,11 @@
         <x-slot name="actions">
             <div class="pt-4 flex items-center">
                 <x-action-message class="me-3" on="saved">
-                    Ogeslagen.
+                    {{ __('Saved') }}
                 </x-action-message>
 
                 <x-button.default type="submit" wire:loading.attr="disabled">
-                    Save
+                    {{ __('Save') }}
                 </x-button.default>
             </div>
         </x-slot>

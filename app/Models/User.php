@@ -13,9 +13,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\LaravelPasskeys\Models\Concerns\HasPasskeys;
+use Spatie\LaravelPasskeys\Models\Concerns\InteractsWithPasskeys;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasPasskeys
 {
     use HasApiTokens;
 
@@ -24,6 +26,7 @@ class User extends Authenticatable
 
     use HasProfilePhoto;
     use HasRoles;
+    use InteractsWithPasskeys;
     use Notifiable;
     use TwoFactorAuthenticatable;
 
@@ -145,6 +148,16 @@ class User extends Authenticatable
             ->orWhere('username', 'like', "%{$search}%");
     }
 
+    public function scopeBanned($query)
+    {
+        return $query->where('is_banned', true);
+    }
+
+    public function scopeNotBanned($query)
+    {
+        return $query->where('is_banned', false);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -157,15 +170,5 @@ class User extends Authenticatable
             'password' => 'hashed',
             'is_banned' => 'boolean',
         ];
-    }
-
-    public function scopeBanned($query)
-    {
-        return $query->where('is_banned', true);
-    }
-
-    public function scopeNotBanned($query)
-    {
-        return $query->where('is_banned', false);
     }
 }
