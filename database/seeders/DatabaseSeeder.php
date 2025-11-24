@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Album;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Invitation;
@@ -68,8 +69,8 @@ class DatabaseSeeder extends Seeder
         //            $post->tags()->attach($tag);
         //        }
         //
-        //        $album = Album::factory(6)
-        //            ->recycle([$members])
-        //            ->create();
+        $album = Album::factory(8)
+            ->recycle([$members])
+            ->create();
     }
 }

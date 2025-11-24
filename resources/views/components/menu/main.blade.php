@@ -10,7 +10,7 @@
     {{ __('Games') }}
 </x-link.navigation>
 
-<x-link.navigation href="#" icon="images">
+<x-link.navigation href="{{ route('albums.index') }}" :active="request()->routeIs('albums.*')" icon="images">
     {{ __('Images') }}
 </x-link.navigation>
 

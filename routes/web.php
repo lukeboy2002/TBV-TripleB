@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcceptInvitationController;
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TeamController;
@@ -39,7 +40,8 @@ Route::middleware('setLocale')->group(function () {
     Route::get('posts', [PostController::class, 'index'])->name('posts.index');
     Route::get('posts/{post:slug}', [PostController::class, 'show'])->name('posts.show');
 
-    Route::get('posts', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+    Route::get('albums', [AlbumController::class, 'index'])->name('albums.index');
+    Route::get('albums/{album:slug}', [AlbumController::class, 'show'])->name('albums.show');
 
     // Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group(function () {
