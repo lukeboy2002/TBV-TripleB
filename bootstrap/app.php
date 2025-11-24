@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\hasInvitation;
+use App\Http\Middleware\RejectBanned;
 use App\Http\Middleware\SetLocale;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -23,10 +24,13 @@ return Application::configure(basePath: dirname(__DIR__))
             'role_or_permission' => RoleOrPermissionMiddleware::class,
             'hasInvitation' => hasInvitation::class,
             'setLocale' => SetLocale::class,
+            'rejectBanned' => RejectBanned::class,
         ]);
 
         // Apply locale middleware to all web routes
         $middleware->appendToGroup('web', SetLocale::class);
+        // Globally reject banned users across web routes
+        $middleware->appendToGroup('web', RejectBanned::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

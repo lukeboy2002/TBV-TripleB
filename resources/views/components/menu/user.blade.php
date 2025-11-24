@@ -1,3 +1,16 @@
+@php
+    $user = auth()->user();
+    $showMenuBorders = $user && (
+        $user->hasRole('admin') ||
+        $user->can('create:category') ||
+        $user->can('create:user') ||
+        $user->can('create:game')
+    );
+@endphp
+
+@if($showMenuBorders)
+    <div class="border-t border-secondary/30 my-2"></div>
+@endif
 @role('admin')
 <x-dropdown-link
         href="{{ route('roles.index') }}">
@@ -27,3 +40,6 @@
         {{ __('Create Game') }}
     </x-dropdown-link>
 @endcan
+@if($showMenuBorders)
+    <div class="border-t border-secondary/30 my-2"></div>
+@endif

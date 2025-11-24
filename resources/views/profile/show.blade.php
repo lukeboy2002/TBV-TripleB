@@ -10,9 +10,11 @@
 
                 <x-section-border/>
 
+                @hasanyrole('admin|member')
                 @livewire('profile.update-profile-bio-form')
 
                 <x-section-border/>
+                @endhasanyrole
             @endif
 
             @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))

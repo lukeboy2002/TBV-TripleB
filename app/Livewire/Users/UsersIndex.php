@@ -53,7 +53,8 @@ class UsersIndex extends Component
     #[On('userBannedToggled')]
     public function refreshUsers(): void
     {
-        // No-op: Livewire will re-render after this method.
+        // Explicitly refresh this component so the toggles reflect the latest state
+        $this->dispatch('$refresh');
     }
 
     public function render()

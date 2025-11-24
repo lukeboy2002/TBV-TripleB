@@ -94,9 +94,6 @@
                             <x-link.buttonSecondary href="{{ route('games') }}">
                                 {{ __('Cancel') }}
                             </x-link.buttonSecondary>
-                            {{--                            <x-button.secondary type="button" wire:click="$set('showGameForm', false)">--}}
-                            {{--                                Cancel--}}
-                            {{--                            </x-button.secondary>--}}
                             <x-button.default type="submit">
                                 {{ __('Start New Game') }}
                             </x-button.default>

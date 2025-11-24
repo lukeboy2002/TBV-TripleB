@@ -27,6 +27,11 @@ Route::middleware('setLocale')->group(function () {
         return view('home');
     })->name('home');
 
+    // Page shown to banned users when attempting to log in
+    Route::get('/banned', function () {
+        return view('auth.banned');
+    })->name('banned');
+
     Route::get('accept-invitation/create', [AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('hasInvitation');
     Route::post('accept-invitation/store', [AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
     Route::get('team', TeamController::class)->name('team');

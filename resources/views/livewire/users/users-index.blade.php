@@ -24,7 +24,7 @@
                         @foreach($users as $user)
                             <tr wire:key="{{$user->id}}" class="bg-transparent border-b border-secondary/30 ">
                                 <td class="px-6 py-4 font-medium whitespace-nowrap ">
-                                    {{ $user->username }}
+                                    {{ ucfirst($user->username) }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex flex-wrap gap-2">

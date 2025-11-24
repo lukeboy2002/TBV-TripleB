@@ -6,9 +6,9 @@
         @foreach($bannedUsers as $banned)
             <div class="text-lg font-extrabold text-primary py-2 {{ !$loop->last ? 'border-b border-secondary/30' : '' }}">
                 <div class="flex items-center justify-between">
-                    <div class="truncate">
-                        <span class="font-medium">{{ $banned->username }}</span>
-                        <span class="ml-2 text-xs text-primary-muted">{{ $banned->name }}</span>
+                    <div class="flex flex-col">
+                        <span class="font-medium">{{ ucfirst($banned->username) }}</span>
+                        <span class="text-xs text-primary-muted">{{ $banned->name }}</span>
                     </div>
                     <button
                             type="button"
