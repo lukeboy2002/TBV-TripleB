@@ -46,7 +46,7 @@ class UpdateProfileBioForm extends Component
         $this->dispatch('saved');
         // Update editor content if needed
         $this->dispatch('refresh-biography', $this->body);
-        session()->flash('message', 'Profielinformatie opgeslagen!');
+        session()->flash('message', __('Profile information saved'));
     }
 
     public function render()

@@ -28,7 +28,7 @@ class RoleCreate extends Component
 
         $this->reset(['name', 'selectedPermissions']);
 
-        flash()->success('Role created successfully');
+        flash()->success(__('Role created successfully'));
 
         return redirect()->route('roles.index');
     }

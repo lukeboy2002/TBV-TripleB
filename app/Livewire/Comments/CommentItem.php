@@ -38,7 +38,7 @@ class CommentItem extends Component
         }
 
         if ($this->comment->user_id != $user->id) {
-            return response('You are not allowed to perform this action', 403);
+            return response(__('You are not allowed to perform this action'), 403);
         }
 
         $id = $this->comment->id;
@@ -50,8 +50,9 @@ class CommentItem extends Component
         $this->comment->delete();
         $this->dispatch('commentDeleted', $id);
 
-        return redirect()->route('posts.show', ['post' => $this->comment->post->slug])
-            ->with('success', 'Comment has been deleted.');
+        flash()->success(__('The comment has been deleted'));
+
+        return redirect()->route('posts.show', ['post' => $this->comment->post->slug]);
 
     }
 

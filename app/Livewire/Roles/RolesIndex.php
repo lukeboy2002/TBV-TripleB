@@ -27,7 +27,7 @@ class RolesIndex extends Component
     public function deleteRole(Role $role)
     {
         if (! auth()->user()->hasRole('admin')) {
-            abort(403, 'You do not have access to delete this role.');
+            abort(403, __('You do not have access to delete this role.'));
         }
 
         $this->role = $role;
@@ -37,7 +37,7 @@ class RolesIndex extends Component
     public function confirmDelete()
     {
         if (! auth()->user()->hasRole('admin')) {
-            abort(403, 'You do not have access to delete this role.');
+            abort(403, __('You do not have access to delete this role.'));
         }
 
         if ($this->role) {
@@ -51,7 +51,7 @@ class RolesIndex extends Component
 
             $this->role->delete();
 
-            flash()->success('The role has been deleted');
+            flash()->success(__('The role has been deleted'));
 
             $this->dispatch('roleDeleted');
             $this->showModal = false;

@@ -33,7 +33,7 @@ class CategoryCreate extends Component
 
         $this->reset(['name', 'description']);
 
-        flash()->success('Category created successfully');
+        flash()->success(__('Category created successfully'));
     }
 
     public function render()

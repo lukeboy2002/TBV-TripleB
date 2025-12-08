@@ -61,6 +61,7 @@ class RolesAndPermissionsSeeder extends Seeder
         $albumPermission2 = Permission::create(['name' => 'view:album']);
         $albumPermission3 = Permission::create(['name' => 'update:album']);
         $albumPermission4 = Permission::create(['name' => 'delete:album']);
+        $imagePermission1 = Permission::create(['name' => 'upload:image']);
 
         // AGENDA MODEL
         $eventPermission1 = Permission::create(['name' => 'create:event']);
@@ -102,6 +103,7 @@ class RolesAndPermissionsSeeder extends Seeder
             $albumPermission2,
             $albumPermission3,
             $albumPermission4,
+            $imagePermission1,
             $eventPermission1,
             $eventPermission2,
             $eventPermission3,
@@ -118,6 +120,7 @@ class RolesAndPermissionsSeeder extends Seeder
             $gamePermission2,
             $albumPermission1,
             $albumPermission2,
+            $imagePermission1,
             $eventPermission1,
             $eventPermission2,
         ]);
