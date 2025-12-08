@@ -38,7 +38,7 @@ class CommentCreate extends Component
 
         if ($this->commentModel) {
             if ($this->commentModel->user_id != $user->id) {
-                return response('You are not allowed to perform this action', 403);
+                return response(__('You are not allowed to perform this action'), 403);
             }
 
             $this->commentModel->comment = $this->comment;

@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Album;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Collection;
 
 /**
  * @extends Factory<Album>
@@ -37,6 +38,7 @@ class AlbumFactory extends Factory
             'title' => fake()->word(),
             'slug' => fake()->slug(),
             'image_path' => fake()->randomElement($this->images),
+            'body' => Collection::times(4, fn () => fake()->realText(50))->join(PHP_EOL.PHP_EOL),
         ];
     }
 }

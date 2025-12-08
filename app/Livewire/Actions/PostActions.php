@@ -48,7 +48,7 @@ class PostActions extends Component
         $this->showModal = true;
         $this->post->delete();
 
-        session()->flash('success', 'The post and all its comments have been deleted');
+        flash()->success(__('The post and all its comments have been deleted'));
 
         $this->redirect(route('post.index'));
     }

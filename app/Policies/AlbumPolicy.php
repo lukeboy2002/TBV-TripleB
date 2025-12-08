@@ -36,7 +36,7 @@ class AlbumPolicy
      */
     public function update(User $user, Album $album): bool
     {
-        return false;
+        return $user->id === $album->user_id;
     }
 
     /**
@@ -44,7 +44,7 @@ class AlbumPolicy
      */
     public function delete(User $user, Album $album): bool
     {
-        return false;
+        return $user->id === $album->user_id;
     }
 
     /**
@@ -61,5 +61,11 @@ class AlbumPolicy
     public function forceDelete(User $user, Album $album): bool
     {
         return false;
+    }
+
+    public function uploadToAlbum(User $user, Album $album): bool
+    {
+        // Allow owners or specific permission
+        return $user->id === $album->user_id || $user->can('albums.upload');
     }
 }

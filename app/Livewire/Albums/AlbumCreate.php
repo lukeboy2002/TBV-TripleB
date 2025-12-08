@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Livewire\Posts;
+namespace App\Livewire\Albums;
 
-use App\Models\Category;
-use App\Models\Post;
+use App\Models\Album;
 use App\Support\ImageCompressor;
 use ArrayAccess;
 use Cviebrock\EloquentSluggable\Services\SlugService;
@@ -11,7 +10,7 @@ use Livewire\Attributes\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-class PostCreate extends Component
+class AlbumCreate extends Component
 {
     use WithFileUploads;
 
@@ -21,58 +20,53 @@ class PostCreate extends Component
     #[Rule('required|max:100')]
     public string $slug;
 
-    #[Rule('required|min:10')]
+    #[Rule('nullable|max:255')]
     public $body;
 
     #[Rule('nullable|image|max:2048')]
-    public $featured_image;
+    public $image_path;
 
-    public $is_featured = false;
-
-    #[Rule('nullable|date')]
-    public $published_at;
-
-    #[Rule('required|exists:categories,id')]
-    public $category_id;
+    #[Rule(['uploads' => 'required', 'uploads.*' => 'image|max:10240|mimes:jpg,jpeg,png,webp,heic,heif'])]
+    public array $uploads = [];
 
     public $tags = [];
 
-    public $allCategories;
-
-    public function mount()
-    {
-        $this->allCategories = Category::all();
-        // Default published date to today (no time)
-        $this->published_at = now()->format('Y-m-d');
-    }
-
     public function updatedTitle(): void
     {
-        $this->slug = SlugService::createSlug(Post::class, 'slug', $this->title);
+        $this->slug = SlugService::createSlug(Album::class, 'slug', $this->title);
     }
 
     public function save()
     {
 
-        $path = $this->featured_image
-            ? $this->featured_image->store('posts', 'public')
+        $path = $this->image_path
+            ? $this->image_path->store('albums', 'public')
             : null;
 
         if ($path) {
+            // Compress the stored cover image to <= 500KB
             $absolute = storage_path('app/public/'.$path);
             ImageCompressor::compressToMaxBytes($absolute, 1024_000);
         }
 
-        $post = Post::create([
+        $album = Album::create([
             'title' => $this->title,
             'slug' => $this->slug,
             'body' => $this->body,
-            'featured_image' => $path,
-            'is_featured' => $this->is_featured,
-            'published_at' => $this->published_at,
-            'category_id' => $this->category_id,
+            'image_path' => $path,
             'user_id' => auth()->id(),
         ]);
+
+        foreach ($this->uploads as $file) {
+            // Spatie + Livewire integration
+            // We don't have Media Library Pro's addMediaFromLivewire here.
+            // Livewire's TemporaryUploadedFile is an instance of Symfony UploadedFile,
+            // which Spatie's addMedia() supports directly.
+            $album
+                ->addMedia($file)
+                ->usingFileName($file->getClientOriginalName())
+                ->toMediaCollection('albums');
+        }
 
         // Normalize tags input to an array for Spatie Tags
         $tags = $this->tags;
@@ -89,16 +83,18 @@ class PostCreate extends Component
         $tags = array_values(array_filter($tags, static fn ($t) => is_string($t) && $t !== ''));
 
         if (! empty($tags)) {
-            $post->attachTags($tags);
+            $album->attachTags($tags);
         }
 
-        flash()->success('Blog post successfully created');
+        flash()->success(__('The album is created'));
 
-        return redirect()->route('posts.index');
+        $this->dispatch('album-created');
+
+        return redirect()->route('albums.index');
     }
 
     public function render()
     {
-        return view('livewire.posts.post-create');
+        return view('livewire.albums.album-create');
     }
 }

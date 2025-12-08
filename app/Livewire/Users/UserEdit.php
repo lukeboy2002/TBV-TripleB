@@ -36,7 +36,7 @@ class UserEdit extends Component
     {
         $this->user->syncRoles($this->selectedRole ? [$this->selectedRole] : []);
 
-        flash()->success('User edited successfully');
+        flash()->success(__('User edited successfully'));
 
         return redirect()->route('users.index');
     }
@@ -45,7 +45,7 @@ class UserEdit extends Component
     {
         $this->user->syncPermissions($this->selectedPermissions);
 
-        flash()->success('User edited successfully');
+        flash()->success(__('User edited successfully'));
         $this->selectedPermissions = [];
 
         return redirect()->route('users.index');

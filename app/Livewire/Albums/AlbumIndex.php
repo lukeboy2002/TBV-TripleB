@@ -11,25 +11,63 @@ class AlbumIndex extends Component
 {
     use WithPagination;
 
-    public int $layoutSeed = 0;
+    public bool $showModal = false;
 
-    public function mount(): void
-    {
-        // Seed used to vary the playful layout on each full page load
-        $this->layoutSeed = random_int(PHP_INT_MIN, PHP_INT_MAX);
-    }
+    public Album $album;
 
-    // When the paginator page changes, refresh the seed so the layout changes too
-    public function updatedPage($page): void
+    public ?Album $selectedAlbum = null;
+
+    protected $listeners = [
+        'album-created' => 'refreshAlbums',
+        'album-deleted' => 'refreshAlbums',
+    ];
+
+    public function mount(Album $album)
     {
-        $this->layoutSeed = random_int(PHP_INT_MIN, PHP_INT_MAX);
+        $this->showModal = false;
+        $this->album = $album;
     }
 
     #[Computed]
     public function albums()
     {
         return Album::with('user')
+            ->orderBy('created_at', 'DESC')
             ->paginate(6);
+    }
+
+    public function confirmDeletion($id)
+    {
+        $this->selectedAlbum = Album::findOrFail($id);
+        $this->toggleModal();
+    }
+
+    public function toggleModal()
+    {
+        $this->showModal = ! $this->showModal;
+    }
+
+    public function deletePost()
+    {
+        if (! auth()->user()->can('delete', $this->selectedAlbum)) {
+            abort(403, __('You do not have access to delete this Album.'));
+        }
+
+        $this->selectedAlbum->delete();
+        $this->selectedAlbum = null;
+        $this->showModal = false;
+
+        // Reset pagination to avoid landing on an empty/non-existent page after deletion
+        $this->resetPage();
+
+        flash()->success(__('The album has been deleted'));
+        $this->dispatch('album-deleted');
+    }
+
+    public function refreshAlbums(): void
+    {
+        // Ensure pagination stays in a valid state when albums are created/deleted
+        $this->resetPage();
     }
 
     public function render()

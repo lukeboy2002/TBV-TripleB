@@ -55,6 +55,8 @@ Route::middleware('setLocale')->group(function () {
         Route::get('post/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->middleware('role:admin|member')->name('post.create');
         Route::get('post/{post:slug}/edit', [App\Http\Controllers\Admin\PostController::class, 'edit'])->middleware('role:admin|member')->name('post.edit');
         Route::get('game/create', App\Http\Controllers\Admin\GamesController::class)->middleware('role:admin|member')->name('game.create');
+        Route::get('album/create', [App\Http\Controllers\Admin\AlbumController::class, 'create'])->middleware('role:admin|member')->name('album.create');
+        Route::get('album/{album:slug}/edit', [App\Http\Controllers\Admin\AlbumController::class, 'edit'])->middleware('role:admin|member')->name('album.edit');
         Route::post('editor/uploads/images', [App\Http\Controllers\Admin\EditorUploadController::class, 'store'])->name('editor.uploads.images');
         // TipTap editor image upload endpoint
     });

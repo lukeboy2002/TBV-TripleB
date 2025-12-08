@@ -56,7 +56,7 @@ class InvitationIndex extends Component
     public function deleteUser(Invitation $user)
     {
         if (! auth()->user()->can('delete', $user)) {
-            abort(403, 'You do not have access to delete this invitation.');
+            abort(403, __('You do not have access to delete this invitation.'));
         }
 
         $this->user = $user;
@@ -66,7 +66,7 @@ class InvitationIndex extends Component
     public function confirmDelete(Invitation $user)
     {
         if (! auth()->user()->can('delete', $this->user)) {
-            abort(403, 'You do not have access to delete this invitation.');
+            abort(403, __('You do not have access to delete this invitation.'));
         }
 
         if ($this->user) {
@@ -84,7 +84,7 @@ class InvitationIndex extends Component
 
             Mail::to($recipientEmail)->send(new DeleteInvitation($mailData));
 
-            flash()->success('The invitation has been deleted');
+            flash()->success(__('The invitation has been deleted'));
 
             $this->dispatch('user-deleted');
             $this->showModal = false;

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
+use App\Models\Album;
 
 class AlbumController extends Controller
 {
@@ -11,8 +11,8 @@ class AlbumController extends Controller
         return view('albums.index');
     }
 
-    public function show(Post $post)
+    public function show(Album $album)
     {
-        return view('albums.show', compact('post'));
+        return view('albums.show', compact('album'));
     }
 }

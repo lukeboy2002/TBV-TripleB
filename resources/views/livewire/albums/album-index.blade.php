@@ -1,68 +1,101 @@
-<div class="max-w-7xl mx-auto p-6 relative">
-    <x-heading.main>{{ __('Photo Albums') }}</x-heading.main>
-
-    @php
-        // Rotation and tilt variety for a playful look
-        $rotations = ['-rotate-2', 'rotate-1', 'rotate-3', '-rotate-1', 'rotate-2', '-rotate-3', 'rotate-1', '-rotate-2', 'rotate-2'];
-        $skews = ['skew-y-0','skew-y-1','-skew-y-1','skew-y-2','-skew-y-2'];
-        // Use a seed from the Livewire component so layout changes per reload/pagination
-        $seed = $this->layoutSeed ?? random_int(PHP_INT_MIN, PHP_INT_MAX);
-    @endphp
-
-    @if($this->albums->count())
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+<div class="mb-6">
+    @can('create:album')
+        <div class="flex justify-end space-x-2 pb-4">
+            <x-link.button href="{{ route('album.create') }}">{{ __('New Album') }}</x-link.button>
+        </div>
+    @endcan
+    @if ($this->albums->count())
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             @foreach($this->albums as $album)
-                @php
-                    $cover = $album->getFirstMediaUrl('albums', 'thumbnail') ?: ($album->image_path ? asset('storage/'.$album->image_path) : null);
-                    // Derive per-card pseudo-randomness from a stable hash based on the seed and album id
-                    $h = crc32($seed . '-' . ($album->id ?? $loop->iteration) . '-' . $loop->iteration);
-                    $tilt = $rotations[$h % count($rotations)] . ' ' . $skews[($h >> 3) % count($skews)];
-                    // Vary some cards to span more space and height for playful layout
-                    $span = ((($h >> 5) % 5) === 0) ? 'md:col-span-2' : '';
-                    $height = ((($h >> 7) % 2) === 0) ? 'h-72' : 'h-56';
-                @endphp
-                <div class="relative group {{ $span }}" wire:key="album-{{ $album->id }}">
-                    <div class="relative {{ $height }} rounded-2xl overflow-hidden shadow-md transition-transform duration-300 ease-out group-hover:scale-[1.02]">
-                        @if($cover)
-                            <div class="absolute inset-0 origin-center {{ $tilt }} transition-transform duration-500 group-hover:rotate-0">
-                                <img src="{{ $cover }}" alt="{{ $album->title }}"
-                                     class="w-full h-full object-cover" loading="lazy">
+
+                <div class="p-3 rounded-lg shadow-md bg-background-hover/20">
+                    <div class="relative">
+                        <a href="{{ route('albums.show', $album) }}">
+                            <!-- Afbeelding -->
+                            <img src="{{ $album->image_path }}"
+                                 alt="{{ $album->title }}"
+                                 class="w-full h-80 md:h-56 object-cover rounded-lg shadow">
+
+                            <!-- Titel linksboven -->
+                            <div class="absolute top-0 left-0 w-full bg-background-hover/50 text-secondary font-black px-3 py-1 rounded-t">
+                                {{ ucfirst($album->title) }}
                             </div>
-                        @else
-                            <div class="absolute inset-0 origin-center {{ $tilt }} transition-transform duration-500 group-hover:rotate-0 bg-gradient-to-br from-primary/20 to-secondary/30 flex items-center justify-center">
-                                <svg class="w-12 h-12 text-primary/60" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                     viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                          d="M3 5a2 2 0 012-2h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm3 10l3.5-4.5 2.5 3 3.5-4.5L21 15H6z"/>
-                                </svg>
+
+                            <!-- Edit/Delete rechtsonder -->
+                            <div class="absolute bottom-0 right-0 flex gap-2 items-center p-1">
+                                <div class="text-primary-muted text-xs">{{ __('By') }} {{ ucfirst($album->user->username) }}</div>
+                                @can('update', $album)
+                                    <x-link.icon icon="edit" href="{{ route('album.edit', $album->slug) }}"
+                                                 class="text-edit"/>
+                                @endcan
+                                @can('delete', $album)
+                                    <div class="flex items-center gap-2">
+                                        <x-button.icon wire:click="confirmDeletion({{ $album->id }})" icon="trash"
+                                                       class="text-error"/>
+                                    </div>
+                                @endcan
                             </div>
-                        @endif
-                        <!-- subtle vignette and gradient for title readability -->
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-                        <!-- Album title overlay -->
-                        <div class="absolute top-0 left-0 p-4 flex items-end justify-between">
-                            <h3 class="text-secondary text-lg md:text-xl font-semibold drop-shadow">
-                                {{ $album->title }}
-                            </h3>
-                        </div>
-                        <div class="absolute bottom-0 right-0 p-4 flex items-end justify-between">
-                            @if($album->user)
-                                <span class="text-primary-muted text-xs">{{ __('by') }} {{ $album->user->username }}</span>
-                            @endif
-                        </div>
+                        </a>
                     </div>
                 </div>
+
             @endforeach
         </div>
-
         <div class="mt-8 flex justify-center">
             {{ $this->albums->links() }}
         </div>
     @else
-        <x-card.default class="mt-6">
-            <div class="p-8 text-center text-primary-muted">
-                {{ __('No albums available yet.') }}
+        <x-card.default>
+            <div class="text-primary-muted flex flex-col items-center gap-2">
+                <x-lucide-image-off class="w-14 h-14 text-secondary"/>
+                <p class="text-xl">
+                    {{ __('No albums available yet.') }}</p>
             </div>
         </x-card.default>
     @endif
+
+    @if($showModal)
+        <div class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title"
+             role="dialog"
+             aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 transition-opacity bg-background/75" aria-hidden="true"
+                     wire:click="toggleModal"></div>
+
+                <!-- Main modal -->
+                <div class="flex justify-between items-center h-screen max-w-md mx-auto">
+                    <div class="bg-background border border-secondary/30 relative rounded-lg shadow-sm w-full">
+                        <!-- Modal header -->
+                        <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-secondary/30">
+                            <h3 class="text-xl font-semibold text-secondary font-secondary">
+                                {{ __('Delete Album') }}
+                            </h3>
+                            <x-button.icon type="button"
+                                           class="text-secondary"
+                                           icon="x"
+                                           wire:click="toggleModal"
+                                           data-modal-hide="authentication-modal"/>
+                            <span class="sr-only">Close modal</span>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="p-4 md:p-5">
+                            <div class="flex justify-center mb-4 text-error" aria-hidden="true">
+                                <x-lucide-circle-alert class="h-12 w-12"/>
+                            </div>
+                            <h3 class="mb-5 text-lg font-normal text-primary-muted">
+                                {{ __('Are you sure you want to delete this Album and all images') }}
+                            </h3>
+                            <x-button.default wire:click.prevent="deletePost" type="button">
+                                {{ __('Yes') }}
+                            </x-button.default>
+                            <x-button.secondary wire:click="toggleModal" type="button">
+                                {{ __('No') }}
+                            </x-button.secondary>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
+

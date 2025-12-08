@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->string('image_path', 2048)->nullable();
+            $table->string('body', 255);
             $table->timestamps();
         });
     }

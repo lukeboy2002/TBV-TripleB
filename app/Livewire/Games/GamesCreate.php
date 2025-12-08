@@ -94,7 +94,7 @@ class GamesCreate extends Component
         $ok = $action($this->cupPhoto, (int) $playerId);
 
         if (! $ok) {
-            $this->addError('cupPhoto', 'Uploaden van de foto is mislukt. Probeer het opnieuw.');
+            $this->addError('cupPhoto', __('Photo upload failed. Please try again.'));
 
             return;
         }
