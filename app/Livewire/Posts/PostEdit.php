@@ -4,7 +4,6 @@ namespace App\Livewire\Posts;
 
 use App\Models\Category;
 use App\Models\Post;
-use App\Support\ImageCompressor;
 use ArrayAccess;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -75,8 +74,6 @@ class PostEdit extends Component
         // If a new image was uploaded, store it and update the property
         if ($this->new_featured_image) {
             $newPath = $this->new_featured_image->store('posts', 'public');
-            $absolute = storage_path('app/public/'.$newPath);
-            ImageCompressor::compressToMaxBytes($absolute, 512_000);
             $this->featured_image = $newPath; // will be written to DB below
         }
 

@@ -3,7 +3,6 @@
 namespace App\Livewire\Albums;
 
 use App\Models\Album;
-use App\Support\ImageCompressor;
 use ArrayAccess;
 use Illuminate\Support\Str;
 use Livewire\Component;
@@ -72,9 +71,6 @@ class AlbumEdit extends Component
         if ($this->new_image_path) {
             // Store uploads in the same directory as creation flow ("albums")
             $newPath = $this->new_image_path->store('albums', 'public');
-            // Compress to <= 500KB
-            $absolute = storage_path('app/public/'.$newPath);
-            ImageCompressor::compressToMaxBytes($absolute, 512_000);
             $this->image_path = $newPath; // will be written to DB below
         }
 

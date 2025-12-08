@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Support\ImageCompressor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -27,10 +26,6 @@ class EditorUploadController extends Controller
         $filename = $safeBase.'-'.Str::random(8).'.'.$ext;
 
         $path = $file->storeAs('editor', $filename, 'public');
-
-        // Compress to <= 500KB
-        $absolute = storage_path('app/public/'.$path);
-        ImageCompressor::compressToMaxBytes($absolute, 512_000);
 
         // Ensure the storage symlink exists (developer must run: php artisan storage:link)
         $url = asset('storage/'.$path);
