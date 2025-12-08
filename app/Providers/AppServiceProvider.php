@@ -48,7 +48,7 @@ class AppServiceProvider extends ServiceProvider
             try {
                 $path = $event->media->getPath();
                 if ($path && is_file($path)) {
-                    ImageCompressor::compressToMaxBytes($path, 1024_000);
+                    ImageCompressor::compressToMaxBytes($path, 512_000);
                 }
             } catch (Throwable $e) {
                 // silently ignore

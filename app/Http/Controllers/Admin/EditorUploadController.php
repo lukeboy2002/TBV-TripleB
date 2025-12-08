@@ -30,7 +30,7 @@ class EditorUploadController extends Controller
 
         // Compress to <= 500KB
         $absolute = storage_path('app/public/'.$path);
-        ImageCompressor::compressToMaxBytes($absolute, 1024_000);
+        ImageCompressor::compressToMaxBytes($absolute, 512_000);
 
         // Ensure the storage symlink exists (developer must run: php artisan storage:link)
         $url = asset('storage/'.$path);

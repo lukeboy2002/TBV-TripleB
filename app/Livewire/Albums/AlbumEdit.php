@@ -74,7 +74,7 @@ class AlbumEdit extends Component
             $newPath = $this->new_image_path->store('albums', 'public');
             // Compress to <= 500KB
             $absolute = storage_path('app/public/'.$newPath);
-            ImageCompressor::compressToMaxBytes($absolute, 1024_000);
+            ImageCompressor::compressToMaxBytes($absolute, 512_000);
             $this->image_path = $newPath; // will be written to DB below
         }
 

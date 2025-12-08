@@ -76,7 +76,7 @@ class PostEdit extends Component
         if ($this->new_featured_image) {
             $newPath = $this->new_featured_image->store('posts', 'public');
             $absolute = storage_path('app/public/'.$newPath);
-            ImageCompressor::compressToMaxBytes($absolute, 1024_000);
+            ImageCompressor::compressToMaxBytes($absolute, 512_000);
             $this->featured_image = $newPath; // will be written to DB below
         }
 

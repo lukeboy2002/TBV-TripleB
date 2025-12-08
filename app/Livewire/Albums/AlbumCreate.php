@@ -46,7 +46,7 @@ class AlbumCreate extends Component
         if ($path) {
             // Compress the stored cover image to <= 500KB
             $absolute = storage_path('app/public/'.$path);
-            ImageCompressor::compressToMaxBytes($absolute, 1024_000);
+            ImageCompressor::compressToMaxBytes($absolute, 512_000);
         }
 
         $album = Album::create([

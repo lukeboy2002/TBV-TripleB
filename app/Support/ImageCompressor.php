@@ -12,7 +12,7 @@ class ImageCompressor
      * Compress (and if needed downscale) an image file in-place until its size is <= $targetBytes.
      * Returns true if the file exists and is <= target after processing, false otherwise.
      */
-    public static function compressToMaxBytes(string $absolutePath, int $targetBytes = 1024_000): bool
+    public static function compressToMaxBytes(string $absolutePath, int $targetBytes = 512_000): bool
     {
         if (! is_file($absolutePath)) {
             return false;

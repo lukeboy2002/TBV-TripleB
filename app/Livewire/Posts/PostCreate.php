@@ -60,7 +60,7 @@ class PostCreate extends Component
 
         if ($path) {
             $absolute = storage_path('app/public/'.$path);
-            ImageCompressor::compressToMaxBytes($absolute, 1024_000);
+            ImageCompressor::compressToMaxBytes($absolute, 512_000);
         }
 
         $post = Post::create([
