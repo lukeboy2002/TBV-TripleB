@@ -22,7 +22,7 @@ class AntoineSeeder extends Seeder
                 'name' => 'Antoine Hendriks',
                 'email' => 'antoine@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('antoineantoine'),
+                'password' => Hash::make('medjeh-4sosFi-feggan'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

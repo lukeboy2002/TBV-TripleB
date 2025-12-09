@@ -22,7 +22,7 @@ class RichardSeeder extends Seeder
                 'name' => 'Richard Verhagen',
                 'email' => 'richard@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('richardrichard'),
+                'password' => Hash::make('ztA5!Jj7s#44TH'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

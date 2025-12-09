@@ -22,7 +22,7 @@ class PatrickSeeder extends Seeder
                 'name' => 'Patrick Engel',
                 'email' => 'patrick@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('patrickpatrick'),
+                'password' => Hash::make('58b$3V-55EhM0&@'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

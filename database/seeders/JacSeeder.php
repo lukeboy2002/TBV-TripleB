@@ -22,7 +22,7 @@ class JacSeeder extends Seeder
                 'name' => 'Jac van Gool',
                 'email' => 'jac@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('jacjacjac'),
+                'password' => Hash::make('jnSu1u5?d"Sd3'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

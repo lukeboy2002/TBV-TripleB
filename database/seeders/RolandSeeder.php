@@ -22,7 +22,7 @@ class RolandSeeder extends Seeder
                 'name' => 'Roland Verschuuren',
                 'email' => 'roland@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('rolandroland'),
+                'password' => Hash::make('~oW3J[3g\69\G#J'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

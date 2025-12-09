@@ -22,7 +22,7 @@ class JohnSeeder extends Seeder
                 'name' => 'John Verhoeven',
                 'email' => 'john@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('johnjohn'),
+                'password' => Hash::make('$5W06Bo5H~0HBX4'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();
