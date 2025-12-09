@@ -22,7 +22,7 @@ class RonSeeder extends Seeder
                 'name' => 'Ron van Roosendaal',
                 'email' => 'ron@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('q607;S#JW4EirRi'),
+                'password' => Hash::make('ronronron'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

@@ -22,7 +22,7 @@ class BeukSeeder extends Seeder
                 'name' => 'Corne Donders',
                 'email' => 'beuk@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('$D{{w8F£[2QI8P*'),
+                'password' => Hash::make('beukbeuk'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

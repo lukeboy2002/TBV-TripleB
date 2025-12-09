@@ -22,7 +22,7 @@ class Ruudseeder extends Seeder
                 'name' => 'Ruud Slegers',
                 'email' => 'ruud@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('3sI1h@{"l37g24S'),
+                'password' => Hash::make('ruudruud'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

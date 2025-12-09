@@ -22,7 +22,7 @@ class BudSeeder extends Seeder
                 'name' => 'Patrick Sneller',
                 'email' => 'bud@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('|2^D4jsH9y34ES>'),
+                'password' => Hash::make('budbudbud'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

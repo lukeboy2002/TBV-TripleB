@@ -22,7 +22,7 @@ class GuusSeeder extends Seeder
                 'name' => 'Guus Lemmers',
                 'email' => 'guus@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('3q+zJ3M4V);5.Mq'),
+                'password' => Hash::make('guusguus'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

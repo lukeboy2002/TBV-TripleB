@@ -22,7 +22,7 @@ class FransSeeder extends Seeder
                 'name' => 'Frans van Kempen',
                 'email' => 'frans@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('tL0[3^4\K@A1>)#'),
+                'password' => Hash::make('fransfrans'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();

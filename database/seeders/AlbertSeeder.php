@@ -22,7 +22,7 @@ class AlbertSeeder extends Seeder
                 'name' => 'Albert Kolen',
                 'email' => 'albert@tbv-tripleb.nl',
                 'email_verified_at' => now(),
-                'password' => Hash::make('1L+fS;ja17yC2>'),
+                'password' => Hash::make('albertalbert'),
                 'remember_token' => Str::random(10),
             ]);
         $role = Role::select('id')->where('name', 'member')->first();
