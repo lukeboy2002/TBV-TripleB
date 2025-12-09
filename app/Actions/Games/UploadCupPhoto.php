@@ -3,6 +3,7 @@
 namespace App\Actions\Games;
 
 use App\Models\GamePlayer;
+use App\Support\ImageCompressor;
 use Illuminate\Http\UploadedFile;
 use Throwable;
 
@@ -15,6 +16,11 @@ class UploadCupPhoto
     {
         try {
             $path = $cupPhoto->store('cup-photos', 'public');
+
+            // Compress to <= 1.1 megabytes (MB)
+            $absolute = storage_path('app/public/'.$path);
+            ImageCompressor::compressToMaxBytes($absolute, 1024_000);
+
         } catch (Throwable $e) {
             // \Log::error('Cup photo upload failed', ['error' => $e->getMessage()]);
             return false;

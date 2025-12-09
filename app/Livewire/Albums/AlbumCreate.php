@@ -3,6 +3,7 @@
 namespace App\Livewire\Albums;
 
 use App\Models\Album;
+use App\Support\ImageCompressor;
 use ArrayAccess;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Livewire\Attributes\Rule;
@@ -41,6 +42,12 @@ class AlbumCreate extends Component
         $path = $this->image_path
             ? $this->image_path->store('albums', 'public')
             : null;
+
+        if ($path) {
+            // Compress to <= 1.1 megabytes (MB)
+            $absolute = storage_path('app/public/'.$path);
+            ImageCompressor::compressToMaxBytes($absolute, 1024_000);
+        }
 
         $album = Album::create([
             'title' => $this->title,

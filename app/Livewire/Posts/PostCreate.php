@@ -4,6 +4,7 @@ namespace App\Livewire\Posts;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Support\ImageCompressor;
 use ArrayAccess;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 use Livewire\Attributes\Rule;
@@ -23,7 +24,7 @@ class PostCreate extends Component
     #[Rule('required|min:10')]
     public $body;
 
-    #[Rule('nullable|image|max:2048')]
+    #[Rule('nullable|image|max:10240|mimes:jpg,jpeg,png,webp,heic,heif')]
     public $featured_image;
 
     public $is_featured = false;
@@ -56,6 +57,12 @@ class PostCreate extends Component
         $path = $this->featured_image
             ? $this->featured_image->store('posts', 'public')
             : null;
+
+        if ($path) {
+            // Compress to <= 1.1 megabytes (MB)
+            $absolute = storage_path('app/public/'.$path);
+            ImageCompressor::compressToMaxBytes($absolute, 1024_000);
+        }
 
         $post = Post::create([
             'title' => $this->title,

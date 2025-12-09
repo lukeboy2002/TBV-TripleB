@@ -80,7 +80,7 @@ class GamesCreate extends Component
     //    public function updatedCupPhoto()
     //    {
     //        $this->validateOnly('cupPhoto', [
-    //            'cupPhoto' => 'image|max:2048',
+    //            'cupPhoto' => 'image|max:10240|mimes:jpg,jpeg,png,webp,heic,heif',
     //        ]);
     //    }
 
@@ -88,7 +88,7 @@ class GamesCreate extends Component
     public function uploadCupPhoto(UploadCupPhoto $action, $playerId)
     {
         $this->validate([
-            'cupPhoto' => 'required|image|max:2048',
+            'cupPhoto' => 'required|image|max:10240|mimes:jpg,jpeg,png,webp,heic,heif',
         ]);
 
         $ok = $action($this->cupPhoto, (int) $playerId);
