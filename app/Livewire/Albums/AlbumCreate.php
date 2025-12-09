@@ -23,7 +23,7 @@ class AlbumCreate extends Component
     #[Rule('nullable|max:255')]
     public $body;
 
-    #[Rule('nullable|image|max:2048')]
+    #[Rule('nullable|image|max:10240|mimes:jpg,jpeg,png,webp,heic,heif')]
     public $image_path;
 
     #[Rule(['uploads' => 'required', 'uploads.*' => 'image|max:10240|mimes:jpg,jpeg,png,webp,heic,heif'])]
