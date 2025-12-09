@@ -12,7 +12,8 @@
                     <div class="relative">
                         <a href="{{ route('albums.show', $album) }}">
                             <!-- Afbeelding -->
-                            <img src="{{ $album->image_path }}"
+
+                            <img src="{{ asset('storage/' .$album->image_path) }}"
                                  alt="{{ $album->title }}"
                                  class="w-full h-80 md:h-56 object-cover rounded-lg shadow">
 
