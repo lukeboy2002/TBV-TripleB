@@ -33,6 +33,10 @@ Route::middleware('setLocale')->group(function () {
         return view('auth.banned');
     })->name('banned');
 
+    Route::get('/php', function () {
+        return view('php');
+    });
+
     Route::get('accept-invitation/create', [AcceptInvitationController::class, 'create'])->name('accept-invitation.create')->middleware('hasInvitation');
     Route::post('accept-invitation/store', [AcceptInvitationController::class, 'store'])->name('accept-invitation.store');
     Route::get('team', TeamController::class)->name('team');
