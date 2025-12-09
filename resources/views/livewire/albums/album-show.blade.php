@@ -1,7 +1,7 @@
 <x-card.default>
     <div>
         <div class="relative w-full pb-4">
-            <img src="{{ asset($album->image_path )}}" class="block w-full h-96 object-center object-cover"
+            <img src="{{ asset('storage/' .$album->image_path)}}" class="block w-full h-96 object-center object-cover"
                  alt="{{ $album->title }}"/>
             <div class="absolute inset-0 flex items-center justify-center">
                 <h1 class="w-full text-center bg-background-hover/50 px-3 py-1 text-secondary font-secondary text-4xl font-bold">{{ $album->title }}</h1>
