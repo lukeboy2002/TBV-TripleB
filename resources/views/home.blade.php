@@ -45,10 +45,12 @@
                 </p>
             </section>
         </div>
-
     </div>
 
     <x-slot name="side">
-        <livewire:category.category-list/>
+        <div class="flex flex-col gap-6">
+            <livewire:games.cup-winner/>
+            <livewire:games.latest-game/>
+        </div>
     </x-slot>
 </x-app-layout>

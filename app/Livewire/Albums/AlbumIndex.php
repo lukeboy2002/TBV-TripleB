@@ -11,9 +11,9 @@ class AlbumIndex extends Component
 {
     use WithPagination;
 
-    public bool $showModal = false;
-
     public Album $album;
+
+    public bool $showModal = false;
 
     public ?Album $selectedAlbum = null;
 

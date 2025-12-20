@@ -18,6 +18,8 @@
     {{ __('Blog') }}
 </x-link.navigation>
 
-<x-link.navigation href="#" icon="calendar-days">
-    {{ __('Agenda') }}
+@hasanyrole('member|admin')
+<x-link.navigation href="{{ route('events.index') }}" :active="request()->routeIs('events.*')" icon="calendar-days">
+    {{ __('Events') }}
 </x-link.navigation>
+@endhasanyrole

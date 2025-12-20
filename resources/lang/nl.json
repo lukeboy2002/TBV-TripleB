@@ -195,5 +195,20 @@
   "You do not have access to delete this role.": "U heeft geen toegang om deze rol te verwijderen.",
   "The role has been deleted": "De rol is verwijderd",
   "Role created successfully": "Rol is aangemaakt",
-  "User edited successfully": "Gebruiker is bewerkt"
+  "User edited successfully": "Gebruiker is bewerkt",
+  "Events": "Agenda",
+  "Previous month": "Vorige maand",
+  "Next month": "Volgende maand",
+  "Delete Event": "Agenda item verwijderen",
+  "Are you sure you want to delete this event?": "Weet u zeker dat u dit agenda item wilt verwijderen?",
+  "attending": "aanwezig",
+  "Share": "deel",
+  "private event": "privé agenda item",
+  "Date and time": "Datum en tijd",
+  "Start date and time": "Startdatum en tijd",
+  "End date and time": "Einddatum en tijd",
+  "Choose a start date. For a multi-day event, also enter an end date.": "Kies een begindatum. Voor een meerdaags event vul ook een einddatum in.",
+  "You have no access to this page.": "U heeft geen toegang tot deze pagina.",
+  "Back": "Terug",
+  "Forbidden": "Verboden"
 }

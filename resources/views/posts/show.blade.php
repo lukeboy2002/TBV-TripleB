@@ -50,7 +50,7 @@
         <x-slot name="footer">
             <div class="flex items-center justify-between px-6 bg-background-hover rounded-lg py-4">
                 <div class="flex items-center gap-x-2 text-primary">
-                    <div class="font-bold uppercase mr-2">deel post:</div>
+                    <div class="font-bold uppercase mr-2">Share:</div>
                     <x-link.icon
                             href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url(route('posts.show', $post->slug, false))) }}"
                             icon="facebook"
