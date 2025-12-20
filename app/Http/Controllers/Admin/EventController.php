@@ -1,18 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Role;
+use App\Http\Controllers\Controller;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
-class TestResourceControler extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('events.index');
     }
 
     /**
@@ -20,7 +21,7 @@ class TestResourceControler extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.events.create');
     }
 
     /**
@@ -34,23 +35,25 @@ class TestResourceControler extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Role $role)
+    public function show(Event $event)
     {
-        //
+        $event->load('user');
+
+        return view('events.show', compact('event'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Role $role)
+    public function edit(Event $event)
     {
-        //
+        return view('admin.events.edit', compact('event'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Role $role)
+    public function update(Request $request, Event $event)
     {
         //
     }
@@ -58,7 +61,7 @@ class TestResourceControler extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Role $role)
+    public function destroy(Event $event)
     {
         //
     }

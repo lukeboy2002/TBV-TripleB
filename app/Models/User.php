@@ -105,6 +105,11 @@ class User extends Authenticatable implements HasPasskeys
         return $this->belongsTo(User::class, 'invited_by');
     }
 
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class);
+    }
+
     public function getTotalGamesPlayedAttribute()
     {
         return $this->gamePlayers()->count();

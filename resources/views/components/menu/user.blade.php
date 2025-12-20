@@ -21,10 +21,11 @@
     {{ __('Users') }}
 </x-dropdown-link>
 @endrole
+
 @can('create:category')
     <x-dropdown-link
             href="{{ route('categories.index') }}">
-        {{ __('Category') }}
+        {{ __('Create category') }}
     </x-dropdown-link>
 @endcan
 
@@ -40,6 +41,25 @@
         {{ __('Create Game') }}
     </x-dropdown-link>
 @endcan
+
+@can('create:album')
+    <x-dropdown-link href="{{ route('album.create') }}">
+        {{ __('Create Album') }}
+    </x-dropdown-link>
+@endcan
+
+@can('create:post')
+    <x-dropdown-link href="{{ route('post.create') }}">
+        {{ __('Create Post') }}
+    </x-dropdown-link>
+@endcan
+
+@can('create:event')
+    <x-dropdown-link href="{{ route('events.create') }}">
+        {{ __('Create Event') }}
+    </x-dropdown-link>
+@endcan
+
 @if($showMenuBorders)
     <div class="border-t border-secondary/30 my-2"></div>
 @endif

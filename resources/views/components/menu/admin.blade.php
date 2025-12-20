@@ -37,5 +37,11 @@
                   icon="dices">
         {{ __('Create Game') }}
     </x-link.admin>
+
+    <x-link.admin href="{{ route('events.create') }}"
+                  :active="request()->routeIs('event.create')"
+                  icon="calendar-days">
+        {{ __('Create Event') }}
+    </x-link.admin>
 </div>
 
