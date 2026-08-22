@@ -40,7 +40,8 @@
                                        class="sr-only peer"
                                        checked
                                 >
-                                <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-500 dark:peer-checked:bg-orange-500"></div>
+                                <div
+                                    class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-500 dark:peer-checked:bg-orange-500"></div>
                                 <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Spotlight</span>
                             </label>
                         </div>
@@ -61,13 +62,14 @@
                     <div class="relative group" wire:ignore.self>
                         {{-- Preview image --}}
                         <img
-                                alt="Preview"
-                                class="w-full h-48 object-scale-down rounded-lg bg-transparent"
-                                src="{{ $featured_image ? $featured_image->temporaryUrl() : asset('storage/assets/placeholder.png') }}"
+                            alt="Preview"
+                            class="w-full h-48 object-scale-down rounded-lg bg-transparent"
+                            src="{{ $featured_image ? $featured_image->temporaryUrl() : asset('storage/assets/placeholder.png') }}"
                         />
 
                         {{-- Hover overlay with upload label --}}
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                             <x-form.label for="featured_image"
                                           class="cursor-pointer bg-background/80 text-primary hover:bg-secondary hover:text-white px-4 py-2 rounded-lg">
                                 <span>Upload image</span>
@@ -82,9 +84,10 @@
                         </div>
 
                         {{-- Uploading state indicator (optional) --}}
-                        <div class="absolute inset-0 flex items-center justify-center bg-background/90 text-white text-sm rounded-lg"
-                             wire:loading.flex
-                             wire:target="featured_image">
+                        <div
+                            class="absolute inset-0 flex items-center justify-center bg-background/90 text-white text-sm rounded-lg"
+                            wire:loading.flex
+                            wire:target="featured_image">
                             <div class="flex h-[20rem] md:h-[40rem] items-center justify-center">
 
                                 <svg class="animate-spin h-12 w-12 text-secondary"
