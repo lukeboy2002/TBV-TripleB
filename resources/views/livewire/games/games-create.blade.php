@@ -7,21 +7,19 @@
                 <div class="mt-4">
                     <h5 class="font-medium text-primary">{{ __('Players present:') }}</h5>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
-                        @foreach($currentGame->gamePlayers as $gamePlayer)
-                            @if(!in_array($gamePlayer->user_id, $eliminatedPlayers))
-                                <div class="p-3 border rounded-lg">
-                                    <div class="flex items-center justify-between">
-                                        <span class="text-primary">{{ ucfirst($gamePlayer->user->username) }}</span>
-                                        <button
-                                                wire:click="eliminatePlayer({{ $gamePlayer->user_id }})"
-                                                class="px-3 py-1 bg-error text-primary rounded hover:bg-error/50 flex items-center gap-2"
-                                        >
-                                            <x-lucide-paintbrush class="w-4 h-4"/>
-                                            {{ __('Lost') }}
-                                        </button>
-                                    </div>
+                        @foreach($this->presentGamePlayers as $gamePlayer)
+                            <div class="p-3 border rounded-lg">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-primary">{{ ucfirst($gamePlayer->user->username) }}</span>
+                                    <button
+                                        wire:click="eliminatePlayer({{ $gamePlayer->user_id }})"
+                                        class="px-3 py-1 bg-error text-primary rounded hover:bg-error/50 flex items-center gap-2"
+                                    >
+                                        <x-lucide-paintbrush class="w-4 h-4"/>
+                                        {{ __('Lost') }}
+                                    </button>
                                 </div>
-                            @endif
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -34,7 +32,8 @@
                                 <div class="p-3 border rounded-lg {{ $gamePlayer->position == 1 ? 'bg-danger' : '' }}">
                                     <div class="flex items-center justify-between">
                                         <div>
-                                            <span class="font-medium text-primary">{{ ucfirst($gamePlayer->user->username) }}</span>
+                                            <span
+                                                class="font-medium text-primary">{{ ucfirst($gamePlayer->user->username) }}</span>
                                             <span class="text-sm text-primary block">
                                             {{ __('Position:') }}: {{ $gamePlayer->position }} | {{ __('Points') }}: {{ $gamePlayer->points }}
                                         </span>
@@ -52,7 +51,7 @@
 
                                                 @if($cupPhoto)
                                                     <x-button.secondary
-                                                            wire:click="uploadCupPhoto({{ $gamePlayer->user_id }})">
+                                                        wire:click="uploadCupPhoto({{ $gamePlayer->user_id }})">
                                                         Save
                                                     </x-button.secondary>
                                                 @endif
@@ -78,10 +77,20 @@
                         </div>
 
                         <div class="mb-4">
-                            <x-form.label for="selectedPlayers" value="{{ __('Select players') }}"/>
+                            <div class="flex items-center justify-between pb-2">
+                                <x-form.label for="selectedPlayers" value="{{ __('Select players') }}"/>
+                                <button
+                                    type="button"
+                                    wire:click="toggleSelectAll"
+                                    class="text-xs text-secondary hover:underline cursor-pointer focus:outline-none"
+                                >
+                                    {{ $this->areAllPlayersSelected() ? __('Deselect all') : __('Select all') }}
+                                </button>
+                            </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-2">
                                 @foreach($availablePlayers as $player)
-                                    <label class="flex items-center text-primary space-x-2 p-2 border border-secondary/30 rounded-lg cursor-pointer hover:bg-background-hover hover:text-secondary hover:border-secondary">
+                                    <label
+                                        class="flex items-center text-primary space-x-2 p-2 border border-secondary/30 rounded-lg cursor-pointer hover:bg-background-hover hover:text-secondary hover:border-secondary">
                                         <x-form.checkbox wire:model="selectedPlayers" value="{{ $player->id }}"/>
                                         <span>{{ ucfirst($player->username) }}</span>
                                     </label>
