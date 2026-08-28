@@ -1,10 +1,15 @@
 @props(['title' => ''])
-        <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+
+    {{--    @role('member')--}}
+    <link rel="manifest" href="{{ route('pwa.manifest') }}">
+    {{--    @endrole--}}
 
     <title>{{ $title }} - {{ config('app.name', 'Laravel') }}</title>
 
@@ -74,5 +79,10 @@
 @stack('modals')
 @stack('scripts')
 @livewireScripts
+<script>
+    window.addEventListener('load', e => {
+        navigator.serviceWorker.register('/sw.js', {scope: '/'});
+    })
+</script>
 </body>
 </html>

@@ -1,14 +1,24 @@
 <?php
 
 use App\Http\Controllers\AcceptInvitationController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\EditorUploadController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\InvitationController;
+use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\UserRolesController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\GamesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\PwaManifestController;
 use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\App as AppFacade;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+
+Route::get('/manifest.json', PwaManifestController::class)->name('pwa.manifest');
+Route::view('/offline', 'offline')->name('offline');
 
 Route::middleware('setLocale')->group(function () {
     Route::get('/language/{locale}', function ($locale) {
@@ -44,21 +54,21 @@ Route::middleware('setLocale')->group(function () {
 
     // Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
     Route::middleware(['auth', config('jetstream.auth_session'), 'verified'])->group(function () {
-        Route::get('roles', [App\Http\Controllers\Admin\RolesController::class, 'index'])->middleware('role:admin')->name('roles.index');
-        Route::get('roles/create', [App\Http\Controllers\Admin\RolesController::class, 'create'])->middleware('role:admin')->name('roles.create');
-        Route::get('roles/{role}/edit', [App\Http\Controllers\Admin\RolesController::class, 'edit'])->middleware('role:admin')->name('roles.edit');
-        Route::get('users', [App\Http\Controllers\Admin\UserRolesController::class, 'index'])->middleware('role:admin')->name('users.index');
-        Route::get('users/{user:username}/edit', [App\Http\Controllers\Admin\UserRolesController::class, 'edit'])->middleware('role:admin')->name('users.edit');
-        Route::get('categories', App\Http\Controllers\Admin\CategoryController::class)->middleware('role:admin|member')->name('categories.index');
-        Route::get('invitations', App\Http\Controllers\Admin\InvitationController::class)->middleware('role:admin|member')->name('invitations.index');
+        Route::get('roles', [RolesController::class, 'index'])->middleware('role:admin')->name('roles.index');
+        Route::get('roles/create', [RolesController::class, 'create'])->middleware('role:admin')->name('roles.create');
+        Route::get('roles/{role}/edit', [RolesController::class, 'edit'])->middleware('role:admin')->name('roles.edit');
+        Route::get('users', [UserRolesController::class, 'index'])->middleware('role:admin')->name('users.index');
+        Route::get('users/{user:username}/edit', [UserRolesController::class, 'edit'])->middleware('role:admin')->name('users.edit');
+        Route::get('categories', CategoryController::class)->middleware('role:admin|member')->name('categories.index');
+        Route::get('invitations', InvitationController::class)->middleware('role:admin|member')->name('invitations.index');
         Route::get('post/create', [App\Http\Controllers\Admin\PostController::class, 'create'])->middleware('role:admin|member')->name('post.create');
         Route::get('post/{post:slug}/edit', [App\Http\Controllers\Admin\PostController::class, 'edit'])->middleware('role:admin|member')->name('post.edit');
         Route::get('game/create', App\Http\Controllers\Admin\GamesController::class)->middleware('role:admin|member')->name('game.create');
         Route::get('album/create', [App\Http\Controllers\Admin\AlbumController::class, 'create'])->middleware('role:admin|member')->name('album.create');
         Route::get('album/{album:slug}/edit', [App\Http\Controllers\Admin\AlbumController::class, 'edit'])->middleware('role:admin|member')->name('album.edit');
-        Route::resource('events', App\Http\Controllers\Admin\EventController::class)->middleware('role:admin|member')->except('destroy', 'store', 'update');
+        Route::resource('events', EventController::class)->middleware('role:admin|member')->except('destroy', 'store', 'update');
 
-        Route::post('editor/uploads/images', [App\Http\Controllers\Admin\EditorUploadController::class, 'store'])->name('editor.uploads.images');
+        Route::post('editor/uploads/images', [EditorUploadController::class, 'store'])->name('editor.uploads.images');
         // TipTap editor image upload endpoint!
     });
 });
