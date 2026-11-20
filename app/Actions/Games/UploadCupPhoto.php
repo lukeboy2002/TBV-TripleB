@@ -12,7 +12,7 @@ class UploadCupPhoto
     /**
      * @return bool success
      */
-    public function __invoke(UploadedFile $cupPhoto, int $playerId): bool
+    public function __invoke(UploadedFile $cupPhoto, int $playerId, ?int $gameId = null): bool
     {
         try {
             $path = $cupPhoto->store('cup-photos', 'public');
@@ -28,6 +28,7 @@ class UploadCupPhoto
 
         $gamePlayer = GamePlayer::where('user_id', $playerId)
             ->where('position', 1)
+            ->when($gameId, fn ($query) => $query->where('game_id', $gameId))
             ->latest()
             ->first();
 
