@@ -23,7 +23,8 @@ class PlayerResource extends JsonResource
             'name' => $this->name,
             'avatar_url' => $this->avatarUrl(),
             // Alleen aanwezig als de query de statistieken heeft meegeladen (zie PlayerController).
-            'stats' => $this->when(isset($this->total_games_played), fn () => [
+            // Let op: isset() werkt hier niet, want User heeft accessors zoals getTotalGamesPlayedAttribute.
+            'stats' => $this->when(array_key_exists('average_points', $this->resource->getAttributes()), fn () => [
                 'played' => (int) $this->total_games_played,
                 'points' => (int) $this->total_points,
                 'average' => round((float) $this->average_points, 2),
