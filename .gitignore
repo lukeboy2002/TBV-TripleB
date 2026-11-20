@@ -36,4 +36,4 @@ Thumbs.db
 /database/seeders/RichardSeeder.php
 /database/seeders/RolandSeeder.php
 /database/seeders/RonSeeder.php
-/database/seeders/RuudSeeder.php
+/database/seeders/RuudSeeder.php*.sql
