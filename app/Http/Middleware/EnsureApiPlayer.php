@@ -20,7 +20,7 @@ class EnsureApiPlayer
             return response()->json(['message' => 'Unauthenticated.'], 401);
         }
 
-        if ($user->is_banned) {
+        if ((bool) ($user->is_banned ?? false)) {
             $user->currentAccessToken()?->delete();
 
             return response()->json(['message' => __('Your account has been banned.')], 403);

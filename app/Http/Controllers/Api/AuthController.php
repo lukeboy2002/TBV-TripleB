@@ -28,7 +28,7 @@ class AuthController extends Controller
             ]);
         }
 
-        if ($user->is_banned) {
+        if ((bool) ($user->is_banned ?? false)) {
             throw ValidationException::withMessages([
                 'email' => [__('Your account has been banned.')],
             ]);
