@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\EnsureApiPlayer;
 use App\Http\Middleware\hasInvitation;
 use App\Http\Middleware\RejectBanned;
 use App\Http\Middleware\SetLocale;
@@ -25,6 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'hasInvitation' => hasInvitation::class,
             'setLocale' => SetLocale::class,
             'rejectBanned' => RejectBanned::class,
+            'api.player' => EnsureApiPlayer::class,
         ]);
 
         // Apply locale middleware to all web routes

@@ -6,9 +6,9 @@ use App\Actions\Games\EliminatePlayer;
 use App\Actions\Games\IsFirstGameOfDay;
 use App\Actions\Games\LoadCurrentGame;
 use App\Actions\Games\PrepareNewGame;
+use App\Actions\Games\SortPresentPlayers;
 use App\Actions\Games\StartNewGame;
 use App\Actions\Games\UploadCupPhoto;
-use App\Models\Game;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Livewire\Component;
@@ -47,71 +47,7 @@ class GamesCreate extends Component
             return collect();
         }
 
-        $activeGamePlayers = $this->currentGame->gamePlayers
-            ->filter(fn ($gp) => ! in_array($gp->user_id, (array) $this->eliminatedPlayers))
-            ->values();
-
-        if ($activeGamePlayers->isEmpty()) {
-            return collect();
-        }
-
-        if ($this->isFirstGameOfDay($this->currentGame)) {
-            return $activeGamePlayers->sortBy(
-                fn ($gp) => strtolower($gp->user?->username ?? ''),
-                SORT_NATURAL | SORT_FLAG_CASE
-            )->values();
-        }
-
-        $gameDate = $this->currentGame->date ? $this->currentGame->date->toDateString() : now()->toDateString();
-
-        $previousGame = Game::where('status', 'completed')
-            ->whereDate('date', $gameDate)
-            ->where('id', '!=', $this->currentGame->id)
-            ->whereNotNull('completed_at')
-            ->where('completed_at', '<', $this->currentGame->completed_at ?? now())
-            ->orderByDesc('completed_at')
-            ->with('gamePlayers')
-            ->first();
-
-        if (! $previousGame) {
-            $previousGame = Game::where('status', 'completed')
-                ->where('id', '!=', $this->currentGame->id)
-                ->whereNotNull('completed_at')
-                ->where('completed_at', '<', $this->currentGame->completed_at ?? now())
-                ->orderByDesc('completed_at')
-                ->with('gamePlayers')
-                ->first();
-        }
-
-        if (! $previousGame) {
-            return $activeGamePlayers->sortBy(
-                fn ($gp) => strtolower($gp->user?->username ?? ''),
-                SORT_NATURAL | SORT_FLAG_CASE
-            )->values();
-        }
-
-        $previousScores = $previousGame->gamePlayers->pluck('points', 'user_id');
-
-        $playedPrevious = $activeGamePlayers->filter(fn ($gp) => $previousScores->has($gp->user_id));
-        $notPlayedPrevious = $activeGamePlayers->filter(fn ($gp) => ! $previousScores->has($gp->user_id));
-
-        $sortedPlayed = $playedPrevious->sort(function ($a, $b) use ($previousScores) {
-            $scoreA = $previousScores->get($a->user_id, 0);
-            $scoreB = $previousScores->get($b->user_id, 0);
-
-            if ($scoreA !== $scoreB) {
-                return $scoreB <=> $scoreA;
-            }
-
-            return strcasecmp($a->user?->username ?? '', $b->user?->username ?? '');
-        })->values();
-
-        $sortedNotPlayed = $notPlayedPrevious->sortBy(
-            fn ($gp) => strtolower($gp->user?->username ?? ''),
-            SORT_NATURAL | SORT_FLAG_CASE
-        )->values();
-
-        return $sortedPlayed->concat($sortedNotPlayed)->values();
+        return app(SortPresentPlayers::class)($this->currentGame, (array) $this->eliminatedPlayers);
     }
 
     public function isFirstGameOfDay($game, ?IsFirstGameOfDay $action = null)
